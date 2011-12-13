@@ -77,20 +77,9 @@ app.get('/login', function(req, res){
   });
 });
 
-app.get('/apps', function(req, res){
-  fhc.apps(['ke0l0aUiKTuj-jiw4J9x0nLQ'], function(err, data){
-    if (err) console.log(err); //FIXME
-    console.log(util.inspect(data));
-  });
-  res.render('app', {
-    title: 'Apps',
-    app: { title: 'test', id: '12', description: 'desc', w3c: 'w3cid'},
-    user: req.session.username
-  });
-});
 
-app.get('/app/:id?', function(req, res){
-  console.log('/app');
+app.get('/apps/:id?', function(req, res){
+  console.log('/apps');
   var id = req.params.id;
   if (!id){
     // Apps listing
@@ -107,7 +96,6 @@ app.get('/app/:id?', function(req, res){
     // We have an ID - show an individual app
     fhc.apps([id], function(err, data){
       if (err) console.log(err); //FIXME
-      console.log(util.inspect(data));
       var title = data.inst.title,
       w3cid = data.app.w3cid,
       description = data.inst.description;
@@ -148,8 +136,10 @@ app.post('/login', function(req, res){
     }
     if(data.result !== 'ok') console.log(util.inspect(data));
     
+    console.log(util.inspect(data));
+    
     req.session.user = username;
-    res.redirect('/app');
+    res.redirect('/apps');
   });
 });
 

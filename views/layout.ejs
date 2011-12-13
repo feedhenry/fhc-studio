@@ -10,9 +10,13 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    
+    <script src="/javascripts/jquery-1.7.1.min.js"></script>
+    <script src="/javascripts/jquery.tablesorter.min.js"></script>
 
     <!-- Le styles -->
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -27,11 +31,15 @@
           <a class="brand" href="#">fh-studio</a>
           <ul class="nav">
             <li class="active"><a href="/">Home</a></li>
-            <li><a href="/app">Apps</a></li>
+            <li><a href="/apps">Apps</a></li>
             <li><a href="/signup">Signup</a></li>
           </ul>
           <% if (user) { %>
-            <p class="pull-right">Logged in as <a href="#"><%= user %></a> | <a href="/logout">Logout</p>
+            <p class="pull-right"><a href="#"><%= user %></a> |
+              <a href="#">Help</a> |
+              <a href="#">Prefrences</a> |
+              <a href="/logout">Log Out</a>
+            </p>
           <% }else{ %>
             <form action="/login" method="post" class="pull-right">
               <input name="username" class="input-small" type="text" placeholder="Username">
@@ -70,14 +78,12 @@
         </div>
       </div>
       <div class="content">
-        <!-- Main hero unit for a primary marketing message or call to action -->
-        <div class="hero-unit">
-          <%- body %>
-        </div>
+        <%- body %>
+        
 
         
         <footer>
-          <p>&copy; Company 2011</p>
+          <p>&copy; Feedhenry 2011</p>
         </footer>
       </div>
     </div>
