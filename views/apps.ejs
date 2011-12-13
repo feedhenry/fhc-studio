@@ -1,0 +1,22 @@
+<h2>My Apps</h2>
+<table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Modified</th>
+            <th>Version</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          <% apps.forEach(function(app){ %>
+          <tr>
+            <td><a href="/app/<%= app.id %>"><%= app.title %></a></td>
+            <td><%= app.description %>
+            <td><%= app.modified %>
+            <td><%= app.version %>
+          </tr>
+          <% }) %>
+        </tbody>
+</table>
