@@ -5,11 +5,12 @@
 </ul>
 
 <ul class="tabs">
-  <li class="active"><a href="#">App Dashboard</a></li>
-  <li><a href="#">Preview</a></li>
-  <li><a href="#">Build</a></li>
-  <li><a href="#">Editor</a></li>
-  <li><a href="#">Console</a></li>
+  <li class="active"><a href="/apps/<%= data.inst.guid %>">App Dashboard</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/editor">Editor</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/preview">Preview</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/build">Build</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/console">Console</a></li>
+
 </ul>
 
 <section class="preview">

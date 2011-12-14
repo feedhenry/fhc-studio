@@ -1,0 +1,20 @@
+<ul class="breadcrumb">
+  <li><a href="/">Studio</a> <span class="divider">/</span></li>
+  <li><a href="/apps">Apps</a> <span class="divider">/</span></li>
+  <li><a href="/apps/<%= data.inst.guid %>"></a> <span class="divider">/</span></li>
+  <li class="active">Preview</li>
+</ul>
+
+<ul class="tabs">
+  <li><a href="/apps/<%= data.inst.guid %>">App Dashboard</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/editor">Editor</a></li>
+  <li class="active"><a href="/apps/<%= data.inst.guid %>/preview">Preview</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/build">Build</a></li>
+  <li><a href="/apps/<%= data.inst.guid %>/console">Console</a></li>
+</ul>
+
+
+<h2>Preview</h2>
+<div class="previewContainer iPhone" style="">
+<iframe src="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/<%= data.inst.guid %>/container" frameborder="0" style="width: 320px; height: 480px; "></iframe>
+</div>

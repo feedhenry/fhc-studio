@@ -46,7 +46,7 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
-// Routes
+// Get Routes
 
 app.get('/', function(req, res){
   res.render('index', {
@@ -77,35 +77,55 @@ app.get('/login', function(req, res){
   });
 });
 
-
-app.get('/apps/:id?', function(req, res){
-  console.log('/apps');
-  var id = req.params.id;
-  if (!id){
-    // Apps listing
-    fhc.apps([], function(err, data){
-      if (err) console.log(err); //FIXME
-      var apps = data.list;
-      res.render('apps', {
-        title: 'Apps',
-        user: req.session.user,
-        apps: apps
-      });
+app.get('/apps', function(req, res){
+  //Apps listing
+  
+  fhc.apps([], function(err, data){
+    if (err) console.log(err); //FIXME
+    var apps = data.list;
+    res.render('apps', {
+      title: 'Apps',
+      user: req.session.user,
+      apps: apps
     });
-  }else{
-    // We have an ID - show an individual app
-    fhc.apps([id], function(err, data){
-      if (err) console.log(err); //FIXME
-      var title = data.inst.title,
-      w3cid = data.app.w3cid,
-      description = data.inst.description;
+  });
+});
+
+app.get('/apps/:id/:operation?', function(req, res){
+  // Show a specific app operation
+  
+  var id = req.params.id;
+  var operation = req.params.operation;
+  // We have an ID - show an individual app
+  fhc.apps([id], function(err, data){
+    if (err) console.log(err); //FIXME
+    var title = data.inst.title,
+    w3cid = data.app.w3cid,
+    description = data.inst.description;
+    if (!operation){
+      //Show the app dashboard
       res.render('app', {
         title: 'Apps',
         data: data,
         user: req.session.user
+      });  
+    }else{
+      // show page relating to this op
+      res.render(operation, {
+        title: 'Login',
+        data: data,
+        user: req.session.user
       });
+    }    
     });    
-  }
+  
+});
+
+app.get('/editor', function(req, res){
+  res.render('editor', {
+    title: 'Editor',
+    user: req.session.user
+  });
 });
 
 app.get('/logout', function(req, res){
@@ -120,6 +140,8 @@ app.get('/logout', function(req, res){
     res.redirect('/');
   });
 });
+
+// Post routers
 
 app.post('/login', function(req, res){
   // Login API operation
