@@ -1,30 +1,17 @@
 <ul class="breadcrumb">
-  <li><a href="/">Studio</a> <span class="divider">/</span></li>
+  <li <a href="/">Studio</a> <span class="divider">/</span></li>
   <li><a href="/apps">Apps</a> <span class="divider">/</span></li>
-  <li class="active"><%= data.inst.title %></li>
+  <li><a href="/apps"><%= data.inst.title %></a> <span class="divider">/</span></li>
+  <li class="active"><%= tab %></li>
 </ul>
 
 <ul class="tabs">
-  <li class="active"><a href="/apps/<%= data.inst.guid %>">App Dashboard</a></li>
-  <li><a href="/apps/<%= data.inst.guid %>/editor">Editor</a></li>
-  <li><a href="/apps/<%= data.inst.guid %>/preview">Preview</a></li>
-  <li><a href="/apps/<%= data.inst.guid %>/build">Build</a></li>
-  <li><a href="/apps/<%= data.inst.guid %>/console">Console</a></li>
+  <li <%if (tab==='appDashboard'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>">App Dashboard</a></li>
+  <li <%if (tab==='editor'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/editor">Editor</a></li>
+  <li <%if (tab==='preview'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/preview">Preview</a></li>
+  <li <%if (tab==='build'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/build">Build</a></li>
+  <li <%if (tab==='console'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/console">Console</a></li>
 
 </ul>
 
-<section class="preview">
-  <h2>Preview</h2>
-  <div class="previewContainer iPhone" style="">
-  <iframe src="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/<%= data.inst.guid %>/container" frameborder="0" style="width: 320px; height: 480px; "></iframe>
-  </div>
-</section>
-
-<section class="summary">
-  <h2><%= data.inst.title %></h2><br />
-  desc: <%= data.inst.description %><br />
-  w3cid: <%= data.app.w3cid %><br />
-  guid: <%= data.inst.guid %><br />
-  height: <%= data.inst.guid %><br />
-  width: <%= data.inst.guid %><br />
-</section>
+<%- partial(tab) %>

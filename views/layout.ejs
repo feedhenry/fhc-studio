@@ -35,7 +35,7 @@
             <li><a href="/apps">Apps</a></li>
             <li><a href="/signup">Signup</a></li>
           </ul>
-          <% if (user) { %>
+          <% if (locals.user) { %>
             <p class="pull-right"><a href="#"><%= user %></a> |
               <a href="#">Help</a> |
               <a href="#">Prefrences</a> |
@@ -54,39 +54,43 @@
 
     <div class="container-fluid">
       <div class="sidebar">
-        <div class="well">
-          <h5>Sidebar</h5>
-          <ul>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
-          <h5>Sidebar</h5>
-          <ul>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
-          <h5>Sidebar</h5>
-          <ul>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
-          </ul>
+         <% if (locals.sidebar) { %>
+           <%- partial( sidebar ) %>
+         <% }else{ %>
+          <div class="well">
+            <h5>Sidebar</h5>
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+            <h5>Sidebar</h5>
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+            <h5>Sidebar</h5>
+            <ul>
+              <li><a href="#">Link</a></li>
+              <li><a href="#">Link</a></li>
+            </ul>
+          </div>
+          <div class="alert-message info">
+          <h3 style="color: #fff">New in IR170</h3>
+          <dl>
+            <dt>Build Targets</dt>
+            <dd>iOS 5, Android 4.0 and more!</dd>
+            <dt>New Config Options for Blackberry</dt>
+            <dd>Foreground splash image and splash background</dd>
+          </dl>
+          </div>
+          <% } %>
         </div>
-        <div class="alert-message info">
-        <h3 style="color: #fff">New in IR170</h3>
-        <dl>
-          <dt>Build Targets</dt>
-          <dd>iOS 5, Android 4.0 and more!</dd>
-          <dt>New Config Options for Blackberry</dt>
-          <dd>Foreground splash image and splash background</dd>
-        </dl>
-        </div>
-      </div>
       <div class="content">
         <%- body %>
         

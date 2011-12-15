@@ -1,7 +1,7 @@
-<h2>Sign Up</h2>
-<form>
+<h2>Returning user?</h2>
+<form method="post" action="/login">
   <fieldset>
-  <legend>Enter some details</legend>
+  <legend>Enter your username and password</legend>
     <div class="clearfix">
       <label for="username">Username</label>
       <div class="input">
@@ -14,11 +14,6 @@
         <input class="xlarge" id="password" name="password" size="30" type="password">
       </div>
     </div>
-    <div class="clearfix">
-      <label for="email">email</label>
-      <div class="input">
-        <input class="xlarge" id="email" name="email" size="30" type="email">
-      </div>
-    </div>
   </fieldset>
+  <input type="submit" value="Submit" />
 </form>

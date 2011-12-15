@@ -71,7 +71,7 @@ app.get('/signup', function(req, res){
 
 app.get('/login', function(req, res){
   // Show login page
-  res.render('contact', {
+  res.render('login', {
     title: 'Login',
     user: req.session.user
   });
@@ -81,7 +81,10 @@ app.get('/apps', function(req, res){
   //Apps listing
   
   fhc.apps([], function(err, data){
-    if (err) console.log(err); //FIXME
+    if (err){ 
+      console.log(err); //FIXME
+      return;
+    }
     var apps = data.list;
     res.render('apps', {
       title: 'Apps',
@@ -93,31 +96,37 @@ app.get('/apps', function(req, res){
 
 app.get('/apps/:id/:operation?', function(req, res){
   // Show a specific app operation
-  
   var id = req.params.id;
   var operation = req.params.operation;
   // We have an ID - show an individual app
   fhc.apps([id], function(err, data){
     if (err) console.log(err); //FIXME
-    var title = data.inst.title,
-    w3cid = data.app.w3cid,
-    description = data.inst.description;
     if (!operation){
-      //Show the app dashboard
-      res.render('app', {
-        title: 'Apps',
-        data: data,
-        user: req.session.user
-      });  
+      operation = 'appDashboard';
+    }
+    // show tab relating to this operation
+    if (operation==="editor"){
+      fhc.files(['list', id], function(err, filesData){
+        res.render('app', {
+          title: 'Login',
+          data: data,
+          tab: operation,
+          user: req.session.user,
+          sidebar: 'filesTree',
+          filesTree: util.inspect(filesData) 
+        });  
+      });
+       
     }else{
-      // show page relating to this op
-      res.render(operation, {
+      res.render('app', {
         title: 'Login',
         data: data,
+        tab: operation,
         user: req.session.user
       });
-    }    
-    });    
+    }
+      
+    });
   
 });
 
