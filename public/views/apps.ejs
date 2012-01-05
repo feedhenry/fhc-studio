@@ -1,42 +1,51 @@
-<script >
-  $(function() {
-    $("table.apps").tablesorter({ sortList: [[1,0]] });
-  });
-</script>
+<div class="sidebar">
+           <%- partial( "sidebar" ) %>
+</div>
+<div class="content">
 
 
-<ul class="breadcrumb">
-  <li><a href="/">Studio</a> <span class="divider">/</span></li>
-  <li class="active">Apps</li>
-</ul>
-<h2>My Apps</h2>
-<table class="apps">
-        <colgroup>
-          <col class="icon" />
-          <col class="title" />
-          <col class="desc" />
-          <col class="modified" />
-          <col class="version" />
-        </colgroup>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Modified</th>
-            <th>Version</th>
-          </tr>
-        </thead>
-        <tbody>
-        
-          <% apps.forEach(function(app){ %>
-          <tr>
-            <td><img src="http://apps.feedhenry.com/static/i/apps/<%= app.id %>/studio/40/small.png" alt="App Icon" /></td>
-            <td><a href="/apps/<%= app.id %>"><%= app.title %></a></td>
-            <td><%= app.description %>
-            <td><%= app.modified %>
-            <td><%= app.version %>
-          </tr>
-          <% }) %>
-        </tbody>
-</table>
+  <script >
+    $(function() {
+      $("table.apps").tablesorter({ sortList: [[1,0]] });
+    });
+  </script>
+  
+  
+  <ul class="breadcrumb">
+    <li><a href="/">Studio</a> <span class="divider">/</span></li>
+    <li class="active">Apps</li>
+  </ul>
+  <h2>My Apps</h2>
+  <table class="apps">
+          <colgroup>
+            <col class="icon" />
+            <col class="title" />
+            <col class="desc" />
+            <col class="modified" />
+            <col class="version" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Modified</th>
+              <th>Version</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <% apps.forEach(function(app){ %>
+            <tr>
+              <td><img src="http://apps.feedhenry.com/static/i/apps/<%= app.id %>/studio/40/small.png" alt="App Icon" /></td>
+              <td><a href="/apps/<%= app.id %>"><%= app.title %></a></td>
+              <td><%= app.description %>
+              <td><%= app.modified %>
+              <td><%= app.version %>
+            </tr>
+            <% }) %>
+          </tbody>
+  </table>
+  
+  <%- partial("footer") %>
+</div>

@@ -92,33 +92,7 @@ var studio = {
     // Remember, any new A's we need to ajaxify so their click event 
     // does a single page app navigate rather than full page refresh
     
-    $('.content').html(html).ajaxify();
+    $('#container').html(html).ajaxify();
   },  
 };
 
-
-// Ajaxify Helper
-$.fn.ajaxify = function(){
-  // Prepare
-  var $this = $(this);
-
-  // Ajaxify
-  $.find('a:internal:not(.no-ajaxy)').click(function(event){
-    // Prepare
-    var
-      $this = $(this),
-      url = $this.attr('href'),
-      title = $this.attr('title')||null;
-
-    // Continue as normal for cmd clicks etc
-    if ( event.which == 2 || event.metaKey ) { return true; }
-
-    // Ajaxify this link
-    History.pushState(null,title,url);
-    event.preventDefault();
-    return false;
-  });
-
-  // Chain
-  return $this;
-};

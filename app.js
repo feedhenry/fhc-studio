@@ -131,24 +131,24 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
     // show tab relating to this operation
     if (operation==="editor"){
       fhc.files(['list', id], function(err, root){
-        var files = root.children,
-        // TODO: This should be in the EJS template. 
-        list = "<ul>";
-        for (var i=0; i<files.length; i++){
-          var file = files[i];
-          list += "<li id='" + file.guid + "'>" + "<a href='/apps/" + id + "/editor/" + file.guid + "'>" + file.name + "</a>" + "</li>";
+        if (err){
+          doError(res, "Error retrieving files list", err);
+          return; // TODO: Show error logging out page
         }
-        list += "</ul>";
+        var list = JSON.stringify(root);
         
         if (subOp){
           fhc.files(['read', subOp], function(err, file){
+            if (err){
+              doError(res, "Error loading file " + file, err);
+              return; // TODO: Show error logging out page
+            }
             var d = {
                 title: file.fileName,
                 tpl: 'app',
                 data: data,
                 tab: operation,
                 user: req.session.user,
-                sidebar: 'filesTree',
                 filesTree: list,
                 file: file.contents,
                 mode: 'js'
@@ -162,7 +162,6 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
               data: data,
               tab: operation,
               user: req.session.user,
-              sidebar: 'filesTree',
               filesTree: list,
               file: false,
               mode: 'js'
@@ -223,10 +222,6 @@ app.post('/login', function(req, res){
       doError(res, "Error logging in as user <strong>" + username + "</strong>. Please verify credentials and try again.", err);
       return;
     }
-    if(data.result !== 'ok') console.log(util.inspect(data));
-    
-    console.log(util.inspect(data));
-    
     req.session.user = username;
     res.redirect('/apps');
   });
@@ -246,21 +241,37 @@ function getTemplateString(d){
   // This is a bit crazy - EJS deprecated partials with no alternative, so we're implementing it using regex. 
   // No better templating engine exists at the moment, so sticking with EJS. 
   // Look for partials & replace them with content
-  var rex = /<%- ?partial\((.*)\) ?%>/;
-  if (rex.test(template)){
-    // TODO: Support more than one partial in a file
-    var match = rex.exec(template);
+  
+  // 1.) First look for quote-includes like <%- partial("someFile") %>
+  var rex = /<%- ?partial\( ?"([a-zA-Z\/.]*)" ?\) ?%>/g;
+  var match = rex.exec(template);
+  while(match!=null){
+    if (match.length>0){
+      // Recursively call ourselves with the TPL name we need
+      var include = getTemplateString({tpl: match[1]});
+      template = template.replace(match[0], include);
+    }
+    match = rex.exec(template);
+  }
+
+  
+  // 2.) Then look for nonqute-includes like <%- partial(someVariable) %>
+  var rex = /<%- ?partial\(( ?[a-zA-Z\/.]* ?)\) ?%>/g;
+  
+
+  var match = rex.exec(template);
+  while(match!=null){
     if (match.length>0){
       // Now we're going to lookup the variable name in the data to see what the template should be called
       var variable = d[match[1]]; 
-      
       // Recursively call ourselves with the TPL name we need
       var include = getTemplateString({tpl: variable});
       
       template = template.replace(match[0], include);
-      console.log(template);  
     }
+    match = rex.exec(template); 
   }
+
   // End crazyness
   
   return template;

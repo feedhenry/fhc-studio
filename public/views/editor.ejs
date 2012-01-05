@@ -1,20 +1,22 @@
+<%- partial( "filesTree" ) %>
+
 <pre id="editor" style="height: 492px; width: 100%;">
   <% if (file){ %>
     <%= file %>
   <% }else{ %>
       function foo(items) {  
         var i;
-          for (i = 0; i &lt; items.length; i++) {
-            alert("Ace Rocks " + items[i]);
+        for (i = 0; i &lt; items.length; i++) {
+          alert("Ace Rocks " + items[i]);
         }
       }
   <% } %>
-}</pre>
+</pre>
 
 
-<script src="/js/ace/ace-uncompressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="/js/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
-<script src="/js/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/lib/ace/ace-uncompressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/lib/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/lib/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script>
 window.onload = function() {
     var editor = ace.edit("editor");
