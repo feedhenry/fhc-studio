@@ -20,8 +20,8 @@ studio.tree = function(tree){
         "json_data" : treeData,
         "plugins" : [ "themes", "json_data", "ui" ],
         "themes" : {
-                    "theme" : "apple",
-                    "dots" : true,
+                    "theme" : "default",
+                    "dots" : false,
                     "icons" : true
         },
       }).bind("select_node.jstree", function (e, data) {

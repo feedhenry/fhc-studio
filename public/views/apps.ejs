@@ -1,7 +1,4 @@
-<div class="sidebar">
-           <%- partial( "sidebar" ) %>
-</div>
-<div class="content">
+<div class="content apps fullWidth">
 
 
   <script >
@@ -37,7 +34,7 @@
           
             <% apps.forEach(function(app){ %>
             <tr>
-              <td><img src="http://apps.feedhenry.com/static/i/apps/<%= app.id %>/studio/40/small.png" alt="App Icon" /></td>
+              <td><img src="http://vmworld2011.feedhenry.com/static/i/apps/<%= app.id %>/studio/40/small.png" alt="App Icon" /></td>
               <td><a href="/apps/<%= app.id %>"><%= app.title %></a></td>
               <td><%= app.description %>
               <td><%= app.modified %>

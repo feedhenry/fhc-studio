@@ -1,4 +1,4 @@
-<%- partial( "filesTree" ) %>
+
 
 <pre id="editor" style="height: 492px; width: 100%;">
   <% if (file){ %>
@@ -18,7 +18,7 @@
 <script src="/js/lib/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/lib/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script>
-window.onload = function() {
+$(function() {
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/cobalt");
     <% if (mode && mode=="js"){ %>
@@ -35,5 +35,5 @@ window.onload = function() {
       editor.getSession().setMode(new JavaScriptMode());
     <% } %>
     
-};
+});
 </script>

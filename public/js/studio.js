@@ -81,7 +81,7 @@ var studio = {
       url: path + ".json",
       context: document.body,
       success: function(res){
-        var title = res.data.title;
+        var title = (res && res.data && res.data.title) ? res.data.title : "Studio";
         History.pushState(res, title, path);
       }
     });

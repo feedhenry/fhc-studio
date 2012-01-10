@@ -39,7 +39,6 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.session({ secret: "keyboard cat", store: new RedisStore }));
   app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
