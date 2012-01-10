@@ -23,8 +23,6 @@
         title = res.data.title,
         data = res.data;
         studio.update(tpl, data); // TODO: Decide based on res.tpl (template title) if we need a full $.ajax reload or not
-        
-        History.log(state.data, state.title, state.url);
     });
     
     // Push our homepage state, with the path set to whatever it is at entry
@@ -55,7 +53,7 @@ $(function() { // JQuery onready
     return isInternalLink;
   };
   $.fn.ajaxify = function(){
-    $(this).find('a:internal:not(.no-ajaxy)').click( function(event){
+    $(this).find('a:internal:not(.no-ajax)').click( function(event){
       // Prepare
       var $this = $(this),
       url = $this.attr('href'),
@@ -75,24 +73,27 @@ $(function() { // JQuery onready
 
 
 
-var studio = {
-  go : function(path){
+var studio = studio || {};
+studio.go = function(path, callback){
     $.ajax({
       url: path + ".json",
       context: document.body,
       success: function(res){
-        var title = (res && res.data && res.data.title) ? res.data.title : "Studio";
-        History.pushState(res, title, path);
+        if (callback){
+          callback(res);
+        }else{
+          var title = (res && res.data && res.data.title) ? res.data.title : "Studio";
+          History.pushState(res, title, path);  
+        }
+        
       }
     });
-  },
-  update : function(tpl, data){
+};
+studio.update = function(tpl, data){
     var html = new EJS({text: tpl}).render(data);
     // Set HTML content of our container to be our newly rendered template. 
     // Remember, any new A's we need to ajaxify so their click event 
     // does a single page app navigate rather than full page refresh
     
     $('#container').html(html).ajaxify();
-  },  
 };
-

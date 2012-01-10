@@ -1,15 +1,8 @@
 
-
+<div id="editorToolbar"></div>
 <pre id="editor" style="height: 492px; width: 100%;">
   <% if (file){ %>
     <%= file %>
-  <% }else{ %>
-      function foo(items) {  
-        var i;
-        for (i = 0; i &lt; items.length; i++) {
-          alert("Ace Rocks " + items[i]);
-        }
-      }
   <% } %>
 </pre>
 
@@ -19,21 +12,6 @@
 <script src="/js/lib/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script>
 $(function() {
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/cobalt");
-    <% if (mode && mode=="js"){ %>
-      var JavaScriptMode = require("ace/mode/javascript").Mode;
-      editor.getSession().setMode(new JavaScriptMode());
-    
-    <% }if (mode && mode== "html"){ %>
-      var htmlMode = require("ace/mode/html").Mode;
-      editor.getSession().setMode(new htmlMode());
-    <% } %>
-    
-    <% if (!mode){ %>
-      var JavaScriptMode = require("ace/mode/javascript").Mode;
-      editor.getSession().setMode(new JavaScriptMode());
-    <% } %>
-    
+    studio.editor.openTab();
 });
 </script>
