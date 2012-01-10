@@ -1,0 +1,42 @@
+pre.code {
+  background: #222; 
+  color: #ccc; 
+  border: 1px solid #444;
+}
+.toptabs {
+  margin: 20px inherit 0px inherit;
+  font-size: 1.4em;
+}
+
+.tab-content, .tab-content h1, .tab-content h2, .tab-content h3 {
+    background-color: #333;
+  color: #eee;
+}
+
+.toptabs a:link, .toptabs a:active, .toptabs a:hover, .toptabs a:visited {
+
+}
+.toptabs li a, .toptabs li a:link, .toptabs li a:active, .toptabs li a:hover {
+  background: transparent;
+  border: 0px;
+  color: #333;
+}
+.toptabs li.active a, .toptabs li.active a:hover {
+  background-color: #333;
+  color: #eee;
+  border: 0px;
+  /* Overlap the tab slightly to hide the rounded corner */
+  padding-bottom: 5px;
+  margin-bottom: -5px;
+}
+
+.video {
+  text-align: right;
+}
+iframe.vimeo {
+  margin-top: 46px;
+}
+
+.docs p {
+  height: 90px;
+}
