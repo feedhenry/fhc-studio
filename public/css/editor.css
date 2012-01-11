@@ -13,3 +13,7 @@
   background-position: 0px 0px;
   background-size: 14px;	
 }
+
+#editorToolbar.topbar, #editorToolbar.topbar .container-fluid  {
+  height: 34px;	
+}

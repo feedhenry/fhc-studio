@@ -1,5 +1,39 @@
 
-<div id="editorToolbar"></div>
+
+<div class="topbar" id="editorToolbar" style="position: relative;">
+<div class="topbar-inner">
+<div class="container-fluid">
+  <ul class="nav">
+    <li class="dropdown" data-dropdown="dropdown">
+      <a class="dropdown-toggle no-ajax" href="#">File</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Save</a></li>
+        <li><a href="#">Save All</a></li>
+        <li><a href="#">Open Recent</a></li>
+      </ul>
+    </li>
+    <li class="button"><a>Edit</a></li>
+    <li class="button"><a>Find</a></li>
+    <li class="button"><a>Save</a></li>
+    <li class="button"><a>Save All</a></li>
+    <li class="button"><a>Save & Close</a></li>
+    <li class="button"><a>Find</a></li>
+    <li class="dropdown" data-dropdown="dropdown">
+      <a class="dropdown-toggle no-ajax" href="#">$fh...</a>
+      <ul class="dropdown-menu">
+        <li><h3>Client</h3></li>
+        <li><a href="#">$fh.act</a></li>
+        <li><a href="#">$fh.web</a></li>
+        <li><a href="#">$fh.camera</a></li>
+        <li class="divider"></li>
+        <li><h3>Cloud</h3></li>
+        <li><a href="#">$fh.web</a></li>
+        <li><a href="#">$fh.cache</a></li>
+      </ul>
+  </ul>
+</div>
+</div>
+</div>
 <pre id="editor" style="height: 492px; width: 100%;">
   <% if (file){ %>
     <%= file %>
@@ -13,5 +47,6 @@
 <script>
 $(function() {
     studio.editor.openTab();
+    
 });
 </script>

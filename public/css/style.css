@@ -75,7 +75,7 @@ img.logo {
  */
 .container-fluid > .appBar {
   position: absolute;
-  top: 0px;
+  top: 34px;
   left: 0px; 
   width: 100px;
   color: #fff;
