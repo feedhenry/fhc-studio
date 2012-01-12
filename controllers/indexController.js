@@ -1,8 +1,3 @@
-/**
- * @Author Craig Brookes
- * @Description indexController handles requests
- * to the home page
- */
 
 
 var indexController, renderer = require("../util");

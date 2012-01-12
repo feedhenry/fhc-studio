@@ -1,10 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: kelly
- * Date: 12/01/2012
- * Time: 20:44
- * To change this template use File | Settings | File Templates.
- */
 var editorController ,
     renderer = require("../util");
 
