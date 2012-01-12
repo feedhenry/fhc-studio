@@ -1,7 +1,8 @@
-<div class="sidebar">
-           <%- partial( "sidebar" ) %>
-</div>
-<div class="content">
+<ul class="breadcrumb">
+    <li><a href="/">Studio</a> <span class="divider">/</span></li>
+    <li class="active">Apps</li>
+  </ul>
+<div class="content apps fullWidth">
 
 
   <script >
@@ -11,10 +12,7 @@
   </script>
   
   
-  <ul class="breadcrumb">
-    <li><a href="/">Studio</a> <span class="divider">/</span></li>
-    <li class="active">Apps</li>
-  </ul>
+  
   <h2>My Apps</h2>
   <table class="apps">
           <colgroup>
@@ -37,7 +35,7 @@
           
             <% apps.forEach(function(app){ %>
             <tr>
-              <td><img src="http://apps.feedhenry.com/static/i/apps/<%= app.id %>/studio/40/small.png" alt="App Icon" /></td>
+              <td><img src="http://<%= domain %>.feedhenry.com/static/i/apps/<%= app.id %>/studio/40/small.png" alt="App Icon" /></td>
               <td><a href="/apps/<%= app.id %>"><%= app.title %></a></td>
               <td><%= app.description %>
               <td><%= app.modified %>

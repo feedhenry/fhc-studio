@@ -1,0 +1,19 @@
+#treeContainer {
+  left: 100px;
+  float: left;
+  clear: both;
+  position: relative;
+  width: 220px;
+  height: 100%; 
+}
+
+
+.jstree-default a ins.jstree-icon.file {
+  background: transparent url("../images/editor/file.png") no-repeat;
+  background-position: 0px 0px;
+  background-size: 14px;	
+}
+
+#editorToolbar.topbar, #editorToolbar.topbar .container-fluid  {
+  height: 34px;	
+}

@@ -39,7 +39,6 @@ app.configure(function(){
   app.use(express.cookieParser());
   app.use(express.session({ secret: "keyboard cat", store: new RedisStore }));
   app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
 });
@@ -58,7 +57,6 @@ app.get('/', function(req, res){
 
   res.render('index', {
     title: 'Home',
-    user: req.session.user
   });
 });
 
@@ -67,9 +65,8 @@ app.get('/home.:json?', function(req, res){
   var d ={
       tpl: 'index',
       title: 'Home',
-      user: req.session.user
    }; 
-  doResponse(res, json, d);
+  doResponse(req, res, json, d);
 });
 
 app.get('/signup.:json?', function(req, res){
@@ -77,9 +74,8 @@ app.get('/signup.:json?', function(req, res){
   var d ={
       tpl: 'signup',
       title: 'Signup',
-      user: req.session.user
   }; 
-  doResponse(res, json, d);
+  doResponse(req, res, json, d);
 });
 
 app.get('/login.:json?', function(req, res){
@@ -88,9 +84,8 @@ app.get('/login.:json?', function(req, res){
   var d = {
     tpl: 'login',
     title: 'Login',
-    user: req.session.user
   };
-  doResponse(res, json, d);
+  doResponse(req, res, json, d);
 });
 
 app.get('/apps.:json?', function(req, res){
@@ -106,9 +101,8 @@ app.get('/apps.:json?', function(req, res){
         tpl: 'apps',
         apps: data.list, 
         title: 'Apps', 
-        user: req.session.user
     };
-    doResponse(res, json, d);
+    doResponse(req, res, json, d);
   });
 });
 
@@ -149,12 +143,11 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
                 tpl: 'app',
                 data: data,
                 tab: operation,
-                user: req.session.user,
                 filesTree: list,
                 file: file.contents,
                 mode: 'js'
              };
-            doResponse(res, json, d);
+            doResponse(req, res, json, d);
           });
         }else{
           var d = {
@@ -162,12 +155,11 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
               tpl: 'app',
               data: data,
               tab: operation,
-              user: req.session.user,
               filesTree: list,
               file: false,
               mode: 'js'
           };
-          doResponse(res, json, d);
+          doResponse(req, res, json, d);
         }
       });
        
@@ -177,9 +169,8 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
           title: 'Login',
           data: data,
           tab: operation,
-          user: req.session.user
       };
-      doResponse(res, json, d);
+      doResponse(req, res, json, d);
     }
     });
   
@@ -190,9 +181,8 @@ app.get('/editor', function(req, res){
   var d = {
       tpl: 'editor',
       title: 'Editor',
-      user: req.session.user
   };
-  doResponse(res, json, d);
+  doResponse(req, res, json, d);
 });
 
 app.get('/logout', function(req, res){
@@ -223,7 +213,14 @@ app.post('/login', function(req, res){
       doError(res, "Error logging in as user <strong>" + username + "</strong>. Please verify credentials and try again.", err);
       return;
     }
-    req.session.user = username;
+    // Success! Let's set some session properties.
+    req.session.user = {
+        username: username,
+        timestamp: data.timestamp,
+        role: 'dev', //TODO: Have FHC pass this through
+        login: data.login
+    }
+    req.session.domain = data.domain;
     res.redirect('/apps');
   });
 });
@@ -272,13 +269,28 @@ function getTemplateString(d){
     }
     match = rex.exec(template); 
   }
-
-  // End crazyness
   
+  // <%- someVar %> isn't valid on the client side - replace with <%= 
+  var rex = /<%- ([a-zA-Z])+ %>/g
+  var match = rex.exec(template);
+  while(match!=null){
+    template = template.replace(match[0], "<%= filesTree %>");
+    match = rex.exec(template);
+  }
+  // End crazyness
+    
   return template;
 }
 
-function doResponse(res, json, d){
+function doResponse(req, res, json, d){
+  // setup stuff that goes into every response
+  if (req && req.session){
+    console.log(req.session.user);
+    console.log(req.session.domain);
+    d.user = req.session.user;
+    d.domain = req.session.domain;
+  }
+  
   if (json){
     var template = getTemplateString(d);
     // API request - sending back JSON data with a template
@@ -301,5 +313,5 @@ function doError(res, msg){
       title: 'Oops! An error has occured.',
       error: msg
   }; 
-  doResponse(res, json, d);
+  doResponse(req, res, json, d);
 }

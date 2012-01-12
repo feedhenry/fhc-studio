@@ -16,16 +16,20 @@
     <script src="/js/lib/jquery.tablesorter.min.js"></script>
     <script src="/js/lib/jquery.history.js"></script>
     <script src="/js/lib/JSTree/jquery.jstree.js"></script>
+    <script src="/js/lib/bootstrap/bootstrap-dropdown.js"></script>
     <script src="/js/studio.js"></script>
-    <script src="/js/filestree.js"></script>
+    <script src="/js/editor.js"></script>
+    <script src="/js/init.js"></script>
 
     <!-- Le styles -->
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/bootstrapOver.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/landing.css">
+    <link rel="stylesheet" href="/css/editor.css">
+    <link rel="stylesheet" href="/css/bootstrapOver.css">
     <style type="text/css">
       body {
-        padding-top: 60px;
+        padding-top: 40px;
       }
     </style>
 
@@ -35,14 +39,39 @@
       <div class="topbar-inner">
         <div class="container-fluid">
           <img class="logo" src="/images/logo-small.png" alt="Feedhenry Logo">
-          <a class="brand" href="/home">studio</a>
+          
           <ul class="nav">
-            <li class="active"><a href="/">Home</a></li>
+            <li class="dropdown" data-dropdown="dropdown">
+              <a class="brand dropdown-toggle no-ajax" href="#">studio</a>
+              <ul class="dropdown-menu">
+                <li><a href="/">Dashboard</a></li>
+                <li><a href="/apps">App Studio</a></li>
+                <li><a href="/reporting">Reporting</a></li>
+                <li><a href="/admin">Admin</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Another link</a></li>
+              </ul>
+            </li>
+            <li class="active"><a href="/home">Home</a></li>
             <li><a href="/apps">Apps</a></li>
-            <li><a href="/signup">Signup</a></li>
+            <li><a href="/apps">Reporting</a></li>
+            <li><a href="/apps">Admin</a></li>
+            <li><a href="/apps">Docs</a></li>
           </ul>
-          <% if (locals.user) { %>
-            <p class="pull-right"><a href="#"><%= user %></a> |
+          <% if (locals.user && user.username) { %>
+          <% 
+            var roleString = "(Developer)";
+            switch(user.role){
+              case "devadmin":
+                roleString = "Dev Admin";
+                break;
+              case "dev":
+                roleString = "Developer";
+                break;
+              default: "Developer"
+            }
+          %>
+            <p class="pull-right"><a href="#"><%= user.username %> (<%= roleString %>)</a> |
               <a href="#">Help</a> |
               <a href="#">Prefrences</a> |
               <a href="/logout">Log Out</a>
@@ -57,7 +86,6 @@
         </div>
       </div>
     </div>
-
     <div id="container" class="container-fluid">
       
       

@@ -1,10 +1,12 @@
 var studio = studio || {};
-studio.tree = function(tree){
+studio.editor = {
+  tree: function(tree){
+    var me = this;
     if (!tree.children){
       throw new Error("Error loading tree children");
     }
     // Root node of the tree is /, with children of client, cloud and shared. Let's make them the root instead.
-    
+  
     for (var i=0; i<tree.children.length; i++){
       parseChildren(tree.children[i]);
     }
@@ -15,13 +17,13 @@ studio.tree = function(tree){
     
     
     $(function () {
-
+    
       $("#treeContainer").jstree({ 
         "json_data" : treeData,
         "plugins" : [ "themes", "json_data", "ui" ],
         "themes" : {
-                    "theme" : "apple",
-                    "dots" : true,
+                    "theme" : "default",
+                    "dots" : false,
                     "icons" : true
         },
       }).bind("select_node.jstree", function (e, data) {
@@ -34,21 +36,15 @@ studio.tree = function(tree){
         }
         
         if ( data.inst.is_leaf() == true && type=="file"){
-          //Navigate to that file
-          
-          var path = window.location.pathname;
-          if (path[path.length-1]=="/"){
-            studio.go(window.location.pathname + guid);  
-          }else{
-            studio.go(window.location.pathname + '/' + guid);
-          }
-          
+          me.open(guid);
         }
       });
     });
-  
+
     function parseChildren(tree){
-      tree.data = tree.name,
+      tree.data = tree.data || {};
+      tree.data.title = tree.name;
+      tree.data.icon = tree.type;
       tree.metadata = {
         title: tree.name,
         path: tree.path,
@@ -65,6 +61,44 @@ studio.tree = function(tree){
         }
       }
     };
+  
+  }, // end studio.editor.tree
+  open: function(guid){
+    //Navigate to that file using a browser nav
+    var path = window.location.pathname;
+    if (path[path.length-1]=="/"){
+      studio.go(window.location.pathname + guid, this.openTab);  
+    }else{
+      studio.go(window.location.pathname + '/' + guid, this.openTab);
+    }
+  }, 
+  save: function(){
     
+  },
+  openTab: function(res){
+    if (res){
+      var file = res.data.file,
+      mode = res.data.mode;
+      $('pre#editor').html(file);
+    }else{
+      var mode = 'js';
+    }
     
-}// end studio.tree
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/cobalt");
+    if(mode && mode=="js"){
+      var JavaScriptMode = require("ace/mode/javascript").Mode;
+      editor.getSession().setMode(new JavaScriptMode());
+    
+    }if (mode && mode== "html"){
+      var htmlMode = require("ace/mode/html").Mode;
+      editor.getSession().setMode(new htmlMode());
+    }
+    
+    if (!mode){
+      var JavaScriptMode = require("ace/mode/javascript").Mode;
+      editor.getSession().setMode(new JavaScriptMode());
+    }
+    
+  }
+};

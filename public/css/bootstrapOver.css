@@ -1,0 +1,15 @@
+.label.success a {
+  color: #fff;
+}
+.alert-message.info h3 {
+  color: #fff;
+}
+
+.breadcrumb {
+  margin-bottom: 0px;	
+}
+
+.dropdown h3 {
+  color: #fff;
+  padding-left: 15px;	
+}

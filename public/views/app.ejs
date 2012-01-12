@@ -1,24 +1,16 @@
-<div class="sidebar">
-           <%- partial( "sidebar" ) %>
-</div>
-<div class="content">
-
-  <ul class="breadcrumb">
+<ul class="breadcrumb">
     <li <a href="/home">Studio</a> <span class="divider">/</span></li>
     <li><a href="/apps">Apps</a> <span class="divider">/</span></li>
     <li><a href="/apps/<%= data.inst.guid %>"><%= data.inst.title %></a> <span class="divider">/</span></li>
     <li class="active"><%= tab %></li>
   </ul>
+<!-- This is the tab bar along the side -->
+<%- partial( "appBar" ) %>
+
+ 
+
+<div class="content app <%= tab %>">
   
-  <ul class="tabs">
-    <li <%if (tab==='appDashboard'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>">App Dashboard</a></li>
-    <!-- At the moment opening the editor causes full page reload as script is included in the template -->
-    <li <%if (tab==='editor'){ %>class="active"<% } %>><a class="" href="/apps/<%= data.inst.guid %>/editor">Editor</a></li>
-    <li <%if (tab==='preview'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/preview">Preview</a></li>
-    <li <%if (tab==='build'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/build">Build</a></li>
-    <li <%if (tab==='console'){ %>class="active"<% } %>><a href="/apps/<%= data.inst.guid %>/console">Console</a></li>
-  
-  </ul>
   
   <%- partial(tab) %>
 

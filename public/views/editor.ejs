@@ -1,15 +1,42 @@
-<%- partial( "filesTree" ) %>
 
+
+<div class="topbar" id="editorToolbar" style="position: relative;">
+<div class="topbar-inner">
+<div class="container-fluid">
+  <ul class="nav">
+    <li class="dropdown" data-dropdown="dropdown">
+      <a class="dropdown-toggle no-ajax" href="#">File</a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Save</a></li>
+        <li><a href="#">Save All</a></li>
+        <li><a href="#">Open Recent</a></li>
+      </ul>
+    </li>
+    <li class="button"><a>Edit</a></li>
+    <li class="button"><a>Find</a></li>
+    <li class="button"><a>Save</a></li>
+    <li class="button"><a>Save All</a></li>
+    <li class="button"><a>Save & Close</a></li>
+    <li class="button"><a>Find</a></li>
+    <li class="dropdown" data-dropdown="dropdown">
+      <a class="dropdown-toggle no-ajax" href="#">$fh...</a>
+      <ul class="dropdown-menu">
+        <li><h3>Client</h3></li>
+        <li><a href="#">$fh.act</a></li>
+        <li><a href="#">$fh.web</a></li>
+        <li><a href="#">$fh.camera</a></li>
+        <li class="divider"></li>
+        <li><h3>Cloud</h3></li>
+        <li><a href="#">$fh.web</a></li>
+        <li><a href="#">$fh.cache</a></li>
+      </ul>
+  </ul>
+</div>
+</div>
+</div>
 <pre id="editor" style="height: 492px; width: 100%;">
   <% if (file){ %>
     <%= file %>
-  <% }else{ %>
-      function foo(items) {  
-        var i;
-        for (i = 0; i &lt; items.length; i++) {
-          alert("Ace Rocks " + items[i]);
-        }
-      }
   <% } %>
 </pre>
 
@@ -18,22 +45,8 @@
 <script src="/js/lib/ace/theme-cobalt.js" type="text/javascript" charset="utf-8"></script>
 <script src="/js/lib/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script>
-window.onload = function() {
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/cobalt");
-    <% if (mode && mode=="js"){ %>
-      var JavaScriptMode = require("ace/mode/javascript").Mode;
-      editor.getSession().setMode(new JavaScriptMode());
+$(function() {
+    studio.editor.openTab();
     
-    <% }if (mode && mode== "html"){ %>
-      var htmlMode = require("ace/mode/html").Mode;
-      editor.getSession().setMode(new htmlMode());
-    <% } %>
-    
-    <% if (!mode){ %>
-      var JavaScriptMode = require("ace/mode/javascript").Mode;
-      editor.getSession().setMode(new JavaScriptMode());
-    <% } %>
-    
-};
+});
 </script>
