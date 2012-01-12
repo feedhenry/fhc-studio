@@ -65,14 +65,7 @@ app.get('/logout', controllers.userController.logoutAction);
 app.get('/apps.:json?', controllers.appController.indexAction);
 app.get('/apps/:id/:operation?/:subOp?.:json?', controllers.appController.performoperationAction);
 //editor actions
-app.get('/editor', function (req, res) {
-    var json = true;
-    var d = {
-        tpl:'editor',
-        title:'Editor',
-    };
-    doResponse(req, res, json, d);
-});
+app.get('/editor', controllers.editController.indexAction);
 
 
 
