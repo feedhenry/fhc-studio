@@ -67,9 +67,9 @@ studio.editor = {
     //Navigate to that file using a browser nav
     var path = window.location.pathname;
     if (path[path.length-1]=="/"){
-      studio.go(window.location.pathname + guid, this.openTab);  
+      studio.go(window.location.pathname + guid + '.json', this.openTab);  
     }else{
-      studio.go(window.location.pathname + '/' + guid, this.openTab);
+      studio.go(window.location.pathname + '/' + guid + '.json', this.openTab);
     }
   }, 
   save: function(){
@@ -83,9 +83,14 @@ studio.editor = {
     }else{
       var mode = 'js';
     }
+    //TODO: Switch on Mode to transform 'js' to 'javascript' etc, and include the new Mode() by string
     
-    var editor = ace.edit("editor");
+    var editor = this.ace  = ace.edit("editor");
     editor.setTheme("ace/theme/cobalt");
+    editor.renderer.setShowPrintMargin(false);
+    
+    
+    
     if(mode && mode=="js"){
       var JavaScriptMode = require("ace/mode/javascript").Mode;
       editor.getSession().setMode(new JavaScriptMode());
@@ -100,5 +105,19 @@ studio.editor = {
       editor.getSession().setMode(new JavaScriptMode());
     }
     
+  },
+  snippet: function(id){
+    this.ace.insert(id);
+    return;
+    var path = "http://raw.github.com/gist/1099663/gistfile1.js";
+    $.ajax({
+      url: path,
+      context: this,
+      success: function(res){
+        this.ace.insert(res);
+      }
+    });
+    
+
   }
 };

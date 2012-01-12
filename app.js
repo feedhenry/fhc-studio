@@ -59,41 +59,40 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/home.:json?', function(req, res){
-  var json = (req.params.json && req.params.json==="json") ? true : false;
+app.get('/home.:resType?', function(req, res){
+  
   var d ={
       tpl: 'index',
       title: 'Home',
    }; 
-  doResponse(req, res, json, d);
+  doResponse(req, res, d);
 });
 
-app.get('/signup.:json?', function(req, res){
-  var json = (req.params.json && req.params.json==="json") ? true : false;
+app.get('/signup.:resType?', function(req, res){
   var d ={
       tpl: 'signup',
       title: 'Signup',
   }; 
-  doResponse(req, res, json, d);
+  doResponse(req, res, d);
 });
 
-app.get('/login.:json?', function(req, res){
+app.get('/login.:resType?', function(req, res){
   // Show login page
-  var json = (req.params.json && req.params.json==="json") ? true : false;
+  
   var d = {
     tpl: 'login',
     title: 'Login',
   };
-  doResponse(req, res, json, d);
+  doResponse(req, res, d);
 });
 
-app.get('/apps.:json?', function(req, res){
+app.get('/apps.:resType?', function(req, res){
   //Apps listing
-  var json = (req.params.json && req.params.json==="json") ? true : false;
+  
   
   fhc.apps([], function(err, data){
     if (err){
-      doError(res, "Couldn't generate apps listing", err);
+      doError(req, res, "Couldn't generate apps listing", err);
       return;
     }
     var d = {
@@ -101,12 +100,12 @@ app.get('/apps.:json?', function(req, res){
         apps: data.list, 
         title: 'Apps', 
     };
-    doResponse(req, res, json, d);
+    doResponse(req, res, d);
   });
 });
 
-app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
-  var json = (req.params.json && req.params.json==="json") ? true : false;
+app.get('/apps/:id/:operation?/:subOp?.:resType?', function(req, res){
+  
   
   // Show a specific app operation
   var id = req.params.id,
@@ -116,7 +115,7 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
   // We have an ID - show an individual app
   fhc.apps([id], function(err, data){
     if (err){
-      doError(res, "Couldn't find app with id" + id);
+      doError(req, res, "Couldn't find app with id" + id);
       return;
     }
     if (!operation){
@@ -126,7 +125,7 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
     if (operation==="editor"){
       fhc.files(['list', id], function(err, root){
         if (err){
-          doError(res, "Error retrieving files list", err);
+          doError(req, res, "Error retrieving files list", err);
           return; // TODO: Show error logging out page
         }
         var list = JSON.stringify(root);
@@ -134,7 +133,7 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
         if (subOp){
           fhc.files(['read', subOp], function(err, file){
             if (err){
-              doError(res, "Error loading file " + file, err);
+              doError(req, res, "Error loading file " + file, err);
               return; // TODO: Show error logging out page
             }
             var d = {
@@ -146,7 +145,7 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
                 file: file.contents,
                 mode: 'js'
              };
-            doResponse(req, res, json, d);
+            doResponse(req, res, d);
           });
         }else{
           var d = {
@@ -158,7 +157,7 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
               file: false,
               mode: 'js'
           };
-          doResponse(req, res, json, d);
+          doResponse(req, res, d);
         }
       });
        
@@ -169,27 +168,17 @@ app.get('/apps/:id/:operation?/:subOp?.:json?', function(req, res){
           data: data,
           tab: operation,
       };
-      doResponse(req, res, json, d);
+      doResponse(req, res, d);
     }
     });
   
 });
 
-app.get('/editor', function(req, res){
-  var json = true;
-  var d = {
-      tpl: 'editor',
-      title: 'Editor',
-  };
-  doResponse(req, res, json, d);
-});
-
 app.get('/logout', function(req, res){
   //debugger;
   fhc.logout([], function(err, data){
-    console.log(arguments);
     if (err){
-      doError(res, "Error logging out", err);
+      doError(req, res, "Error logging out", err);
       return; // TODO: Show error logging out page
     }
     delete req.session.user;
@@ -209,7 +198,7 @@ app.post('/login', function(req, res){
   
   fhc.login(args, function(err, data) {
     if (err){
-      doError(res, "Error logging in as user <strong>" + username + "</strong>. Please verify credentials and try again.", err);
+      doError(req, res, "Error logging in as user <strong>" + username + "</strong>. Please verify credentials and try again.", err);
       return;
     }
     // Success! Let's set some session properties.
@@ -219,7 +208,7 @@ app.post('/login', function(req, res){
         role: 'dev', //TODO: Have FHC pass this through
         login: data.login
     }
-    req.session.domain = data.domain;
+    req.session.domain = (data.domain) ? data.domain : "apps";
     res.redirect('/apps');
   });
 });
@@ -233,7 +222,9 @@ console.log("Express server listening on port %d in %s mode", app.address().port
 function getTemplateString(d){
   var tpl = d.tpl;
   
+  //TODO: Check redis first for template. If it doesn't exist, do this:
   var template = fs.readFileSync('public/views/' + tpl + '.ejs', 'utf8'); // TODO: Make async so we can err handle
+  
   
   // This is a bit crazy - EJS deprecated partials with no alternative, so we're implementing it using regex. 
   // No better templating engine exists at the moment, so sticking with EJS. 
@@ -260,7 +251,7 @@ function getTemplateString(d){
   while(match!=null){
     if (match.length>0){
       // Now we're going to lookup the variable name in the data to see what the template should be called
-      var variable = d[match[1]]; 
+      var variable = d[match[1]]; // TODO: Cater for this failing, d[match[1]] being undefined
       // Recursively call ourselves with the TPL name we need
       var include = getTemplateString({tpl: variable});
       
@@ -277,40 +268,50 @@ function getTemplateString(d){
     match = rex.exec(template);
   }
   // End crazyness
+  
+  //TODO: Store final generated template doesn't exist in redis.
+  //TODO: Store list of unknown templates, bind this to 1k entries or so
     
   return template;
 }
 
-function doResponse(req, res, json, d){
-  // setup stuff that goes into every response
-  if (req && req.session){
-    console.log(req.session.user);
-    console.log(req.session.domain);
-    d.user = req.session.user;
-    d.domain = req.session.domain;
-  }
+function doResponse(req, res, d){
+  var resType = (req.params.resType) ? req.params.resType : 'html';
   
-  if (json){
-    var template = getTemplateString(d);
-    // API request - sending back JSON data with a template
-    res.send({
-      data: d,
-      template: template,
-    });  
-  }else{
-    // HTML page GET request - sending back a rendered page
-    res.render(d.tpl, d);  
+  // setup stuff that goes into every response
+  
+    d.user = (req.session && req.session.user) ? req.session.user : false;
+    d.domain = (req.session && req.session.domain) ? req.session.domain : "apps";
+  switch(resType){
+    case "jstpl":
+      // API request - sending back JSON data with a template
+      var template = getTemplateString(d);
+      res.send({
+        data: d,
+        template: template,
+      });
+      break;
+      
+    case 'json':
+      res.send({
+        data: d
+      });
+      break;
+      
+    default:
+       // HTML page GET request - sending back a rendered page
+      res.render(d.tpl, d);
+      break;
+      
   }
   
 }
 
-function doError(res, msg){
-  //var json = (req.params.json && req.params.json==="json") ? true : false;
-  var json = false;
+function doError(req, res, msg){
   var d ={
       tpl: 'error',
       title: 'Oops! An error has occured.',
       error: msg
   }; 
-  doResponse(req, res, json, d);
+  doResponse(req, res, d);
 }

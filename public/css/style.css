@@ -1,12 +1,12 @@
 .container-fluid > .content {
   margin-left: 260px;	
-  padding: 5px;
 }
 .container-fluid > .content.fullWidth {
   margin-left: 0px; 
 }
 .container-fluid > .content.app {
-  margin-left: 80px; 
+  margin-left: 100px; 
+  padding: 2px 10px;
 }
 .container-fluid > .content.app.editor {
   margin-left: 320px; 
@@ -14,12 +14,7 @@
 .summary {
   margin-right: 400px;
 }
-.preview {
-  position: absolute;
-  top: 0px;
-}
 .preview.dashboardPreview {
-	 position: absolute;
 	 right: 20px;
 	 width: 380px;
 	}
@@ -81,6 +76,7 @@ img.logo {
   color: #fff;
   text-align: center;
   background-color: #333;
+  font-size: 0.85em;
 }
 .appBar ul {
   list-style: none;
@@ -98,7 +94,7 @@ img.logo {
 .appBar li a {
 	position: relative;
   display: block;
-  height: 90px;
+  height: 65px;
   background-repeat: no-repeat;
   background-position: center 8px;
 }
@@ -109,6 +105,7 @@ img.logo {
 }
 .appBar a,.appBar a:link, .appBar a:visited, .appBar a:active {
   color: #fff;
+  background-size: 38px;
 }
 /* TODO - make sprites! */
 .appBar li#dashboardLink a {
@@ -155,3 +152,11 @@ img.logo {
   height: 100px;
   float: left;
  }
+ 
+ /*
+  * 
+  */
+.nav.studioNav .dropdown-menu a{
+  color: #fff;
+  margin: 0px;
+}

@@ -60,10 +60,10 @@ $(function() { // JQuery onready
       title = $this.attr('title')||null;
   
       // Continue as normal for cmd clicks etc
-      if ( event.which == 2 || event.metaKey ) { return true; }
+      if ( event.which == 2 || event.metaKey || url==="#" || !url ) { return true; }
   
       // Ajaxify this link - do a studio.go rather than a full page nav & prevent the default event
-      studio.go(url);
+      studio.go(url + '.jstpl');
       event.preventDefault();
       return false;
     });
@@ -76,13 +76,14 @@ $(function() { // JQuery onready
 var studio = studio || {};
 studio.go = function(path, callback){
     $.ajax({
-      url: path + ".json",
+      url: path,
       context: document.body,
       success: function(res){
         if (callback){
           callback(res);
         }else{
           var title = (res && res.data && res.data.title) ? res.data.title : "Studio";
+          path = path.replace(".jstpl", "");
           History.pushState(res, title, path);  
         }
         
