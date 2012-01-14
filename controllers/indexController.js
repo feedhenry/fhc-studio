@@ -7,7 +7,7 @@ indexController = {
             tpl:'index',
             title:'Home'
         };
-        renderer.doResponse(req,res,d);
+        res.render("index",{title:"home page"});
     }
 };
 

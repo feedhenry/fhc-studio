@@ -26,7 +26,7 @@ var fs          = require('fs'),
        var template = getTemplateString(d);
        res.send({
          data: d,
-         template: template,
+         template: template
        });
        break;
        

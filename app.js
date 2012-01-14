@@ -33,8 +33,8 @@ fhc.fhc.load({}, function (err) {
 // Configuration
 
 app.configure(function () {
-    app.set('views', __dirname + '/public/views');
-    app.set('view engine', 'ejs');
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'jade');
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     app.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
