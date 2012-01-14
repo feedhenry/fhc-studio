@@ -52,6 +52,15 @@ app.configure('production', function () {
 });
 
 
+/*
+ * FIXME: Ace editor is looking for worker-javascript.js in all the wrong places. Override it's core, so it knows where to find this file
+ * rather than having to do this crazy route
+ */
+app.get('*/worker-javascript.js', function(req, res){
+  var workerJS = fs.readFileSync('public/js/lib/ace/worker-javascript.js', 'utf8'); // TODO: Make async so we can err handle
+  res.send(workerJS);
+});
+
 //index
 app.get("/",controllers.indexController.indexAction);
 
@@ -64,7 +73,8 @@ app.post('/login',controllers.userController.loginAction);
 app.get('/logout', controllers.userController.logoutAction);
 //app actions
 app.get('/apps.:resType?', controllers.appController.indexAction);
-app.get('/apps/:id/:operation?/:subOp?.:resType?', controllers.appController.performoperationAction);
+app.get('/apps/:id/:view?/:subOp?.:resType?', controllers.appController.showAppView);
+app.post('/apps/:id/:operation/:resourceID?.:resType?', controllers.appController.doOperation);
 //editor actions
 app.get('/editor', controllers.editController.indexAction);
 

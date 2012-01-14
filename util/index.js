@@ -1,13 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: kelly
- * Date: 12/01/2012
- * Time: 19:13
- * To change this template use File | Settings | File Templates.
- */
-
-
-
 var fs          = require('fs'),
     doResponse,
     doError;

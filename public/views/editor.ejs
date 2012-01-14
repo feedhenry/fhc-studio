@@ -7,16 +7,16 @@
     <li class="dropdown" data-dropdown="dropdown">
       <a class="dropdown-toggle no-ajax" href="#">File</a>
       <ul class="dropdown-menu">
-        <li><a href="#">Save</a></li>
-        <li><a href="#">Save All</a></li>
+        <li><a class="no-ajax" href="#" onclick="studio.editor.save()">Save</a></li>
+        <li><a class="no-ajax" href="#" onclick="studio.editor.save()">Save All</a></li>
         <li><a href="#">Open Recent</a></li>
       </ul>
     </li>
     <li class="button"><a>Edit</a></li>
     <li class="button"><a>Find</a></li>
-    <li class="button"><a>Save</a></li>
-    <li class="button"><a>Save All</a></li>
-    <li class="button"><a>Save & Close</a></li>
+    <li class="button"><a class="no-ajax" href="#" onclick="studio.editor.save()">Save</a></li>
+    <li class="button"><a class="no-ajax" href="#" onclick="studio.editor.save()">Save All</a></li>
+     <li class="button"><a class="no-ajax" href="#" onclick="studio.editor.save()">Save & Close</a></li>
     <li class="button"><a>Find</a></li>
     <li class="dropdown" data-dropdown="dropdown">
       <a class="dropdown-toggle no-ajax" href="#">$fh...</a>
@@ -34,11 +34,45 @@
 </div>
 </div>
 </div>
-<pre id="editor" style="height: 492px; width: 100%;">
-  <% if (file){ %>
-    <%= file %>
-  <% } %>
-</pre>
+<!-- inject some file contents into the DOM on first rendering this page - these will be destroyed by the clientside JS -->
+<input type="hidden" id="appID" value="<%= appID %>"></input>
+<% if (fileContents){ %>
+  <input type="hidden" id="fileID" value="<%= fileID %>"></input>
+<% }else{ %>
+  <input type="hidden" id="fileID" value=""></input>
+<% } %>
+<ul class="tabs editorTabs">
+  <li class="active"><a class="no-ajax" href="#tab0">tab0</a></li>
+  <li><a href="#tab1" class="no-ajax">tab1</a></li>
+  <li><a href="#tab2" class="no-ajax">tab2</a></li>
+  <li><a href="#tab3" class="no-ajax">tab3</a></li>
+</ul>
+<div class="pill-content">
+  <div class="active" id="tab0">
+    <pre id="editor0" style="height: 492px; width: 100%;">
+      <% if (fileContents){ %>
+        <%= fileContents %>
+      <% } %>
+    </pre>
+
+  </div>
+  <div id="tab1">
+  <pre id="editor1" style="height: 492px; width: 100%;">
+      <% if (fileContents){ %>
+        <%= fileContents %>
+      <% } %>
+    </pre>
+  </div>
+  <div id="tab2">
+
+  </div>
+  <div id="tab3">
+
+  </div>
+</div>
+
+
+
 
 
 <script src="/js/lib/ace/ace-uncompressed.js" type="text/javascript" charset="utf-8"></script>
@@ -46,7 +80,7 @@
 <script src="/js/lib/ace/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
 <script>
 $(function() {
-    studio.editor.openTab();
-    
+    studio.editor.init();
+    $('.editorTabs').tabs()
 });
 </script>
