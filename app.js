@@ -64,7 +64,7 @@ app.post('/login',controllers.userController.loginAction);
 app.get('/logout', controllers.userController.logoutAction);
 //app actions
 app.get('/apps.:resType?', controllers.appController.indexAction);
-app.get('/apps/:id/:operation?/:subOp?.:resType?', controllers.appController.performoperationAction);
+app.get('/app/:id/:operation?/:subOp?.:resType?', controllers.appController.performoperationAction);
 //editor actions
 app.get('/editor', controllers.editController.indexAction);
 

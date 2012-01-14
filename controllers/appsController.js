@@ -65,7 +65,8 @@ appsController = {
                             tab:operation,
                             filesTree:list,
                             file:false,
-                            mode:'js'
+                            mode:'js',
+                            isEditor: true
                         };
                         renderer.doResponse(req, res, d);
                     }

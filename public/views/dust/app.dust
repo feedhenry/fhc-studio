@@ -1,0 +1,24 @@
+<div class="topbar">
+      <div class="topbar-inner">
+          {>navigation/}
+      </div>
+</div>
+<ul class="breadcrumb">
+    <li <a href="/home">Studio</a> <span class="divider">/</span></li>
+    <li><a href="/apps">Apps</a> <span class="divider">/</span></li>
+    <li><a href="/apps/{data.inst.guid}">{data.data.inst.title}</a> <span class="divider">/</span></li>
+    <li class="active">{tab}</li>
+  </ul>
+<!-- This is the tab bar along the side -->
+{>apputilbar/}
+
+
+
+<div class="content app {tab}">
+
+
+
+
+
+ {>footer/}
+</div>

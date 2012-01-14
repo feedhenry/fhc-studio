@@ -33,7 +33,8 @@ var renderer = function (opts) {
                     return retPath;
                 }else{
                     retPath = path.split("/");
-                    return retPath[0];
+                    console.log(retPath);
+                    return retPath[1];
                 }
             }
         },

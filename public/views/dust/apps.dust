@@ -26,7 +26,7 @@
            {#data.apps}
                 <tr>
                     <td>img here</td>
-                    <td><a href="/apps/{id}">{title}</a></td>
+                    <td><a class="singlepage" href="/app/{id}">{title}</a></td>
                     <td>{title}</td>
                     <td>{description}</td>
                     <td>{modified}</td>
