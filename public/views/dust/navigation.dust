@@ -15,14 +15,14 @@
             <li class="dropdown" data-dropdown="dropdown">
               <a class="brand dropdown-toggle no-ajax" href="#">studio</a>
               <ul class="dropdown-menu">
-                <li><a class="brand" href="/">Dashboard</a></li>
-                <li><a class="brand href="/apps">App Studio</a></li>
-                <li><a class="brand href="/reporting">Reporting</a></li>
-                <li><a class="brand href="/admin">Admin</a></li>
+                <li><a class="brand singlepage" href="/">Dashboard</a></li>
+                <li><a class="brand singlepage" href="/apps">App Studio</a></li>
+                <li><a class="brand" href="/reporting">Reporting</a></li>
+                <li><a class="brand" href="/admin">Admin</a></li>
               </ul>
             </li>
-            <li class="active"><a href="/home">Home</a></li>
-            <li><a href="/apps">Apps</a></li>
+            <li class="active singlepage"><a href="/home">Home</a></li>
+            <li><a class="singlepage" href="/apps">Apps</a></li>
             <li><a href="/apps">Reporting</a></li>
             <li><a href="/apps">Admin</a></li>
             <li><a href="/apps">Docs</a></li>
