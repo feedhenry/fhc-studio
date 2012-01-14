@@ -4,6 +4,7 @@
       </div>
 </div>
 <div class="content apps fullWidth">
+{tabHelper}
 <h2>My Apps</h2>
   <table class="apps">
           <colgroup>

@@ -1,0 +1,16 @@
+<section class="preview dashboardPreview pull-right">
+  <h2>Preview</h2>
+  <div class="previewContainer iPhone" style=" width: 640px; -webkit-transform: scale(0.4); -webkit-transform-origin: 0 0;">
+  <iframe src="http://{data.domain}.feedhenry.com/box/srv/1.1/wid/{data.domain}/studio/{data.data.inst.guid}/container" frameborder="0"></iframe>
+  </div>
+</section>
+
+<section class="summary">
+  <h2>{data.data.inst.title}</h2><br />
+  <p>{data.data.inst.description}</p>
+  <h3>More Info</h3>
+  <strong>w3cid:</strong> {data.data.app.w3cid}<br />
+  <strong>guid:</strong> {data.data.inst.guid}<br />
+  <strong>height:</strong>{data.data.inst.guid}<br />
+  <strong>width:</strong> {data.data.inst.guid}<br />
+</section>

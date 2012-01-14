@@ -8,24 +8,37 @@ here in the class definitions. I like this structure because it maintains the pr
 or in the url either is fine
  <a href="/apps?el=container&t=apps"></a>
  */
+
+
+
 $('document').ready(function () {
 
-    var engine = renderer();
-    $.get("/home", function (data) {
-        engine.render({name:"home", 'data':data});
-    });
-
-
+    var engine = renderer({path:window.location.pathname}).render();
 
 });
 
+var renderBase = dust.makeBase({
+    tabLayoutHelper : function (chunk,context){
+        var data = context.get("data");
+        if(data && data.hasOwnProperty("tab")){
+            console.log(data.tab);
+                chunk.partial(data.tab.toLowerCase(),context);
+        }
+        console.log(context.get("data"));
+        console.log(context);
+        console.log(chunk);
+
+
+    }
+});
 
 var renderer = function (opts) {
     var opts = opts || {},
-        path        =  opts.path || "/home",
+        path        =  (typeof opts.path === undefined || opts.path === "/" || opts.path === "/home")? "/home" : opts.path,
         parse       = function () {
+            console.log(path);
             var retPath;
-            if(path === "/home"){ return "home";}
+            if(path === "/home" || path === "/"){ console.log("returning home"); return "home";}
             else{
                 retPath = (path.substr(path.length -1) === "/") ? path.substr(1, path.length -1) : path.substr(1);
                 console.log(retPath);
@@ -38,21 +51,22 @@ var renderer = function (opts) {
                 }
             }
         },
-        template    = opts.template || parse(),
-
+        template    = opts.template || parse();
+    console.log(template);
 
         self = {
             render:function (params) {
-                var method  = params.method  || "get",
+                var params  = params || {},
+                    method  = params.method  || "get",
                     ele     = params.element || "container";
                 $.ajax({
                     url:    path+".json",
                     cache:  params.cache || false,
                     type:   method,
                     success:function (jdata) {
-                        console.log(jdata);
-                        console.log("template set to " +  template +" retdata "+ jdata);
-                        dust.render(template, jdata, function (err, out) {
+
+                        console.log("template set to " +  template +" retdata ");
+                        dust.render(template, renderBase.push(jdata), function (err, out) {
                             if (err) {
                                 //err
                                 console.log(err);
@@ -66,7 +80,7 @@ var renderer = function (opts) {
 
                                     console.log("clicked single page link");
 
-                                    var engine = renderer({path:$(this).attr("href")}).render({});
+                                    var engine = renderer({path:$(this).attr("href")}).render();
                                     return false;
                                 });
                             }

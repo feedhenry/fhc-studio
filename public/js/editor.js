@@ -92,8 +92,13 @@ studio.editor = {
     
     
     if(mode && mode=="js"){
+      try{
       var JavaScriptMode = require("ace/mode/javascript").Mode;
+        console.log(JavaScriptMode);
       editor.getSession().setMode(new JavaScriptMode());
+       }catch(ex){
+          console.log(ex);
+      }
     
     }if (mode && mode== "html"){
       var htmlMode = require("ace/mode/html").Mode;

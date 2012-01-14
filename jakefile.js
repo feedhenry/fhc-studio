@@ -24,7 +24,7 @@ task('ct', [], function () {
             console.log("dust file found", f);
             data = fs.readFileSync(DUSTDIR + "/" + f, "UTF-8");
             compiled+= dust.compile(data, f.replace(/.dust/, '').toLowerCase());
-            console.log(compiled);
+           
         }
     });
     if (compiled !== "") {

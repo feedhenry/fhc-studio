@@ -11,7 +11,7 @@ appsController = {
                 return;
             }
             var d = {
-                tpl:'apps',
+                tpl:'index',
                 apps:data.list,
                 title:'Apps',
             };
@@ -48,7 +48,7 @@ appsController = {
                             }
                             var d = {
                                 title:file.fileName,
-                                tpl:'app',
+                                tpl:'index',
                                 data:data,
                                 tab:operation,
                                 filesTree:list,
@@ -60,7 +60,7 @@ appsController = {
                     } else {
                         var d = {
                             title:'Editor',
-                            tpl:'app',
+                            tpl:'index',
                             data:data,
                             tab:operation,
                             filesTree:list,
@@ -74,7 +74,7 @@ appsController = {
 
             } else {
                 var d = {
-                    tpl:'app',
+                    tpl:'index',
                     title:'Login',
                     data:data,
                     tab:operation

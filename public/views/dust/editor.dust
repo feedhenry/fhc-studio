@@ -33,9 +33,7 @@
 </div>
 </div>
 <pre id="editor" style="height: 492px; width: 100%;">
-  <% if (file){ %>
-    <%= file %>
-  <% } %>
+  {data.file}
 </pre>
 
 
@@ -45,6 +43,6 @@
 <script>
 $(function() {
     studio.editor.openTab();
-    
+
 });
 </script>

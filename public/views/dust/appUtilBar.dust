@@ -2,32 +2,32 @@
 
   <ul>
     <li id="dashboardLink">
-      <a href="/apps/{data.data.inst.guid}">
+      <a class="singlepage"  href="/app/{data.data.inst.guid}">
         <span>App Dashboard</span>
       </a>
     </li>
     <li id="editorLink">
-      <a class="" href="/apps/{ data.data.inst.guid }/editor">
+      <a class="singlepage" href="/app/{data.data.inst.guid}/editor">
         <span>Editor</span>
       </a>
     </li>
     <li id="previewLink">
-      <a href="/apps/{ data.data.inst.guid }/preview">
+      <a class="singlepage"  href="/app/{data.data.inst.guid}/preview">
         <span>Preview</span>
       </a>
     </li>
     <li id="buildLink" >
-      <a href="/apps/{ data.data.inst.guid }/build">
+      <a class="singlepage"  href="/app/{data.data.inst.guid}/build">
         <span>Build</span>
       </a>
     </li>
     <li id="debugLink" >
-      <a href="/apps/{ data.data.inst.guid }/debug">
+      <a class="singlepage"  href="/app/{data.data.inst.guid}/debug">
         <span>Debug</span>
       </a>
     </li>
     <li id="prefsLink" >
-      <a href="/apps/{ data.data.inst.guid }/prefs">
+      <a class="singlepage"  href="/app/{data.data.inst.guid}/prefs">
         <span>Prefrences</span>
       </a>
     </li>
