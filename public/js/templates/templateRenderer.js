@@ -60,9 +60,9 @@ var renderer = function (opts) {
                             else {
                                 console.log(params);
 
-                                $('body').html(out);
+                                $('#container').html(out);
 
-                                $('body').find('.singlepage').click( function () {
+                                $('#container').find('.singlepage').click( function () {
 
                                     console.log("clicked single page link");
 
