@@ -11,10 +11,7 @@
 }
 
 .breadcrumb {
-  margin-bottom: 0px;
-  /* TODO Remove this - just padding out for now until we restructure the page */
-  margin-right: -25px;
-  margin-left: -25px;	
+  margin-bottom: 0px;	
 }
 
 .dropdown h3 {

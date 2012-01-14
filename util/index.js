@@ -77,6 +77,10 @@ function getTemplateString(d) {
     }
     match = rex.exec(template);
   }
+  
+  // 2.) Then look for nonqute-includes like <%- partial(someVariable) %>
+  var rex = /<%- ?partial\(( ?[a-zA-Z\/.]* ?)\) ?%>/g;
+
 
   var match = rex.exec(template);
   while(match!=null){
