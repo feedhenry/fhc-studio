@@ -3,6 +3,19 @@ var userController,
     fhc = require("fh-fhc");
 
 userController = {
+    checkAuth: function(req, res, next){
+      var loggedIn  = (req.session && req.session.user) ? req.session.user : false;
+      if (!loggedIn){
+        d = {
+            tpl:'login',
+            title:'Login'
+        };
+        renderer.doResponse(req, res, d);
+        return false;
+      }else{
+        next();
+      }
+    },
     signupAction:function (req, res) {
         var d;
         if (req.method === "POST") {
@@ -10,8 +23,8 @@ userController = {
             //proccessing new signup and use app.post route
         } else if (req.method === "GET") {
             d = {
-                tpl:'signup',
-                title:'signup'
+                tpl:'register',
+                title:'Register'
             };
             renderer.doResponse(req, res, d);
         }
@@ -57,15 +70,15 @@ userController = {
     },
     logoutAction:function (req, res) {
         try {
-            fhc.logout([], function (err, data) {
-                console.log(arguments);
-                if (err) {
-                    renderer.doError(res,req, "Error logging out");
-                    return; // TODO: Show error logging out page
-                }
-                delete req.session.user;
-                res.redirect('/');
-            });
+          req.session.destroy();
+          fhc.logout([], function (err, data) {
+              console.log(arguments);
+              if (err) {
+                  renderer.doError(res,req, "Error logging out");
+                  return; // TODO: Show error logging out page
+              }
+              res.redirect('/');
+          });
         } catch (ex) {
             renderer.doError(res,req,"error");
         }

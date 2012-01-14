@@ -61,22 +61,24 @@ app.get('*/worker-javascript.js', function(req, res){
   res.send(workerJS);
 });
 
+
+var checkAuth = controllers.userController.checkAuth; // auth checking function
 //index
 app.get("/",controllers.indexController.indexAction);
 
 
-app.get('/home.:resType?',controllers.indexController.indexAction);
+app.get('/home.:resType?', checkAuth, controllers.indexController.indexAction);
 //user actions
-app.get('/signup.:resType?', controllers.userController.signupAction);
+app.get('/register.:resType?', controllers.userController.signupAction);
 app.get('/login.:resType?', controllers.userController.loginAction);
 app.post('/login',controllers.userController.loginAction);
 app.get('/logout', controllers.userController.logoutAction);
 //app actions
-app.get('/apps.:resType?', controllers.appController.indexAction);
-app.get('/apps/:id/:view?/:subOp?.:resType?', controllers.appController.showAppView);
-app.post('/apps/:id/:operation/:resourceID?.:resType?', controllers.appController.doOperation);
+app.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
+app.get('/apps/:id/:view?/:subOp?.:resType?', checkAuth, controllers.appController.showAppView);
+app.post('/apps/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.appController.doOperation);
 //editor actions
-app.get('/editor', controllers.editController.indexAction);
+app.get('/editor', checkAuth, controllers.editController.indexAction);
 
 
 

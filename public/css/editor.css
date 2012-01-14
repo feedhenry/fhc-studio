@@ -9,11 +9,11 @@
 
 #treeSearch {
   background-color: #333;
-  height: 60px;  
 }
 #treeSearch input {
   width: 180px;
-  margin: 4px 14px
+  margin: 4px 14px;
+  height: 16px;
 }
 
 #treeContainer, #snippets {
@@ -21,7 +21,12 @@
   float: left;
   clear: both;
   height: 100%;
-  background: transparent; 
+  background: #333; 
+}
+
+#treeContainer > ul, #snippets {
+  background: #fff;
+  min-height: 100px;
 }
 
 .jstree-default a ins.jstree-icon.file {
@@ -54,6 +59,7 @@
 ul.editorTabs {
   margin: 0px;
   background-color: #333;  
+  border-color: #333;
 }
 
 ul.editorTabs li a, ul.editorTabs li a.active {
@@ -61,7 +67,9 @@ ul.editorTabs li a, ul.editorTabs li a.active {
   line-height: 24px;  
 }
 ul.editorTabs li a:hover {
-  background-color: #222;  
+  background-color: #222;
+  border: 1px solid #000;
+  border-bottom: 0px;  
 }
 ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
   color: #fff;

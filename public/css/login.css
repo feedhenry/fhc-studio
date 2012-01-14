@@ -1,0 +1,25 @@
+html, body {
+  height: 100%;  
+}
+.content.login {
+  margin-top: 60px;  
+}
+
+#loginCloud {
+  background-image: url("../images/loginCloud.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  height: 120px;
+  width: 378px;
+  margin-left: 100px;
+  margin-top: 0px;  
+}
+
+#logo {
+  text-align: center;
+}
+
+a#forgot, a:active#forgot, a:hover#forgot a:hover{
+  color: #fff;  
+}

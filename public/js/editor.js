@@ -138,7 +138,7 @@ studio.editor = {
     //TODO: Switch on Mode to transform 'js' to 'javascript' etc, and include the new Mode() by string
     
     var editor = tab.ace = ace.edit("editor" + index);
-    editor.setTheme("ace/theme/cobalt");
+    editor.setTheme("ace/theme/chrome");
     editor.renderer.setShowPrintMargin(false);
     
     

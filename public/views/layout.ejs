@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/landing.css">
+    <link rel="stylesheet" href="/css/login.css">
     <link rel="stylesheet" href="/css/editor.css">
     <link rel="stylesheet" href="/css/bootstrapOver.css">
     <style type="text/css">
@@ -74,7 +75,7 @@
             <p class="pull-right"><a href="#"><%= user.username %> (<%= roleString %>)</a> |
               <a href="#">Help</a> |
               <a href="#">Prefrences</a> |
-              <a href="/logout">Log Out</a>
+              <a class="no-ajax" href="/logout">Log Out</a>
             </p>
           <% }else{ %>
             <form action="/login" method="post" class="pull-right">

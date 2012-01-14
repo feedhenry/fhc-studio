@@ -84,6 +84,7 @@ img.logo {
  */
 .container-fluid > .appBar {
   position: absolute;
+  height: 100%;
   top: 34px;
   left: 0px; 
   width: 100px;
@@ -93,6 +94,7 @@ img.logo {
   font-size: 0.85em;
 }
 .appBar ul {
+  height: 100%;
   list-style: none;
   margin: 0px;
   padding: 0px;
