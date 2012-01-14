@@ -11,9 +11,9 @@
   background-color: #333;
 }
 #treeSearch input {
-  width: 180px;
-  margin: 4px 14px;
-  height: 16px;
+  width: 100px;
+  margin: 6px 0px;
+  height: 12px;
 }
 
 #treeContainer, #snippets {

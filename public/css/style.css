@@ -85,7 +85,7 @@ img.logo {
 .container-fluid > .appBar {
   position: absolute;
   height: 100%;
-  top: 34px;
+  top: 0px;
   left: 0px; 
   width: 100px;
   color: #fff;
@@ -176,4 +176,11 @@ img.logo {
 .nav.studioNav .dropdown-menu a{
   color: #fff;
   margin: 0px;
+}
+
+ul.breadcrumb {
+  position: absolute;
+  bottom: 40px;
+  left: 0px;
+  width: 100%;  
 }
