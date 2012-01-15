@@ -3,7 +3,6 @@
  */
 
 var express     = require('express'),
-    routes      = require('./routes'),
     fhc         = require('fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),

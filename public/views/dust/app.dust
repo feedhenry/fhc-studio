@@ -7,7 +7,7 @@
 <!-- This is the tab bar along the side -->
 {>apputilbar/}
 
-<div class="content app ">
+<div class="content app " style="min-height:900px;">
    {! tabLayout helper is a method helper on the context. It decides which tab partial to render !}
   {tabLayoutHelper}
 

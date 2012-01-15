@@ -8,7 +8,8 @@ studio.editor = {
     fileContents = $('pre#editor0').html(),
     fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
-    
+
+      console.log("editor init appid "+ appID + "fc "+fileContents);
     // Set our appID on the editor object
     this.appID = appID;
     
@@ -88,6 +89,7 @@ studio.editor = {
   
   }, // end studio.editor.tree
   open: function(guid){
+
     //Navigate to that file using an ajax request with a callback
     var path = window.location.pathname;
     var path = "/apps/" + this.appID + "/editor/" + guid + ".json";
@@ -123,7 +125,7 @@ studio.editor = {
   openTab: function(res){
     // TODO: The object has all the stuff required to open based on activeTab // tabs.length
     // this now just needs dom manip to construct a new tab
-    
+    console.log(res);
     var fileContents = res.data.fileContents,
     fileID = res.data.fileID,
     mode = res.data.mode,
