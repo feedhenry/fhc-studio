@@ -13,7 +13,7 @@
                         <input class="span6" placeholder="email" name="username" id="login_email" type="text"><br /><br />
                         <input class="span6" placeholder="password" name="password" id="login_password" type="password"><br /><br />
                       </fieldset>
-                    
+
                       <p>
                         <button class="btn primary large" type="submit">Login</button>
                         &nbsp;
@@ -21,7 +21,7 @@
                       </p>
                     </form>
                   </div>
-                  
+
                 </div> <!-- /login -->
                 <div id="loginCloud">&nbsp;</div>
               </div><!-- /hero-unit -->

@@ -1,5 +1,29 @@
 var studio = studio || {};
 studio.editor = {
+  tabs: [],
+  appID: "",
+  activeTab: 0,
+  init: function(){
+    var appID =  $('input#appID').remove().val(),
+    fileContents = $('pre#editor0').html(),
+    fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
+    mode = 'js';
+    
+    // Set our appID on the editor object
+    this.appID = appID;
+    
+    // Transform our data into something openTab expects
+    var res = {
+      data: {
+       fileContents: fileContents,
+       fileID: fileID,
+       mode: ''
+      }
+    };
+    
+    this.openTab(res);
+  
+  },
   tree: function(tree){
     var me = this;
     if (!tree.children){
@@ -64,29 +88,57 @@ studio.editor = {
   
   }, // end studio.editor.tree
   open: function(guid){
-    //Navigate to that file using a browser nav
+    //Navigate to that file using an ajax request with a callback
     var path = window.location.pathname;
-    if (path[path.length-1]=="/"){
-      studio.go(window.location.pathname + guid + '.json', this.openTab);  
-    }else{
-      studio.go(window.location.pathname + '/' + guid + '.json', this.openTab);
-    }
+    var path = "/apps/" + this.appID + "/editor/" + guid + ".json";
+    studio.go(path, this.openTab);  
+    
   }, 
   save: function(){
+    debugger;
+    var tab = this.tabs[0],
+    editor = tab.ace, 
+    editorSession = editor.getSession(),
+    editorContents = editorSession.getValue(),
+    fileID = tab.fileID;
     
+    var data = {
+        fileID : fileID,
+        fileContents: editorContents
+    };
+     
+    $.ajax({
+      type: 'POST',
+      url: '/apps/someGUIDFIXME/update/' + fileID + '.json',
+      data: data,
+      success: function(res){
+        if (res && res.data && res.data.msg){
+          studio.info(res.data.msg);
+        }else{
+          studio.error('Error saving file');
+        }
+      }
+    });
   },
   openTab: function(res){
-    if (res){
-      var file = res.data.file,
-      mode = res.data.mode;
-      $('pre#editor').html(file);
-    }else{
-      var mode = 'js';
-    }
+    // TODO: The object has all the stuff required to open based on activeTab // tabs.length
+    // this now just needs dom manip to construct a new tab
+    
+    var fileContents = res.data.fileContents,
+    fileID = res.data.fileID,
+    mode = res.data.mode,
+    index = studio.editor.tabs.length || 0;
+    $('pre#editor' + index).html(fileContents);
+    
+    var tab = {
+        fileID: fileID,
+        originalFileContents: fileContents,
+    };
+    
     //TODO: Switch on Mode to transform 'js' to 'javascript' etc, and include the new Mode() by string
     
-    var editor = this.ace  = ace.edit("editor");
-    editor.setTheme("ace/theme/cobalt");
+    var editor = tab.ace = ace.edit("editor" + index);
+    editor.setTheme("ace/theme/chrome");
     editor.renderer.setShowPrintMargin(false);
     
     
@@ -109,6 +161,11 @@ studio.editor = {
       var JavaScriptMode = require("ace/mode/javascript").Mode;
       editor.getSession().setMode(new JavaScriptMode());
     }
+    
+    // Construct an object to represent this tab, and push it to the editor object's tabs array
+    
+    
+    studio.editor.tabs.push(tab);
     
   },
   snippet: function(id){

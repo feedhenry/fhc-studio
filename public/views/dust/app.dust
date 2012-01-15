@@ -3,12 +3,7 @@
           {>navigation/}
       </div>
 </div>
-<ul class="breadcrumb">
-    <li <a class="singlepage" href="/home">Studio</a> <span class="divider">/</span></li>
-    <li><a class="singlepage" href="/app">Apps</a> <span class="divider">/</span></li>
-    <li><a class="singlepage" href="/app/{data.data.inst.guid}">{data.data.inst.title}</a> <span class="divider">/</span></li>
-    <li class="active">{data.tab}</li>
-  </ul>
+
 <!-- This is the tab bar along the side -->
 {>apputilbar/}
 

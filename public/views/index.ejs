@@ -1,106 +1,28 @@
-<script src="js/lib/bootstrap/bootstrap-tabs.js"></script>
-<script type="text/javascript">
-    $('.tabs').tabs();
-    
-    function switchTab(id){
-      $("#" + id + "Link").click();
-    }
-    
-  
-  </script>
-
-
-    <!-- Main hero unit for a primary marketing message or call to action -->
-    <ul class="tabs toptabs" data-tabs="tabs">
-      <li class="active"><a href="#welcome" class="no-ajax">Welcome</a></li>
-      <li><a id="studioLink" href="#studio" class="no-ajax">App Studio</a></li>
-      <li><a id="installingLink" href="#installing" class="no-ajax">Installing FHC</a></li>
-      <li><a href="#staging" class="no-ajax">Staging to Cloud Foundry</a></li>
-    </ul>
-
-      <div class="hero-unit tab-content pill-content">
-    <div id="welcome" class="row active">
-        <div class="span7">
-            <h2>Build apps powered by Cloud Foundry</h2>
-            <p>Build powerful cloud powered apps with Feedhenry. Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms 
-          instantly!</p><br />
-                <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">Get started by Installing FHC &raquo;</a></p>
-      </div>
-        <div class="span7 video">
-      <iframe class="vimeo" src="http://player.vimeo.com/video/34086215?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-      </div>
-    </div>
-    <div id="installing" class="row">
-          <div class="span7">
-              <h2>Installing FHC</h2>
-              <p>The FHC command line utility gives access to the entire FeedHenry suite through your command line. It's a NodeJS utility which allows you to quickly get started staging your apps to Cloud Foundry.</p>
-          <pre class="code">
-$ sudo npm install -g fh-fhc 
-$ fhc -v
-$ fhc target mobilecf.feedhenry.com
-$ fhc login demo@example.com password
-$ fhc apps                                
-╔═════════════════╤═══════════╤═══════════════════╗
-║  ID             │ Title     │Description        ║ 
-╠═════════════════╪═══════════╪═══════════════════╣
-║  dttK1K42_y...  │ First App │Simple store finder║ 
-╚═════════════════╧═══════════╧═══════════════════╝
-          </pre>
-        </div>
-          <div class="span7 video">
-          <iframe class="vimeo" src="http://player.vimeo.com/video/33966777?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
-        </div>                 
-    </div>
-    
-    <div id="staging" class="row">
-        <div class="span7">
-            <h2>Staging your first app to Cloud Foundry</h2>
-            <p>Learn how to stage an app you've created to public Cloud Foundry. 
-        We start with in app in GitHub, add it to the FeedHenry platform then stage it's server side to Cloud Foundry.  
-        </p>
-
-      </div>
-        <div class="span7 video">
-        <iframe class="vimeo" src="http://player.vimeo.com/video/34086439?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
-      </div>
-    </div>
-  
-    <div id="studio" class="row">
-        <div class="span7">
-            <h2>App Studio</h2>
-            <p>Learn about the FeedHenry App Studio. 
-            This powerful web-based tool allows you to build and manage your app portfolio. 
-            </p><br />
-            
-            <p><a href="login.html" class="btn primary large no-ajax">Get Started Now! &raquo;</a></p>
-
-      </div>
-        <div class="span7 video">
-        <iframe class="vimeo" src="http://player.vimeo.com/video/34513716?title=0&amp;byline=0&amp;portrait=0" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-
-      </div>
-    </div>
-  
-    
+<div class="content login">
+  <div class="row">
+            <div class="span4">&nbsp;</div>
+            <div class="span8">
+              <div id="logo"><img src="images/logo.png" /></div>
+              <br /><br />
+              <div class="hero-unit tab-content pill-content">
+                <div id="login" class="row active">
+                  <div class="span7">
+                    <p>Enter your username and password to login</p>
+                    <fieldset>
+                      <input class="span6" placeholder="email" name="login_email" id="login_email" type="text"><br /><br />
+                      <input class="span6" placeholder="password" name="login_password" id="login_password" type="text"><br /><br />
+                    </fieldset>
+                  
+                    <p><a href="login.html" class="btn primary large">Login</a>
+                    &nbsp;
+                    <a id="forgot" href="forgot.html" class="large">Forgot...</a>
+                    </p>
+                  </div>
+                  
+                </div> <!-- /login -->
+                <div id="loginCloud">&nbsp;</div>
+              </div><!-- /hero-unit -->
+            </div> <!-- /span8 -->
+            <div class="span4">&nbsp;</div>
   </div>
-
-      <!-- Example row of columns -->
-      <div class="row docs">
-        <div class="span6">
-          <h2>FHC Documentation</h2>
-          <p>Have a read of our documentation, where you can learn more about what Feedhenry is, and how to use our powerful cloud and client API's to build powerful mobile apps.</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/fhc">See the docs &raquo;</a></p>
-        </div>
-        <div class="span5">
-          <h2>Tutorials</h2>
-           <p>Learn how to utilize the cloud to hash then cache data from multiple sources in the cloud. Localize an app, cloud powered language assets make corrections and updates a breeze.</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/tutorials">View our tutorials &raquo;</a></p>
-       </div>
-        <div class="span5">
-          <h2>API Docs</h2>
-          <p>Read about the $fh APIs that exist to make calls to the FeedHenry cloud, or access on-device functionality not normally available to HTML5 apps.</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/api">Read the API Docs &raquo;</a></p>
-        </div>
-      </div>
+</div>

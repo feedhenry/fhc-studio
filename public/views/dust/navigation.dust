@@ -21,7 +21,7 @@
                 <li><a class="brand" href="/admin">Admin</a></li>
               </ul>
             </li>
-            <li class="active singlepage"><a href="/home">Home</a></li>
+            <li class="active"><a class="singlepage" href="/home">Home</a></li>
             <li><a class="singlepage" href="/apps">Apps</a></li>
             <li><a href="/apps">Reporting</a></li>
             <li><a href="/apps">Admin</a></li>

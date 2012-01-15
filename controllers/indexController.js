@@ -2,12 +2,24 @@ var indexController, renderer = require("../util");
 
 indexController = {
     indexAction : function (req,res) {
-        var d;
-        d = {
-            tpl:'index',
-            title:'Home'
-        };
-        res.render("index",{title:"home page"});
+
+        var loggedIn  = (req.session && req.session.user) ? req.session.user : false,
+        d = undefined;
+        
+        if (loggedIn){
+          d = {
+              tpl:'home',
+              title:'Home'
+          };  
+        }else{
+          d = {
+              tpl:'login',
+              title:'Login'
+          };
+        }
+        
+        
+        renderer.doResponse(req,res,d);
     }
 };
 

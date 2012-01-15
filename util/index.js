@@ -1,13 +1,3 @@
-/**
- * Created by JetBrains WebStorm.
- * User: kelly
- * Date: 12/01/2012
- * Time: 19:13
- * To change this template use File | Settings | File Templates.
- */
-
-
-
 var fs          = require('fs'),
     doResponse,
     doError;
@@ -38,7 +28,7 @@ var fs          = require('fs'),
        
      default:
         // HTML page GET request - sending back a rendered page
-       res.render(d.tpl, d);
+       res.render("index", d);
        break;
        
    }
@@ -77,6 +67,10 @@ function getTemplateString(d) {
     }
     match = rex.exec(template);
   }
+  
+  // 2.) Then look for nonqute-includes like <%- partial(someVariable) %>
+  var rex = /<%- ?partial\(( ?[a-zA-Z\/.]* ?)\) ?%>/g;
+
 
   var match = rex.exec(template);
   while(match!=null){

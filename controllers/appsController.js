@@ -1,6 +1,7 @@
 
 var appsController,
     renderer    = require("../util"),
+    util = require("util"),
     fhc         = require("fh-fhc");
 
 appsController = {
@@ -13,14 +14,21 @@ appsController = {
             var d = {
                 tpl:'index',
                 apps:data.list,
-                title:'Apps',
+                title:'Apps'
             };
             renderer.doResponse(req, res, d);
         });
     },
-    performoperationAction : function (req,res){
+    /*
+     * Show a view specific to an instance of an app. 
+     * Operates on:
+     * GET /app/someGUID/viewName
+     * where viewName is the name of one of our views, e.g. preview, editor, ...
+     * viewName is optional - if left out, defaults to 'dashboard' 
+     */
+    showAppView : function (req,res){
         var id = req.params.id,
-            operation = req.params.operation,
+            view = req.params.view,
             subOp = req.params.subOp;
         // We have an ID - show an individual app
         fhc.apps([id], function (err, data) {
@@ -28,11 +36,11 @@ appsController = {
                 renderer.doError(res,req, "Couldn't find app with id" + id);
                 return;
             }
-            if (!operation) {
-                operation = 'appDashboard';
+            if (!view) {
+                view = 'dashboard';
             }
-            // show tab relating to this operation
-            if (operation === "editor") {
+            // show tab relating to this view
+            if (view === "editor") {
                 fhc.files(['list', id], function (err, root) {
                     if (err) {
                         renderer.doError(res,req, "Error retrieving files list");
@@ -48,11 +56,14 @@ appsController = {
                             }
                             var d = {
                                 title:file.fileName,
-                                tpl:'index',
+
+                                appID: id,
+                                tpl:'app',
                                 data:data,
-                                tab:operation,
+                                tab:view,
                                 filesTree:list,
-                                file:file.contents,
+                                fileContents:file.contents,
+                                fileID: file.guid,
                                 mode:'js'
                             };
                             renderer.doResponse(req, res, d);
@@ -60,13 +71,15 @@ appsController = {
                     } else {
                         var d = {
                             title:'Editor',
-                            tpl:'index',
+                            appID: id,
+                            tpl:'app',
                             data:data,
-                            tab:operation,
+                            tab:view,
                             filesTree:list,
-                            file:false,
-                            mode:'js',
-                            isEditor: true
+
+                            fileContents:false,
+                            mode:'js'
+
                         };
                         renderer.doResponse(req, res, d);
                     }
@@ -77,12 +90,51 @@ appsController = {
                     tpl:'index',
                     title:'Login',
                     data:data,
-                    tab:operation
+                    tab:view
                 };
                 renderer.doResponse(req, res, d);
             }
         });
 
+    },
+    /*
+     * Do a write operation on an app 
+     * Operates on:
+     * POST /app/someGUID/operationName
+     * where operationName is the name of some write operation on this app
+     */
+    doOperation : function(req,res){
+      var guid = req.params.id,
+      operation = req.params.operation,
+      body = req.body,
+      fileID = req.params.fileID || body.fileID;
+      console.log('file ID: ' + fileID);
+      console.log('fileContents' + fileContents);
+      debugger;
+      
+      // Transform this request to always be an API one - means doResponse will always just return data:
+      req.params.resType = "json";
+      
+      
+      switch(operation){
+      case "update":
+        var fileContents = body.file;
+        var payload = {files:[{guid: fileID,contents:fileContents}],appId:guid};
+        
+        //TODO: FHC Files update with a file's string content, not some file on the file system!
+        
+        renderer.doResponse(req, res, { msg: 'File saved successfully' });
+        
+        break;
+      case "create":
+        // do sumat
+        break;
+      default:
+        // do sumat;
+        break;
+      
+      } // end switch
+      
     }
 };
 
