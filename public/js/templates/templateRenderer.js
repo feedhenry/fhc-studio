@@ -16,19 +16,18 @@ $('document').ready(function () {
     var engine = renderer({path:window.location.pathname}).render();
 
 });
-
+/**
+ * this is the base object. Add new functionality that you wish to
+ * use in templates here
+ */
 var renderBase = dust.makeBase({
     tabLayoutHelper : function (chunk,context){
+        //context is the data and chunk is the piece of template
         var data = context.get("data");
         if(data && data.hasOwnProperty("tab")){
             console.log(data.tab);
                 chunk.partial(data.tab.toLowerCase(),context);
         }
-        console.log(context.get("data"));
-        console.log(context);
-        console.log(chunk);
-
-
     }
 });
 
@@ -77,10 +76,8 @@ var renderer = function (opts) {
                                 $('#container').html(out);
 
                                 $('#container').find('.singlepage').click( function () {
-
                                     console.log("clicked single page link");
-
-                                    var engine = renderer({path:$(this).attr("href")}).render();
+                                    renderer({path:$(this).attr("href")}).render();
                                     return false;
                                 });
                             }
