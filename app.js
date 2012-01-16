@@ -8,7 +8,6 @@ var express     = require('express'),
     util        = require('util'),
     fs          = require('fs'),
     ejs         = require('ejs'),
-    RedisStore  = require('connect-redis')(express),
     controllers = require('./controllers');
 
 var app = module.exports = express.createServer();
@@ -37,18 +36,23 @@ app.configure(function () {
     app.set('view engine', 'ejs');
     app.use(express.bodyParser());
     app.use(express.cookieParser());
-    app.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
+    
     app.use(express.methodOverride());
-    app.use(app.router);
+    
     app.use(express.static(__dirname + '/public'));
 });
 
 app.configure('development', function () {
     app.use(express.errorHandler({ dumpExceptions:true, showStack:true }));
+    app.use(express.session({ secret:"keyboard cat"}));
+    app.use(app.router);
 });
 
 app.configure('production', function () {
     app.use(express.errorHandler());
+    var RedisStore  = require('connect-redis')(express);
+    app.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
+    app.use(app.router);
 });
 
 

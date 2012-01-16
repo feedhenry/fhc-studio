@@ -120,7 +120,6 @@ appsController = {
         
         //TODO: FHC Files update with a file's string content, not some file on the file system!
         
-
         renderer.doResponse(req, res, { msg: 'File saved successfully' });
         
         break;
