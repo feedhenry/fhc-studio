@@ -44,7 +44,7 @@ appsController = {
                 fhc.files(['list', id], function (err, root) {
                     if (err) {
                         renderer.doError(res,req, "Error retrieving files list");
-                        return; // TODO: Show error logging out page
+                        return;
                     }
                     var list = JSON.stringify(root);
 
@@ -52,7 +52,7 @@ appsController = {
                         fhc.files(['read', subOp], function (err, file) {
                             if (err) {
                                 renderer.doError(res,req, "Error loading file " + file);
-                                return; // TODO: Show error logging out page
+                                return;
                             }
                             var d = {
                                 title:file.fileName,
@@ -120,6 +120,7 @@ appsController = {
         
         //TODO: FHC Files update with a file's string content, not some file on the file system!
         
+
         renderer.doResponse(req, res, { msg: 'File saved successfully' });
         
         break;
