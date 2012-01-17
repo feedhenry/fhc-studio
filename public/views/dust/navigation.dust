@@ -28,7 +28,8 @@
             <li><a href="/apps">Docs</a></li>
           </ul>
            {#user}
-            <p class="pull-right"><a href="#"><%= user.username %> (<%= roleString %>)</a> |
+
+            <p class="pull-right"><a href="#">{.username} ({.role})</a> |
               <a href="#">Help</a> |
               <a href="#">Prefrences</a> |
               <a href="/logout">Log Out</a>

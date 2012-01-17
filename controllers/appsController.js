@@ -12,7 +12,7 @@ appsController = {
                 return;
             }
             var d = {
-                tpl:'index',
+                tpl:'apps',
                 apps:data.list,
                 title:'Apps'
             };
@@ -87,7 +87,7 @@ appsController = {
 
             } else {
                 var d = {
-                    tpl:'index',
+                    tpl:'app',
                     title:'Login',
                     data:data,
                     tab:view

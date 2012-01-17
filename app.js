@@ -78,6 +78,7 @@ app.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.ap
 
 //editor actions
 app.get('/editor', checkAuth, controllers.editController.indexAction);
+app.get("/editor/gist",controllers.editController.gistAction);
 
 
 

@@ -24,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-           {#data.apps}
+           {#apps}
                 <tr>
                     <td>img here</td>
                     <td><a class="singlepage" href="/app/{id}">{title}</a></td>
@@ -33,7 +33,7 @@
                     <td>{modified}</td>
                     <td>{version}</td>
                 </tr>
-           {/data.apps}
+           {/apps}
           </tbody>
   </table>
 

@@ -3,26 +3,31 @@ studio.editor = {
   tabs: [],
   appID: "",
   activeTab: 0,
-  init: function(){
-    var appID =  $('input#appID').remove().val(),
-    fileContents = $('pre#editor0').html(),
-    fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
-    mode = 'js';
-
-      console.log("editor init appid "+ appID + "fc "+fileContents);
-    // Set our appID on the editor object
-    this.appID = appID;
-    
-    // Transform our data into something openTab expects
-    var res = {
-      data: {
-       fileContents: fileContents,
-       fileID: fileID,
-       mode: ''
-      }
-    };
-    
-    this.openTab(res);
+  activeEditor : "",
+  init: function(editors){
+      console.log(editors);
+      this.activeEditor = editors[this.activeTab];
+//    var appID =  $('input#appID').remove().val(),
+//    fileContents = $('pre#editor0').html(),
+//    fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
+//    mode = 'js';
+//      console.log("axe here");
+//
+//      console.log("editor init appid "+ appID + "fc "+fileContents);
+//
+//    // Set our appID on the editor object
+//    this.appID = appID;
+//
+//    // Transform our data into something openTab expects
+//    var res = {
+//      data: {
+//       fileContents: fileContents,
+//       fileID: fileID,
+//       mode: ''
+//      }
+//    };
+//
+//    this.openTab(res);
   
   },
   tree: function(tree){
@@ -50,7 +55,7 @@ studio.editor = {
                     "theme" : "default",
                     "dots" : false,
                     "icons" : true
-        },
+        }
       }).bind("select_node.jstree", function (e, data) {
         var el = $(data.rslt.obj),
         guid = data.rslt.obj.data("guid"),
@@ -126,6 +131,8 @@ studio.editor = {
     // TODO: The object has all the stuff required to open based on activeTab // tabs.length
     // this now just needs dom manip to construct a new tab
     console.log(res);
+
+
     var fileContents = res.data.fileContents,
     fileID = res.data.fileID,
     mode = res.data.mode,
@@ -134,14 +141,16 @@ studio.editor = {
     
     var tab = {
         fileID: fileID,
-        originalFileContents: fileContents,
+        originalFileContents: fileContents
     };
     
     //TODO: Switch on Mode to transform 'js' to 'javascript' etc, and include the new Mode() by string
     
     var editor = tab.ace = ace.edit("editor" + index);
+
     editor.setTheme("ace/theme/chrome");
     editor.renderer.setShowPrintMargin(false);
+
     
     
     
@@ -171,7 +180,9 @@ studio.editor = {
     
   },
   snippet: function(id){
-    this.ace.insert(id);
+
+
+    ace.insert(id);
     return;
     var path = "http://raw.github.com/gist/1099663/gistfile1.js";
     $.ajax({
