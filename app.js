@@ -84,7 +84,7 @@ app.post('/apps/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.a
 //editor actions
 app.get('/editor', checkAuth, controllers.editController.indexAction);
 
-
+app.get("/editor/gist",controllers.editController.gist);
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

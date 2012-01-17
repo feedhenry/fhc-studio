@@ -290,14 +290,18 @@ studio.editor = {
     $('.app.editor .pill-content').append(tabContentEl); // add the tab body into our pill content DOM el
   },
   snippet: function(id){
-    this.ace.insert(id);
-    return;
-    var path = "http://raw.github.com/gist/1099663/gistfile1.js";
+      var me = studio.editor;
+      //needs to be the active tab
+
+
+    var path = "/editor/gist";
     $.ajax({
       url: path,
       context: this,
       success: function(res){
-        this.ace.insert(res);
+          console.log(res);
+
+          me.tabs[me.activeTab].ace.insert(res);
       }
     });
     
