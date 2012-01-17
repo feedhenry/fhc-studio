@@ -16,6 +16,10 @@
 .container-fluid > .content.app.editor {
   margin-left: 320px; 
 }
+
+.container-fluid > .content.landing {
+  margin: 0px 20px;  
+} 
 .summary {
   margin-right: 400px;
 }
