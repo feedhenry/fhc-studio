@@ -43,30 +43,14 @@
 <% } %>
 <ul class="tabs editorTabs">
   <li class="active"><a class="no-ajax" href="#tab0">tab0</a></li>
-  <li><a href="#tab1" class="no-ajax">tab1</a></li>
-  <li><a href="#tab2" class="no-ajax">tab2</a></li>
-  <li><a href="#tab3" class="no-ajax">tab3</a></li>
 </ul>
 <div class="pill-content">
-  <div class="active" id="tab0">
-    <pre id="editor0" style="height: 492px; width: 100%;">
+  <div class="active tab" id="tab0" style="height: 100%; position: absolute;">
+    <pre id="editor0">
       <% if (fileContents){ %>
         <%= fileContents %>
       <% } %>
     </pre>
-
-  </div>
-  <div id="tab1">
-  <pre id="editor1" style="height: 492px; width: 100%;">
-      <% if (fileContents){ %>
-        <%= fileContents %>
-      <% } %>
-    </pre>
-  </div>
-  <div id="tab2">
-
-  </div>
-  <div id="tab3">
 
   </div>
 </div>

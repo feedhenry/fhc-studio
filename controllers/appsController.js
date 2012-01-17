@@ -105,9 +105,6 @@ appsController = {
       operation = req.params.operation,
       body = req.body,
       fileID = req.params.fileID || body.fileID;
-      console.log('file ID: ' + fileID);
-      console.log('fileContents' + fileContents);
-      debugger;
       
       // Transform this request to always be an API one - means doResponse will always just return data:
       req.params.resType = "json";
@@ -115,12 +112,20 @@ appsController = {
       
       switch(operation){
       case "update":
-        var fileContents = body.file;
-        var payload = {files:[{guid: fileID,contents:fileContents}],appId:guid};
+        var fileContents = body.fileContents;
+        var obj = { fileContents: fileContents };
+        fhc.files(['update', guid, fileID, obj], function(err, succ){
+          if (!err){
+            renderer.doResponse(req, res, { msg: 'File saved successfully' });  
+          }else{
+            renderer.doResponse(req, res, { msg: 'Error', error: err });
+          }
+            
+        });
         
         //TODO: FHC Files update with a file's string content, not some file on the file system!
         
-        renderer.doResponse(req, res, { msg: 'File saved successfully' });
+        
         
         break;
       case "create":
