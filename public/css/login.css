@@ -2,7 +2,11 @@ html, body {
   height: 100%;  
 }
 .content.login {
-  margin-top: 60px;  
+  margin: 60px 0px 0px 0px;  
+}
+.content.login .row {
+  width: 960px;
+  margin: 0 auto;
 }
 
 #loginCloud {
