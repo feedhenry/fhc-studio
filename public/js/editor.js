@@ -291,9 +291,9 @@ studio.editor = {
   },
   snippet: function(id){
       var me = studio.editor;
-      //needs to be the active tab
 
 
+    //need to know the gist id and send that through
     var path = "/editor/gist";
     $.ajax({
       url: path,
