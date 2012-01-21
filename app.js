@@ -34,6 +34,7 @@ fhc.fhc.load({}, function (err) {
 app.configure(function () {
     app.set('views', __dirname + '/public/views');
     app.set('view engine', 'ejs');
+    app.set('env',"development"); //change this when goes to prod
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     
