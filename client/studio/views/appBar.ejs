@@ -1,0 +1,39 @@
+<div class="appBar pull-left"> <!-- Gets topbar-inner as this makes it black like bootstrap nav -->
+
+  <ul>
+    <li id="dashboardLink" <%if (tab==='appDashboard'){ %>class="active"<% } %>>
+      <a href="/apps/<%= data.inst.guid %>">
+        <span>App Dashboard</span>
+      </a>
+    </li>
+    <li id="editorLink" <%if (tab==='editor'){ %>class="active"<% } %>>
+      <a class="" href="/apps/<%= data.inst.guid %>/editor">
+        <span>Editor</span>
+      </a>
+    </li>
+    <li id="previewLink" <%if (tab==='preview'){ %>class="active"<% } %>>
+      <a href="/apps/<%= data.inst.guid %>/preview">
+        <span>Preview</span>
+      </a>
+    </li>
+    <li id="buildLink" <%if (tab==='build'){ %>class="active"<% } %>>
+      <a href="/apps/<%= data.inst.guid %>/build">
+        <span>Build</span>
+      </a>
+    </li>
+    <li id="debugLink" <%if (tab==='console'){ %>class="active"<% } %>>
+      <a href="/apps/<%= data.inst.guid %>/debug">
+        <span>Debug</span>
+      </a>
+    </li>
+    <li id="prefsLink" <%if (tab==='console'){ %>class="active"<% } %>>
+      <a href="/apps/<%= data.inst.guid %>/prefs">
+        <span>Preferences</span>
+      </a>
+    </li>
+  </ul>
+</div>
+<%if (tab==='editor'){ %>
+  <%- partial( "filesTree" ) %>
+<% } %>
+      

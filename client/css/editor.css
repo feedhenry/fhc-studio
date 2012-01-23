@@ -1,0 +1,85 @@
+.container-fluid > .content.app.editor {
+  padding: 0px;
+  height: 100%;
+}
+#treeContainer, #treeSearch, #snippets{
+  left: 100px;
+  width: 220px;
+  position: absolute;
+}
+
+#treeSearch {
+  background-color: #333;
+}
+#treeSearch input {
+  width: 100px;
+  margin: 6px 0px;
+  height: 12px;
+}
+
+#treeContainer, #snippets {
+  top: 94px; /* Put it inline with the editor content window */
+  float: left;
+  clear: both;
+  height: 100%;
+  background: #333; 
+}
+
+#treeContainer > ul, #snippets {
+  background: #fff;
+  min-height: 100px;
+}
+
+.jstree-default a ins.jstree-icon.file {
+  background: transparent url("../images/editor/file.png") no-repeat;
+  background-position: 0px 0px;
+  background-size: 14px;	
+}
+
+#editorToolbar.topbar, #editorToolbar.topbar .container-fluid, #editorToolbar ul.nav  {
+  height: 34px;	
+}
+
+#editorToolbar.topbar ul.dropdown-menu {
+  top: 34px;  
+}
+.ace_editor {
+  position: relative !important;
+}
+.content.editor .pill-content, .content.editor .pill-content div.tab, .content.editor .pill-content div.tab pre {
+  position: relative;
+  height: 100%;  
+  width: 100%;
+}
+
+.editor pre {
+  padding: 0px;
+  background: transparent;
+  border: 0px;  
+}
+
+/* 
+ * Tabs styling
+ */
+  
+ul.editorTabs {
+  margin: 0px;
+  background-color: #333;  
+  border-color: #333;
+}
+
+ul.editorTabs li a, ul.editorTabs li a.active {
+  height: 24px;
+  line-height: 24px;  
+}
+ul.editorTabs li a:hover {
+  background-color: #222;
+  border: 1px solid #000;
+  border-bottom: 0px;  
+}
+ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
+  color: #fff;
+}
+.app.editor ul.editorTabs { 
+  padding-left: 50px; /* Pad the tabs that sit ontop of the text editor so they dont sit on the LHS gutter */
+}

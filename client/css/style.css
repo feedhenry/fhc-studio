@@ -1,0 +1,190 @@
+.container-fluid > .content {
+  margin-left: 260px;	
+}
+
+.container-fluid > .content.fullWidth {
+  margin-left: 0px; 
+}
+
+.container-fluid > .content.app, .container-fluid > .content.apps {
+  padding: 2px 20px;
+ }
+ 
+.container-fluid > .content.app {
+  margin-left: 100px; 
+}
+.container-fluid > .content.app.editor {
+  margin-left: 320px; 
+}
+
+.container-fluid > .content.landing {
+  margin: 0px 20px;  
+} 
+.summary {
+  margin-right: 400px;
+}
+.preview.dashboardPreview {
+	 right: 20px;
+	 width: 380px;
+	}
+.previewContainer {
+  background-repeat: no-repeat;
+  -webkit-transform-origin: 0 0;
+}
+.previewContainer.iPhone {
+  background-image: url("../images/iPhone4.png");
+  background-size: 763px;
+  padding: 276px 65px;
+}
+.previewContainer.iPhone iframe {
+  width: 640px;
+  height: 960px;
+}
+.previewContainer.iPad {
+  background-image: url("../images/iPad.png");
+  background-size: 1253px;
+  padding: 98px 114px;
+}
+.previewContainer.iPad iframe {
+  width: 1024px;
+  height: 768px;
+}
+.apps .icon {
+  width: 5%;
+}
+.apps .title {
+  width: 20%;
+}
+.apps .desc {
+  width: 50%;
+}
+.apps .modified {
+  width: 20%;
+}
+.apps .version {
+  width: 5%;
+}
+.apps tr:hover {
+  background-color: #f4f4f4;
+}
+img.logo {
+  padding: 12px 7px 0px 0px;
+  float: left;
+}
+
+/*
+ * Top nav styles
+ */
+.container-fluid img.logo {
+  margin-left: 12px;  
+}
+.topbar .pull-right {
+  margin-right: 12px;  
+}
+
+/* 
+ * App bar Styles
+ * Styles for the narrow left hand bar on the page of an individual app
+ */
+.container-fluid > .appBar {
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  left: 0px; 
+  width: 100px;
+  color: #fff;
+  text-align: center;
+  background-color: #333;
+  font-size: 0.85em;
+}
+.appBar ul {
+  height: 100%;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.appBar li {
+  border-bottom: 1px solid #222;
+  border-top: 1px solid #444;
+}
+.appBar li.active {
+  background-image: -webkit-linear-gradient(top, #333, #222);
+}
+
+.appBar li a {
+	position: relative;
+  display: block;
+  height: 65px;
+  background-repeat: no-repeat;
+  background-position: center 8px;
+}
+.appBar li a span {
+  position: absolute; 
+  bottom: 0px;
+  left: 0px;
+  width: 100px;
+}
+.appBar a,.appBar a:link, .appBar a:visited, .appBar a:active {
+  color: #fff;
+  background-size: 38px;
+}
+/* TODO - make sprites! */
+.appBar li#dashboardLink a {
+  background-image: url("../images/appBar/dashboard.png"); 
+}
+.appBar li#editorLink a {
+  background-image: url("../images/appBar/editor.png"); 
+}
+.appBar li#previewLink a {
+  background-image: url("../images/appBar/preview.png"); 
+}
+.appBar li#buildLink a {
+  background-image: url("../images/appBar/build.png"); 
+}
+.appBar li#debugLink a {
+  background-image: url("../images/appBar/debug.png"); 
+}
+.appBar li#prefsLink a {
+  background-image: url("../images/appBar/prefs.png"); 
+}
+.appBar li#dashboardLink.active a {
+  background-image: url("../images/appBar/dashboard_active.png"); 
+}
+.appBar li#editorLink.active a {
+  background-image: url("../images/appBar/editor_active.png"); 
+}
+.appBar li#previewLink.active a {
+  background-image: url("../images/appBar/preview_active.png"); 
+}
+.appBar li#buildLink.active a {
+  background-image: url("../images/appBar/build_active.png"); 
+}
+.appBar li#debugLink.active a {
+  background-image: url("../images/appBar/debug_active.png"); 
+}
+.appBar li#prefsLink.active a {
+  background-image: url("../images/appBar/prefs_active.png"); 
+}
+
+/*
+ *Build screen
+ */
+ .buildRow img {
+  height: 100px;
+  float: left;
+ }
+ 
+ /*
+  * 
+  */
+.nav.studioNav .dropdown-menu a{
+  color: #fff;
+  margin: 0px;
+}
+
+ul.breadcrumb {
+  position: absolute;
+  bottom: 40px;
+  left: 0px;
+  width: 100%;  
+}

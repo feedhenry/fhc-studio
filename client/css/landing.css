@@ -1,0 +1,74 @@
+pre.code {
+  background: #222; 
+  color: #ccc; 
+  border: 1px solid #444;
+}
+.toptabs {
+  margin: 20px 0px 0px 0px;
+  font-size: 1.4em;
+}
+
+.tab-content, .tab-content h1, .tab-content h2, .tab-content h3 {
+  background-color: #333;
+}
+
+.tab-content, .tab-content h1, .tab-content h2, .tab-content h3, .tab-content fieldset, .tab-content fieldset legend, .tab-content label {
+  color: #eee;  
+}
+.tab-content legend {
+  padding-left: 0px;
+}
+
+.tab-content #login input, .tab-content #register input, .tab-content #forgot input {
+  height: 20px;
+  font-size: 1.2em;  
+}
+
+.span8 .vimeo.thumbnail {
+  margin-top: 50px;
+  width: 460px;
+  height: 256px;
+}
+
+.toptabs a:link, .toptabs a:active, .toptabs a:hover, .toptabs a:visited {
+
+}
+.toptabs li a, .toptabs li a:link, .toptabs li a:active, .toptabs li a:hover {
+  background: transparent;
+  border: 0px;
+  color: #333;
+}
+.toptabs li.active a, .toptabs li.active a:hover {
+  background-color: #333;
+  color: #eee;
+  border: 0px;
+  /* Overlap the tab slightly to hide the rounded corner */
+  padding-bottom: 5px;
+  margin-bottom: -5px;
+}
+.tab-content span a, .tab-content span a:link, .tab-content span a:visited, .tab-content span a:active, .tab-content span a:hover {
+  color: #4793df;  
+}
+
+.video {
+  text-align: right;
+}
+.tab-content iframe.vimeo {
+  margin-top: 46px;
+}
+
+.docs p {
+  height: 90px;
+}
+
+.docs img.thumb {
+  padding-right: 10px;
+}
+
+#welcome.row .span7.left {
+  padding-top: 20px;  
+}
+
+#studio.row .span7.right, #staging.row .span7.left {
+    padding-top: 30px;
+}
