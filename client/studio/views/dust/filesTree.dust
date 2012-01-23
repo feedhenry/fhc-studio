@@ -1,0 +1,22 @@
+<script type="text/javascript">
+ var t = {filesTree}
+ client.studio.editor.tree(t);
+</script>
+<div id="treeSearch" class="pull-left">
+  <input type="search" placeholder="Search..."></input>
+  <ul class="tabs editorTabs">
+    <li class="active"><a class="no-ajax" href="#navigator">Navigator</a></li>
+    <li class=""><a href="#snippets" class="no-ajax">Snippets</a></li>
+  </ul>
+</div>
+<div class="pill-content">
+  <div class="active" id="navigator">
+    <div id="treeContainer" class="pull-left">
+
+    </div>
+  </div>
+  <div id="snippets">
+    Some code snippets
+  </div>
+</div>
+

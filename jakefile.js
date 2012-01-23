@@ -7,8 +7,8 @@ var nodeunit = require("nodeunit"),
     fs = require("fs"),
     dust = require("dust"),
     UNITDIR = "./test",
-    DUSTDIR = "./public/views/dust",
-    DUSTWRITE = "./public/js/templates/compiledTemplates.js";
+    DUSTDIR = "./client/studio/views/dust",
+    DUSTWRITE = "./client/js/templates/compiledTemplates.js";
 
 
 console.log("starting build tasks");
