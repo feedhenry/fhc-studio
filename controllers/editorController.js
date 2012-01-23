@@ -11,22 +11,26 @@ editorController = {
         };
         renderer.doResponse(req, res, d);
     },
-    gistAction :  function (req,res){
-        var content = "";
-        //http://gist.github.com/api/v1/:format/:gist_id
-        //https://api.github.com/gists/1099663
-        http.get({host:"https://api.github.com",path:"/gists/1099663/"},function(hres){
-            hres.on("data", function (chunk) {
-                // append this chunk to our growing `data` var
-                content+= chunk;
-            });
-            hres.on("end",function(){
-                res.send(content);
-            });
-        },function(err){
-            res.send(err);
-        });
 
+    gist : function (req,res){
+        var https = require("https"),
+            opts = {host:"api.github.com",path:"/gists/1099663",method:'GET'};
+        https.get(opts,function(suc){
+            if(suc){
+                var content = "";
+                console.log("suc");
+                suc.on("data",function(data){
+                    content+=data;
+                });
+                suc.on("end",function(){
+                    //console.log(content);
+                    var json = JSON.parse(content);
+                    //console.log(json);
+                    console.log(json.files['gistfile1.js'].content);
+                    res.send(json.files['gistfile1.js'].content);
+                });
+            }
+        });
 
     }
 };

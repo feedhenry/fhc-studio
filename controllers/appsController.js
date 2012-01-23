@@ -40,60 +40,76 @@ appsController = {
                 view = 'dashboard';
             }
             // show tab relating to this view
-            if (view === "editor") {
+            switch(view){
+              case "editor":
                 fhc.files(['list', id], function (err, root) {
-                    if (err) {
-                        renderer.doError(res,req, "Error retrieving files list");
-                        return;
-                    }
-                    var list = JSON.stringify(root);
 
-                    if (subOp) {
-                        fhc.files(['read', subOp], function (err, file) {
-                            if (err) {
-                                renderer.doError(res,req, "Error loading file " + file);
-                                return;
-                            }
-                            var d = {
-                                title:file.fileName,
+                  if (err) {
+                      renderer.doError(res,req, "Error retrieving files list");
+                      return;
+                  }
+                  var list = JSON.stringify(root);
+  
+                  if (subOp) {
+                      fhc.files(['read', subOp], function (err, file) {
+                          if (err) {
+                              renderer.doError(res,req, "Error loading file " + file);
+                              return;
+                          }
+                          var d = {
+                              title:file.fileName,
+                              appID: id,
+                              tpl:'app',
+                              data:data,
+                              tab:view,
+                              filesTree:list,
+                              fileContents:file.contents,
+                              fileID: file.guid,
+                              mode:'js'
+                          };
+                          renderer.doResponse(req, res, d);
+                      });
+                  } else {
+                      var d = {
+                          title:'Editor',
+                          appID: id,
+                          tpl:'app',
+                          data:data,
+                          tab:view,
+                          filesTree:list,
+                          fileContents:false,
+                          mode:'js'
+                      };
+                      renderer.doResponse(req, res, d);
+                  }
 
-                                appID: id,
-                                tpl:'app',
-                                data:data,
-                                tab:view,
-                                filesTree:list,
-                                fileContents:file.contents,
-                                fileID: file.guid,
-                                mode:'js'
-                            };
-                            renderer.doResponse(req, res, d);
-                        });
-                    } else {
-                        var d = {
-                            title:'Editor',
-                            appID: id,
-                            tpl:'app',
-                            data:data,
-                            tab:view,
-                            filesTree:list,
-
-                            fileContents:false,
-                            mode:'js'
-
-                        };
-                        renderer.doResponse(req, res, d);
-                    }
                 });//end fhc call
-
-            } else {
-                var d = {
-                    tpl:'app',
-                    title:'Login',
-                    data:data,
-                    tab:view
-                };
-                renderer.doResponse(req, res, d);
-            }
+                break;
+              
+            case "debug":
+              var d = {
+                  tpl:'app',
+                  title:'Debug',
+                  data: data,
+                  tab:'debug'
+              };
+              //TODO: Put in some console output in a pre
+              renderer.doResponse(req, res, d);
+              break;
+              
+            default:
+              var d = {
+                tpl:'app',
+                title:'Login',
+                data:data,
+                tab:view
+              };
+              renderer.doResponse(req, res, d);
+        
+              break;
+          }
+            
+                
         });
 
     },

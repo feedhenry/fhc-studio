@@ -31,8 +31,12 @@ fhc.fhc.load({}, function (err) {
 // Configuration
 
 app.configure(function () {
+
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
+
+    app.set('env',"development"); //change this when goes to prod
+
     app.use(express.bodyParser());
     app.use(express.cookieParser());
     
@@ -88,7 +92,7 @@ app.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.ap
 app.get('/editor', checkAuth, controllers.editController.indexAction);
 app.get("/editor/gist",controllers.editController.gistAction);
 
-
+app.get("/editor/gist",controllers.editController.gist);
 
 app.listen(3000);
 
