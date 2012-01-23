@@ -1,4 +1,4 @@
-<script src="js/lib/bootstrap/bootstrap-tabs.js"></script>
+<script src="/js/lib/bootstrap/bootstrap-tabs.js"></script>
 <script type="text/javascript">
     $('.tabs').tabs();
 
