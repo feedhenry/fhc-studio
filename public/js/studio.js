@@ -58,47 +58,6 @@ var studio = (function () {
 
 
 
-(function(window,undefined){
-
-    var History = window.History; // Note: We are using a capital H instead of a lower h
-    if ( !History.enabled ) {
-         // History.js is disabled for this browser.
-         // This is because we can optionally choose to support HTML4 browsers or not.
-        return false;
-    }
-    
-    // Bind to StateChange Event
-    History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
-        // First, Get the data we passed with the pushState 
-        var state = History.getState();
-        console.log("state");
-        console.log(state);
-        // Then, extract the info needed to do a studio.update()
-        var res = state.data;
-        if (!res || !res.data){
-          //need to do something herer for initial load?
-          return;
-        }
-
-
-
-        var tpl = res.data.tpl,
-
-        title = res.data.title,
-        data = res.data;
-        console.log(res);
-        studio.update(tpl, data); // TODO: Decide based on res.tpl (template title) if we need a full $.ajax reload or not
-    });
-    
-    // Push our homepage state, with the path set to whatever it is at entry
-    //console.log(window.location.pathname);
-
-    History.pushState({}, 'Home', window.location.pathname);
-
-    studio.go(window.location.pathname);
-
-
-})(window);
 
 
 // Bind all internal anchor links so that when clicked they actually do some clever ajaxery
