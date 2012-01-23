@@ -6,8 +6,8 @@ Implementation in Node using Express.JS, templating and FHC.
 All that's required to run this is NodeJS - packages.json looks after all dependencies.:
 
     $ git clone git@github.com:feedhenry/fh-studio.git
-    $ cd fh-studio/server
-    $ npm install .
+    $ cd fh-studio
+    $ npm install -d
     
     $ node server.js
     $ fhc target http://somewhere.feedhenry.com    
