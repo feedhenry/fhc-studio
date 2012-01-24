@@ -34,7 +34,7 @@ server.configure(function () {
     server.set('views', __dirname + '/views');
     server.set('view engine', 'jade');
 
-    server.set('env',"development"); //change this when goes to prod
+    server.set('env',"development"); // Should this listen for --debug flag?
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
@@ -49,6 +49,13 @@ server.configure('development', function () {
     server.use(express.session({ secret:"keyboard cat"}));
     server.use(server.router);
 });
+
+server.configure('local', function () { // For now a clone of development, but we do a server.get('env') in places
+  server.use(express.errorHandler({ dumpExceptions:true, showStack:true }));
+  server.use(express.session({ secret:"keyboard cat"}));
+  server.use(server.router);
+});
+
 
 server.configure('production', function () {
     server.use(express.errorHandler());

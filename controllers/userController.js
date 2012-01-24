@@ -4,12 +4,25 @@ var userController,
 
 userController = {
     checkAuth: function(req, res, next){
-      var loggedIn  = (req.session && req.session.user) ? req.session.user : false;
-      if (!loggedIn){
-        res.redirect("/login");
-        return false;
-      }else{
+      var fhcUser = fhc.fhc.config.get('username'),
+      fhcCookie = fhc.fhc.config.get('cookie'),
+      loggedIn  = (req.session && req.session.user) ? req.session.user : false,
+      env = req.app.settings.env;
+      
+      // Set env as a parameter on the request, so we can append it to our data later in doResponse
+      req.params.env = env;
+      
+      if (env==="local" && fhcUser && fhcCookie){
         next();
+        return true;
+      }
+          
+      if (loggedIn){
+        next();
+        return true;
+      }else{
+        res.redirect("/login");
+        return false;  
       }
     },
     signupAction:function (req, res) {

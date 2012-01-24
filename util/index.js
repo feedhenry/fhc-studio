@@ -7,9 +7,9 @@ var fs          = require('fs'),
    var resType = (req.params.resType) ? req.params.resType : 'html';
    
    // setup stuff that goes into every response
-   
    d.user = (req.session && req.session.user) ? req.session.user : false;
-   d.domain = (req.session && req.session.domain) ? req.session.domain : "apps";
+   d.domain = (req.session && req.session.domain) ? req.session.domain : "apps",
+   d.env = (req.params.env) ? req.params.env : "production";
    switch(resType){
      case "jstpl":
        // API request - sending back JSON data with a template
