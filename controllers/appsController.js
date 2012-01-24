@@ -59,7 +59,7 @@ appsController = {
                           var d = {
                               title:file.fileName,
                               appID: id,
-                              tpl:'server',
+                              tpl:'app',
                               data:data,
                               tab:view,
                               filesTree:list,
@@ -73,7 +73,7 @@ appsController = {
                       var d = {
                           title:'Editor',
                           appID: id,
-                          tpl:'server',
+                          tpl:'app',
                           data:data,
                           tab:view,
                           filesTree:list,
@@ -88,7 +88,7 @@ appsController = {
               
             case "debug":
               var d = {
-                  tpl:'server',
+                  tpl:'app',
                   title:'Debug',
                   data: data,
                   tab:'debug'
@@ -99,7 +99,7 @@ appsController = {
               
             default:
               var d = {
-                tpl:'server',
+                tpl:'app',
                 title:'Login',
                 data:data,
                 tab:view

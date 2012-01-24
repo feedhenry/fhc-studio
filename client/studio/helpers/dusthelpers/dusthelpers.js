@@ -6,5 +6,15 @@ client.studio.helpers.dusthelpers = dust.makeBase({
         if(_.isString(tab) && tab !== ""){
             chunk.partial(tab.toLowerCase(),context);
         }
+    },
+    appBarHelper : function(chunk, context){
+    	
+    },
+    filesTreeHelper : function(chunk, context){
+    	var tab = context.get("tab");
+    	if (tab==='editor'){
+    		chunk.partial('filestree', context);
+    	}
+    	
     }
 });

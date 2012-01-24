@@ -2,7 +2,7 @@
  * Build file
  **/
 
-var nodeunit = require("nodeunit"),
+var /*nodeunit = require("nodeunit"),*/
     sys = require("util"),
     fs = require("fs"),
     dust = require("dust"),
@@ -37,7 +37,7 @@ task('ct', [], function () {
     }
 });
 
-desc("running tests");
+/*desc("running tests");
 task('test', [], function () {
     //load tests into array
     console.log("testing");
@@ -51,3 +51,4 @@ task('test', [], function () {
         });
     });
 });
+*/
