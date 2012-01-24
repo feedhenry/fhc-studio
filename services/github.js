@@ -3,7 +3,7 @@ var https = require("https");
 module.exports = function (){
   //set up vars
     var httpopts = {host:"api.github.com",path:"",method:'GET'},
-      self, errorResponse = {code:500, message:""};
+      self;
 
    self = {
        listGists : function () {
@@ -24,11 +24,11 @@ module.exports = function (){
                    res.on('end',function (){
                         if(content){
                             content = JSON.parse(content);
-
+                            return content.files['gistfile1.js'].content;
                         }
                    });
                }else{
-                   errorResponse
+
 
                    return
                }

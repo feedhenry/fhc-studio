@@ -5,6 +5,8 @@ client.studio.editor = {
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
   init: function(){
+    var fileTree = $('input[name="filestree"]').remove().val();
+    this.tree(JSON.parse(fileTree));
     var appID =  $('input#appID').remove().val(),
     fileContents = $('pre#editor0').html(),
     fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now

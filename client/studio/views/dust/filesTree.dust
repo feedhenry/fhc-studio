@@ -1,7 +1,4 @@
-<script type="text/javascript">
- var t = {filesTree}
- client.studio.editor.tree(t);
-</script>
+<input type="hidden" value="{filesTree}" name="filestree" />
 <div id="treeSearch" class="pull-left">
   <input type="search" placeholder="Search..."></input>
   <ul class="tabs editorTabs">
