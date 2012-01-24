@@ -28,7 +28,7 @@
     </li>
     <li id="prefsLink" >
       <a class="singlepage"  href="/app/{data.inst.guid}/prefs">
-        <span>Prefrences</span>
+        <span>Preferences</span>
       </a>
     </li>
   </ul>

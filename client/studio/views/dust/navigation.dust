@@ -31,7 +31,7 @@
 
             <p class="pull-right"><a href="#">{.username} ({.role})</a> |
               <a href="#">Help</a> |
-              <a href="#">Prefrences</a> |
+              <a href="#">Preferences</a> |
               <a href="/logout">Log Out</a>
             </p>
             {:else}
