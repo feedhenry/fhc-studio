@@ -7,9 +7,9 @@ All that's required to run this is NodeJS - packages.json looks after all depend
 
     $ git clone git@github.com:feedhenry/fh-studio.git
     $ cd fh-studio
-    $ npm install .
+    $ npm install -d
     
-    $ node app.js
+    $ node server.js
     $ fhc target http://somewhere.feedhenry.com    
     $ open http://0.0.0.0:3000/
 

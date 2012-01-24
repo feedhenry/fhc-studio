@@ -6,11 +6,7 @@ userController = {
     checkAuth: function(req, res, next){
       var loggedIn  = (req.session && req.session.user) ? req.session.user : false;
       if (!loggedIn){
-        d = {
-            tpl:'login',
-            title:'Login'
-        };
-        renderer.doResponse(req, res, d);
+        res.redirect("/login");
         return false;
       }else{
         next();

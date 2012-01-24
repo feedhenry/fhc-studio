@@ -2,6 +2,7 @@ var indexController, renderer = require("../util");
 
 indexController = {
     indexAction : function (req,res) {
+
         var loggedIn  = (req.session && req.session.user) ? req.session.user : false,
         d = undefined;
         

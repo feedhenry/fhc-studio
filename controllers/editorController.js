@@ -1,5 +1,6 @@
 var editorController ,
-    renderer = require("../util");
+    renderer = require("../util"),
+    http     = require("http"),
 
 editorController = {
     indexAction : function (req,res) {
@@ -10,7 +11,9 @@ editorController = {
         };
         renderer.doResponse(req, res, d);
     },
+
     gist : function (req,res){
+        //todo send request when editor loads for fh gists and load into dom
         var https = require("https"),
             opts = {host:"api.github.com",path:"/gists/1099663",method:'GET'};
         https.get(opts,function(suc){
@@ -29,6 +32,7 @@ editorController = {
                 });
             }
         });
+
     }
 };
 

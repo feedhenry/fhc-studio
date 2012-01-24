@@ -14,7 +14,7 @@ appsController = {
             var d = {
                 tpl:'apps',
                 apps:data.list,
-                title:'Apps',
+                title:'Apps'
             };
             renderer.doResponse(req, res, d);
         });
@@ -43,6 +43,7 @@ appsController = {
             switch(view){
               case "editor":
                 fhc.files(['list', id], function (err, root) {
+
                   if (err) {
                       renderer.doError(res,req, "Error retrieving files list");
                       return;
@@ -81,6 +82,7 @@ appsController = {
                       };
                       renderer.doResponse(req, res, d);
                   }
+
                 });//end fhc call
                 break;
               

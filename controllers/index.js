@@ -1,5 +1,5 @@
-exports.indexController = require("./indexController");
-exports.userController  = require("./userController");
-exports.appController   = require("./appsController");
+exports.indexController = require("./indexController.js");
+exports.userController  = require("./userController.js");
+exports.appController   = require("./appsController.js");
 exports.editController  = require("./editorController.js");
 

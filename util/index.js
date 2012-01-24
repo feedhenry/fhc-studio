@@ -28,7 +28,7 @@ var fs          = require('fs'),
        
      default:
         // HTML page GET request - sending back a rendered page
-       res.render(d.tpl, d);
+       res.render("index", d);
        break;
        
    }
