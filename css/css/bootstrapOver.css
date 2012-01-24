@@ -1,0 +1,21 @@
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 100%; 
+ }
+
+.label.success a {
+  color: #fff;
+}
+.alert-message.info h3 {
+  color: #fff;
+}
+
+.breadcrumb {
+  margin-bottom: 0px;	
+}
+
+.dropdown h3 {
+  color: #fff;
+  padding-left: 15px;	
+}

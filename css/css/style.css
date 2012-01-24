@@ -13,6 +13,9 @@
 .container-fluid > .content.app {
   margin-left: 100px; 
 }
+.container-fluid > .content.app.editor {
+  margin-left: 320px; 
+}
 
 .container-fluid > .content.landing {
   margin: 0px 20px;  

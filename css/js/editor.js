@@ -1,21 +1,17 @@
-client.studio.editor = {
+var studio = studio || {};
+studio.editor = {
   tabs: [],
   appID: "",
   activeTab: 0,
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
   init: function(){
-    var fileTree = $('input[name="filestree"]').remove().val();
-    this.tree(JSON.parse(fileTree));
     var appID =  $('input#appID').remove().val(),
     fileContents = $('pre#editor0').html(),
     fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
-    //ready the actions
-    $('.save').unbind().bind("click",client.studio.editor.save);
-    $('.snippet').unbind().bind("click",client.studio.editor.snippet);
+    
     // Set our appID on the editor object
-      console.log(appID);
     this.appID = appID;
     
     // Transform our data into something newTab expects
@@ -92,16 +88,17 @@ client.studio.editor = {
       }
     };
   
-  }, // end client.studio.editor.tree
+  }, // end studio.editor.tree
   open: function(guid){
     //Navigate to that file using an ajax request with a callback
     var path = window.location.pathname;
-    var path = "/app/" + this.appID + "/editor/" + guid;
+    var path = "/apps/" + this.appID + "/editor/" + guid + ".json";
+    // When this callback is exec'd, we lose the 'this' scope. be nice to curry this?  
     client.studio.dispatch().update(path, { callback: this.newTab } ); 
     
   }, 
   save: function(){
-    var me = client.studio.editor,
+    var me = studio.editor,
     appID = me.appID,
     index = me.activeTab || 0,
     tab = this.tabs[index],
@@ -137,7 +134,7 @@ client.studio.editor = {
     fileName = res.data.title || "",
     fileID = res.data.fileID,
     mode = res.data.mode,
-    me = client.studio.editor,
+    me = studio.editor,
     index = me.tabs.length || 0,
     editor = undefined,
     modeString = undefined,
@@ -237,7 +234,7 @@ client.studio.editor = {
     
   },
   showTab: function(index){
-    var me = client.studio.editor;
+    var me = studio.editor;
     me.activeTab = index;
     $('a[href="#' + me.editorTabPrefix + index + '"]').click();
     if (me.tabs[index] && me.tabs[index].ace){
@@ -247,7 +244,7 @@ client.studio.editor = {
     
   },
   closeTab: function(index){
-    var me = client.studio.editor;
+    var me = studio.editor;
     // only close if there isn't a pending save
     if (!me.tabs[index].dirty){
       $('a[href="#' + me.editorTabPrefix + index + '"]').parent().remove(); // remove the tab
@@ -258,7 +255,7 @@ client.studio.editor = {
 
   },
   updateTab: function(index){ // TODO: Call this after showing each tab
-    var me = client.studio.editor;
+    var me = studio.editor;
     var t = me.tabs[index];
     if (t){
       if (t.ace){
@@ -271,7 +268,7 @@ client.studio.editor = {
    * Helper function to do the dom manipulation to add the container wiring for a new tab
    */
   appendTabWithIndex: function(index, title){
-    var me = client.studio.editor,
+    var me = studio.editor,
     fileName = title || "";
     // 1) Append the li to the top tabs
     var li = document.createElement("li");
@@ -294,10 +291,10 @@ client.studio.editor = {
     $('.app.editor .pill-content').append(tabContentEl); // add the tab body into our pill content DOM el
   },
   snippet: function(id){
-      var me = client.studio.editor;
+      var me = studio.editor;
+      //needs to be the active tab
 
 
-    //need to know the gist id and send that through
     var path = "/editor/gist";
     $.ajax({
       url: path,

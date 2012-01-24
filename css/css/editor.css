@@ -1,7 +1,6 @@
 .container-fluid > .content.app.editor {
   padding: 0px;
   height: 100%;
-  margin-left: 320px; 
 }
 #treeContainer, #treeSearch, #snippets{
   left: 100px;
@@ -48,7 +47,7 @@
   position: relative !important;
 }
 .content.editor .pill-content, .content.editor .pill-content div.tab, .content.editor .pill-content div.tab pre {
-  position: absolute;
+  position: relative;
   height: 100%;  
   width: 100%;
 }

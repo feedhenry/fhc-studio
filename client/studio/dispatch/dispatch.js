@@ -6,11 +6,14 @@ client.studio.dispatch = function () {
         update:function (path, opts) {
             if(!opts) opts = {};
             self.url = (path === "/") ? "/home" : path;
+            self.url = self.url.replace(/\.+[a-zA-Z]+$/, ""); // strip file extension from URL - always doing JSON req here
             container = opts.container || "#container";
+            // if we haven't specified a callback function, this happens by default
+            var callback = opts.callback || function(data){
+              client.util.History.pushState(data,data.title,self.url)
+            };
             //ajax call
-            $.get(self.url + ".json", function(data){
-                client.util.History.pushState(data,data.title,self.url);
-            });
+            $.get(self.url + ".json", callback);
         },
         render : function () {
             var state = History.getState(),
