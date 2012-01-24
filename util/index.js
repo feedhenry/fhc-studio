@@ -49,7 +49,7 @@ function getTemplateString(d) {
   var tpl = d.tpl;
   
   //TODO: Check redis first for template. If it doesn't exist, do this:
-  var template = fs.readFileSync('public/views/' + tpl + '.ejs', 'utf8'); // TODO: Make async so we can err handle
+  var template = fs.readFileSync('client/views/' + tpl + '.ejs', 'utf8'); // TODO: Make async so we can err handle
   
   
   // This is a bit crazy - EJS deprecated partials with no alternative, so we're implementing it using regex. 
