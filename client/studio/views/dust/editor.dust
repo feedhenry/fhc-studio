@@ -33,12 +33,12 @@
 </div>
 </div>
 <!-- inject some file contents into the DOM on first rendering this page - these will be destroyed by the clientside JS -->
-<input type="hidden" id="appID" value="{appID}"></input>
+<input type="hidden" id="appId" value="{appId}"></input>
 {fileContents}
 {#fileContents}
-  <input type="hidden" id="fileID" value="{.fileID}"></input>
+  <input type="hidden" id="fileId" value="{.fileId}"></input>
 {:else}
-  <input type="hidden" id="fileID" value=""></input>
+  <input type="hidden" id="fileId" value=""></input>
 {/fileContents}
 <ul class="tabs editorTabs">
   <li class="active"><a class="no-ajax" href="#tab0">tab0</a></li>

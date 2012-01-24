@@ -63,7 +63,7 @@ server.configure('production', function () {
  * rather than having to do this crazy route
  */
 server.get('*/worker-javascript.js', function(req, res){
-  var workerJS = fs.readFileSync('public/js/lib/ace/worker-javascript.js', 'utf8'); // TODO: Make async so we can err handle
+  var workerJS = fs.readFileSync('client/js/lib/ace/worker-javascript.js', 'utf8'); // TODO: Make async so we can err handle
   res.send(workerJS);
 });
 
@@ -81,17 +81,36 @@ server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);
 server.post('/login',controllers.userController.loginAction);
 server.get('/logout', controllers.userController.logoutAction);
-//app actions
 
+/*
+ * Apps Actions
+ */
 server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
-server.get('/app/:id/:view?/:subOp?.:resType?', checkAuth, controllers.appController.showAppView);
-server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.appController.doOperation);
+
+/*
+ * App Actions
+ */
+
+// app:dashboard
+server.get('/app/:id.:resType?', checkAuth, controllers.dashboardController.indexAction);
+server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.dashboardController.indexAction);
+
+// app:debug, preview, build, prefs
+server.get('/app/:id/debug.:resType?', checkAuth, controllers.debugController.indexAction);
+server.get('/app/:id/preview.:resType?', checkAuth, controllers.previewController.indexAction);
+server.get('/app/:id/build.:resType?', checkAuth, controllers.buildController.indexAction);
+server.get('/app/:id/prefs.:resType?', checkAuth, controllers.prefsController.indexAction);
+
+// app:editor
+server.get('/app/:id/editor.:resType?', checkAuth, controllers.editorController.indexAction, controllers.editorController.blankEditor);
+server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.editorController.indexAction, controllers.editorController.editorWithFile);
+server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.operationController.indexAction);
 
 //editor actions
-server.get('/editor', checkAuth, controllers.editController.indexAction);
-server.get("/editor/gist",controllers.editController.gistAction);
+server.get('/editor', checkAuth, controllers.editorController.indexAction);
+server.get("/editor/gist",controllers.editorController.gistAction);
 
-server.get("/editor/gist",controllers.editController.gist);
+server.get("/editor/gist",controllers.editorController.gist);
 
 server.listen(3000);
 

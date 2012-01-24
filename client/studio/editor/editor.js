@@ -1,28 +1,28 @@
 client.studio.editor = {
   tabs: [],
-  appID: "",
+  appId: "",
   activeTab: 0,
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
   init: function(){
     var fileTree = $('input[name="filestree"]').remove().val();
     this.tree(JSON.parse(fileTree));
-    var appID =  $('input#appID').remove().val(),
+    var appId =  $('input#appId').remove().val(),
     fileContents = $('pre#editor0').html(),
-    fileID = $('input#fileID').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
+    fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
     //ready the actions
     $('.save').unbind().bind("click",client.studio.editor.save);
     $('.snippet').unbind().bind("click",client.studio.editor.snippet);
-    // Set our appID on the editor object
-      console.log(appID);
-    this.appID = appID;
+    // Set our appId on the editor object
+      console.log(appId);
+    this.appId = appId;
     
     // Transform our data into something newTab expects
     var res = {
       data: {
        fileContents: fileContents,
-       fileID: fileID,
+       fileId: fileId,
        mode: ''
       }
     };
@@ -96,34 +96,34 @@ client.studio.editor = {
   open: function(guid){
     //Navigate to that file using an ajax request with a callback
     var path = window.location.pathname;
-    var path = "/app/" + this.appID + "/editor/" + guid;
+    var path = "/app/" + this.appId + "/editor/" + guid;
     client.studio.dispatch().update(path, { callback: this.newTab } ); 
     
   }, 
   save: function(){
     var me = client.studio.editor,
-    appID = me.appID,
+    appId = me.appId,
     index = me.activeTab || 0,
-    tab = this.tabs[index],
+    tab = me.tabs[index],
     editor = tab.ace, 
     editorSession = editor.getSession(),
     editorContents = editorSession.getValue(),
-    fileID = tab.fileID;
+    fileId = tab.fileId;
     
     var data = {
-        fileID : fileID,
+        fileId : fileId,
         fileContents: editorContents
     };
      
     $.ajax({
       type: 'POST',
-      url: '/apps/' + appID + '/update/' + fileID + '.json',
+      url: '/app/' + appId + '/update/' + fileId + '.json',
       data: data,
       success: function(res){
         if (res && res.data && res.data.msg){
-          studio.info(res.data.msg);
+          client.studio.util.messages.info(res.data.msg);
         }else{
-          studio.error('Error saving file');
+          client.studio.util.messages.error('Error saving file');
         }
       }
     });
@@ -135,7 +135,7 @@ client.studio.editor = {
     // Some locals for use in this function
     var fileContents = res.data.fileContents,
     fileName = res.data.title || "",
-    fileID = res.data.fileID,
+    fileId = res.data.fileId,
     mode = res.data.mode,
     me = client.studio.editor,
     index = me.tabs.length || 0,
@@ -146,7 +146,7 @@ client.studio.editor = {
     // If this is the first file we're opening, let's nuke that plaintext tab
     if (me.tabs.length===1){
       var t = me.tabs[0];
-      if (t.fileID.trim === ""){
+      if (t.fileId.trim === ""){
         //me.closeTab(0); // TODO: Base index off 0 rather than 1 first
       }
     }
@@ -180,7 +180,7 @@ client.studio.editor = {
     
     // 5) Construct an object to represent this tab
     var tab = {
-        fileID: fileID,
+        fileId: fileId,
         fileName: fileName,
         fileExtension: mode,
         originalFileContents: fileContents, // is this needed?
