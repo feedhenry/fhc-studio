@@ -1,10 +1,10 @@
 <h2 style="display: inline;">Preview</h2>
 <span class="" style="margin-left: 100px;">
-  <a href="#" onclick="client.studio.helpers.viewhelpers.preview.change('iPad')">iPad</a> |
-  <a href="#" onclick="client.studio.helpers.viewhelpers.preview.change('iPhone')">iPhone</a> |
-  <a style="font-size: 2em;" href="#" onclick="client.studio.helpers.viewhelpers.preview.rotate();">&#8635;</a> |
-  Scale: 25%<input type="range" onchange="client.studio.helpers.viewhelpers.preview.scale(this.value);" min="25" maxvalue="100">100%<br />
+  <a href="#" onclick="client.studio.preview.change('iPad')">iPad</a> |
+  <a href="#" onclick="client.studio.preview.change('iPhone')">iPhone</a> |
+  <a style="font-size: 2em;" href="#" onclick="client.studio.preview.rotate();">&#8635;</a> |
+  Scale: 25%<input type="range" onchange="client.studio.preview.scale(this.value);" min="25" maxvalue="100">100%<br />
 </span>
 <div class="previewContainer iPhone" id="previewContainer" style="">
-<iframe src="http://{data.domain}.feedhenry.com/box/srv/1.1/wid/{data.domain}/studio/{data.data.inst.guid}/container" frameborder="0" style=""></iframe>
+<iframe src="http://{domain}.feedhenry.com/box/srv/1.1/wid/{domain}/studio/{data.inst.guid}/container" frameborder="0" style=""></iframe>
 </div>

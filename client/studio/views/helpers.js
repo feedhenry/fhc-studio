@@ -1,5 +1,5 @@
-
-client.studio.helpers.dusthelpers = dust.makeBase({
+client.studio.views = client.studio.views || {};
+client.studio.views.helpers = dust.makeBase({
     tabLayoutHelper : function (chunk,context){
         //context is the data and chunk is the piece of template
         var tab = context.get("tab");

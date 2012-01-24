@@ -1,5 +1,5 @@
-client.studio.helpers.viewhelpers = {};
-client.studio.helpers.viewhelpers.preview = {
+client.studio = client.studio || {};
+client.studio.preview = {
     containerId: 'previewContainer',
     scaleVal : 0,
     rotateVal : "0deg",

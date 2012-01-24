@@ -26,7 +26,7 @@ client.studio.dispatch = function () {
             title = res.data.title;
             data = res.data;
             //render dust template client side
-            dust.render(tpl, client.studio.helpers.dusthelpers.push(data), function (err, out) {
+            dust.render(tpl, client.studio.views.helpers.push(data), function (err, out) {
                 $(container).html(out);
                 //add update as a call back to the internal a href
                 // clicks
