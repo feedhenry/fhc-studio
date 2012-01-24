@@ -73,7 +73,7 @@ var checkAuth = controllers.userController.checkAuth; // auth checking function
 
 
 
-server.get("/",controllers.indexController.indexAction);
+server.get("/", checkAuth, controllers.indexController.indexAction);
 
 server.get('/home.:resType?', checkAuth, controllers.indexController.indexAction);
 //user actions
