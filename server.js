@@ -92,25 +92,21 @@ server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
  */
 
 // app:dashboard
-server.get('/app/:id.:resType?', checkAuth, controllers.dashboardController.indexAction);
-server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.dashboardController.indexAction);
+server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
+server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
 
 // app:debug, preview, build, prefs
-server.get('/app/:id/debug.:resType?', checkAuth, controllers.debugController.indexAction);
-server.get('/app/:id/preview.:resType?', checkAuth, controllers.previewController.indexAction);
-server.get('/app/:id/build.:resType?', checkAuth, controllers.buildController.indexAction);
-server.get('/app/:id/prefs.:resType?', checkAuth, controllers.prefsController.indexAction);
+server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
+server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
+server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
+server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
 
 // app:editor
-server.get('/app/:id/editor.:resType?', checkAuth, controllers.editorController.indexAction, controllers.editorController.blankEditor);
-server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.editorController.indexAction, controllers.editorController.editorWithFile);
-server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.operationController.indexAction);
-
-//editor actions
-server.get('/editor', checkAuth, controllers.editorController.indexAction);
-server.get("/editor/gist",controllers.editorController.gistAction);
-
-server.get("/editor/gist",controllers.editorController.gist);
+server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
+server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
+server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.app.operationController.indexAction);
+server.get("/editor/gist",controllers.app.editorController.gistAction);
+server.get("/editor/gist",controllers.app.editorController.gist);
 
 server.listen(3000);
 

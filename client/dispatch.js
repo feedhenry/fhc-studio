@@ -1,3 +1,8 @@
+/*
+ * Dispatch controls all studio navigation within the single-page app.
+ * It tracks history, and does requests to the API for new JSON data
+ */
+
 client.studio.dispatch = function () {
     var self,container;
 

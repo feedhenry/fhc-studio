@@ -10,6 +10,10 @@
   padding: 2px 20px;
  }
  
+ #dashboard.container {
+  margin: 0px auto;
+ }
+ 
 .container-fluid > .content.app {
   margin-left: 100px; 
 }
