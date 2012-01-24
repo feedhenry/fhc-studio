@@ -27,7 +27,7 @@
           {data}
            {#apps}
                 <tr>
-                    <td>img here</td>
+                    <td><img src="https://{domain}.feedhenry.com/static/i/{domain}/{id}/studio/46/small.png"></td>
                     <td><a class="singlepage" href="/app/{id}">{title}</a></td>
                     <td>{title}</td>
                     <td>{description}</td>
