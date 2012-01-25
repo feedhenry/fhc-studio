@@ -37,11 +37,11 @@
   background-size: 14px;	
 }
 
-#editorToolbar.topbar, #editorToolbar.topbar .fluid-container, #editorToolbar ul.nav  {
+#editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {
   height: 34px;	
 }
 
-#editorToolbar.topbar ul.dropdown-menu {
+#editorToolbar.navbar ul.dropdown-menu {
   top: 34px;  
 }
 .ace_editor {

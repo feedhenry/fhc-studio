@@ -20,7 +20,7 @@
   padding-left: 15px;	
 }
 
-.navbar.navbar-fixed  .container{
+.navbar.navbar-fixed .container, .navbar .container{
   width: 100%;
 }
 .navbar a.brand, .navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{

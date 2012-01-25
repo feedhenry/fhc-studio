@@ -1,6 +1,9 @@
-<div class="topbar" id="editorToolbar" style="position: relative;">
-<div class="topbar-inner">
-<div class="fluid-container">
+<div class="navbar navbar-static" id="editorToolbar" style="margin-bottom: 0px;">
+  <div class="navbar-inner">
+    <div class="container">
+
+
+
   <ul class="nav">
     <li class="dropdown">
       <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>

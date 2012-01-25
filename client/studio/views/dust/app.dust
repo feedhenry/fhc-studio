@@ -1,9 +1,5 @@
 {>head/}
-<div class="topbar">
-      <div class="topbar-inner">
-          {>navigation/}
-      </div>
-</div>
+{>navigation/}
 
 <!-- This is the tab bar along the side -->
 {>apputilbar/}
