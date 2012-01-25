@@ -1,9 +1,9 @@
 <div class="topbar" id="editorToolbar" style="position: relative;">
 <div class="topbar-inner">
-<div class="container-fluid">
+<div class="fluid-container">
   <ul class="nav">
-    <li class="dropdown" data-dropdown="dropdown">
-      <a class="dropdown-toggle no-ajax" href="#">File</a>
+    <li class="dropdown">
+      <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>
       <ul class="dropdown-menu">
         <li><a class="no-ajax save"  href="#">Save</a></li>
         <li><a class="no-ajax save"  href="#" >Save All</a></li>
@@ -16,8 +16,8 @@
     <li class="button"><a class="no-ajax save" href="#" >Save All</a></li>
      <li class="button"><a class="no-ajax save" href="#" >Save & Close</a></li>
     <li class="button"><a>Find</a></li>
-    <li class="dropdown" data-dropdown="dropdown">
-      <a class="dropdown-toggle no-ajax" href="#">$fh...</a>
+    <li class="dropdown">
+      <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
       <ul class="dropdown-menu">
         <li><h3>Client</h3></li>
         <li><a href="#" id="1015103" class="snippet" >$fh.act</a></li>
@@ -41,7 +41,7 @@
   <input type="hidden" id="fileId" value=""></input>
 {/fileContents}
 <ul class="tabs editorTabs">
-  <li class="active"><a class="no-ajax" href="#tab0">tab0</a></li>
+  <li class="active"><a class="no-ajax" data-toggle="tab" href="#tab0">tab0</a></li>
 </ul>
 <div class="pill-content">
   <div class="active tab" id="tab0" style="height: 100%; position: absolute;">
@@ -68,6 +68,6 @@
 <script>
 $(function() {
     client.studio.editor.init();
-    $('.editorTabs').tabs()
+    $('.editorTabs').tab();
 });
 </script>

@@ -1,8 +1,14 @@
-<div class="topbar">
-      <div class="topbar-inner">
-          {>navigation/}
-      </div>
-</div>
+<script type="text/javascript">
+    $('.tabs').tab();
+    // TODO: Switch to BS2's new show() tabbing function
+    function switchTab(id){
+      $("#" + id + "Link").click();
+    }
+
+
+</script>
+
+{>navigation/}
 <div id="container dashboard" class="container">
     <!-- Main hero unit for a primary marketing message or call to action -->
     <ul class="tabs toptabs" data-tabs="tabs">

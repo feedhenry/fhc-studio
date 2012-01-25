@@ -1,4 +1,4 @@
-.container-fluid {
+.fluid-container {
   padding-left: 0px;
   padding-right: 0px;
   height: 100%; 
@@ -18,4 +18,11 @@
 .dropdown h3 {
   color: #fff;
   padding-left: 15px;	
+}
+
+.navbar.navbar-fixed  .container{
+  width: 100%;
+}
+.navbar a.brand, .navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{
+  color: #fff !important;
 }

@@ -27,9 +27,7 @@ task('ct', [], function () {
             
             var dustTplName = f.replace(DUSTDIR + '/','').replace('', '');
             dustTplName = dustTplName.replace(/.dust/, '').toLowerCase();
-            
-            console.log('DDIR is ' + DUSTDIR);
-            console.log('dtpl is ' + dustTplName);
+           
             compiled+= dust.compile(data, dustTplName);
            
         }

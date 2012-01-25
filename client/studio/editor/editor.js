@@ -278,6 +278,7 @@ client.studio.editor = {
     var a = document.createElement("a");
     a.className = "no-ajax";
     a.href = "#" + me.editorTabPrefix + index;
+    a.setAttribute('data-toggle', 'tab');
 
     li.appendChild(a);
     a.innerHTML = title;
