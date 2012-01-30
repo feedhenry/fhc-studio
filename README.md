@@ -3,7 +3,23 @@ Feedhenry Studio
 Implementation in Node using Express.JS, templating and FHC.
 
 ## Installation: 
-All that's required to run this is NodeJS - packages.json looks after all dependencies.:
+
+All that's required to run this project is NodeJS and npm.  
+packages.json looks after all dependencies.
+
+### 1. install node.js and npm 
+
+install node.js (see [node.js website](http://nodejs.org/) )
+
+install npm Node Package Manager 
+
+    curl http://npmjs.org/install.sh | sh
+
+see packages.json (npm's configuration file) for details on packages used
+
+### 2. install fh-studio
+
+all dependencies.:
 
     $ git clone git@github.com:feedhenry/fh-studio.git
     $ cd fh-studio
@@ -14,6 +30,7 @@ All that's required to run this is NodeJS - packages.json looks after all depend
     
 //TODO: At present, the DustJS module needs to have this line removed to work with node 0.6:  
 lib/server.js:6 require.paths.unshift(path.join(__dirname, '..'));  
+
 After making changes to any templates, run 'jake ct' to compile the templates.
 
 ## Important Resources & Reading  
@@ -23,4 +40,3 @@ Here's a collection of docs pages on the libraries and packages used in fh-studi
 * [Twitter Bootstrap - HTML & CSS boilerplate being used here](http://twitter.github.com/bootstrap/)  
 * [History.js - state tracking using HTML5 pushState with hash-bang fallback.](https://github.com/balupton/History.js/)  
   
- 
