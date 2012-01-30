@@ -32,7 +32,11 @@ all dependencies.:
 //TODO: At present, the DustJS module needs to have this line removed to work with node 0.6:  
 lib/server.js:6 require.paths.unshift(path.join(__dirname, '..'));  
 
-After making changes to any templates, run 'jake ct' to compile the templates.
+### Post installation tips
+
+* After making changes to any templates, run 'jake ct' to compile the templates.
+* modules which extend commandline, for example fhc, run, jake should be installed globally (use -g option with npm). Example : npm install fhc -g
+* consider using [run.js](https://github.com/DTrejo/run.js) : you won't have to restart server after changing the code.  
 
 ## Important Resources & Reading  
 Here's a collection of docs pages on the libraries and packages used in fh-studio  
