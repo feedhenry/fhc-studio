@@ -24,6 +24,7 @@ all dependencies.:
     $ git clone git@github.com:feedhenry/fh-studio.git
     $ cd fh-studio
     $ npm install -d
+    $ # optionally set FeedHenry backend using fhc target (default is http://apps.feedhenry.com)
     $ fhc target http://somewhere.feedhenry.com
     $ node server.js 
     $ open http://0.0.0.0:3000/
