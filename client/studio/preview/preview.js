@@ -29,6 +29,10 @@ client.studio.preview = {
         var container = document.getElementById(this.containerId);
         container.className = "previewContainer " + device;
 
+        // Reset transform
+        if (this.rotateVal === "90deg") {
+            this.rotate();
+        }
     }
 };
 
