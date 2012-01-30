@@ -7,19 +7,19 @@ Implementation in Node using Express.JS, templating and FHC.
 All that's required to run this project is NodeJS and npm.  
 packages.json looks after all dependencies.
 
-### 1. install node.js and npm 
+### 1. install node.js, npm and redis 
 
 install node.js (see [node.js website](http://nodejs.org/) )
 
 install npm Node Package Manager 
 
     curl http://npmjs.org/install.sh | sh
+    
+install redis see: http://redis.io/download
 
 see packages.json (npm's configuration file) for details on packages used
 
 ### 2. install fh-studio
-
-all dependencies.:
 
     $ git clone git@github.com:feedhenry/fh-studio.git
     $ cd fh-studio
