@@ -39,6 +39,7 @@
 
 #editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {
   height: 34px;	
+  background: #333;
 }
 
 #editorToolbar.navbar ul.dropdown-menu {
@@ -80,6 +81,7 @@ ul.editorTabs li a:hover {
 }
 ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
   color: #fff;
+  text-decoration: none;
 }
 
 /* Style the close button */
