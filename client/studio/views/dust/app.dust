@@ -1,8 +1,5 @@
-<div class="topbar">
-      <div class="topbar-inner">
-          {>navigation/}
-      </div>
-</div>
+{>head/}
+{>navigation/}
 
 <!-- This is the tab bar along the side -->
 {>apputilbar/}
@@ -12,5 +9,7 @@
   {tabLayoutHelper}
 
 
-  {>footer/}
+  
 </div>
+{>foot/}
+{>footer/} <!-- TODO - Move footer out into some place more generic - do we even need one? -->
