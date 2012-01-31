@@ -281,10 +281,16 @@ client.studio.editor = {
     // 1) Append the li to the top tabs
     var li = document.createElement("li");
     var a = document.createElement("a");
+    var strong = document.createElement("strong");
+    strong.innerHTML = "x";
+    $(strong).click(function(){
+      me.closeTab(index);
+    });
+    a.appendChild(strong);
     a.className = "no-ajax";
     a.href = "#" + me.editorTabPrefix + index;
     a.setAttribute('data-toggle', 'tab');
-
+    
     li.appendChild(a);
     a.innerHTML = title;
     $('.app.editor .editorTabs').append(li); // add the tab element into our UL
