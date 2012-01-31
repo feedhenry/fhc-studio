@@ -12,5 +12,6 @@
   {tabLayoutHelper}
 
 
-  {>footer/}
+
 </div>
+{>footer/}
