@@ -39,7 +39,9 @@
 
 #editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {
   height: 34px;	
-  background: #333;
+}
+#editorToolbar.navbar {
+  background-color: #333;  
 }
 
 #editorToolbar.navbar ul.dropdown-menu {
