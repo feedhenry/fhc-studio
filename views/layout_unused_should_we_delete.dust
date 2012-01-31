@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+   <head>
+      <title>{title}</title>
+      <!-- LIB JS UTILS -->
+      <script src="/js/lib/jquery-1.7.1.min.js"></script><script src="/js/lib/jquery.tablesorter.min.js"></script><script src="/js/lib/jquery.history.js"></script><script src="/js/lib/JSTree/jquery.jstree.js"></script><script src="/js/lib/bootstrap/bootstrap-dropdown.js"></script><script src="/js/lib/bootstrap/bootstrap-tabs.js"></script><script src="/js/lib/dust-core-0.3.0.js"></script><script src="/js/lib/underscore-min.js"></script><!--COMPILED TEMPLATES -->
+      <script src="/js/templates/compiledTemplates.js"></script><!-- new layout -->
+      <script src="/init.js"></script><script src="/util/ajaxify.js"></script><script src="/util/history.js"><script src="/util/messages.js"></script><script src="/studio/preview/preview.js"></script><script src="/studio/views/helpers.js"></script><script src="/studio/dispatch/dispatch.js"></script><script src="/studio/editor/editor.js"></script><!--end-->
+      <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" />
+      <link rel="stylesheet" href="/css/style.css" />
+      <link rel="stylesheet" href="/css/landing.css" />
+      <link rel="stylesheet" href="/css/editor.css" />
+      <link rel="stylesheet" href="/css/bootstrapOver.css" />
+   </head>
+   <body style="padding-top: 40px;"></body>
+   <div class="topbar">
+      <div class="topbar-inner"></div>
+   </div>
+   <div id="container" class="container-fluid">
+      <!-- Todo: how to include the main body here? -->
+   </div>
+</html>

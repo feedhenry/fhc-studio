@@ -1,7 +1,7 @@
 <section class="preview dashboardPreview pull-right">
   <h2>Preview</h2>
   <div class="previewContainer iPhone" style=" width: 640px; -webkit-transform: scale(0.4); -webkit-transform-origin: 0 0;">
-  <iframe src="http://{domain}.feedhenry.com/box/srv/1.1/wid/{domain}/studio/{data.inst.guid}/container" frameborder="0"></iframe>
+  <iframe src="{preview}" frameborder="0"></iframe>
   </div>
 </section>
 
@@ -14,3 +14,12 @@
   <strong>height:</strong>{data.inst.guid}<br />
   <strong>width:</strong> {data.inst.guid}<br />
 </section>
+
+<section class="qrcode">
+  <h2>Preview on your mobile</h2> 
+  <span class="qrcode_url">{previewUrl}</span>
+  <span class="qrcode_placeholder">
+    <img src="http://chart.apis.google.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=H&chl={previewUrl}" />
+  </span>
+</section>
+
