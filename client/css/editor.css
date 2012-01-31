@@ -40,6 +40,9 @@
 #editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {
   height: 34px;	
 }
+#editorToolbar.navbar {
+  background-color: #333;  
+}
 
 #editorToolbar.navbar ul.dropdown-menu {
   top: 34px;  
@@ -80,7 +83,14 @@ ul.editorTabs li a:hover {
 }
 ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
   color: #fff;
+  text-decoration: none;
 }
+
+/* Style the close button */
+ul.editorTabs li a strong {
+  padding-left: 10px;  
+}
+
 .app.editor ul.editorTabs { 
   padding-left: 50px; /* Pad the tabs that sit ontop of the text editor so they dont sit on the LHS gutter */
 }
