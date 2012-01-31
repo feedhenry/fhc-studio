@@ -16,7 +16,10 @@
 </section>
 
 <section class="qrcode">
-  <h2>Preview on your mobile</h2>
-  {previewUrl}
+  <h2>Preview on your mobile</h2> 
+  <span class="qrcode_url">{previewUrl}</span>
+  <span class="qrcode_placeholder">
+    <img src="http://chart.apis.google.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=H&chl={previewUrl}" />
+  </span>
 </section>
 

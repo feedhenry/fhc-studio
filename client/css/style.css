@@ -28,6 +28,11 @@
 	 right: 20px;
 	 width: 380px;
 	}
+	
+.qrcode .qrcode_url{
+    display:none;
+    
+}
 .previewContainer {
   background-repeat: no-repeat;
   -webkit-transform-origin: 0 0;
