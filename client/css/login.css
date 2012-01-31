@@ -2,13 +2,10 @@ html, body {
   height: 100%;  
 }
 .content.login {
-  margin: 60px 0px 0px 0px;  
+  margin: 0px auto;
+  width: 500px;
+  color: #fff;
 }
-.content.login .row {
-  width: 960px;
-  margin: 0 auto;
-}
-
 #loginCloud {
   background-image: url("../images/loginCloud.png");
   background-repeat: no-repeat;
@@ -26,4 +23,26 @@ html, body {
 
 a#forgot, a:active#forgot, a:hover#forgot a:hover{
   color: #fff;  
+}
+
+.hero-unit, .hero-unit h1, .hero-unit h2, .hero-unit h3 {
+  background-color: #333;
+}
+
+.hero-unit {
+  margin-bottom: 30px;
+  padding: 60px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.hero-unit input {
+  height: 24px;
+  width: 100%;  
+  margin-bottom: 14px;
+}
+.hero-unit p, .hero-unit input {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 27px;
 }

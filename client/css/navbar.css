@@ -1,0 +1,9 @@
+/*
+ * Top nav styles
+ */
+.navbar.navbar-fixed img.logo {
+  margin-left: 12px;  
+}
+.navbar.navbar-fixed .pull-right {
+  margin-right: 12px;  
+}
