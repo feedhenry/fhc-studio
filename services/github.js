@@ -5,9 +5,7 @@ module.exports = function (){
     var HOST = "api.github.com",
       self;
     function makeApiCall (httpsopts, cb){
-        console.log("called make api call");
         var content="",error = undefined;
-        console.log(httpsopts);
         req = https.request(httpsopts,function (res) {
 
             if(res.statusCode === 200){
@@ -38,7 +36,6 @@ module.exports = function (){
        },
 
        getGist : function (gistId,cb){
-           console.log("gist id "+gistId);
            var content  = undefined,
            httpopts     = {host : HOST};
            
