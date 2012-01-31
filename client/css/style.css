@@ -1,12 +1,9 @@
-.container-fluid > .content {
-  margin-left: 260px;	
-}
 
-.container-fluid > .content.fullWidth {
+.fluid-container > .content.fullWidth {
   margin-left: 0px; 
 }
 
-.container-fluid > .content.app, .container-fluid > .content.apps {
+.fluid-container > .content.app, .fluid-container > .content.apps {
   padding: 2px 20px;
  }
  
@@ -14,11 +11,11 @@
   margin: 0px auto;
  }
  
-.container-fluid > .content.app {
+.fluid-container > .content.app {
   margin-left: 100px; 
 }
 
-.container-fluid > .content.landing {
+.fluid-container > .content.landing {
   margin: 0px 20px;  
 } 
 .summary {
@@ -74,25 +71,16 @@
   background-color: #f4f4f4;
 }
 img.logo {
-  padding: 12px 7px 0px 0px;
+  padding: 14px 16px 0px 0px;
   float: left;
 }
 
-/*
- * Top nav styles
- */
-.container-fluid img.logo {
-  margin-left: 12px;  
-}
-.topbar .pull-right {
-  margin-right: 12px;  
-}
 
 /* 
  * App bar Styles
  * Styles for the narrow left hand bar on the page of an individual app
  */
-.container-fluid > .appBar {
+.fluid-container > .appBar {
   position: absolute;
   height: 100%;
   top: 0px;
@@ -183,11 +171,6 @@ img.logo {
  /*
   * 
   */
-.nav.studioNav .dropdown-menu a{
-  color: #fff;
-  margin: 0px;
-}
-
 ul.breadcrumb {
   position: absolute;
   bottom: 40px;
