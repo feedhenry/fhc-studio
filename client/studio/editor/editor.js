@@ -383,12 +383,13 @@ client.studio.editor = {
     }
     return undefined;
   },
-  snippet: function(id){
+  snippet: function(){
       var me = client.studio.editor;
 
-
+    var snipettid = $(this).attr("id");
     //need to know the gist id and send that through
-    var path = "/editor/gist";
+    var path = "/editor/gist/"+snipettid;
+    console.log(path);
     $.ajax({
       url: path,
       context: this,

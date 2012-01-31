@@ -2,8 +2,32 @@ var https = require("https");
 
 module.exports = function (){
   //set up vars
-    var httpopts = {host:"api.github.com",path:"",method:'GET'},
+    var HOST = "api.github.com",
       self;
+    function makeApiCall (httpsopts, cb){
+        console.log("called make api call");
+        var content="",error = undefined;
+        console.log(httpsopts);
+        req = https.request(httpsopts,function (res) {
+
+            if(res.statusCode === 200){
+                res.setEncoding("UTF-8");
+                res.on('data',function (data) {
+                    content+=data;
+                });
+                res.on('end',function(){
+                   cb(null,content);
+                });
+            }else{
+                error = {code : res.statusCode, message : 'request failed'};
+            }
+        });
+        req.end();
+        req.on('error', function (e) {
+            return cb({code:503,message:'failed request'}, null);
+        });
+
+    };
 
    self = {
        listGists : function () {
@@ -13,31 +37,20 @@ module.exports = function (){
            // the response
        },
 
-       getGist : function (gistId){
-           var content = undefined;
-           httpopts.path = "/gists/"+gistId;
-           https.get(httpopts,function(res){
-               if(res.statusCode === 200){
-                    res.on('data',function (data){
-                        content+=data;
-                    });
-                   res.on('end',function (){
-                        if(content){
-                            content = JSON.parse(content);
-                            return content.files['gistfile1.js'].content;
-                        }
-                   });
-               }else{
-
-
-                   return
-               }
-
-
-           });
+       getGist : function (gistId,cb){
+           console.log("gist id "+gistId);
+           var content  = undefined,
+           httpopts     = {host : HOST};
+           
+           httpopts.path    = "/gists/"+gistId;
+           httpopts.methods = "GET";
+           httpopts.port    = 443;
+           makeApiCall(httpopts, cb);
        }
    };
 
   return self;
 
 };
+
+
