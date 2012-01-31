@@ -4,7 +4,7 @@ client.studio.views.helpers = dust.makeBase({
         //context is the data and chunk is the piece of template
         var tab = context.get("tab");
         if(_.isString(tab) && tab !== ""){
-            chunk.partial(tab.toLowerCase(),context);
+            chunk.partial('app/' + tab.toLowerCase(),context);
         }
     },
     appBarHelper : function(chunk, context){

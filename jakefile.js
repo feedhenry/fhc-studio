@@ -16,25 +16,33 @@ console.log("starting build tasks");
 desc("compiling dust templates");
 task('ct', [], function () {
     //find any .dust files
-    var files = fs.readdirSync(DUSTDIR);
-    var compiled = "";
-    var data = "";
-    files.forEach(function (f, i) {
+    walk(DUSTDIR, function(err, files) {
+      var compiled = "",
+      data = "";
+      if (err) throw err;
+      files.forEach(function (f, i) {
         if (f.substr(f.length - 5).toLowerCase() === ".dust") {
             console.log("dust file found", f);
-            data = fs.readFileSync(DUSTDIR + "/" + f, "UTF-8");
-            compiled+= dust.compile(data, f.replace(/.dust/, '').toLowerCase());
+            data = fs.readFileSync(f, "UTF-8");
+            
+            var dustTplName = f.replace(DUSTDIR + '/','').replace('', '');
+            dustTplName = dustTplName.replace(/.dust/, '').toLowerCase();
+           
+            compiled+= dust.compile(data, dustTplName);
            
         }
-    });
-    if (compiled !== "") {
+      });
+      // Now that we've iterated over the directory, write the files to a compiled string
+      if (compiled !== "") {
         fs.writeFile(DUSTWRITE, compiled, function (err) {
             if (err)throw err;
             else console.log("templates compiled");
         })
-    } else {
-        console.log("no files compiled");
-    }
+      } else {
+          console.log("no files compiled");
+      }
+    });
+    
 });
 
 /*desc("running tests");
@@ -52,3 +60,26 @@ task('test', [], function () {
     });
 });
 */
+
+var walk = function(dir, done) {
+  var results = [];
+  fs.readdir(dir, function(err, list) {
+    if (err) return done(err);
+    var pending = list.length;
+    if (!pending) return done(null, results);
+    list.forEach(function(file) {
+      file = dir + '/' + file;
+      fs.stat(file, function(err, stat) {
+        if (stat && stat.isDirectory()) {
+          walk(file, function(err, res) {
+            results = results.concat(res);
+            if (!--pending) done(null, results);
+          });
+        } else {
+          results.push(file);
+          if (!--pending) done(null, results);
+        }
+      });
+    });
+  });
+};

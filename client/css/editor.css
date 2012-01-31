@@ -1,4 +1,4 @@
-.container-fluid > .content.app.editor {
+.fluid-container > .content.app.editor {
   padding: 0px;
   height: 100%;
   margin-left: 320px; 
@@ -37,17 +37,17 @@
   background-size: 14px;	
 }
 
-#editorToolbar.topbar, #editorToolbar.topbar .container-fluid, #editorToolbar ul.nav  {
+#editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {
   height: 34px;	
 }
 
-#editorToolbar.topbar ul.dropdown-menu {
+#editorToolbar.navbar ul.dropdown-menu {
   top: 34px;  
 }
 .ace_editor {
   position: relative !important;
 }
-.content.editor .pill-content, .content.editor .pill-content div.tab, .content.editor .pill-content div.tab pre {
+.content.editor .tab-content, .content.editor .tab-content div.tab, .content.editor .tab-content div.tab pre {
   position: absolute;
   height: 100%;  
   width: 100%;
@@ -83,4 +83,10 @@ ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
 }
 .app.editor ul.editorTabs { 
   padding-left: 50px; /* Pad the tabs that sit ontop of the text editor so they dont sit on the LHS gutter */
+}
+
+
+.nav.studioNav .dropdown-menu a{
+  color: #fff;
+  margin: 0px;
 }
