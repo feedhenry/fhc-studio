@@ -46,8 +46,8 @@
 <ul class="tabs editorTabs">
   <li class="active"><a class="no-ajax" data-toggle="tab" href="#tab0">tab0</a></li>
 </ul>
-<div class="pill-content">
-  <div class="active tab" id="tab0" style="height: 100%; position: absolute;">
+<div class="tab-content">
+  <div class="active tab-pane tab" id="tab0" style="height: 100%; position: absolute;">
     <pre id="editor0">
      {#fileContents}
         {fileContents}

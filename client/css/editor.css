@@ -47,7 +47,7 @@
 .ace_editor {
   position: relative !important;
 }
-.content.editor .pill-content, .content.editor .pill-content div.tab, .content.editor .pill-content div.tab pre {
+.content.editor .tab-content, .content.editor .tab-content div.tab, .content.editor .tab-content div.tab pre {
   position: absolute;
   height: 100%;  
   width: 100%;

@@ -7,12 +7,12 @@
   </ul>
 </div>
 <div class="tab-content">
-  <div class="active" id="navigator">
+  <div class="tab-pane active" id="navigator">
     <div id="treeContainer" class="pull-left">
 
     </div>
   </div>
-  <div id="snippets">
+  <div class="tab-pane" id="snippets">
     Some code snippets
   </div>
 </div>

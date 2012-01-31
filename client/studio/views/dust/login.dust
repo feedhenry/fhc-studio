@@ -10,7 +10,6 @@
             <input placeholder="email" name="username" id="login_email" type="text">
             <input placeholder="password" name="password" id="login_password" type="password">
           </fieldset>
-
           <p>
             <button class="btn primary large" type="submit">Login</button>
             &nbsp;

@@ -143,13 +143,7 @@ client.studio.editor = {
     modeString = undefined,
     extension = undefined;
     
-    // If this is the first file we're opening, let's nuke that plaintext tab
-    if (me.tabs.length===1){
-      var t = me.tabs[0];
-      if (t.fileId.trim === ""){
-        //me.closeTab(0); // TODO: Base index off 0 rather than 1 first
-      }
-    }
+    
     
     // Extract the filename extension using a regex if possible
     var extensionResults = fileName.match(/\.+[a-zA-Z]+$/);
@@ -158,6 +152,17 @@ client.studio.editor = {
       extension = extension.replace(".", "");
     } 
     mode = extension || "";
+    
+    
+ // If this is the first file we're opening, let's nuke that plaintext tab
+    if (me.tabs.length===1){ // we've only 1 tab
+      var t = me.tabs[0]; 
+      if (!t.dirty && t.fileId.trim() === ""){ // and it's file name is blank
+        me.closeTab(0); // TODO: Base index off 0 rather than 1 first
+        index = 0;
+        me.appendTabWithIndex(index, fileName);  
+      }
+    }
     
     
     // 2) Add the DOM elements for a new tab 
@@ -287,12 +292,12 @@ client.studio.editor = {
     // 2) Create the tab content el div and pre tags for the tab
     var tabContentEl = document.createElement("div");
     tabContentEl.id = me.editorTabPrefix + index;
-    tabContentEl.className = "tab";
+    tabContentEl.className = "tab tab-pane";
     var preEl = document.createElement("pre");
     preEl.id = me.editorInstancePrefix+ index;
     tabContentEl.appendChild(preEl);
     
-    $('.app.editor .pill-content').append(tabContentEl); // add the tab body into our pill content DOM el
+    $('.app.editor .tab-content').append(tabContentEl); // add the tab body into our tab content DOM el
   },
   snippet: function(id){
       var me = client.studio.editor;

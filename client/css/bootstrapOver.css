@@ -26,3 +26,9 @@
 .navbar a.brand, .navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{
   color: #fff !important;
 }
+
+/* TODO: Probably a bug in BS2.0 - remove if no longer required after final release */
+ul.tabs {
+  list-style: none;
+  height: 28px;  
+}

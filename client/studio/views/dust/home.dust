@@ -12,14 +12,14 @@
 <div id="container dashboard" class="container">
     <!-- Main hero unit for a primary marketing message or call to action -->
     <ul class="tabs toptabs" data-tabs="tabs">
-      <li class="active"><a href="#welcome" class="no-ajax">Welcome</a></li>
-      <li><a id="studioLink" href="#studio" class="no-ajax">App Studio</a></li>
-      <li><a id="installingLink" href="#installing" class="no-ajax">Installing FHC</a></li>
-      <li><a href="#staging" class="no-ajax">Staging to Cloud Foundry</a></li>
+      <li class="active"><a href="#welcome" data-toggle="tab" class="no-ajax">Welcome</a></li>
+      <li><a id="studioLink" href="#studio" data-toggle="tab" class="no-ajax">App Studio</a></li>
+      <li><a id="installingLink" href="#installing" data-toggle="tab" class="no-ajax">Installing FHC</a></li>
+      <li><a href="#staging" data-toggle="tab" class="no-ajax">Staging to Cloud Foundry</a></li>
     </ul>
 
-      <div class="hero-unit tab-content pill-content">
-    <div id="welcome" class="row active">
+      <div class="hero-unit tab-content">
+    <div id="welcome" class="row tab-pane active">
         <div class="span7">
             <h2>Build apps powered by Cloud Foundry</h2>
             <p>Build powerful cloud powered apps with Feedhenry. Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms
@@ -30,7 +30,7 @@
       <iframe class="vimeo" src="http://player.vimeo.com/video/34086215" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
       </div>
     </div>
-    <div id="installing" class="row">
+    <div id="installing" class="tab-pane row">
           <div class="span7">
               <h2>Installing FHC</h2>
               <p>The FHC command line utility gives access to the entire FeedHenry suite through your command line. It's a NodeJS utility which allows you to quickly get started staging your apps to Cloud Foundry.</p>
@@ -53,7 +53,7 @@ $ fhc apps
         </div>
     </div>
 
-    <div id="staging" class="row">
+    <div id="staging" class="tab-pane row">
         <div class="span7">
             <h2>Staging your first app to Cloud Foundry</h2>
             <p>Learn how to stage an app you've created to public Cloud Foundry.
@@ -67,7 +67,7 @@ $ fhc apps
       </div>
     </div>
 
-    <div id="studio" class="row">
+    <div id="studio" class="tab-pane row">
         <div class="span7">
             <h2>App Studio</h2>
             <p>Learn about the FeedHenry App Studio.
@@ -87,7 +87,7 @@ $ fhc apps
   </div>
 
       <!-- Example row of columns -->
-      <div class="row docs">
+      <div class="tab-pane row docs">
         <div class="span6">
           <h2>FHC Documentation</h2>
           <p>Have a read of our documentation, where you can learn more about what Feedhenry is, and how to use our powerful cloud and client API's to build powerful mobile apps.</p>

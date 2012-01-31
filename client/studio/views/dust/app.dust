@@ -9,6 +9,7 @@
   {tabLayoutHelper}
 
 
-  {>footer/}
+  
 </div>
 {>foot/}
+{>footer/} <!-- TODO - Move footer out into some place more generic - do we even need one? -->
