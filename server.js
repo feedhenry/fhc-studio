@@ -21,7 +21,7 @@ fhc.fhc.load({}, function (err) {
      //success
      if (err){
      throw new Error(err);
-     } 
+     }
      }
      );*/
 });
@@ -38,9 +38,9 @@ server.configure(function () {
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
-    
+
     server.use(express.methodOverride());
-    
+
     server.use(express.static(__dirname + '/client'));
 });
 
@@ -105,6 +105,7 @@ server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardC
 // app:debug, preview, build, prefs
 server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
 server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
+server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);
 server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
 server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
 
