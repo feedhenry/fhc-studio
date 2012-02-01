@@ -8,9 +8,12 @@
     <li class="dropdown">
       <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>
       <ul class="dropdown-menu">
+        <li><a class="no-ajax" id="newFile" href="#">New</a></li>
         <li><a class="no-ajax save"  href="#">Save</a></li>
+        <li><a class="no-ajax" id="saveAs"  href="#">Save As</a></li>
         <li><a class="no-ajax save"  href="#" >Save All</a></li>
-        <li><a href="#">Open Recent</a></li>
+        <li><a class="no-ajax" id="closeFile" href="#">Close</a></li>
+        <li><a class="no-ajax" id="openRecent" href="#">Open Recent</a></li>
       </ul>
     </li>
     <li class="button"><a>Edit</a></li>
