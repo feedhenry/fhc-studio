@@ -1,7 +1,8 @@
 var operationController,
     renderer = require("../../util"),
-    fhc         = require('fh-fhc'),
+    fhc      = require('fh-fhc'),
     http     = require("http"),
+    validate = require("../../util/validation");
 
   operationController = {
     /*
@@ -34,16 +35,32 @@ var operationController,
           });
           break;
           
-        case "create":
-          // do sumat
-          break;
-          
         default:
           // do sumat;
           break;
         
       } // end switch
+    },
+    createAction : function (req,res) {
+        validate.appName(req.body.appname,function(err,suc){
+            fhc.apps(["create",suc],function(err,data){
+                if(err)renderer.doResponse(req,res,{ msg: 'Error', error: err });
+                else renderer.doResponse(req,res,{msg : data});
+            });
+        });
+
+    },
+    deleteAction : function (req,res){
+        validate.guid(req.body.guid,function(err,suc){
+            fhc.apps(["delete",suc],function(err,data){
+                if(err)renderer.doResponse(req,res,{ msg: 'Error', error: err });
+                else renderer.doResponse(req,res,{msg : data});
+            });
+        });
     }
 };
+
+
+
 
 module.exports = operationController;

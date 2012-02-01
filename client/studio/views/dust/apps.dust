@@ -4,8 +4,21 @@
 <script>
     $("table.apps").tablesorter();
 </script>
+
 <div class="content apps fullWidth">
 {tabHelper}
+<div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    Create An App
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a data-toggle="modal" href="#myModal" >From Scratch</a></li>
+    <li>From Existing Files</li>
+    <li>From A Git Repo</li>
+
+  </ul>
+</div>
 <h2>My Apps</h2>
   <table class="apps table">
           <colgroup>

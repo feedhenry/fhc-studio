@@ -112,6 +112,7 @@ server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsControlle
 server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
 server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
 server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.app.operationController.indexAction);
+server.post('/app/create/:appname/:giturl?',checkAuth,controllers.app.operationController.createAction);
 server.get("/editor/gist",controllers.app.editorController.gistAction);
 server.get("/editor/gist/:gistid",controllers.app.editorController.gist);
 
