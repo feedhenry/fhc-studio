@@ -4,9 +4,10 @@ client.studio.editor = {
   activeTab: 0,
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
+  filesTree: undefined,
   init: function(){
     var fileTree = $('input[name="filestree"]').remove().val();
-    this.tree(JSON.parse(fileTree));
+    this.tree.init(JSON.parse(fileTree));
     var appId =  $('input#appId').remove().val(),
     fileContents = $('pre#editor0').html(),
     fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
@@ -54,68 +55,78 @@ client.studio.editor = {
       me.saveAs(me.activeTab);
     });
   },
-  tree: function(tree){
-    var me = this;
-    if (!tree.children){
-      throw new Error("Error loading tree children");
-    }
-    // Root node of the tree is /, with children of client, cloud and shared. Let's make them the root instead.
-  
-    for (var i=0; i<tree.children.length; i++){
-      parseChildren(tree.children[i]);
-    }
-    parseChildren(tree);
-    var treeData = {
-      data: tree.children // init the tree with the children array of / as it's root  
-    };
+  tree: {
+    click: function (e, data) {
+      var me = client.studio.editor,
+      el = $(data.rslt.obj),
+      guid = data.rslt.obj.data("guid"),
+      type = data.rslt.obj.data("type");
+      
+      if (!type || type!="file"){
+        $("#treeContainer").jstree('toggle_node', el);
+      }
+      
+      if ( data.inst.is_leaf() == true && type=="file"){
+        me.open(guid);
+      }
+    },
+    pathFolderClick: function(e, data){
+      var me = client.studio.editor,
+      path = data.rslt.obj.data("path");
+      $('#filePath').val(path);
+      me.tree.click(e, data);
+    },
+    init: function(tree){
+      var me = client.studio.editor;
+      if (!tree.children){
+        throw new Error("Error loading tree children");
+      }
+      // Root node of the tree is /, with children of client, cloud and shared. Let's make them the root instead.
     
-    
-    $(function () {
-    
-      $("#treeContainer").jstree({ 
-        "json_data" : treeData,
-        "plugins" : [ "themes", "json_data", "ui" ],
-        "themes" : {
-                    "theme" : "default",
-                    "dots" : false,
-                    "icons" : true
-        },
-      }).bind("select_node.jstree", function (e, data) {
-        var el = $(data.rslt.obj),
-        guid = data.rslt.obj.data("guid"),
-        type = data.rslt.obj.data("type");
-        
-        if (!type || type!="file"){
-          $("#treeContainer").jstree('toggle_node', el);
-        }
-        
-        if ( data.inst.is_leaf() == true && type=="file"){
-          me.open(guid);
-        }
-      });
-    });
-
-    function parseChildren(tree){
-      tree.data = tree.data || {};
-      tree.data.title = tree.name;
-      tree.data.icon = tree.type;
-      tree.metadata = {
-        title: tree.name,
-        path: tree.path,
-        status: tree.status,
-        type: tree.type,
-        guid: tree.guid
+      for (var i=0; i<tree.children.length; i++){
+        parseChildren(tree.children[i]);
+      }
+      parseChildren(tree);
+      var treeData = {
+        data: tree.children // init the tree with the children array of / as it's root  
       };
       
       
-      if (tree.children){
-        var children = tree.children;
-        for (var i=0; i<children.length; i++){
-          parseChildren(children[i]);
-        }
-      }
-    };
+      $(function () {
+        me.filesTree = { 
+            "json_data" : treeData,
+            "plugins" : [ "themes", "json_data", "ui", "search" ],
+            "themes" : {
+                        "theme" : "default",
+                        "dots" : false,
+                        "icons" : true
+            }
+        };
+      
+        $("#treeContainer").jstree(me.filesTree).bind("select_node.jstree", me.tree.click);
+      }); // end jqclosure
   
+      function parseChildren(tree){
+        tree.data = tree.data || {};
+        tree.data.title = tree.name;
+        tree.data.icon = tree.type;
+        tree.metadata = {
+          title: tree.name,
+          path: tree.path,
+          status: tree.status,
+          type: tree.type,
+          guid: tree.guid
+        };
+        
+        
+        if (tree.children){
+          var children = tree.children;
+          for (var i=0; i<children.length; i++){
+            parseChildren(children[i]);
+          }
+        }
+      };
+    } // end client.studio.editor.tree.init
   }, // end client.studio.editor.tree
   open: function(guid){
     //Navigate to that file using an ajax request with a callback
@@ -154,7 +165,6 @@ client.studio.editor = {
       url: '/app/' + appId + '/update/' + fileId + '.json',
       data: data,
       success: function(res){
-        debugger;
         if (res && res.data && res.data.msg){
           client.util.messages.info(res.data.msg);
           successCallback();
@@ -173,7 +183,13 @@ client.studio.editor = {
    */
   saveAs: function(){
     var title = "Save As",
-    message = "Choose where to save this file <br /> <span id='_modalGenTree'>Loading files tree...</span>",
+    me = client.studio.editor,
+    message = "Choose where to save this file <br /> " + 
+    "<div id='_modalGenTree'>Loading files tree...</div>" + 
+    "<form class='pathForm form-horizontal'>" +
+    "<fieldset><label for='fileName'>Filename: </label><input class='span6' id='fileName'></fieldset>" +
+    "<fieldset><label for='filePath'>Path: </label><input  class='span6' id='filePath'></fieldset>" +
+    "</form>",
     buttons = [
                {
                  text: 'Cancel',
@@ -191,7 +207,12 @@ client.studio.editor = {
                }
                ];
     client.util.modal(title, message, buttons);
-    $('#_modalGenTree').html('Tree!');
+    $('#_modalGenTree').bind("loaded.jstree", function () {
+      // once the tree is loaded, remove the files from the tree, just leaving the folders
+      $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one file per level
+    }).jstree(me.filesTree).bind("select_node.jstree", me.tree.pathFolderClick);
+    
+    
   },
   /*
    * Opens a new tab in the editor with the param's contents
