@@ -8,7 +8,7 @@ configController = {
         tpl: 'app',
         title: 'Preferences',
         appId: id,
-        data: {},
+        data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
         tab: 'config'
     };
     renderer.doResponse(req, res, d);
