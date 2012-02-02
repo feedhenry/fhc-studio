@@ -5,6 +5,7 @@ var en = {
   appStudio : "App Studio",
   build : "Build",
   debug : "Debug",
+  dashboard : "Dashboard",
   description : "Description",
   docs : "Docs",
   editor : "Editor",
@@ -17,6 +18,7 @@ var en = {
   login_message : "Enter your username and password to login",
   logout : "Logout",
   modified : "Modified",
+  moreInfo : "More Info",
   myapps : "My Apps",
   moreInfo : "moreInfo",
   name : "Name",
@@ -29,6 +31,8 @@ var en = {
   stagingTo : "Staging to",
   version : "Version",
   welcome : "Welcome"
+  width : "width",
+  height : "height",
 };
 
 module.exports = en;

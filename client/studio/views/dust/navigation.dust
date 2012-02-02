@@ -8,10 +8,10 @@
         <li class="dropdown">
           <a class="brand dropdown-toggle no-ajax" data-toggle="dropdown" href="#">studio</a>
           <ul class="dropdown-menu">
-            <li><a class="brand" href="/">Dashboard</a></li>
-            <li><a class="brand" href="/apps">App Studio</a></li>
-            <li><a class="brand" href="/reporting">Reporting</a></li>
-            <li><a class="brand" href="/admin">Admin</a></li>
+            <li><a class="brand" href="/">{lang.dashboard}</a></li>
+            <li><a class="brand" href="/apps">{lang.appStudio}</a></li>
+            <li><a class="brand" href="/reporting">{lang.reporting}</a></li>
+            <li><a class="brand" href="/admin">{lang.admin}</a></li>
           </ul>
         </li>
         <li class="active"><a class="singlepage" href="/home">{lang.home}</a></li>
@@ -24,8 +24,8 @@
   
         <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
           <a href="#">{lang.help}</a> |
-          <a href="#">Preferences</a> |
-          <a href="/logout">Log Out</a>
+          <a href="#">{lang.prefs}</a> |
+          <a href="/logout">{lang.logout}</a>
         </p>
         {:else}
         <form action="/login" method="post" class="pull-right">
