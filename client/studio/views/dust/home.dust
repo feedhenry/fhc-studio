@@ -12,10 +12,10 @@
 <div id="container dashboard" class="container">
     <!-- Main hero unit for a primary marketing message or call to action -->
     <ul class="tabs toptabs" data-tabs="tabs">
-      <li class="active"><a href="#welcome" data-toggle="tab" class="no-ajax">Welcome</a></li>
-      <li><a id="studioLink" href="#studio" data-toggle="tab" class="no-ajax">App Studio</a></li>
-      <li><a id="installingLink" href="#installing" data-toggle="tab" class="no-ajax">Installing FHC</a></li>
-      <li><a href="#staging" data-toggle="tab" class="no-ajax">Staging to Cloud Foundry</a></li>
+      <li class="active"><a href="#welcome" data-toggle="tab" class="no-ajax">{lang.welcome}</a></li>
+      <li><a id="studioLink" href="#studio" data-toggle="tab" class="no-ajax">{lang.appStudio}</a></li>
+      <li><a id="installingLink" href="#installing" data-toggle="tab" class="no-ajax">{lang.installing} FHC</a></li>
+      <li><a href="#staging" data-toggle="tab" class="no-ajax">{lang.stagingTo} Cloud Foundry</a></li>
     </ul>
 
       <div class="hero-unit tab-content">

@@ -3,7 +3,6 @@ var fs = require('fs'),
     doResponse,
     doError;
 
-
  doResponse = function (req, res, d) {
    var resType = (req.params.resType) ? req.params.resType : 'html';
    

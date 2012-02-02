@@ -7,13 +7,13 @@
         <p>{lang.login_message}</p>
         <form action="/login" method="post">
           <fieldset>
-            <input placeholder="email" name="username" id="login_email" type="text">
-            <input placeholder="password" name="password" id="login_password" type="password">
+            <input placeholder="{lang.email}" name="username" id="login_email" type="text">
+            <input placeholder="{lang.password}" name="password" id="login_password" type="password">
           </fieldset>
           <p>
-            <button class="btn primary large" type="submit">Login</button>
+            <button class="btn primary large" type="submit">{lang.login}</button>
             &nbsp;
-            <a id="forgot" href="forgot.html" class="large">Forgot...</a>
+            <a id="forgot" href="forgot.html" class="large">{lang.forgotPassword}</a>
           </p>
         </form>
     

@@ -1,4 +1,34 @@
-var en = {
-  welcome : "Welcome",
-  login_message : "Enter your username and password to login"
+var en = { 
+  admin : "Admin",
+  appDashboard : "App Dashboard",
+  apps : "Apps",  
+  appStudio : "App Studio",
+  build : "Build",
+  debug : "Debug",
+  description : "Description",
+  docs : "Docs",
+  editor : "Editor",
+  email : "email",
+  forgotPassword : "Forgot...",
+  help : "Help",
+  home : "Home",
+  installing: "Installing",
+  login : "Login",
+  login_message : "Enter your username and password to login",
+  logout : "Logout",
+  modified : "Modified",
+  myapps : "My Apps",
+  moreInfo : "moreInfo",
+  name : "Name",
+  password : "password",
+  prefs :  "Preferences",
+  preview : "Preview",
+  previewOnMobile : "Preveiw on your mobile",
+  reporting : "Reporting",
+  serviceStatus : "Service Status ",
+  stagingTo : "Staging to",
+  version : "Version",
+  welcome : "Welcome"
 };
+
+module.exports = en;
