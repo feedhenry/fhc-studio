@@ -16,21 +16,33 @@ console.log("starting build tasks");
 desc("compiling dust templates");
 task('ct', [], function () {
     //find any .dust files
-    var files = fs.readdirSync(DUSTDIR);
     var compiled = "";
     var data = "";
-    files.forEach(function (f, i) {
-        if (f.substr(f.length - 5).toLowerCase() === ".dust") {
-            console.log("dust file found", f);
-            data = fs.readFileSync(DUSTDIR + "/" + f, "UTF-8");
-            compiled+= dust.compile(data, f.replace(/.dust/, '').toLowerCase());
-           
+    var indentBy = function(times, str) {
+      var arr = new Array(times + 1);
+      arr[times] = str;
+      return arr.join(" ");
+    };
+    var handleFile = function(relativePath) {
+        var absPath = [DUSTDIR].concat(relativePath).join('/'),
+            stats = fs.statSync(absPath),
+            fname = relativePath[relativePath.length - 1];
+        if (stats.isDirectory()) {
+            relativePath.length && console.log(indentBy(relativePath.length * 2, fname));
+            fs.readdirSync(absPath).forEach(function(n) { handleFile(relativePath.concat([n])); });
+        } else if (/.+\.dust$/i.test(fname)) {
+            console.log(indentBy(relativePath.length * 2, fname));
+            content = fs.readFileSync(absPath, "UTF-8");
+            compiled += dust.compile(content, relativePath.join('/').replace(/\.dust$/i, '').toLowerCase());
         }
-    });
+    };
+
+    console.log(">>> Compiling templates");
+    handleFile([]);
     if (compiled !== "") {
         fs.writeFile(DUSTWRITE, compiled, function (err) {
             if (err)throw err;
-            else console.log("templates compiled");
+            else console.log(">>> Templates compiled");
         })
     } else {
         console.log("no files compiled");
