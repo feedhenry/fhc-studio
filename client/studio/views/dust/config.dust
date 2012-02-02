@@ -1,13 +1,26 @@
 <ul class="tabs configTabs">
-  <li class="active"><a class="no-ajax" href="#configForIPad">iPad</a></li>
-  <li               ><a class="no-ajax" href="#configForAndroid">Android</a></li>
-  <li               ><a class="no-ajax" href="#configOther">Other</a></li>
+  {#configuration}
+    <li class=""><a class="no-ajax" href="#configFor-{name}">{title}</a></li>
+  {/configuration}
 </ul>
-<div class="pill-content">
-  <div class="active" id="configForIPad">iPad</div>
-  <div                id="configForAndroid">Android</div>
-  <div                id="configOther">All remaining&hellip;</div>
-</div>
-<h1>Configuration</h1>
-<p>That's all folks&hellip;</p>
+<form>
+  <div class="pill-content">
+    {#configuration}
+      <div class="" id="configFor-{name}">
+        <h1>{title}</h1>
+        <pre>
+          {sections|h}
+        </pre>
+        {#sections}
+          <fieldset>
+            <legend>{title}</legend>
+            {#fields}
+              <p>field</p>
+            {/fields}
+          </fieldset>
+        {/sections}
+      </div>
+    {/configuration}
+  </div>
+</form>
 
