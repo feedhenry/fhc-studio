@@ -4,7 +4,7 @@
   <div id="logo"><img src="/images/logo.png" /></div>
   <br /><br />
   <div class="hero-unit">
-        <p>Enter your username and password to login</p>
+        <p>{lang.login_message}</p>
         <form action="/login" method="post">
           <fieldset>
             <input placeholder="email" name="username" id="login_email" type="text">

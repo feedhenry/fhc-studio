@@ -1,4 +1,5 @@
-var fs          = require('fs'),
+var fs = require('fs'),
+    lang = require('../client/lang/index.js'),
     doResponse,
     doError;
 
@@ -10,6 +11,7 @@ var fs          = require('fs'),
    d.user = (req.session && req.session.user) ? req.session.user : false;
    d.domain = (req.session && req.session.domain) ? req.session.domain : "apps",
    d.env = (req.params.env) ? req.params.env : "production";
+   d.lang = lang.en; // TODO: Eventually we choose the language by doing lang['someLangString']
    switch(resType){
      case "jstpl":
        // API request - sending back JSON data with a template
