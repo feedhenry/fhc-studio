@@ -2,6 +2,7 @@
  * used for common validation tasks
  */
 
+
 var invalidCallBackException =  {name:"InvalidCallBackException", message:"call back must be a function"};
 module.exports = {
     appName:function (name, cb){
