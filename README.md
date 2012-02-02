@@ -21,7 +21,7 @@ see packages.json (npm's configuration file) for details on packages used
 
 ### 2. install fh-studio
 
-    $ git clone git@github.com:feedhenry/fh-studio.git
+    $ git clone git://github.com/feedhenry/fh-studio.git  
     $ cd fh-studio
     $ npm install -d
     $ # optionally set FeedHenry backend using fhc target (default is http://apps.feedhenry.com)
