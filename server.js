@@ -97,7 +97,9 @@ server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
 /*
  * App Actions
  */
-
+server.all('/apps/create.:resType?',checkAuth,controllers.app.operationController.createAction);
+server.post('/app/:id/update/:fileId.:resType?',checkAuth,controllers.app.operationController.updateAction);
+server.post('/app/delete',checkAuth,controllers.app.operationController.deleteAction);
 // app:dashboard
 server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
 server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
@@ -111,8 +113,8 @@ server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsControlle
 // app:editor
 server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
 server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
-server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.app.operationController.indexAction);
-server.post('/app/create/:appname/:giturl?',checkAuth,controllers.app.operationController.createAction);
+
+
 server.get("/editor/gist",controllers.app.editorController.gistAction);
 server.get("/editor/gist/:gistid",controllers.app.editorController.gist);
 

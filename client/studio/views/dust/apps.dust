@@ -13,9 +13,8 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
-    <li><a data-toggle="modal" href="#myModal" >From Scratch</a></li>
-    <li>From Existing Files</li>
-    <li>From A Git Repo</li>
+    <li><a class="" data-toggle="modal" href="#myModal" >From Scratch</a></li>
+    <li><a href="#" >From A Git Repo</a></li>
 
   </ul>
 </div>

@@ -41,6 +41,7 @@ client.studio.dispatch = function () {
                 //add update as a call back to the internal a href
                 // clicks
                 $(container).ajaxify(self.update);
+                $(container).trigger('fireitup');
 
             });
         }
