@@ -1,16 +1,22 @@
 var fs = require('fs'),
-    lang = require('../client/lang/index.js'),
+    i18n = require('../client/lang/index.js'),
     doResponse,
     doError;
 
  doResponse = function (req, res, d) {
-   var resType = (req.params.resType) ? req.params.resType : 'html';
+   var resType = (req.params.resType) ? req.params.resType : 'html',
+   lang = "en";
    
+   
+   if (req && req.query && req.query.lang){
+     var lang = req.query.lang; 
+   }
+   console.log(lang);
    // setup stuff that goes into every response
    d.user = (req.session && req.session.user) ? req.session.user : false;
    d.domain = (req.session && req.session.domain) ? req.session.domain : "apps",
    d.env = (req.params.env) ? req.params.env : "production";
-   d.lang = lang.en; // TODO: Eventually we choose the language by doing lang['someLangString']
+   d.lang = i18n[lang]; 
    switch(resType){
      case "jstpl":
        // API request - sending back JSON data with a template
