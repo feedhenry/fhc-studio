@@ -41,6 +41,7 @@ server.configure(function () {
     
     server.use(express.methodOverride());
     
+    server.use(express.compiler({ src: __dirname + '/client/css', enable: ['less'] }));
     server.use(express.static(__dirname + '/client'));
 });
 
