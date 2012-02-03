@@ -4,16 +4,17 @@ client.studio.editor = {
   activeTab: 0,
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
+  filesTree: undefined,
   init: function(){
     var fileTree = $('input[name="filestree"]').remove().val();
-    this.tree(JSON.parse(fileTree));
+    this.tree.init(JSON.parse(fileTree));
     var appId =  $('input#appId').remove().val(),
     fileContents = $('pre#editor0').html(),
     fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
     //ready the actions
-    $('.save').unbind().bind("click",client.studio.editor.save);
-    $('.snippet').unbind().bind("click",client.studio.editor.snippet);
+    this.bindEvents();
+    
     // Set our appId on the editor object
       console.log(appId);
     this.appId = appId;
@@ -30,68 +31,102 @@ client.studio.editor = {
     this.newTab(res);
   
   },
-  tree: function(tree){
-    var me = this;
-    if (!tree.children){
-      throw new Error("Error loading tree children");
-    }
-    // Root node of the tree is /, with children of client, cloud and shared. Let's make them the root instead.
-  
-    for (var i=0; i<tree.children.length; i++){
-      parseChildren(tree.children[i]);
-    }
-    parseChildren(tree);
-    var treeData = {
-      data: tree.children // init the tree with the children array of / as it's root  
-    };
-    
-    
-    $(function () {
-    
-      $("#treeContainer").jstree({ 
-        "json_data" : treeData,
-        "plugins" : [ "themes", "json_data", "ui" ],
-        "themes" : {
-                    "theme" : "default",
-                    "dots" : false,
-                    "icons" : true
-        },
-      }).bind("select_node.jstree", function (e, data) {
-        var el = $(data.rslt.obj),
-        guid = data.rslt.obj.data("guid"),
-        type = data.rslt.obj.data("type");
-        
-        if (!type || type!="file"){
-          $("#treeContainer").jstree('toggle_node', el);
-        }
-        
-        if ( data.inst.is_leaf() == true && type=="file"){
-          me.open(guid);
-        }
-      });
+  bindEvents: function(){
+    var me = client.studio.editor;
+    // Contains bindings for all default events
+    $('.save').unbind().on("click", client.studio.editor.save);
+    $('.snippet').unbind().on("click",client.studio.editor.snippet);
+    $('a#closeFile').unbind().on('click', function(){
+      me.closeTab(me.activeTab);
     });
-
-    function parseChildren(tree){
-      tree.data = tree.data || {};
-      tree.data.title = tree.name;
-      tree.data.icon = tree.type;
-      tree.metadata = {
-        title: tree.name,
-        path: tree.path,
-        status: tree.status,
-        type: tree.type,
-        guid: tree.guid
+    $('a#newFile').unbind().on('click', function(){
+      // Create a new, empty tab
+      var res = {
+          data: {
+           fileContents: "",
+           fileId: "",
+           mode: ""
+          }
+        };
+        
+        me.newTab(res);
+    });
+    $('a#saveAs').unbind().on('click', function(){
+      me.saveAs(me.activeTab);
+    });
+  },
+  tree: {
+    click: function (e, data) {
+      var me = client.studio.editor,
+      el = $(data.rslt.obj),
+      guid = data.rslt.obj.data("guid"),
+      type = data.rslt.obj.data("type");
+      
+      if (!type || type!="file"){
+        $("#treeContainer").jstree('toggle_node', el);
+      }
+      
+      if ( data.inst.is_leaf() == true && type=="file"){
+        me.open(guid);
+      }
+    },
+    pathFolderClick: function(e, data){
+      var me = client.studio.editor,
+      path = data.rslt.obj.data("path");
+      $('#filePath').val(path);
+      me.tree.click(e, data);
+    },
+    init: function(tree){
+      var me = client.studio.editor;
+      if (!tree.children){
+        throw new Error("Error loading tree children");
+      }
+      // Root node of the tree is /, with children of client, cloud and shared. Let's make them the root instead.
+    
+      for (var i=0; i<tree.children.length; i++){
+        parseChildren(tree.children[i]);
+      }
+      parseChildren(tree);
+      var treeData = {
+        data: tree.children // init the tree with the children array of / as it's root  
       };
       
       
-      if (tree.children){
-        var children = tree.children;
-        for (var i=0; i<children.length; i++){
-          parseChildren(children[i]);
-        }
-      }
-    };
+      $(function () {
+        me.filesTree = { 
+            "json_data" : treeData,
+            "plugins" : [ "themes", "json_data", "ui", "search" ],
+            "themes" : {
+                        "theme" : "default",
+                        "dots" : false,
+                        "icons" : true
+            }
+        };
+      
+        $("#treeContainer").jstree(me.filesTree).bind("select_node.jstree", me.tree.click);
+      }); // end jqclosure
   
+      function parseChildren(tree){
+        tree.data = tree.data || {};
+        tree.data.title = tree.name;
+        tree.data.icon = tree.type;
+        tree.metadata = {
+          title: tree.name,
+          path: tree.path,
+          status: tree.status,
+          type: tree.type,
+          guid: tree.guid
+        };
+        
+        
+        if (tree.children){
+          var children = tree.children;
+          for (var i=0; i<children.length; i++){
+            parseChildren(children[i]);
+          }
+        }
+      };
+    } // end client.studio.editor.tree.init
   }, // end client.studio.editor.tree
   open: function(guid){
     //Navigate to that file using an ajax request with a callback
@@ -100,16 +135,25 @@ client.studio.editor = {
     client.studio.dispatch().update(path, { callback: this.newTab } ); 
     
   }, 
-  save: function(){
+  /*
+   * Performs an 'update' operation in the studio
+   */
+  save: function(index, callback){
     var me = client.studio.editor,
     appId = me.appId,
-    index = me.activeTab || 0,
+    index = index || me.activeTab,
     tab = me.getTabByIndex(index),
     tabId = 'tab' + index,
     editor = tab.ace, 
     editorSession = editor.getSession(),
     editorContents = editorSession.getValue(),
-    fileId = tab.fileId;
+    fileId = tab.fileId,
+    successCallback = callback || undefined;
+    
+    if (!fileId || fileId.trim() === ""){
+      me.saveAs(index);
+      return;
+    }
     
     var data = {
         fileId : fileId,
@@ -123,17 +167,52 @@ client.studio.editor = {
       success: function(res){
         if (res && res.data && res.data.msg){
           client.util.messages.info(res.data.msg);
-          debugger;
+          successCallback();
           if (tab){
             tab.dirty = false;
             $('#' + tabId + 'Link strong.modifiedStar').hide();
-            //TODO: Set an asterek
           }
         }else{
           client.util.messages.error('Error saving file');
         }
       }
     });
+  },
+  /*
+   * Opens a modal save dialog with a files tree before creating a new file with a create operation 
+   */
+  saveAs: function(){
+    var title = "Save As",
+    me = client.studio.editor,
+    message = "Choose where to save this file <br /> " + 
+    "<div id='_modalGenTree'>Loading files tree...</div>" + 
+    "<form class='pathForm form-horizontal'>" +
+    "<fieldset><label for='fileName'>Filename: </label><input class='span6' id='fileName'></fieldset>" +
+    "<fieldset><label for='filePath'>Path: </label><input  class='span6' id='filePath'></fieldset>" +
+    "</form>",
+    buttons = [
+               {
+                 text: 'Cancel',
+                 callback: function(){
+                   // Just cancel this modal dialog
+                   return true;
+                 }
+               },
+               {
+                 text: 'Save',
+                 type: 'primary',
+                 callback: function(){
+                   // TODO: Perform a $.ajax new file operation with some path...
+                 }
+               }
+               ];
+    client.util.modal(title, message, buttons);
+    $('#_modalGenTree').bind("loaded.jstree", function () {
+      // once the tree is loaded, remove the files from the tree, just leaving the folders
+      $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one file per level
+    }).jstree(me.filesTree).bind("select_node.jstree", me.tree.pathFolderClick);
+    
+    
   },
   /*
    * Opens a new tab in the editor with the param's contents
@@ -171,7 +250,7 @@ client.studio.editor = {
     if (me.tabs.length===1){ // we've only 1 tab
       var t = me.tabs[0]; 
       if (!t.dirty && t.fileId.trim() === ""){ // and it's file name is blank
-        me.closeTab(0); // TODO: Base index off 0 rather than 1 first
+        me.closeTab(0); 
         index = 0;
       }
     }
@@ -279,12 +358,12 @@ client.studio.editor = {
     }
     
   },
-  closeTab: function(index){
+  closeTab: function(index, force){
     var me = client.studio.editor,
     tabId = me.editorTabPrefix + index,
     tab = me.getTabByIndex(index);
     // only close if there isn't a pending save
-    if (!tab.dirty){
+    if (!tab.dirty || force){
       $('#' + tabId + 'Link').parent().remove(); // remove the tab
       $('#' + tabId).remove(); // remove the editor body
       if (me.activeTab>0 && me.activeTab===index) {
@@ -295,7 +374,37 @@ client.studio.editor = {
       me.tabs.splice(index,1);
       
     }else{
-      //TODO: Modal 'save without closing?' dialog
+      // Tab is dirty - show a confirm close message
+      var title = 'Unsaved Changes',
+      message = 'Are you sure you want to close ' + tab.title + ' without saving?',
+      buttons = [
+                 {
+                   text: 'Close',
+                   type: 'danger',
+                   callback: function(){
+                     // Close without saving
+                     me.closeTab(index, true); // Recurse, forcing a close.
+                   }
+                 },
+                 {
+                   text: 'Cancel',
+                   callback: function(){
+                     return true;
+                     // Cancel this operation & close the modal
+                   }
+                 },
+                 {
+                   text: 'Save & Close',
+                   type: 'primary',
+                   callback: function(){
+                   // Save this tab, then close it in our success callback.
+                    me.save(index, function(){
+                      me.closeTab(index, true);
+                    });
+                 }
+                 }
+                 ];
+      client.util.modal(title, message, buttons);
     }
 
   },

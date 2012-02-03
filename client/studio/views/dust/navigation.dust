@@ -26,7 +26,7 @@
           <a href="/logout">Log Out</a>
         </p>
         {:else}
-        <form action="/login" method="post" class="pull-right">
+        <form action="/login" method="post" class="pull-right form-inline">
           <input name="username" class="input-small" type="text" placeholder="Username">
           <input name="password" class="input-small" type="password" placeholder="Password">
           <button class="btn" type="submit">Sign in</button>

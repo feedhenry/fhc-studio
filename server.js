@@ -34,7 +34,7 @@ server.configure(function () {
     server.set('views', __dirname + '/views');
     server.set('view engine', 'jade');
 
-    server.set('env',"development"); // Should this listen for --debug flag?
+    server.set('env',"local"); // Should this listen for --debug flag?
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
