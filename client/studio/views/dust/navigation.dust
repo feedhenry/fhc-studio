@@ -25,7 +25,7 @@
           <a href="/logout">{lang.logout}</a>
         </p>
         {:else}
-        <form action="/login" method="post" class="pull-right">
+        <form action="/login" method="post" class="pull-right form-inline">
           <input name="username" class="input-small" type="text" placeholder="{lang.email}">
           <input name="password" class="input-small" type="password" placeholder="{lang.password}">
           <button class="btn" type="submit">{lang.login}</button>
