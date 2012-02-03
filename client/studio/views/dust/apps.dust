@@ -40,7 +40,7 @@
 
 
   <footer>
-          <p>© Feedhenry 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
+          <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
 </footer>
 </div>
 {>foot/}

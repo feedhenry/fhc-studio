@@ -23,7 +23,7 @@
         <div class="span7">
             <h2>{lang.homeHeading}</h2>
             <p>{lang.studioIntro}</p><br />
-                <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">{lang.getStarted} &raquo;</a></p>
+                <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">{lang.getStarted}{lang.cli} &raquo;</a></p>
       </div>
         <div class="span7 video">
       <iframe class="vimeo" src="http://player.vimeo.com/video/34086215" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
@@ -88,9 +88,9 @@ $ fhc apps
       <!-- Example row of columns -->
       <div class="tab-pane row docs">
         <div class="span6">
-          <h2>{lang.fhcDocs}</h2>
-          <p>{lang.fhcText}</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/fhc">{lang.readFhcDocs} &raquo;</a></p>
+          <h2>{lang.cliDocs}</h2>
+          <p>{lang.cliText}</p>
+          <p><a class="btn" href="http://docs.feedhenry.com/fhc">{lang.readCliDocs} &raquo;</a></p>
         </div>
         <div class="span5">
           <h2>{lang.tutorials}</h2>
