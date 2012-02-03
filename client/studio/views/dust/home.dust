@@ -21,7 +21,7 @@
       <div class="hero-unit tab-content">
     <div id="welcome" class="row tab-pane active">
         <div class="span7">
-            <h2>Build apps powered by Cloud Foundry</h2>
+            <h2>{lang.homeHeading}</h2>
             <p>{lang.studioIntro}</p><br />
                 <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">{lang.getStarted} &raquo;</a></p>
       </div>
