@@ -10,9 +10,12 @@ var fs = require('fs'),
    
    
    if (req && req.query && req.query.lang){
-     var lang = req.query.lang; 
+     var lang = req.query.lang;
+     req.session.lang = lang;
+   }else if (req.session && req.session.lang){
+     lang = req.session.lang;
    }
-   console.log(lang);
+   
    // setup stuff that goes into every response
    d.user = (req.session && req.session.user) ? req.session.user : false;
    d.domain = (req.session && req.session.domain) ? req.session.domain : "apps",
