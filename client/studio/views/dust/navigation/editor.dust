@@ -19,18 +19,37 @@
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
   <ul class="dropdown-menu" >
     <li class="heading"><h3>Client</h3></li>
-    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
-    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
-    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
-    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
-    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
-    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
-    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
-    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
-    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiAcc}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiAct}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiAudio}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiCamera}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiContacts}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiDep}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiFile}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiGeolocation}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiGeoIP}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiHashing}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiHandlers}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiLocalStorage}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiLogging}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiMapping}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiMessaging}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiNotification}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiOrientation}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiReady}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiSecurity}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiWebRequests}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWebView}</a></li>
     <li class="divider"></li>
     <li class="heading"><h3>Cloud</h3></li>
-    <li><a id="1015259" class="snippet" href="#">{lang.apiWeb}</a></li>
-    <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
+    <li><a id="1015259" class="snippet" href="#">{lang.apiCache}</a></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiDataStorage}</a></li>
+    <li><a id="1015259" class="snippet" href="#">{lang.apiHashing}</a></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiCloudLogging}</a></li>
+    <li><a id="1015259" class="snippet" href="#">{lang.apiParsing}</a></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiRSS}</a></li>
+    <li><a id="1015259" class="snippet" href="#">{lang.apiCloudSecurity}</a></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiStringify}</a></li>
+    <li><a id="1015259" class="snippet" href="#">{lang.apiCloudWebRequests}</a></li>
   </ul>
 </li>
