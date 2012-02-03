@@ -25,5 +25,29 @@ client.studio.views.helpers = dust.makeBase({
       }else{
         chunk.partial('navigation/default', context);
       }
+    },
+    renderUtilBar : function(chunk, context){
+      var active = context.get('tab');
+      if (!active || active.trim()===""){
+        active = context.get('tpl');
+      }
+      
+      var obj = {};
+      obj[active + 'Active'] = true;
+      context.stack.head[active + 'Active'] = true; // TODO: Fix this. Dust silly, or Cian silly?
+      
+      chunk.partial('apputilbar', context);
+    },
+    setActive : function(chunk, context){
+      
+      var active = context.get('tab');
+      if (!active || active.trim()===""){
+        active = context.get('tpl');
+      }
+      
+      
+      $('body').on('firedup', function(){
+        $('#' + active + 'Link').addClass('active');
+      });
     }
 });
