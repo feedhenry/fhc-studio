@@ -93,6 +93,7 @@ ul.editorTabs li a strong {
 
 .app.editor ul.editorTabs { 
   padding-left: 50px; /* Pad the tabs that sit ontop of the text editor so they dont sit on the LHS gutter */
+  padding-top: 34px;
 }
 
 

@@ -6,25 +6,23 @@
   
       <ul class="nav studioNav">
         <li class="dropdown">
-          <a class="brand dropdown-toggle no-ajax" data-toggle="dropdown" href="#">studio</a>
-          <ul class="dropdown-menu">
+          <a class="brand dropdown-toggle no-ajax" data-toggle="dropdown" href="#">studio <b class="caret"></b></a>
+          <ul class="dropdown-menu brandSwitch">
             <li><a class="brand" href="/">Dashboard</a></li>
             <li><a class="brand" href="/apps">App Studio</a></li>
             <li><a class="brand" href="/reporting">Reporting</a></li>
             <li><a class="brand" href="/admin">Admin</a></li>
           </ul>
         </li>
-        <li class="active"><a class="singlepage" href="/home">Home</a></li>
-        <li><a class="singlepage" href="/apps">Apps</a></li>
-        <li><a href="/apps">Reporting</a></li>
-        <li><a href="/apps">Admin</a></li>
-        <li><a href="/apps">Docs</a></li>
+        {! This helps decide where the rest of the nav's menu buttons should come from. !}
+        {navigationHelper}
+        
       </ul>
        {#user}
   
         <p class="pull-right"><a href="#">{.username} ({.role})</a> |
-          <a href="#">Help</a> |
-          <a href="#">Preferences</a> |
+          <a class="no-ajax" href="/help">Help</a> |
+          <a class="no-ajax" href="/prefs">Preferences</a> |
           <a href="/logout">Log Out</a>
         </p>
         {:else}

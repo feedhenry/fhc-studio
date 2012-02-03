@@ -27,6 +27,10 @@
   color: #fff !important;
 }
 
+.studioNav .dropdown-menu {
+  background: #333; /* TODO: base-color */  
+}
+
 /* TODO: Probably a bug in BS2.0 - remove if no longer required after final release */
 ul.tabs {
   list-style: none;
