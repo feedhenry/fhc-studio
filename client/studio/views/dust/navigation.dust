@@ -14,17 +14,14 @@
             <li><a class="brand" href="/admin">{lang.admin}</a></li>
           </ul>
         </li>
-        <li class="active"><a class="singlepage" href="/home">{lang.home}</a></li>
-        <li><a class="singlepage" href="/apps">{lang.apps}</a></li>
-        <li><a href="/apps">{lang.reporting}</a></li>
-        <li><a href="/apps">{lang.admin}</a></li>
-        <li><a href="/apps">{lang.docs}</a></li>
+        {! This helps decide where the rest of the nav's menu buttons should come from. !}
+        {navigationHelper}
       </ul>
        {?user}
-  
+        
         <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
-          <a href="#">{lang.help}</a> |
-          <a href="/myPrefs">{lang.prefs}</a> |
+          <a href="/help">{lang.help}</a> |
+          <a href="/prefs">{lang.prefs}</a> |
           <a href="/logout">{lang.logout}</a>
         </p>
         {:else}

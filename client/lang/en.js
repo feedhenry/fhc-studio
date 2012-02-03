@@ -1,3 +1,7 @@
+var branding = {
+    studioName : "Feedhenry"
+}
+
 var en = { 
   // Global Navbar 
   reporting : "Reporting",
@@ -66,9 +70,7 @@ var en = {
   getStarted : "Get started by installing FHC",
   homeHeading : "Build apps powered by Cloud Foundry",
   stagingTo : "Staging to Cloud Foundry",
-  studioName: "Feedhenry",
-  studioIntro : "Build powerful cloud powered apps with {studioName}. Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms instantly!",
-  studioName: "Feedhenry",
+  studioIntro : "Build powerful cloud powered apps with " + branding.studioName + ". Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms instantly!",
   
   apiDocs : "API Docs",
   apiText : "Read about the $fh APIs that exist to make calls to the FeedHenry cloud, or access on-device functionality not normally available to HTML5 apps.",

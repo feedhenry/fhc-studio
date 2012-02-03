@@ -1,0 +1,27 @@
+<li class="dropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.file}</a>
+  <ul class="dropdown-menu">
+    <li><a class="no-ajax save"  href="#">{lang.save}</a></li>
+    <li><a class="no-ajax save"  href="#" >{lang.saveAll}</a></li>
+    <li><a href="#">{lang.openRecent}</a></li>
+  </ul>
+</li>
+<li class="button"><a>{lang.edit}</a></li>
+<li class="button"><a>{lang.find}</a></li>
+<li class="button"><a class="no-ajax save" href="#" >{lang.save}</a></li>
+<li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
+ <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
+<li class="button"><a>{lang.find}</a></li>
+<li class="dropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.$fh}...</a>
+  <ul class="dropdown-menu">
+    <li><h3>Client</h3></li>
+    <li><a href="#" id="1015103" class="snippet" >$fh.act</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >$fh.web</a></li>
+    <li><a href="#" id="1099663" class="snippet" >$fh.camera</a></li>
+    <li class="divider"></li>
+    <li><h3>Cloud</h3></li>
+    <li><a id="1015259" class="snippet" href="#">$fh.web</a></li>
+    <li><a id="1015127" class="snippet" href="#">$fh.cache</a></li>
+  </ul>
+</li>
