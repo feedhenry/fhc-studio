@@ -15,15 +15,14 @@
       <li class="active"><a href="#welcome" data-toggle="tab" class="no-ajax">{lang.welcome}</a></li>
       <li><a id="studioLink" href="#studio" data-toggle="tab" class="no-ajax">{lang.appStudio}</a></li>
       <li><a id="installingLink" href="#installing" data-toggle="tab" class="no-ajax">{lang.installing} FHC</a></li>
-      <li><a href="#staging" data-toggle="tab" class="no-ajax">{lang.stagingTo} Cloud Foundry</a></li>
+      <li><a href="#staging" data-toggle="tab" class="no-ajax">{lang.stagingTo}</a></li>
     </ul>
 
       <div class="hero-unit tab-content">
     <div id="welcome" class="row tab-pane active">
         <div class="span7">
             <h2>Build apps powered by Cloud Foundry</h2>
-            <p>Build powerful cloud powered apps with Feedhenry. Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms
-          instantly!</p><br />
+            <p>{lang.studioIntro}</p><br />
                 <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">{lang.getStarted} &raquo;</a></p>
       </div>
         <div class="span7 video">
@@ -89,19 +88,19 @@ $ fhc apps
       <!-- Example row of columns -->
       <div class="tab-pane row docs">
         <div class="span6">
-          <h2>FHC Documentation</h2>
-          <p>Have a read of our documentation, where you can learn more about what Feedhenry is, and how to use our powerful cloud and client API's to build powerful mobile apps.</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/fhc">See the docs &raquo;</a></p>
+          <h2>{lang.fhcDocs}</h2>
+          <p>{lang.fhcText}</p>
+          <p><a class="btn" href="http://docs.feedhenry.com/fhc">{lang.readFhcDocs} &raquo;</a></p>
         </div>
         <div class="span5">
-          <h2>Tutorials</h2>
-           <p>Learn how to utilize the cloud to hash then cache data from multiple sources in the cloud. Localize an app, cloud powered language assets make corrections and updates a breeze.</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/tutorials">View our tutorials &raquo;</a></p>
+          <h2>{lang.tutorials}</h2>
+           <p>{lang.tutorialsText}</p>
+          <p><a class="btn" href="http://docs.feedhenry.com/tutorials">{lang.viewTutorials} &raquo;</a></p>
        </div>
         <div class="span5">
-          <h2>API Docs</h2>
-          <p>Read about the $fh APIs that exist to make calls to the FeedHenry cloud, or access on-device functionality not normally available to HTML5 apps.</p>
-          <p><a class="btn" href="http://docs.feedhenry.com/api">Read the API Docs &raquo;</a></p>
+          <h2>{lang.apiDocs}</h2>
+          <p>{lang.apiText}</p>
+          <p><a class="btn" href="http://docs.feedhenry.com/api">{lang.readApiDocs} &raquo;</a></p>
         </div>
       </div>
 </div>
