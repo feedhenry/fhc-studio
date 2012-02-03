@@ -20,7 +20,7 @@
       </ul>
        {#user}
   
-        <p class="pull-right"><a href="#">{.username} ({.role})</a> |
+        <p class="pull-right"><a href="#">{user} ({.role})</a> |
           <a class="no-ajax" href="/help">Help</a> |
           <a class="no-ajax" href="/prefs">Preferences</a> |
           <a href="/logout">Log Out</a>

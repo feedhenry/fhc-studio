@@ -1,5 +1,6 @@
 var fs          = require('fs'),
     doResponse,
+    util = require('util'),
     doError;
 
 
@@ -10,6 +11,7 @@ var fs          = require('fs'),
    d.user = (req.session && req.session.user) ? req.session.user : false;
    d.domain = (req.session && req.session.domain) ? req.session.domain : "apps",
    d.env = (req.params.env) ? req.params.env : "production";
+   
    switch(resType){
      case "jstpl":
        // API request - sending back JSON data with a template
