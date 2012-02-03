@@ -2,7 +2,7 @@
 {>navigation/}
 
 <!-- This is the tab bar along the side -->
-{>apputilbar/}
+
 {renderUtilBar}
 
 <div class="content app  {tab}" style="min-height:900px;">
