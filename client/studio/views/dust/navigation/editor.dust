@@ -15,15 +15,21 @@
 <li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
  <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
 <li class="button"><a>{lang.find}</a></li>
-<li class="dropdown">
+<li class="dropdown" id="apiDropdown">
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
-  <ul class="dropdown-menu">
-    <li><h3>Client</h3></li>
+  <ul class="dropdown-menu" >
+    <li class="heading"><h3>Client</h3></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
     <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
     <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
     <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
     <li class="divider"></li>
-    <li><h3>Cloud</h3></li>
+    <li class="heading"><h3>Cloud</h3></li>
     <li><a id="1015259" class="snippet" href="#">{lang.apiWeb}</a></li>
     <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
   </ul>
