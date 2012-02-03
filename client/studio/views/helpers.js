@@ -47,6 +47,7 @@ client.studio.views.helpers = dust.makeBase({
       
       
       $('body').on('firedup', function(){
+        $('.appBar li a').removeClass('active');
         $('#' + active + 'Link').addClass('active');
       });
     }
