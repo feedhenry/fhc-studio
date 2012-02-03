@@ -24,7 +24,7 @@
   
         <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
           <a href="#">{lang.help}</a> |
-          <a href="#">{lang.prefs}</a> |
+          <a href="/myPrefs">{lang.prefs}</a> |
           <a href="/logout">{lang.logout}</a>
         </p>
         {:else}

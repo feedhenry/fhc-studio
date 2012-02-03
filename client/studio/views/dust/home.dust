@@ -24,7 +24,7 @@
             <h2>Build apps powered by Cloud Foundry</h2>
             <p>Build powerful cloud powered apps with Feedhenry. Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms
           instantly!</p><br />
-                <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">Get started by Installing FHC &raquo;</a></p>
+                <p><a href="#installing" class="btn primary large no-ajax" onclick="switchTab('installing')">{lang.getStarted} &raquo;</a></p>
       </div>
         <div class="span7 video">
       <iframe class="vimeo" src="http://player.vimeo.com/video/34086215" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>

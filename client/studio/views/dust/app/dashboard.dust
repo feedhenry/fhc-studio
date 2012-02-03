@@ -9,8 +9,8 @@
   <h2>{data.inst.title}</h2><br />
   <p>{data.inst.description}</p>
   <h3>{lang.moreInfo}</h3>
-  <strong>w3cid:</strong> {data.app.w3cid}<br />
-  <strong>guid:</strong> {data.inst.guid}<br />
+  <strong>{lang.w3cid}:</strong> {data.app.w3cid}<br />
+  <strong>{lang.guid}:</strong> {data.inst.guid}<br />
   <strong>{lang.height}:</strong>{data.inst.guid}<br />
   <strong>{lang.width}:</strong> {data.inst.guid}<br />
 </section>

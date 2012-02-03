@@ -6,21 +6,21 @@
 
   <ul class="nav">
     <li class="dropdown">
-      <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>
+      <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.file}</a>
       <ul class="dropdown-menu">
-        <li><a class="no-ajax save"  href="#">Save</a></li>
-        <li><a class="no-ajax save"  href="#" >Save All</a></li>
-        <li><a href="#">Open Recent</a></li>
+        <li><a class="no-ajax save"  href="#">{lang.save}</a></li>
+        <li><a class="no-ajax save"  href="#" >{lang.saveAll}</a></li>
+        <li><a href="#">{lang.openRecent}</a></li>
       </ul>
     </li>
-    <li class="button"><a>Edit</a></li>
-    <li class="button"><a>Find</a></li>
-    <li class="button"><a class="no-ajax save" href="#" >Save</a></li>
-    <li class="button"><a class="no-ajax save" href="#" >Save All</a></li>
-     <li class="button"><a class="no-ajax save" href="#" >Save & Close</a></li>
-    <li class="button"><a>Find</a></li>
+    <li class="button"><a>{lang.edit}</a></li>
+    <li class="button"><a>{lang.find}</a></li>
+    <li class="button"><a class="no-ajax save" href="#" >{lang.save}</a></li>
+    <li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
+     <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
+    <li class="button"><a>{lang.find}</a></li>
     <li class="dropdown">
-      <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
+      <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.$fh}...</a>
       <ul class="dropdown-menu">
         <li><h3>Client</h3></li>
         <li><a href="#" id="1015103" class="snippet" >$fh.act</a></li>
