@@ -17,7 +17,7 @@
         {! This helps decide where the rest of the nav's menu buttons should come from. !}
         {navigationHelper}
       </ul>
-       {?user}
+       {#user}
         
         <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
           <a href="/help">{lang.help}</a> |

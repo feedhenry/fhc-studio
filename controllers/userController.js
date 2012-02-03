@@ -6,6 +6,7 @@ userController = {
     checkAuth: function(req, res, next){
       var fhcUser = fhc.fhc.config.get('username'),
       fhcCookie = fhc.fhc.config.get('cookie'),
+      fhcUrl = fhc.fhc.config.get('feedhenry'),
       loggedIn  = (req.session && req.session.user) ? req.session.user : false,
       env = req.app.settings.env;
       
@@ -13,6 +14,22 @@ userController = {
       req.params.env = env;
       
       if (env==="local" && fhcUser && fhcCookie){
+        // setup our user stuff from FHC rather than by logging in.
+        var fhcDomain = undefined;
+        var rex = /https?:\/\/([a-zA-Z0-9]+)\.feedhenry.com/g;
+        var match = rex.exec(fhcUrl);
+        if (match && match.length && match.length>=2){
+          fhcDomain = match[1];
+          req.session.domain = fhcDomain;
+        }
+        
+        req.session.user = {
+          username:fhcUser,
+          timestamp:'',
+          role:'dev', //TODO: Have FHC pass this through
+          login:true
+        };
+        
         next();
         return true;
       }

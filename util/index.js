@@ -1,6 +1,7 @@
 var fs = require('fs'),
     i18n = require('../client/lang/index.js'),
     doResponse,
+    util = require('util'),
     doError;
 
  doResponse = function (req, res, d) {
@@ -17,6 +18,7 @@ var fs = require('fs'),
    d.domain = (req.session && req.session.domain) ? req.session.domain : "apps",
    d.env = (req.params.env) ? req.params.env : "production";
    d.lang = i18n[lang]; 
+   
    switch(resType){
      case "jstpl":
        // API request - sending back JSON data with a template
