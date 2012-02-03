@@ -1,30 +1,30 @@
 <li class="dropdown">
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>
   <ul class="dropdown-menu">
-    <li><a class="no-ajax" id="newFile" href="#">New</a></li>
-    <li><a class="no-ajax save"  href="#">Save</a></li>
-    <li><a class="no-ajax" id="saveAs"  href="#">Save As</a></li>
-    <li><a class="no-ajax save"  href="#" >Save All</a></li>
-    <li><a class="no-ajax" id="closeFile" href="#">Close</a></li>
-    <li><a class="no-ajax" id="openRecent" href="#">Open Recent</a></li>
+    <li><a class="no-ajax" id="newFile" href="#">{lang.newFile}</a></li>
+    <li><a class="no-ajax save"  href="#">{lang.save}</a></li>
+    <li><a class="no-ajax" id="saveAs"  href="#">{lang.saveAs}</a></li>
+    <li><a class="no-ajax save"  href="#" >{lang.saveAll}</a></li>
+    <li><a class="no-ajax" id="closeFile" href="#">{lang.close}</a></li>
+    <li><a class="no-ajax" id="openRecent" href="#">{lang.openRecent}</a></li>
   </ul>
 </li>
-<li class="button"><a>Edit</a></li>
-<li class="button"><a>Find</a></li>
-<li class="button"><a class="no-ajax save" href="#" >Save</a></li>
-<li class="button"><a class="no-ajax save" href="#" >Save All</a></li>
- <li class="button"><a class="no-ajax save" href="#" >Save & Close</a></li>
-<li class="button"><a>Find</a></li>
+<li class="button"><a>{lang.edit}</a></li>
+<li class="button"><a>{lang.find}</a></li>
+<li class="button"><a class="no-ajax save" href="#" >{lang.save}</a></li>
+<li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
+ <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
+<li class="button"><a>{lang.find}</a></li>
 <li class="dropdown">
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
   <ul class="dropdown-menu">
     <li><h3>Client</h3></li>
-    <li><a href="#" id="1015103" class="snippet" >$fh.act</a></li>
-    <li><a href="#" id="1015259" class="snippet"  >$fh.web</a></li>
-    <li><a href="#" id="1099663" class="snippet" >$fh.camera</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
+    <li><a href="#" id="1015259" class="snippet"  >{lang.apiWeb}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
     <li class="divider"></li>
     <li><h3>Cloud</h3></li>
-    <li><a id="1015259" class="snippet" href="#">$fh.web</a></li>
-    <li><a id="1015127" class="snippet" href="#">$fh.cache</a></li>
+    <li><a id="1015259" class="snippet" href="#">{lang.apiWeb}</a></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
   </ul>
 </li>

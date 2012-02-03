@@ -1,4 +1,4 @@
-<h1> Build</h1>
+<h1>{lang.build}</h1>
   <div class="row buildRow">
     <div class="span6">
       <h3>iPad</h3>
@@ -39,7 +39,7 @@
 
    </div>
     <div class="span5">
-      <h3>Noia WRT</h3>
+      <h3>Nokia WRT</h3>
 
     </div>
   </div>
