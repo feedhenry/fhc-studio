@@ -65,7 +65,7 @@ var
             return {title: sec.title, fields: (fieldsOfSection.length > 0 && fieldsOfSection)};
           });
 
-          return {name: p.name, title: p.title, sections: sections};
+          return {platformName: p.name, title: p.title, sections: sections};
         });
       }
     },
