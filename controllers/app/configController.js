@@ -13,14 +13,15 @@ var
       arrangement: [
         {title: 'Orientation'},
         {title: 'Other'}
-      ]
-    },
+      ],
 
-    arrangeConfigurationForListing = function(cfg) {
-      return targetPlatforms.map(function(p, index) {
-        var sections = configurationSchema.arrangement;
-        return {name: p.name, title: p.title, sections: sections, active: index === 0};
-      });
+      configurationPrettyListing: function(cfg) {
+        var schema = this;
+        return targetPlatforms.map(function(p, index) {
+          var sections = schema.arrangement;
+          return {name: p.name, title: p.title, sections: sections, active: index === 0};
+        });
+      }
     },
 
 
@@ -36,7 +37,7 @@ configController = {
           title: 'Preferences',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
-          configuration: arrangeConfigurationForListing(cfg),
+          configuration: configurationSchema.configurationPrettyListing(cfg),
           tab: 'config'
       };
       renderer.doResponse(req, res, d);
