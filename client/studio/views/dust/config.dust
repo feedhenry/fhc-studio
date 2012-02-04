@@ -11,6 +11,9 @@
         {#sections}
           <fieldset>
             <legend>{title}</legend>
+            {#fields}
+              <p>{name} : {type} : {value}</p>
+            {/fields}
           </fieldset>
         {/sections}
         <pre>{json}</pre>
