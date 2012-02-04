@@ -3,23 +3,21 @@
     <li class="{#isNthItem n="0"}active{/isNthItem}"><a class="no-ajax" href="#configFor-{platformName}">{title}</a></li>
   {/configuration}
 </ul>
-<form>
-  <div class="pill-content">
-    {#configuration}
-      <div class="{#isNthItem n="0"}active{/isNthItem}" id="configFor-{platformName}">
-        <h1>{title}</h1>
-        {#sections}
-          {?fields}
-            <fieldset>
-              <legend>{title}</legend>
-              {#fields}
-                <p>{#configInput/}</p>
-              {/fields}
-            </fieldset>
-          {/fields}
-        {/sections}
-      </div>
-    {/configuration}
-  </div>
-</form>
+<div class="pill-content">
+  {#configuration}
+    <div class="{#isNthItem n="0"}active{/isNthItem}" id="configFor-{platformName}">
+      <h1>{title}</h1>
+      {#sections}
+        {?fields}
+          <fieldset>
+            <legend>{title}</legend>
+            {#fields}
+              <p><form method="POST" action="/app/{appId}/config">{#configInput/}</form></p>
+            {/fields}
+          </fieldset>
+        {/fields}
+      {/sections}
+    </div>
+  {/configuration}
+</div>
 

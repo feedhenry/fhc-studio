@@ -72,7 +72,7 @@ var
 
 
 configController = {
-  indexAction: function(req, res, next) {
+  indexAction : function(req, res, next) {
     var id = req.params.id;
     fhc.configuration(['list', id], function (err, cfg) {
       if (err) {
@@ -88,6 +88,10 @@ configController = {
       };
       renderer.doResponse(req, res, d);
     });
+  },
+
+  updateAction : function(req, res, next) {
+    renderer.doResponse(req, res, {});
   }
 };
 
