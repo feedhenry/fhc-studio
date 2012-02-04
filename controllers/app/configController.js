@@ -2,6 +2,19 @@ var
     renderer = require("../../util"),
     fhc      = require('fh-fhc'),
 
+    targetPlatforms = [
+      {name: 'ipad',    title: 'iPad'},
+      {name: 'iphone',  title: 'iPhone'},
+      {name: 'android', title: 'Android'}
+    ],
+
+    arrangeConfigurationForListing = function(cfg) {
+      return targetPlatforms.map(function(p, index) {
+        return {name: p.name, title: p.title, sections: [], active: index === 0};
+      });
+    },
+
+
 configController = {
   indexAction: function(req, res, next) {
     var id = req.params.id;
@@ -14,7 +27,7 @@ configController = {
           title: 'Preferences',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
-          configuration: JSON.stringify(cfg),
+          configuration: arrangeConfigurationForListing(cfg),
           tab: 'config'
       };
       renderer.doResponse(req, res, d);
