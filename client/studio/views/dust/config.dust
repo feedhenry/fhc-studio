@@ -4,7 +4,7 @@
   <li               ><a class="no-ajax" href="#configOther">Other</a></li>
 </ul>
 <div class="pill-content">
-  <div class="active" id="configForIPad">iPad</div>
+  <div class="active" id="configForIPad">iPad<pre>{configuration}</pre></div>
   <div                id="configForAndroid">Android</div>
   <div                id="configOther">All remaining&hellip;</div>
 </div>
