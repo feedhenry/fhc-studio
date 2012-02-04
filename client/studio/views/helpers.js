@@ -8,13 +8,21 @@ client.studio.views.helpers = dust.makeBase({
         }
     },
     appBarHelper : function(chunk, context){
-    	
+
     },
     filesTreeHelper : function(chunk, context){
     	var tab = context.get("tab");
     	if (tab==='editor'){
     		chunk.partial('filestree', context);
     	}
-    	
+
+    },
+
+    isNthItem : function(chunk, context, bodies, params) {
+      if (context.stack.index === parseInt(params.n, 10)) {
+        return bodies.block(chunk, context);
+      } else {
+        return chunk;
+      }
     }
 });

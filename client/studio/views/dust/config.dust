@@ -1,12 +1,12 @@
 <ul class="tabs configTabs">
   {#configuration}
-    <li class="{?active}active{/active}"><a class="no-ajax" href="#configFor-{name}">{title}</a></li>
+    <li class="{#isNthItem n="0"}active{/isNthItem}"><a class="no-ajax" href="#configFor-{name}">{title}</a></li>
   {/configuration}
 </ul>
 <form>
   <div class="pill-content">
     {#configuration}
-      <div class="{?active}active{/active}" id="configFor-{name}">
+      <div class="{#isNthItem n="0"}active{/isNthItem}" id="configFor-{name}">
         <h1>{title}</h1>
         {#sections}
           {?fields}

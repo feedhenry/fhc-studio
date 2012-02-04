@@ -11,9 +11,13 @@ var
       {name: 'nokiawrt', title: 'Nokia WRT'}
     ],
 
+    configurationSchemaTypes = {
+        string: "string"
+    },
     configurationSchema = {
+      types: configurationSchemaTypes,
       fields: {
-        "app Id": {type: "string", title: "App ID"},
+        "app Id": {type: configurationSchemaTypes.string, title: "App ID"},
         "version Name": {type: "string", title: "Version name"},
         "version Code": {type: "string", title: "Version code"},
         "packages": {type: "string", title: "Packages TODO"},
