@@ -5,7 +5,7 @@
 </ul>
 <form>
   <div class="pill-content">
-    {#configuration}
+    {#configuration:platform}
       <div class="{#isNthItem n="0"}active{/isNthItem}" id="configFor-{name}">
         <h1>{title}</h1>
         {#sections}
@@ -13,7 +13,7 @@
             <fieldset>
               <legend>{title}</legend>
               {#fields}
-                <p>{name} : {type} : {value}</p>
+                <p>{#configInput/}</p>
               {/fields}
             </fieldset>
           {/fields}

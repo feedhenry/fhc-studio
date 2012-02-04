@@ -11,13 +11,9 @@ var
       {name: 'nokiawrt', title: 'Nokia WRT'}
     ],
 
-    configurationSchemaTypes = {
-        string: "string"
-    },
     configurationSchema = {
-      types: configurationSchemaTypes,
       fields: {
-        "app Id": {type: configurationSchemaTypes.string, title: "App ID"},
+        "app Id": {type: "string", title: "App ID"},
         "version Name": {type: "string", title: "Version name"},
         "version Code": {type: "string", title: "Version code"},
         "packages": {type: "string", title: "Packages TODO"},
@@ -32,7 +28,7 @@ var
         "permission Receive SMS": {type: "boolean", title: "Permission: receive SMS"},
         "permission Vibrate": {type: "boolean", title: "Permission: vibrate"},
         "remote Debug": {type: "boolean", title: "Remote debug"},
-        "activity Spinner": {type: "select",  title: "Portrait or landscape", constraint: ["Top"]},
+        "activity Spinner": {type: "select",  title: "Activity spinner", constraint: ["Top"]},
         "hide Status Bar": {type: "boolean", title: "Hide Status Bar"},
         "splash Image": {type: "string", title: "Splash image"},
         "retina splash image": {type: "string", title: "Retina splash image"},
@@ -58,7 +54,7 @@ var
           fieldNames.forEach(function(fname) {
             var fieldDef = schema.fields[fname]
             if (fieldDef) {
-              fields[fname] = {name: fname, type: fieldDef.type, title: fieldDef.title, value: cfgForPlatform[fname]};
+              fields[fname] = {name: fname, type: fieldDef.type, title: fieldDef.title, constraint: fieldDef.constraint, value: cfgForPlatform[fname]};
             }
           });
 
