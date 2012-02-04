@@ -5,7 +5,10 @@ var
     targetPlatforms = [
       {name: 'ipad',    title: 'iPad'},
       {name: 'iphone',  title: 'iPhone'},
-      {name: 'android', title: 'Android'}
+      {name: 'android', title: 'Android'},
+      {name: 'blackberry', title: 'BlackBerry'},
+      {name: 'windowsphone7', title: 'Windows Phone 7'},
+      {name: 'nokiawrt', title: 'Nokia WRT'}
     ],
 
     configurationSchema = {
