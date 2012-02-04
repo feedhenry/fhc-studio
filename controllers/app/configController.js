@@ -8,9 +8,18 @@ var
       {name: 'android', title: 'Android'}
     ],
 
+    configurationSchema = {
+      fields: [],
+      arrangement: [
+        {title: 'Orientation'},
+        {title: 'Other'}
+      ]
+    },
+
     arrangeConfigurationForListing = function(cfg) {
       return targetPlatforms.map(function(p, index) {
-        return {name: p.name, title: p.title, sections: [], active: index === 0};
+        var sections = configurationSchema.arrangement;
+        return {name: p.name, title: p.title, sections: sections, active: index === 0};
       });
     },
 

@@ -1,12 +1,20 @@
 <ul class="tabs configTabs">
   {#configuration}
-  <li class="{?active}active{/active}"><a class="no-ajax" href="#configFor-{name}">{title}</a></li>
+    <li class="{?active}active{/active}"><a class="no-ajax" href="#configFor-{name}">{title}</a></li>
   {/configuration}
 </ul>
 <form>
   <div class="pill-content">
     {#configuration}
-    <div class="{?active}active{/active}" id="configFor-{name}"><h1>{title}</h1><pre>{json}</pre></div>
+      <div class="{?active}active{/active}" id="configFor-{name}">
+        <h1>{title}</h1>
+        {#sections}
+          <fieldset>
+            <legend>{title}</legend>
+          </fieldset>
+        {/sections}
+        <pre>{json}</pre>
+      </div>
     {/configuration}
   </div>
 </form>
