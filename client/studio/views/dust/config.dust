@@ -9,14 +9,15 @@
       <div class="{?active}active{/active}" id="configFor-{name}">
         <h1>{title}</h1>
         {#sections}
-          <fieldset>
-            <legend>{title}</legend>
-            {#fields}
-              <p>{name} : {type} : {value}</p>
-            {/fields}
-          </fieldset>
+          {?fields}
+            <fieldset>
+              <legend>{title}</legend>
+              {#fields}
+                <p>{name} : {type} : {value}</p>
+              {/fields}
+            </fieldset>
+          {/fields}
         {/sections}
-        <pre>{json}</pre>
       </div>
     {/configuration}
   </div>

@@ -18,7 +18,7 @@ var
         "version Code": {type: "string", title: "Version code"},
         "packages": {type: "string", title: "Packages TODO"},
         "flurry Application Key": {type: "string", title: "Flurry TODO"},
-        "orientation": {type: "select",  title: "Portrait or landscape", constraint: ["portrait", "landscape"]},
+        "orientation": {type: "select",  title: "Orientation", constraint: ["portrait", "landscape"]},
         "auto Rotate": {type: "boolean", title: "Auto Rotate"},
         "permission Audio": {type: "boolean", title: "Permission: audio"},
         "permission Camera": {type: "boolean", title: "Permission: camera"},
@@ -38,10 +38,9 @@ var
       },
       arrangement: [
         {title: 'General', fields: ["app Id", "flurry Application Key", "version Name", "version Code", "packages"]},
+        {title: 'Appearance', fields: ["orientation", "auto Rotate", "splash Image", "retina splash image", "landscape splash image", "foreground Splash Image", "splash Background Color", "activity Spinner", "hide Status Bar"]},
         {title: 'Permissions', fields: ["permission Audio", "permission Camera", "permission Contacts", "permission Location", "permission Read Phone State", "permission Receive SMS", "permission Vibrate"]},
-        {title: 'Orientation', fields: ["orientation", "auto Rotate"]},
-        {title: 'Splash', fields: ["splash Image", "retina splash image", "landscape splash image", "foreground Splash Image", "splash Background Color"]},
-        {title: 'Other', fields: ["remote Debug", "activity Spinner", "hide Status Bar"]}
+        {title: 'Debug', fields: ["remote Debug"]}
       ],
 
       configurationPrettyListing: function(cfg) {
@@ -60,8 +59,10 @@ var
           });
 
           sections = schema.arrangement.map(function(sec) {
-            var fieldsOfSection = sec.fields.filter(function(fname) {return cfgForPlatform[fname] !== undefined;}).map(function(fname) { return fields[fname]; });
-            return {title: sec.title, fields: fieldsOfSection};
+            var fieldsOfSection = sec.fields
+                    .filter(function(fname) {return cfgForPlatform[fname] !== undefined;})
+                    .map(function(fname) { return fields[fname]; });
+            return {title: sec.title, fields: (fieldsOfSection.length > 0 && fieldsOfSection)};
           });
 
           return {name: p.name, title: p.title, sections: sections, active: index === 0, json: JSON.stringify(cfg[p.name])};
