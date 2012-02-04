@@ -69,7 +69,7 @@ var
             return {title: sec.title, fields: (fieldsOfSection.length > 0 && fieldsOfSection)};
           });
 
-          return {name: p.name, title: p.title, sections: sections, active: index === 0, json: JSON.stringify(cfg[p.name])};
+          return {name: p.name, title: p.title, sections: sections};
         });
       }
     },
