@@ -5,6 +5,49 @@ client.studio.editor = {
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
   filesTree: undefined,
+  shortcuts: [
+    {
+      title: "Open File",
+      description: "Open a file in the editor",
+      binding: "ctrl+o",
+      handler: function(){
+        alert("Open File");
+        client.studio.editor.openFile();
+      }
+    },
+    {
+      title: "Save",
+      description: "Save the currently open file",
+      binding: "ctrl+s",
+      handler: function(){
+        client.studio.editor.saveFile();
+      }
+    },
+    {
+      title: "Save All",
+      description: "Save all currently open file",
+      binding: "ctrl+shift+s",
+      handler: function(){
+        client.studio.editor.saveAll();
+      }
+    },
+    {
+      title: "Close",
+      description: "Close the currently open file",
+      binding: "ctrl+c",
+      handler: function(){
+        client.studio.editor.close();
+      }
+    },
+    {
+      title: "Find",
+      description: "Use the find tool",
+      binding: "ctrl+f",
+      handler: function(){
+        client.studio.editor.find();
+      }
+    }
+  ],
   init: function(){
     var fileTree = $('input[name="filestree"]').remove().val();
     this.tree.init(JSON.parse(fileTree));
@@ -12,8 +55,10 @@ client.studio.editor = {
     fileContents = $('pre#editor0').html(),
     fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
-    //ready the actions
+    // bind all events for onClick
     this.bindEvents();
+    // bind all keyboard shortcuts
+    client.util.keyboard(this.shortcuts);
     
     // Set our appId on the editor object
       console.log(appId);
