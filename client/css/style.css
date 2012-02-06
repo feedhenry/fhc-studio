@@ -178,3 +178,22 @@ ul.breadcrumb {
   left: 0px;
   width: 100%;  
 }
+
+/*
+ * API Dropdown Style
+ */
+#apiDropdown ul{
+  max-width: 300px;
+  width: 300px;
+}
+#apiDropdown li{
+  display: inline-block;
+  width: 100px;
+}
+#apiDropdown li.divider, #apiDropdown li.heading{
+  display: block;
+  width: 300px;'
+}
+
+
+
