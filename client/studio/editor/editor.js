@@ -506,7 +506,9 @@ client.studio.editor = {
           console.log(res);
           var tab = me.getTabByIndex(me.activeTab);
           if (tab){
-            tab.ace.insert(res);  
+            tab.ace.insert(res);
+            tab.ace.resize();
+            tab.ace.focus();
           }
       }
     });

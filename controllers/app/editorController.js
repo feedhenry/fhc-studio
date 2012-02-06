@@ -62,7 +62,6 @@ editorController = {
         
         github().getGist(gistid,function (err,content){
            if(err){console.log(err); res.send("error");}
-            console.log(content);
             var content = JSON.parse(content);
             if (content.files['gistfile1.js']){
               res.send(content.files['gistfile1.js'].content);
