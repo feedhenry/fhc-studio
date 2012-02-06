@@ -1,19 +1,19 @@
 <input type="hidden" value="{filesTree}" name="filestree" />
 <div id="treeSearch" class="pull-left">
-  <input type="search" placeholder="Search..."></input>
+  <input type="search" placeholder="{lang.search}"></input>
   <ul class="tabs editorTabs">
-    <li class="active"><a class="no-ajax" href="#navigator">Navigator</a></li>
-    <li class=""><a href="#snippets" class="no-ajax">Snippets</a></li>
+    <li class="active"><a class="no-ajax" data-toggle="tab" href="#navigator">{lang.navigator}</a></li>
+    <li class=""><a data-toggle="tab" href="#snippets" class="no-ajax">{lang.snippets}</a></li>
   </ul>
 </div>
-<div class="pill-content">
-  <div class="active" id="navigator">
+<div class="tab-content">
+  <div class="tab-pane active" id="navigator">
     <div id="treeContainer" class="pull-left">
 
     </div>
   </div>
-  <div id="snippets">
-    Some code snippets
+  <div class="tab-pane" id="snippets">
+    {lang.someSnippets}
   </div>
 </div>
 

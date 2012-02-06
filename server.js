@@ -34,13 +34,14 @@ server.configure(function () {
     server.set('views', __dirname + '/views');
     server.set('view engine', 'jade');
 
-    server.set('env',"development"); // Should this listen for --debug flag?
+    server.set('env',"local"); // Should this listen for --debug flag?
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
 
     server.use(express.methodOverride());
-
+    
+    server.use(express.compiler({ src: __dirname + '/client/css', enable: ['less'] }));
     server.use(express.static(__dirname + '/client'));
 });
 
@@ -80,9 +81,9 @@ var checkAuth = controllers.userController.checkAuth; // auth checking function
 
 
 
-server.get("/", checkAuth, controllers.indexController.indexAction);
+server.get("/", checkAuth, controllers.appController.indexAction);
 
-server.get('/home.:resType?', checkAuth, controllers.indexController.indexAction);
+server.get('/home.:resType?', checkAuth, controllers.appController.indexAction);
 //user actions
 server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);
@@ -117,7 +118,7 @@ server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorControl
 server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
 server.post('/app/:id/:operation/:resourceID?.:resType?', checkAuth, controllers.app.operationController.indexAction);
 server.get("/editor/gist",controllers.app.editorController.gistAction);
-server.get("/editor/gist",controllers.app.editorController.gist);
+server.get("/editor/gist/:gistid",controllers.app.editorController.gist);
 
 server.listen(3000);
 

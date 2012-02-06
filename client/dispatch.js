@@ -12,7 +12,7 @@ client.studio.dispatch = function () {
             if(!opts) opts = {};
             self.url = (path === "/") ? "/home" : path;
             self.url = self.url.replace(/\.+[a-zA-Z]+$/, ""); // strip file extension from URL - always doing JSON req here
-            container = opts.container || "#container";
+            container = opts.container || "body";
             // if we haven't specified a callback function, this happens by default
             var callback = opts.callback || function(data){
               client.util.History.pushState(data,data.title,self.url)
@@ -32,10 +32,18 @@ client.studio.dispatch = function () {
             data = res.data;
             //render dust template client side
             dust.render(tpl, client.studio.views.helpers.push(data), function (err, out) {
+                if (err){
+                  client.util.messages.error(err);
+                  return;
+                }
+              
                 $(container).html(out);
                 //add update as a call back to the internal a href
                 // clicks
                 $(container).ajaxify(self.update);
+                
+                $(container).trigger('firedup');
+                $(container).unbind('firedup');
             });
         }
     };

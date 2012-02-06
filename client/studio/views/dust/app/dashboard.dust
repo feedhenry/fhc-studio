@@ -1,0 +1,25 @@
+<section class="preview dashboardPreview pull-right">
+  <h2>{lang.preview}</h2>
+  <div class="previewContainer iPhone" style=" width: 640px; -webkit-transform: scale(0.4); -webkit-transform-origin: 0 0;">
+  <iframe src="{preview}" frameborder="0"></iframe>
+  </div>
+</section>
+
+<section class="summary">
+  <h2>{data.inst.title}</h2><br />
+  <p>{data.inst.description}</p>
+  <h3>{lang.moreInfo}</h3>
+  <strong>{lang.w3cid}:</strong> {data.app.w3cid}<br />
+  <strong>{lang.guid}:</strong> {data.inst.guid}<br />
+  <strong>{lang.height}:</strong>{data.inst.guid}<br />
+  <strong>{lang.width}:</strong> {data.inst.guid}<br />
+</section>
+
+<section class="qrcode">
+  <h2>{lang.previewOnMobile}</h2> 
+  <span class="qrcode_url">{previewUrl}</span>
+  <span class="qrcode_placeholder">
+    <img src="http://chart.apis.google.com/chart?cht=qr&chs=200x200&choe=UTF-8&chld=H&chl={previewUrl}" />
+  </span>
+</section>
+

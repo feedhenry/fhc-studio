@@ -1,45 +1,37 @@
-<script src="/js/lib/bootstrap/bootstrap-tabs.js"></script>
-<script type="text/javascript">
-    $('.tabs').tabs();
-
-    function switchTab(id){
-      $("#" + id + "Link").click();
-    }
-
-
-  </script>
-<div class="container-fluid">
+<div class="navbar navbar-fixed">
+  <div class="navbar-inner">
+    <div class="container">
+  
      <img class="logo" src="/images/logo-small.png" alt="Feedhenry Logo">
-
-          <ul class="nav studioNav">
-            <li class="dropdown" data-dropdown="dropdown">
-              <a class="brand dropdown-toggle no-ajax" href="#">studio</a>
-              <ul class="dropdown-menu">
-                <li><a class="brand singlepage" href="/">Dashboard</a></li>
-                <li><a class="brand singlepage" href="/apps">App Studio</a></li>
-                <li><a class="brand" href="/reporting">Reporting</a></li>
-                <li><a class="brand" href="/admin">Admin</a></li>
-              </ul>
-            </li>
-            <li class="active"><a class="singlepage" href="/home">Home</a></li>
-            <li><a class="singlepage" href="/apps">Apps</a></li>
-            <li><a href="/apps">Reporting</a></li>
-            <li><a href="/apps">Admin</a></li>
-            <li><a href="/apps">Docs</a></li>
+  
+      <ul class="nav studioNav">
+        <li class="dropdown">
+          <a class="brand dropdown-toggle no-ajax" data-toggle="dropdown" href="#">studio</a>
+          <ul class="dropdown-menu">
+            <li><a class="brand" href="/">{lang.dashboard}</a></li>
+            <li><a class="brand" href="/apps">{lang.appStudio}</a></li>
+            <li><a class="brand" href="/reporting">{lang.reporting}</a></li>
+            <li><a class="brand" href="/admin">{lang.admin}</a></li>
           </ul>
-           {#user}
+        </li>
+        {! This helps decide where the rest of the nav's menu buttons should come from. !}
+        {navigationHelper}
+      </ul>
+       {?user}
+        
+        <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
+          <a href="/help">{lang.help}</a> |
+          <a href="/prefs">{lang.prefs}</a> |
+          <a href="/logout">{lang.logout}</a>
+        </p>
+        {:else}
+        <form action="/login" method="post" class="pull-right form-inline">
+          <input name="username" class="input-small" type="text" placeholder="{lang.email}">
+          <input name="password" class="input-small" type="password" placeholder="{lang.password}">
+          <button class="btn" type="submit">{lang.login}</button>
+        </form>
+        {/user}
 
-            <p class="pull-right"><a href="#">{.username} ({.role})</a> |
-              <a href="#">Help</a> |
-              <a href="#">Preferences</a> |
-              <a href="/logout">Log Out</a>
-            </p>
-            {:else}
-            <form action="/login" method="post" class="pull-right">
-              <input name="username" class="input-small" type="text" placeholder="Username">
-              <input name="password" class="input-small" type="password" placeholder="Password">
-              <button class="btn" type="submit">Sign in</button>
-            </form>
-            {/user}
-
+    </div>
+  </div>
 </div>

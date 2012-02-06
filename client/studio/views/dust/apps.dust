@@ -1,12 +1,13 @@
-<div class="topbar">
-      <div class="topbar-inner">
-          {>navigation/}
-      </div>
-</div>
+{>head/}
+{>navigation/}
+
+<script>
+    $("table.apps").tablesorter();
+</script>
 <div class="content apps fullWidth">
 {tabHelper}
-<h2>My Apps</h2>
-  <table class="apps">
+<h2>{lang.myapps}</h2>
+  <table class="apps table">
           <colgroup>
             <col class="icon">
             <col class="title">
@@ -17,10 +18,10 @@
           <thead>
             <tr>
               <th class="header"></th>
-              <th class="header headerSortDown">Name</th>
-              <th class="header">Description</th>
-              <th class="header">Modified</th>
-              <th class="header">Version</th>
+              <th class="header headerSortDown">{lang.name}</th>
+              <th class="header">{lang.description}</th>
+              <th class="header">{lang.modified}</th>
+              <th class="header">{lang.version}</th>
             </tr>
           </thead>
           <tbody>
@@ -29,7 +30,6 @@
                 <tr>
                     <td><img src="https://{domain}.feedhenry.com/static/i/{domain}/{id}/studio/46/small.png"></td>
                     <td><a class="singlepage" href="/app/{id}">{title}</a></td>
-                    <td>{title}</td>
                     <td>{description}</td>
                     <td>{modified}</td>
                     <td>{version}</td>
@@ -38,7 +38,9 @@
           </tbody>
   </table>
 
+
   <footer>
-          <p>© Feedhenry 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">Service Status: OK</a></span> </p>
+          <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
 </footer>
 </div>
+{>foot/}

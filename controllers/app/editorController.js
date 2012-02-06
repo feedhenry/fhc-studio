@@ -57,22 +57,16 @@ editorController = {
     },
     gist : function (req,res){
         //todo send request when editor loads for fh gists and load into dom
-        var https = require("https"),
-            opts = {host:"api.github.com",path:"/gists/1099663",method:'GET'};
-        https.get(opts,function(suc){
-            if(suc){
-                var content = "";
-                console.log("suc");
-                suc.on("data",function(data){
-                    content+=data;
-                });
-                suc.on("end",function(){
-                    //console.log(content);
-                    var json = JSON.parse(content);
-                    //console.log(json);
-                    console.log(json.files['gistfile1.js'].content);
-                    res.send(json.files['gistfile1.js'].content);
-                });
+        var gistid = req.params.gistid;
+        var github = require("../../services/github");
+        
+        github().getGist(gistid,function (err,content){
+           if(err){console.log(err); res.send("error");}
+            var content = JSON.parse(content);
+            if (content.files['gistfile1.js']){
+              res.send(content.files['gistfile1.js'].content);
+            } else {
+              res.send(content.files['$fh.file.js'].content);
             }
         });
 

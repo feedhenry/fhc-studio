@@ -19,7 +19,8 @@ var dashboardController,
           title:'Dashboard',
           appId: id,
           data:data,
-          tab:'dashboard'
+          tab:'dashboard',
+          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + data.inst.guid + "/container"
         };
         renderer.doResponse(req, res, d);
       });      

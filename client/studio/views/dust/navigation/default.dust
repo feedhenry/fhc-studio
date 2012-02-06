@@ -1,0 +1,5 @@
+<li class="active"><a class="singlepage" href="/home">{lang.home}</a></li>
+<li><a class="singlepage" href="/apps">{lang.apps}</a></li>
+<li><a href="/apps">{lang.reporting}</a></li>
+<li><a href="/apps">{lang.admin}</a></li>
+<li><a href="/apps">{lang.docs}</a></li>
