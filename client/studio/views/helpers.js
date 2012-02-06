@@ -29,20 +29,21 @@ client.studio.views.helpers = dust.makeBase({
       var platform = context.get('platformName'),
           key = context.get('name'),
           value = context.get('value'),
-          inputId = ['input', 'config', platform, name].join('_'),
+          inputName = 'config[' + key + ']',
+          inputId = ['input', 'config', platform, key].join('_'),
           constraint = context.get('constraint'),
           options;
       chunk.write('<label for="' + inputId + '">' + context.get('title') + '</label>');
-      chunk.write('<input type="hidden" name="platform" value="' + platform + '"/>');
-      chunk.write('<input type="hidden" name="key" value="' + key + '"/>');
+      //chunk.write('<input type="hidden" name="platform" value="' + platform + '"/>');
+      //chunk.write('<input type="hidden" name="key" value="' + key + '"/>');
       switch(context.get('type')) {
         case "string":
-          return chunk.write('<input name="value" type="text" id="' + inputId + '" value="' + value + '"/>');
+          return chunk.write('<input name="' + inputName + '" type="text" id="' + inputId + '" value="' + value + '"/>');
         case "boolean":
-          return chunk.write('<input name="value" type="checkbox" id="' + inputId + '" value="true" checked="' + (value === 'true') + '"/>');
+          return chunk.write('<input name="' + inputName + '" type="checkbox" id="' + inputId + '" value="true" checked="' + (value === 'true') + '"/>');
         case "select":
           options = !constraint ? '' : constraint.map(function(o, idx) { return '<option' + (o === value ? ' selected="true">' : '>') + o + '</option>'; });
-          return chunk.write('<select name="value" id="' + inputId + '">' + options + '</select>');
+          return chunk.write('<select name="' + inputName + '" id="' + inputId + '">' + options + '</select>');
       }
     },
     navigationHelper : function(chunk, context){

@@ -91,7 +91,33 @@ configController = {
   },
 
   updateAction : function(req, res, next) {
-    renderer.doResponse(req, res, {});
+    var updates = req.body && req.body.config,
+        platform = req.body && req.body.config_for_platform,
+        keys = Object.keys(updates),
+        id = req.params.id,
+
+        //TODO make it more efficient by sending "set" concurrently
+        updateOne = function(err) {
+          //not checking for error – whole operation is not atomic and breaking it in the middle is pure nonsense
+          if (err) {
+            console.log(err);
+          }
+          if (keys.length > 0) {
+            var key = keys.shift();
+            console.log('updating ' + key + ' => ' + updates[key]);
+            fhc.configuration(['set', id, platform, key, updates[key]], updateOne);
+          } else {
+            configController.indexAction(req, res, next); //TODO Think about 302
+          }
+        };
+
+    fhc.configuration(['list', id], function (err, cfg) {
+      if (err) {
+        renderer.doError(res, req, "Couldn't update configuration for app"); return;
+      }
+      keys = keys.filter(function(key) {return (cfg[platform][key] && cfg[platform][key] !== updates[key]);});
+      updateOne();
+    });
   }
 };
 

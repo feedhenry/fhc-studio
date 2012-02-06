@@ -1,0 +1,27 @@
+<ul class="tabs configTabs">
+  {#configuration}
+    <li class="{#isNthItem n="0"}active{/isNthItem}"><a class="no-ajax" href="#configFor-{platformName}">{title}</a></li>
+  {/configuration}
+</ul>
+<div class="pill-content">
+  {#configuration}
+    <div class="{#isNthItem n="0"}active{/isNthItem}" id="configFor-{platformName}">
+      <h1>{title}</h1>
+      <form method="POST" action="/app/{appId}/config">
+        <input type="hidden" name="config_for_platform" value="{platformName}"/>
+        {#sections}
+          {?fields}
+            <fieldset>
+              <legend>{title}</legend>
+              {#fields}
+                <p>{#configInput/}</p>
+              {/fields}
+            </fieldset>
+          {/fields}
+        {/sections}
+        <p><input type="submit" value="Save"/></p>
+      </form>
+    </div>
+  {/configuration}
+</div>
+
