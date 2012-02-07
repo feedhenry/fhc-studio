@@ -5,47 +5,60 @@ client.studio.editor = {
   editorTabPrefix : "tab",
   editorInstancePrefix : "editor",
   filesTree : undefined,
-  shortcuts : [ {
-    title : "Open File",
-    description : "Open a file in the editor",
-    binding : "ctrl+o",
-    handler : function() {
-      alert("CTRL+O");
-      client.studio.editor.openFile();
-    }
-  }, {
-    title : "Save",
-    description : "Save the currently open file",
-    binding : "ctrl+s",
-    handler : function() {
-      alert("CTRL+S");
-      client.studio.editor.save();
-    }
-  }, {
-    title : "Save All",
-    description : "Save all currently open file",
-    binding : "ctrl+shift+s",
-    handler : function() {
-      alert("CTRL+SHIFT+S");
-      client.studio.editor.saveAll();
-    }
-  }, {
-    title : "Close",
-    description : "Close the currently open file",
-    binding : "ctrl+c",
-    handler : function() {
-      alert("CTRL+C");
-      client.studio.editor.close();
-    }
-  }, {
-    title : "Find",
-    description : "Use the find tool",
-    binding : "ctrl+f",
-    handler : function() {
-      alert("CTRL+F");
-      client.studio.editor.find();
-    }
-  } ],
+  shortcuts : [ 
+    {
+      title : "Open File",
+      description : "Open a file in the editor",
+      binding : "ctrl+o",
+      handler : function() {
+        alert("CTRL+O");
+        client.studio.editor.openFile();
+      }
+    }, 
+    {
+      title : "Save",
+      description : "Save the currently open file",
+      binding : "ctrl+s",
+      handler : function() {
+        alert("CTRL+S");
+        client.studio.editor.save();
+      }
+    }, 
+    {
+      title : "Save All",
+      description : "Save all currently open file",
+      binding : "ctrl+shift+s",
+      handler : function() {
+        alert("CTRL+SHIFT+S");
+        client.studio.editor.saveAll();
+      }
+    }, 
+    {
+      title : "Close",
+      description : "Close the currently open file",
+      binding : "ctrl+c",
+      handler : function() {
+        alert("CTRL+C");
+        client.studio.editor.closeTab();
+      }
+    }, 
+    {
+      title : "Next Tab",
+      description : "Switch to your next file tab",
+      binding : "ctrl+]",
+      handler : function() {
+        client.studio.editor.tabForward();
+      }
+    }, 
+    {
+      title : "Previous Tab",
+      description : "Switch to your previous file tab",
+      binding : "ctrl+[",
+      handler : function() {
+        client.studio.editor.tabBack();
+      }
+    }, 
+  ],
   init : function() {
     var fileTree = $('input[name="filestree"]').remove().val();
     this.tree.init(JSON.parse(fileTree));
@@ -258,18 +271,7 @@ client.studio.editor = {
   newTab : function(res) {
     // Some locals for use in this function
     var fileContents = res.data.fileContents, fileName = res.data.title
-        || "Untitled", fileId = res.data.fileId, mode = res.data.mode, me = client.studio.editor, index = me.tabs.length || 0, // TODO:
-                                                                                                                                // This
-                                                                                                                                // isn't
-                                                                                                                                // a
-                                                                                                                                // reliable
-                                                                                                                                // way
-                                                                                                                                // to
-                                                                                                                                // set
-                                                                                                                                // index.
-                                                                                                                                // should
-                                                                                                                                // be
-                                                                                                                                // me.nextIndex
+        || "Untitled", fileId = res.data.fileId, mode = res.data.mode, me = client.studio.editor, index = me.tabs.length || 0, // TODO: This isn't a reliable way to set index.shouldbe me.nextIndex
     editor = undefined, modeString = undefined, extension = undefined;
 
     // Extract the filename extension using a regex if possible
@@ -358,9 +360,8 @@ client.studio.editor = {
                                                         // tab object
 
     // bind all keyboard shortcuts to the editor, must be done here to ensure
-    // they are only active
-    // on the editor dom, this prevents firing browser shortcuts
-    client.util.keyboard(this.shortcuts, "editor" + index);
+    // they are only active on the editor dom, this prevents firing browser shortcuts
+    client.util.keyboard(me.shortcuts, "#editor" + index + " textarea");
 
     // If we're a HTML page, we now need to append it's content into ace..
     if (modeString && modeString === "html") { // HTML Can't be injected using
@@ -553,5 +554,34 @@ client.studio.editor = {
       }
     });
 
-  }
+  },
+
+  /*
+   * Show the next open tab
+   */
+  tabForward : function(){
+    var me = client.studio.editor;
+     
+    if (me.tabs.length>1 && me.activeTab!=me.tabs.length){
+      var nextTab = me.activeTab+1;
+      me.showTab(nextTab);
+    }
+    console.log("next tab");
+    console.log(me.activeTab);
+    console.log(me.tabs.length);
+  },
+  /*
+   * Show the previous open tab
+   */
+  tabBack : function(){
+    var me = client.studio.editor;
+     
+    if (me.tabs.length>1 && me.activeTab!=0){
+      var prevTab = me.activeTab-1;
+      me.showTab(prevTab);
+    }
+    console.log("prev tab");
+    console.log(me.activeTab);
+    console.log(me.tabs.length);
+  } 
 };
