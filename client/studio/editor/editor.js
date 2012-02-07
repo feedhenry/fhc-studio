@@ -11,14 +11,13 @@ client.studio.editor = {
       description : "Open a file in the editor",
       binding : "ctrl+o",
       handler : function() {
-        alert("CTRL+O");
         client.studio.editor.openFile();
         return false;
       }
     }, 
     {
       title : "New File",
-      description : "Open a file tab in the editor",
+      description : "Open a new blank file in the editor",
       binding : "ctrl+q",
       handler : function() {
         var res = {
@@ -48,7 +47,6 @@ client.studio.editor = {
       description : "Save all currently open file",
       binding : "ctrl+shift+s",
       handler : function() {
-        alert("CTRL+SHIFT+S");
         client.studio.editor.saveAll();
         return false;
       }
@@ -56,10 +54,10 @@ client.studio.editor = {
     {
       title : "Close",
       description : "Close the currently open file",
-      binding : "ctrl+/",
+      binding : "ctrl+e",
       handler : function() {
-        alert("CTRL+C");
-        client.studio.editor.closeTab();
+        var me = client.studio.editor;
+        client.studio.editor.closeTab(me.activeTab);
         return false;
       }
     }, 
@@ -222,8 +220,8 @@ client.studio.editor = {
    * Performs an 'update' operation in the studio
    */
   save : function(index, callback) {
-    var me = client.studio.editor, appId = me.appId, index = index
-        || me.activeTab, tab = me.getTabByIndex(index), tabId = 'tab' + index, editor = tab.ace, editorSession = editor
+    var me = client.studio.editor, appId = me.appId, index = index,
+     tab = me.getTabByIndex(index), tabId = 'tab' + index, editor = tab.ace, editorSession = editor
         .getSession(), editorContents = editorSession.getValue(), fileId = tab.fileId, successCallback = callback
         || undefined;
 
@@ -255,6 +253,45 @@ client.studio.editor = {
       }
     });
   },
+
+  /*
+   * Saves all open files, any previously unsaved files will cause a saveAs prompt
+   */
+  saveAll : function(){
+    var me = client.studio.editor;
+    var currentTab; 
+    var newFileIndex=0;;
+
+    for (var i=0; i<me.tabs.length; i++){
+      currentTab = me.getTabByIndex(i);
+
+      if (!currentTab.fileId || currentTab.fileId.trim() === "") {
+        newFileIndex = i;
+      } else {
+        me.save(i);
+        console.log("Saved file "+i);
+      }
+    }
+    var title, message, buttons;
+    title = "New Files";
+    message = "You have a new file to save. Would you like to save it now?";
+    buttons = [ {
+      text : 'Cancel',
+      callback : function() {
+        // Just cancel this modal dialog
+        return true;
+      }
+    }, {
+      text : 'Save',
+      type : 'primary',
+      callback : function() {
+        me.save(newFileIndex);
+      }
+    } ];
+    client.util.modal(title, message, buttons);
+
+  },
+
   /*
    * Opens a modal save dialog with a files tree before creating a new file with
    * a create operation
