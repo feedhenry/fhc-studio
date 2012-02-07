@@ -182,11 +182,18 @@ Note:
                 // prevent f5 overlapping with 't' (or f4 with 's', etc.)
                 character = !special && String.fromCharCode(code).toLowerCase(),
                 shift = event.shiftKey,
-                ctrl = event.ctrlKey,            
+                ctrl = event.ctrlKey, 
+                // Patch - CMD Key for Mac - EVAN.S
+                cmd = event.metaKey;           
                 // patch for jquery 1.2.5 && 1.2.6 see more at:  
                 // http://groups.google.com/group/jquery-en/browse_thread/thread/83e10b3bb1f1c32b
                 alt = event.altKey || event.originalEvent.altKey,
                 mapPoint = null;
+
+                // Mac bug fix - prevent misfire of '[' key when using CMD key - EVAN.S
+                if (cmd && !special && character==="["){
+                    character="";
+                }
 
             for (var x=0; x < ids.length; x++){
                 if (hotkeys.triggersMap[ids[x]][type]){
@@ -199,7 +206,8 @@ Note:
             if (mapPoint){ 
                 var trigger;
                 // event type is associated with the hkId
-                if(!shift && !ctrl && !alt) { // No Modifiers
+                // Patch - CMD Key for Mac - EVAN.S
+                if(!shift && !ctrl && !alt && !cmd) { // No Modifiers
                     trigger = mapPoint[special] ||  (character && mapPoint[character]);
                 }
                 else{
@@ -207,7 +215,8 @@ Note:
                     var modif = '';
                     if(alt) modif +='alt+';
                     if(ctrl) modif+= 'ctrl+';
-                    if(shift) modif += 'shift+';
+                    if(cmd) modif += 'cmd+'; // Patch - CMD Key for Mac - EVAN.S
+                    if(shift) modif += 'shift+';      
                     // modifiers + special keys or modifiers + character or modifiers + shift character or just shift character
                     trigger = mapPoint[modif+special];
                     if (!trigger){

@@ -48,6 +48,7 @@ client.studio.editor = {
       binding : "ctrl+shift+s",
       handler : function() {
         client.studio.editor.saveAll();
+        console.log("called save all");
         return false;
       }
     }, 
