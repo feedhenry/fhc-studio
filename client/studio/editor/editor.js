@@ -13,6 +13,24 @@ client.studio.editor = {
       handler : function() {
         alert("CTRL+O");
         client.studio.editor.openFile();
+        return false;
+      }
+    }, 
+    {
+      title : "New File",
+      description : "Open a file tab in the editor",
+      binding : "ctrl+q",
+      handler : function() {
+        var res = {
+          data : {
+            fileContents : '',
+            fileId : '',
+            mode : ''
+          }
+        };
+
+        client.studio.editor.newTab(res);
+        return false;
       }
     }, 
     {
@@ -20,8 +38,9 @@ client.studio.editor = {
       description : "Save the currently open file",
       binding : "ctrl+s",
       handler : function() {
-        alert("CTRL+S");
-        client.studio.editor.save();
+        var me = client.studio.editor;
+        client.studio.editor.save(me.activeTab);
+        return false;
       }
     }, 
     {
@@ -31,15 +50,17 @@ client.studio.editor = {
       handler : function() {
         alert("CTRL+SHIFT+S");
         client.studio.editor.saveAll();
+        return false;
       }
     }, 
     {
       title : "Close",
       description : "Close the currently open file",
-      binding : "ctrl+c",
+      binding : "ctrl+/",
       handler : function() {
         alert("CTRL+C");
         client.studio.editor.closeTab();
+        return false;
       }
     }, 
     {
@@ -48,6 +69,7 @@ client.studio.editor = {
       binding : "ctrl+]",
       handler : function() {
         client.studio.editor.tabForward();
+        return false;
       }
     }, 
     {
@@ -56,6 +78,7 @@ client.studio.editor = {
       binding : "ctrl+[",
       handler : function() {
         client.studio.editor.tabBack();
+        return false;
       }
     }, 
   ],
@@ -72,7 +95,7 @@ client.studio.editor = {
     // bind all events for onClick
     this.bindEvents();
     // bind all keyboard shortcuts
-    // client.util.keyboard(this.shortcuts);
+    client.util.keyboard(this.shortcuts, ".fluid-container");
 
     // Set our appId on the editor object
     console.log(appId);
@@ -199,7 +222,6 @@ client.studio.editor = {
    * Performs an 'update' operation in the studio
    */
   save : function(index, callback) {
-    console.log("called save-----");
     var me = client.studio.editor, appId = me.appId, index = index
         || me.activeTab, tab = me.getTabByIndex(index), tabId = 'tab' + index, editor = tab.ace, editorSession = editor
         .getSession(), editorContents = editorSession.getValue(), fileId = tab.fileId, successCallback = callback
@@ -361,7 +383,7 @@ client.studio.editor = {
 
     // bind all keyboard shortcuts to the editor, must be done here to ensure
     // they are only active on the editor dom, this prevents firing browser shortcuts
-    client.util.keyboard(me.shortcuts, "#editor" + index + " textarea");
+    //client.util.keyboard(me.shortcuts, "#editor" + index + " textarea");
 
     // If we're a HTML page, we now need to append it's content into ace..
     if (modeString && modeString === "html") { // HTML Can't be injected using
@@ -562,13 +584,12 @@ client.studio.editor = {
   tabForward : function(){
     var me = client.studio.editor;
      
-    if (me.tabs.length>1 && me.activeTab!=me.tabs.length){
+    if (me.tabs.length>1 && me.activeTab!=me.tabs.length-1){
       var nextTab = me.activeTab+1;
       me.showTab(nextTab);
+    } else if (me.activeTab===me.tabs.length-1){
+      me.showTab(0);
     }
-    console.log("next tab");
-    console.log(me.activeTab);
-    console.log(me.tabs.length);
   },
   /*
    * Show the previous open tab
@@ -579,9 +600,8 @@ client.studio.editor = {
     if (me.tabs.length>1 && me.activeTab!=0){
       var prevTab = me.activeTab-1;
       me.showTab(prevTab);
+    } else if (me.activeTab===0){
+      me.showTab(me.tabs.length-1);
     }
-    console.log("prev tab");
-    console.log(me.activeTab);
-    console.log(me.tabs.length);
   } 
 };
