@@ -8,14 +8,14 @@ client.studio.views.helpers = dust.makeBase({
         }
     },
     appBarHelper : function(chunk, context){
-    	
+      
     },
     filesTreeHelper : function(chunk, context){
-    	var tab = context.get("tab");
-    	if (tab==='editor'){
-    		chunk.partial('filestree', context);
-    	}
-    	
+      var tab = context.get("tab");
+      if (tab==='editor'){
+        chunk.partial('filestree', context);
+      }
+      
     },
     navigationHelper : function(chunk, context){
       var page = context.get("tpl");
