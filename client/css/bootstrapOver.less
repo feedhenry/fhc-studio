@@ -1,4 +1,12 @@
 /* Style the containers */
+.fluid-container > .content.fullWidth {
+  margin-left: 0px; 
+}
+
+.fluid-container > .content.landing {
+  margin: 0px 20px;  
+}
+
 .fluid-container {
   padding-left: 0px;
   padding-right: 0px;
@@ -11,15 +19,15 @@
 
 /* Some coloring on messaging */
 .label.success a {
-  color: #fff;
+  color: @white;
 }
 .alert-message.info h3 {
-  color: #fff;
+  color: @white;
 }
 
 /* Style dropdown headings to look a little more visually appealing */
 .dropdown h3 {
-  color: #fff; /* TODO: less */
+  color: @white;
   padding-left: 15px;	
 }
 
@@ -27,11 +35,11 @@
   Make sure the color of our text in the header is white
 */
 .navbar a.brand, .navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{
-  color: #fff !important;
+  color: @white !important;
 }
 
 .studioNav .dropdown-menu {
-  background: #333; /* TODO: less */  
+  background: @grayDark; /* TODO: less */  
 }
 
 /* TODO: Probably a bug in BS2.0 - remove if no longer required after final release */

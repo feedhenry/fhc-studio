@@ -3254,4 +3254,357 @@ a.thumbnail:hover {
   .offset12  { .offset(12); }
 
 }
-*//* Set our base colors */
+*//* Style the containers */
+.fluid-container > .content.fullWidth {
+  margin-left: 0px;
+}
+.fluid-container > .content.landing {
+  margin: 0px 20px;
+}
+.fluid-container {
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 100%;
+}
+.navbar.navbar-fixed .container, .navbar .container {
+  width: 100%;
+}
+/* Some coloring on messaging */
+.label.success a {
+  color: #ffffff;
+}
+.alert-message.info h3 {
+  color: #ffffff;
+}
+/* Style dropdown headings to look a little more visually appealing */
+.dropdown h3 {
+  color: #ffffff;
+  padding-left: 15px;
+}
+/*
+  Make sure the color of our text in the header is white
+*/
+.navbar a.brand,
+.navbar .pull-right a,
+.navbar .pull-right a:visited,
+.navbar .pull-right a:hover,
+.navbar .pull-right a:active {
+  color: #ffffff !important;
+}
+.studioNav .dropdown-menu {
+  background: #333333;
+  /* TODO: less */
+}
+/* TODO: Probably a bug in BS2.0 - remove if no longer required after final release */
+ul.tabs {
+  list-style: none;
+  height: 28px;
+}
+.apps .icon {
+  width: 5%;
+}
+.apps .title {
+  width: 20%;
+}
+.apps .desc {
+  width: 50%;
+}
+.apps .modified {
+  width: 20%;
+}
+.apps .version {
+  width: 5%;
+}
+.apps tr:hover {
+  background-color: #f7f7f7;
+}
+.fluid-container > .content.app, .fluid-container > .content.apps {
+  padding: 2px 20px;
+}
+.fluid-container > .content.app {
+  margin-left: 100px;
+}
+#dashboard.container {
+  margin: 0px auto;
+}
+.dashboard .qrcode .qrcode_url {
+  display: none;
+}
+.dashboard .summary {
+  margin-right: 400px;
+}
+.preview.dashboardPreview {
+  right: 20px;
+  width: 380px;
+}
+.previewContainer {
+  background-repeat: no-repeat;
+  -webkit-transform-origin: 0 0;
+}
+.previewContainer.iPhone {
+  background-image: url("../images/iPhone4.png");
+  background-size: 763px;
+  padding: 276px 65px;
+}
+.previewContainer.iPhone iframe {
+  width: 640px;
+  height: 960px;
+}
+.previewContainer.iPad {
+  background-image: url("../images/iPad.png");
+  background-size: 1253px;
+  padding: 98px 114px;
+}
+.previewContainer.iPad iframe {
+  width: 1024px;
+  height: 768px;
+}
+/* 
+ * App bar Styles
+ * Styles for the narrow left hand bar on the page of an individual app
+ */
+.fluid-container > .appBar {
+  position: absolute;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  width: 100px;
+  color: #ffffff;
+  text-align: center;
+  background-color: #333333;
+  font-size: 0.85em;
+}
+.appBar ul {
+  height: 100%;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}
+.appBar li {
+  border-bottom: 1px solid #222222;
+  border-top: 1px solid #555555;
+}
+.appBar li a, .appBar li a:hover {
+  position: relative;
+  display: block;
+  height: 65px;
+  text-decoration: none;
+  background-repeat: no-repeat;
+  background-position: center 0px;
+}
+.appBar li a span {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100px;
+}
+.appBar a,
+.appBar a:link,
+.appBar a:visited,
+.appBar a:active {
+  color: #ffffff;
+}
+.appBar li.active a, .appBar li:hover a {
+  background-position: center -100px;
+}
+.appBar li.active {
+  background-image: -webkit-linear-gradient(top, #333333, #222222);
+}
+/* TODO - make sprites! */
+.appBar li#dashboardLink a {
+  background-image: url("../images/appBar/dashboard.png");
+}
+.appBar li#editorLink a {
+  background-image: url("../images/appBar/editor.png");
+}
+.appBar li#previewLink a {
+  background-image: url("../images/appBar/preview.png");
+}
+.appBar li#buildLink a {
+  background-image: url("../images/appBar/build.png");
+}
+.appBar li#debugLink a {
+  background-image: url("../images/appBar/debug.png");
+}
+.appBar li#prefsLink a {
+  background-image: url("../images/appBar/prefs.png");
+}
+.fluid-container > .content.app.editor {
+  padding: 0px;
+  height: 100%;
+  margin-left: 320px;
+}
+#treeContainer, #treeSearch, #snippets {
+  left: 100px;
+  width: 220px;
+  position: absolute;
+}
+#treeSearch {
+  background-color: #333333;
+}
+#treeSearch input {
+  width: 100px;
+  margin: 6px 0px;
+  height: 12px;
+}
+#treeContainer, #snippets {
+  top: 94px;
+  /* Put it inline with the editor content window */
+
+  float: left;
+  clear: both;
+  height: 100%;
+  background: #333333;
+}
+#treeContainer > ul, #snippets {
+  background: #ffffff;
+  min-height: 100px;
+}
+.jstree-default a ins.jstree-icon.file {
+  background: transparent url("../images/editor/file.png") no-repeat;
+  background-position: 0px 0px;
+  background-size: 14px;
+}
+#editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav {
+  height: 34px;
+}
+#editorToolbar.navbar {
+  background-color: #333333;
+}
+#editorToolbar.navbar ul.dropdown-menu {
+  top: 34px;
+}
+.ace_editor {
+  position: relative !important;
+}
+.content.editor .tab-content, .content.editor .tab-content div.tab, .content.editor .tab-content div.tab pre {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.editor pre {
+  padding: 0px;
+  background: transparent;
+  border: 0px;
+}
+/* 
+ * Tabs styling
+ */
+ul.editorTabs {
+  margin: 0px;
+  background-color: #333333;
+  border-color: #333333;
+}
+ul.editorTabs li a, ul.editorTabs li a.active {
+  height: 24px;
+  line-height: 24px;
+}
+ul.editorTabs li a:hover {
+  background-color: #222222;
+  border: 1px solid #000;
+  /* TODO: Less */
+
+  border-bottom: 0px;
+}
+ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
+  color: #ffffff;
+  text-decoration: none;
+}
+/* Style the close button */
+ul.editorTabs li a strong {
+  padding-left: 10px;
+}
+.app.editor ul.editorTabs {
+  padding-left: 50px;
+  /* Pad the tabs that sit ontop of the text editor so they dont sit on the LHS gutter */
+
+  padding-top: 34px;
+}
+.nav.studioNav .dropdown-menu a {
+  color: #ffffff;
+  margin: 0px;
+}
+/*
+ * API Dropdown Style
+ */
+#apiDropdown ul {
+  max-width: 300px;
+  width: 300px;
+}
+#apiDropdown li {
+  display: inline-block;
+  width: 100px;
+}
+#apiDropdown li.divider, #apiDropdown li.heading {
+  display: block;
+  width: 300px;
+}
+/*
+ *Build screen
+ */
+.buildRow img {
+  height: 100px;
+  float: left;
+}
+/*
+ * Top nav styles
+ */
+.navbar.navbar-fixed img.logo {
+  margin-left: 12px;
+}
+.navbar.navbar-fixed .pull-right {
+  margin-right: 12px;
+  margin-bottom: 0px;
+}
+img.logo {
+  padding: 14px 16px 0px 0px;
+  float: left;
+}
+html, body {
+  height: 100%;
+}
+.content.login {
+  margin: 0px auto;
+  width: 500px;
+  color: #ffffff;
+}
+#loginCloud {
+  background-image: url("../images/loginCloud.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  display: block;
+  height: 120px;
+  width: 378px;
+  margin-left: 100px;
+  margin-top: 0px;
+}
+#logo {
+  text-align: center;
+}
+a#forgot, a:active#forgot, a:hover#forgot a:hover {
+  color: #ffffff;
+}
+.hero-unit,
+.hero-unit h1,
+.hero-unit h2,
+.hero-unit h3 {
+  background-color: #333333;
+}
+.hero-unit {
+  margin-bottom: 30px;
+  padding: 60px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.hero-unit input {
+  height: 24px;
+  width: 100%;
+  margin-bottom: 14px;
+}
+.hero-unit p, .hero-unit input {
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 27px;
+}
+/* Set our base colors */
