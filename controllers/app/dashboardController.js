@@ -20,7 +20,7 @@ var dashboardController,
           appId: id,
           data:data,
           tab:'dashboard',
-          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + data.inst.guid + "/container"
+          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
         };
         renderer.doResponse(req, res, d);
       });      
