@@ -42,7 +42,17 @@ server.configure(function () {
     server.use(express.methodOverride());
     
     var less = require('less');
-    server.use(express.compiler({ src: __dirname + '/client/less', enable: ['less'] }));
+    // Patch LESS require to allow relative and absolute both to work
+    var origRender = less.render;
+    less.render = function(str, options, fn) {
+      if (typeof(options) === 'function') {
+        fn = options;
+        options = { paths: [__dirname + '/client/less'] };
+      }
+      return origRender.call(this, str, options, fn);
+    };
+
+    server.use(express.compiler({ src: __dirname + '/client', enable: ['less'] }));
     server.use(express.static(__dirname + '/client'));
 });
 
