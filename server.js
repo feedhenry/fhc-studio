@@ -81,9 +81,9 @@ var checkAuth = controllers.userController.checkAuth; // auth checking function
 
 
 
-server.get("/", checkAuth, controllers.appController.indexAction);
+server.get("/", checkAuth, controllers.indexController.indexAction);
 
-server.get('/home.:resType?', checkAuth, controllers.appController.indexAction);
+server.get('/home.:resType?', checkAuth, controllers.indexController.indexAction);
 //user actions
 server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);
@@ -98,6 +98,10 @@ server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
 /*
  * App Actions
  */
+
+// user dashboard
+server.get('/userDashboard.:resType?', controllers.userDashController.loadDash);
+
 
 // app:dashboard
 server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);

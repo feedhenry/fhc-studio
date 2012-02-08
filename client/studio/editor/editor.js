@@ -115,6 +115,7 @@ client.studio.editor = {
   bindEvents : function() {
     var me = client.studio.editor;
     // Contains bindings for all default events
+    $('.help').unbind().on("click", client.studio.editor.help);
     $('.save').unbind().on("click", client.studio.editor.save);
     $('.snippet').unbind().on("click", client.studio.editor.snippet);
     $('a#closeFile').unbind().on('click', function() {
@@ -208,6 +209,20 @@ client.studio.editor = {
       ;
     } // end client.studio.editor.tree.init
   }, // end client.studio.editor.tree
+  help : function() {
+    var me = client.studio.editor;
+    var title, message, buttons;
+    title = "Shortcuts";
+    message = "<ul>"+client.util.keyboard.listShortcuts(me.shortcuts)+"</ul>";
+    buttons = [ {
+      text : 'Close',
+      callback : function() {
+        // Just cancel this modal dialog
+        return true;
+      }
+    }];
+    client.util.modal(title, message, buttons);
+  },
   open : function(guid) {
     // Navigate to that file using an ajax request with a callback
     var path = window.location.pathname;

@@ -51,6 +51,7 @@ var en = {
   saveAs : "Save As",
   saveClose: "Save & Close",
   search : "Search...",
+  shortcuts: "shortcuts",
   snippets: "Snippets",
   someSnippets : "Some code snippets",
   navigator : "Navigator",

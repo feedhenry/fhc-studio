@@ -75,6 +75,63 @@ img.logo {
   float: left;
 }
 
+/* 
+ * User Dashboard Styles
+ * Styles for the user dashboard
+ */
+ .fluid-container > .content.userdash {
+  padding: 2px 20px;
+ }
+ .userdash .row{
+   padding-top: 10px;
+ }
+ .userdash h2{
+   border-bottom: 1px solid #DDD;
+   min-width: 940px;
+   width: 940px;  
+ }
+ .userdash h3{
+   border-bottom: 1px solid #DDD;
+ }
+ .userdash #recentApps{
+   min-height: 360px;
+   max-height: 360px;
+   border-bottom: 1px solid #DDD;
+ }
+ .userdash #recentApps img{
+   padding-right: 5px;
+ }
+ .userdash #recentApps table{
+   width: 100%;
+   min-height: 330px;
+   max-height: 330px;
+   height: 330px;
+ }
+ .userdash #recentApps tr{
+   padding-right: 5px;
+   border-bottom: 1px solid #DDD;
+ }
+ .userdash #recentApps td{
+   width: 50%;
+   min-width: 50%;
+   max-width: 50%;
+ }
+ .userdash #recentApps td:hover{
+   background-color: #EEE;
+ }
+ 
+
+ .userdash #blogPosts{
+   min-height: 360px;
+   max-height: 360px;
+   border-bottom: 1px solid #DDD;
+ }
+ .userdash .post{
+   border-top: 1px solid #DDD;
+ }
+ .userdash .post:hover{
+   background-color: #EEE;
+ }
 
 /*
  *Build screen

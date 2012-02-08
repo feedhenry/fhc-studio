@@ -1,0 +1,27 @@
+{>head/}
+{>navigation/}
+
+<div id="container dashboard" class="container userdash">
+{tabHelper}
+<h2>My Dashboard</h2>
+
+<div class="row">
+  <div id="recentApps" class="span5">
+    <h3>Recent Apps</h3>
+
+  </div>
+
+  <div id="blogPosts"  class="span7">
+    <h3>Developer Blog</h3>
+      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
+      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
+      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </p></div>
+      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
+      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
+      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
+  </div> 
+</div>
+
+
+</div>
+{>foot/}

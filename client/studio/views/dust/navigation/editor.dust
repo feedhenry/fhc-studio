@@ -16,7 +16,7 @@
  <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
 <li class="button"><a>{lang.find}</a></li>
 <li class="dropdown" id="apiDropdown">
-  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.apiPrefix}...</a>
   <ul class="dropdown-menu" >
     <li class="heading"><h3>Client</h3></li>
     <li><a href="#" id="1012276" class="snippet" >{lang.apiAcc}</a></li>
@@ -51,5 +51,11 @@
     <li><a id="1019114" class="snippet" href="#">{lang.apiCloudSecurity}</a></li>
     <li><a id="1015247" class="snippet" href="#">{lang.apiStringify}</a></li>
     <li><a id="1015266" class="snippet" href="#">{lang.apiCloudWebRequests}</a></li>
+  </ul>
+</li>
+<li class="dropdown" id="helpDropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.help}</a>
+  <ul class="dropdown-menu">
+    <li class="button"><a class="no-ajax help">{lang.shortcuts}</a></li>
   </ul>
 </li>
