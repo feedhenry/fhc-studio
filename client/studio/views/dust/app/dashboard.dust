@@ -10,9 +10,9 @@
   <p>{data.inst.description}</p>
   <h3>{lang.moreInfo}</h3>
   <strong>{lang.w3cid}:</strong> {data.app.w3cid}<br />
-  <strong>{lang.guid}:</strong> {data.inst.guid}<br />
-  <strong>{lang.height}:</strong>{data.inst.guid}<br />
-  <strong>{lang.width}:</strong> {data.inst.guid}<br />
+  <strong>{lang.guid}:</strong> {appId}<br />
+  <strong>{lang.height}:</strong>{appId}<br />
+  <strong>{lang.width}:</strong> {appId}<br />
 </section>
 
 <section class="qrcode">
