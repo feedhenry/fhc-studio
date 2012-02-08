@@ -2,9 +2,6 @@
 {>head/}
 {>navigation/}
 
-<script>
-    $("table.apps").tablesorter();
-</script>
 
 <div class="content fullWidth">
     <form class="well" id="createapp" name="createApp">

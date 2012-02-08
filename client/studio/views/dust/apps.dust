@@ -2,19 +2,23 @@
 {>navigation/}
 
 <script>
-    $("table.apps").tablesorter();
+  $("table.apps").tablesorter();
+
+  $(function() {
+    client.studio.apps.init();
+  });
 </script>
 
 <div class="content apps fullWidth">
 {tabHelper}
 <div class="btn-group">
   <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-    Create An App
+    {lang.createAnApp}
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu">
-    <li><a class="" data-toggle="modal" href="#myModal" >From Scratch</a></li>
-    <li><a href="#" >From A Git Repo</a></li>
+    <li><a href="#" id="fromScratchLink">{lang.fromScratch}</a></li>
+    <li><a href="#" id="fromGitRepoLink">{lang.fromGitRepo}</a></li>
 
   </ul>
 </div>

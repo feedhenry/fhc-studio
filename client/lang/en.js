@@ -26,6 +26,12 @@ var en = {
   modified : "Modified",
   myapps : "My Apps",
   version : "Version",
+  
+  // Create An App
+  createAnApp: "Create An App",
+  fromScratch: "From Scratch",
+  fromGitRepo: "From A Git Repo",
+  
     
   
   // App Dashboard (app.dust / dashboard.dust)
