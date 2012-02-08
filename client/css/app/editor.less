@@ -10,7 +10,7 @@
 }
 
 #treeSearch {
-  background-color: #333;
+  background-color: @grayDark;
 }
 #treeSearch input {
   width: 100px;
@@ -23,11 +23,11 @@
   float: left;
   clear: both;
   height: 100%;
-  background: #333; 
+  background: @grayDark; 
 }
 
 #treeContainer > ul, #snippets {
-  background: #fff;
+  background: @white;
   min-height: 100px;
 }
 
@@ -41,7 +41,7 @@
   height: 34px;	
 }
 #editorToolbar.navbar {
-  background-color: #333;  
+  background-color: @grayDark;  
 }
 
 #editorToolbar.navbar ul.dropdown-menu {
@@ -68,8 +68,8 @@
   
 ul.editorTabs {
   margin: 0px;
-  background-color: #333;  
-  border-color: #333;
+  background-color: @grayDark;  
+  border-color: @grayDark;
 }
 
 ul.editorTabs li a, ul.editorTabs li a.active {
@@ -77,12 +77,12 @@ ul.editorTabs li a, ul.editorTabs li a.active {
   line-height: 24px;  
 }
 ul.editorTabs li a:hover {
-  background-color: #222;
-  border: 1px solid #000;
+  background-color: @grayDarker;
+  border: 1px solid #000; /* TODO: Less */
   border-bottom: 0px;  
 }
 ul.editorTabs li a, ul.editorTabs li a:hover, ul.editorTabs li a:active {
-  color: #fff;
+  color: @white;
   text-decoration: none;
 }
 
@@ -98,6 +98,22 @@ ul.editorTabs li a strong {
 
 
 .nav.studioNav .dropdown-menu a{
-  color: #fff;
+  color: @white;
   margin: 0px;
+}
+
+/*
+ * API Dropdown Style
+ */
+#apiDropdown ul{
+  max-width: 300px;
+  width: 300px;
+}
+#apiDropdown li{
+  display: inline-block;
+  width: 100px;
+}
+#apiDropdown li.divider, #apiDropdown li.heading{
+  display: block;
+  width: 300px;
 }

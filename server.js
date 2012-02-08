@@ -41,7 +41,18 @@ server.configure(function () {
     
     server.use(express.methodOverride());
     
-    server.use(express.compiler({ src: __dirname + '/client/css', enable: ['less'] }));
+    var less = require('less');
+    // Patch LESS require to allow relative and absolute both to work. Fix as per: https://github.com/senchalabs/connect/pull/174#issuecomment-1165151
+    var origRender = less.render;
+    less.render = function(str, options, fn) {
+      if (typeof(options) === 'function') {
+        fn = options;
+        options = { paths: [__dirname + '/client/css'] };
+      }
+      return origRender.call(this, str, options, fn);
+    };
+
+    server.use(express.compiler({ src: __dirname + '/client', enable: ['less'] }));
     server.use(express.static(__dirname + '/client'));
 });
 
