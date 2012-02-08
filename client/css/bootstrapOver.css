@@ -1,9 +1,15 @@
+/* Style the containers */
 .fluid-container {
   padding-left: 0px;
   padding-right: 0px;
   height: 100%; 
  }
+ 
+.navbar.navbar-fixed .container, .navbar .container{
+  width: 100%;
+}
 
+/* Some coloring on messaging */
 .label.success a {
   color: #fff;
 }
@@ -11,24 +17,21 @@
   color: #fff;
 }
 
-.breadcrumb {
-  margin-bottom: 0px;	
-}
-
+/* Style dropdown headings to look a little more visually appealing */
 .dropdown h3 {
-  color: #fff;
+  color: #fff; /* TODO: less */
   padding-left: 15px;	
 }
 
-.navbar.navbar-fixed .container, .navbar .container{
-  width: 100%;
-}
+/*
+  Make sure the color of our text in the header is white
+*/
 .navbar a.brand, .navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{
   color: #fff !important;
 }
 
 .studioNav .dropdown-menu {
-  background: #333; /* TODO: base-color */  
+  background: #333; /* TODO: less */  
 }
 
 /* TODO: Probably a bug in BS2.0 - remove if no longer required after final release */

@@ -1059,7 +1059,7 @@ table .header:after {
   margin-top: 7px;
   border-width: 0 4px 4px;
   border-style: solid;
-  border-color: #000000 transparent;
+  border-color: #ffffff transparent;
   visibility: hidden;
 }
 table .headerSortUp, table .headerSortDown {
@@ -1079,7 +1079,7 @@ table .headerSortUp:after {
   border-bottom: none;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid #000000;
+  border-top: 4px solid #ffffff;
   visibility: visible;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -1378,7 +1378,7 @@ i {
   vertical-align: top;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid #000000;
+  border-top: 4px solid #ffffff;
   filter: alpha(opacity=30);
   -moz-opacity: 0.3;
   opacity: 0.3;
@@ -1511,14 +1511,14 @@ i {
   font-size: 20px;
   font-weight: bold;
   line-height: 18px;
-  color: #000000;
+  color: #ffffff;
   text-shadow: 0 1px 0 #ffffff;
   filter: alpha(opacity=20);
   -moz-opacity: 0.2;
   opacity: 0.2;
 }
 .close:hover {
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   filter: alpha(opacity=40);
   -moz-opacity: 0.4;
@@ -1678,7 +1678,7 @@ i {
   border-top-color: #333333;
 }
 .nav > .dropdown.active > a:hover {
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
 }
 .tabs .open .dropdown-toggle, .pills .open .dropdown-toggle, .nav > .open.active > a:hover {
@@ -2119,7 +2119,7 @@ i {
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: #000000;
+  background-color: #ffffff;
 }
 .modal-backdrop.fade {
   opacity: 0;
@@ -2233,7 +2233,7 @@ i {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #000000;
+  border-top: 5px solid #ffffff;
 }
 .tooltip.left .tooltip-arrow {
   top: 50%;
@@ -2241,7 +2241,7 @@ i {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 5px solid #000000;
+  border-left: 5px solid #ffffff;
 }
 .tooltip.bottom .tooltip-arrow {
   top: 0;
@@ -2249,7 +2249,7 @@ i {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #000000;
+  border-bottom: 5px solid #ffffff;
 }
 .tooltip.right .tooltip-arrow {
   top: 50%;
@@ -2257,7 +2257,7 @@ i {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-right: 5px solid #000000;
+  border-right: 5px solid #ffffff;
 }
 .tooltip-inner {
   max-width: 200px;
@@ -2265,7 +2265,7 @@ i {
   color: #ffffff;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
+  background-color: #ffffff;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -2301,7 +2301,7 @@ i {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid #000000;
+  border-top: 5px solid #ffffff;
 }
 .popover.right .arrow {
   top: 50%;
@@ -2309,7 +2309,7 @@ i {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-right: 5px solid #000000;
+  border-right: 5px solid #ffffff;
 }
 .popover.bottom .arrow {
   top: 0;
@@ -2317,7 +2317,7 @@ i {
   margin-left: -5px;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-bottom: 5px solid #000000;
+  border-bottom: 5px solid #ffffff;
 }
 .popover.left .arrow {
   top: 50%;
@@ -2325,7 +2325,7 @@ i {
   margin-top: -5px;
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
-  border-left: 5px solid #000000;
+  border-left: 5px solid #ffffff;
 }
 .popover .arrow {
   position: absolute;
@@ -2336,7 +2336,7 @@ i {
   padding: 3px;
   width: 280px;
   overflow: hidden;
-  background: #000000;
+  background: #ffffff;
   background: rgba(0, 0, 0, 0.8);
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -3254,4 +3254,4 @@ a.thumbnail:hover {
   .offset12  { .offset(12); }
 
 }
-*//* an example of an override of a bootstrap property @grayDarker:            #000066; */
+*//* Set our base colors */
