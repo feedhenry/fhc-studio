@@ -42,7 +42,7 @@ server.configure(function () {
     server.use(express.methodOverride());
     
     var less = require('less');
-    // Patch LESS require to allow relative and absolute both to work
+    // Patch LESS require to allow relative and absolute both to work. Fix as per: https://github.com/senchalabs/connect/pull/174#issuecomment-1165151
     var origRender = less.render;
     less.render = function(str, options, fn) {
       if (typeof(options) === 'function') {
