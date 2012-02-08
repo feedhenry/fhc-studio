@@ -47,7 +47,7 @@ server.configure(function () {
     less.render = function(str, options, fn) {
       if (typeof(options) === 'function') {
         fn = options;
-        options = { paths: [__dirname + '/client/less'] };
+        options = { paths: [__dirname + '/client/css'] };
       }
       return origRender.call(this, str, options, fn);
     };
