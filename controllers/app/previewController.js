@@ -11,9 +11,9 @@ var previewController,
           tpl:'app',
           title:'Login',
           appId: id,
-          data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
+          //data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
           tab:'preview',
-          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + data.inst.guid + "/container"
+          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
         };
         renderer.doResponse(req, res, d);
        
