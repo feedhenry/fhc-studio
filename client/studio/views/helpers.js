@@ -8,14 +8,14 @@ client.studio.views.helpers = dust.makeBase({
         }
     },
     appBarHelper : function(chunk, context){
-    	
+      
     },
     filesTreeHelper : function(chunk, context){
-    	var tab = context.get("tab");
-    	if (tab==='editor'){
-    		chunk.partial('filestree', context);
-    	}
-    	
+      var tab = context.get("tab");
+      if (tab==='editor'){
+        chunk.partial('filestree', context);
+      }
+      
     },
     navigationHelper : function(chunk, context){
       var page = context.get("tpl");
@@ -26,29 +26,22 @@ client.studio.views.helpers = dust.makeBase({
         chunk.partial('navigation/default', context);
       }
     },
-    renderUtilBar : function(chunk, context){
+    renderAppBar : function(chunk, context){
+      
       var active = context.get('tab');
       if (!active || active.trim()===""){
         active = context.get('tpl');
       }
+      
+      $('body').on('firedup', function(){
+        $('.appBar ul li').removeClass('active');
+        $('.appBar ul li#' + active + 'Link').addClass('active');
+      });
       
       var obj = {};
       obj[active + 'Active'] = true;
       context.stack.head[active + 'Active'] = true; // TODO: Fix this. Dust silly, or Cian silly?
       
-      chunk.partial('apputilbar', context);
+      chunk.partial('appbar', context);
     },
-    setActive : function(chunk, context){
-      
-      var active = context.get('tab');
-      if (!active || active.trim()===""){
-        active = context.get('tpl');
-      }
-      
-      
-      $('body').on('firedup', function(){
-        $('.appBar li a').removeClass('active');
-        $('#' + active + 'Link').addClass('active');
-      });
-    }
 });
