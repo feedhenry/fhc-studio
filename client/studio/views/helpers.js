@@ -16,5 +16,32 @@ client.studio.views.helpers = dust.makeBase({
     		chunk.partial('filestree', context);
     	}
     	
-    }
+    },
+    navigationHelper : function(chunk, context){
+      var page = context.get("tpl");
+      var tab = context.get("tab");
+      if (tab && tab==='editor'){
+        chunk.partial('navigation/editor', context);
+      }else{
+        chunk.partial('navigation/default', context);
+      }
+    },
+    renderAppBar : function(chunk, context){
+      
+      var active = context.get('tab');
+      if (!active || active.trim()===""){
+        active = context.get('tpl');
+      }
+      
+      $('body').on('firedup', function(){
+        $('.appBar ul li').removeClass('active');
+        $('.appBar ul li#' + active + 'Link').addClass('active');
+      });
+      
+      var obj = {};
+      obj[active + 'Active'] = true;
+      context.stack.head[active + 'Active'] = true; // TODO: Fix this. Dust silly, or Cian silly?
+      
+      chunk.partial('appbar', context);
+    },
 });

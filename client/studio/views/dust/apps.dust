@@ -18,7 +18,7 @@
 
   </ul>
 </div>
-<h2>My Apps</h2>
+<h2>{lang.myapps}</h2>
   <table class="apps table">
           <colgroup>
             <col class="icon">
@@ -30,10 +30,10 @@
           <thead>
             <tr>
               <th class="header"></th>
-              <th class="header headerSortDown">Name</th>
-              <th class="header">Description</th>
-              <th class="header">Modified</th>
-              <th class="header">Version</th>
+              <th class="header headerSortDown">{lang.name}</th>
+              <th class="header">{lang.description}</th>
+              <th class="header">{lang.modified}</th>
+              <th class="header">{lang.version}</th>
             </tr>
           </thead>
           <tbody>
@@ -50,8 +50,9 @@
           </tbody>
   </table>
 
+
   <footer>
-          <p>© Feedhenry 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">Service Status: OK</a></span> </p>
+          <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
 </footer>
 </div>
 {>foot/}

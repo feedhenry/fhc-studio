@@ -1,3 +1,3 @@
 <footer>
-          <p>&copy; Feedhenry 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">Service Status: OK</a></span> </p>
+          <p>&copy; {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus} : OK</a></span> </p>
 </footer>

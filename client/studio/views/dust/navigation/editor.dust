@@ -1,0 +1,55 @@
+<li class="dropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>
+  <ul class="dropdown-menu">
+    <li><a class="no-ajax" id="newFile" href="#">{lang.newFile}</a></li>
+    <li><a class="no-ajax save"  href="#">{lang.save}</a></li>
+    <li><a class="no-ajax" id="saveAs"  href="#">{lang.saveAs}</a></li>
+    <li><a class="no-ajax save"  href="#" >{lang.saveAll}</a></li>
+    <li><a class="no-ajax" id="closeFile" href="#">{lang.close}</a></li>
+    <li><a class="no-ajax" id="openRecent" href="#">{lang.openRecent}</a></li>
+  </ul>
+</li>
+<li class="button"><a>{lang.edit}</a></li>
+<li class="button"><a>{lang.find}</a></li>
+<li class="button"><a class="no-ajax save" href="#" >{lang.save}</a></li>
+<li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
+ <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
+<li class="button"><a>{lang.find}</a></li>
+<li class="dropdown" id="apiDropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">$fh...</a>
+  <ul class="dropdown-menu" >
+    <li class="heading"><h3>Client</h3></li>
+    <li><a href="#" id="1012276" class="snippet" >{lang.apiAcc}</a></li>
+    <li><a href="#" id="1015103" class="snippet" >{lang.apiAct}</a></li>
+    <li><a href="#" id="1015118" class="snippet" >{lang.apiAudio}</a></li>
+    <li><a href="#" id="1099663" class="snippet" >{lang.apiCamera}</a></li>
+    <li><a href="#" id="1015134" class="snippet" >{lang.apiContacts}</a></li>
+    <li><a href="#" id="1015153" class="snippet" >{lang.apiDep}</a></li>
+    <li><a href="#" id="1099591" class="snippet" >{lang.apiFile}</a></li><!-- BROKEN GIST FILENAME -->
+    <li><a href="#" id="1015187" class="snippet" >{lang.apiGeolocation}</a></li>
+    <li><a href="#" id="1015177" class="snippet" >{lang.apiGeoIP}</a></li>
+    <li><a href="#" id="1015167" class="snippet" >{lang.apiHashing}</a></li>
+    <li><a href="#" id="1019188" class="snippet" >{lang.apiHandlers}</a></li>
+    <li><a href="#" id="1363666" class="snippet" >{lang.apiLocalStorage}</a></li>
+    <li><a href="#" id="1015203" class="snippet" >{lang.apiLogging}</a></li>
+    <li><a href="#" id="1015207" class="snippet" >{lang.apiMapping}</a></li>
+    <li><a href="#" id="1015212" class="snippet" >{lang.apiMessaging}</a></li>
+    <li><a href="#" id="1015214" class="snippet" >{lang.apiNotification}</a></li>
+    <li><a href="#" id="1298299" class="snippet" >{lang.apiOrientation}</a></li>
+    <li><a href="#" id="1015244" class="snippet" >{lang.apiReady}</a></li>
+    <li><a href="#" id="1019111" class="snippet" >{lang.apiSecurity}</a></li>
+    <li><a href="#" id="1015261" class="snippet" >{lang.apiWebRequests}</a></li>
+    <li><a href="#" id="1336195" class="snippet" >{lang.apiWebView}</a></li>
+    <li class="divider"></li>
+    <li class="heading"><h3>Cloud</h3></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
+    <li><a id="1015127" class="snippet" href="#">{lang.apiDataStorage}</a></li><!-- NO GIST FOR THIS -->
+    <li><a id="1015166" class="snippet" href="#">{lang.apiHashing}</a></li>
+    <li><a id="1015203" class="snippet" href="#">{lang.apiCloudLogging}</a></li>
+    <li><a id="1015224" class="snippet" href="#">{lang.apiParsing}</a></li>
+    <li><a id="1015231" class="snippet" href="#">{lang.apiRSS}</a></li>
+    <li><a id="1019114" class="snippet" href="#">{lang.apiCloudSecurity}</a></li>
+    <li><a id="1015247" class="snippet" href="#">{lang.apiStringify}</a></li>
+    <li><a id="1015266" class="snippet" href="#">{lang.apiCloudWebRequests}</a></li>
+  </ul>
+</li>

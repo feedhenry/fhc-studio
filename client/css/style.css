@@ -76,90 +76,6 @@ img.logo {
 }
 
 
-/* 
- * App bar Styles
- * Styles for the narrow left hand bar on the page of an individual app
- */
-.fluid-container > .appBar {
-  position: absolute;
-  height: 100%;
-  top: 0px;
-  left: 0px; 
-  width: 100px;
-  color: #fff;
-  text-align: center;
-  background-color: #333;
-  font-size: 0.85em;
-}
-.appBar ul {
-  height: 100%;
-  list-style: none;
-  margin: 0px;
-  padding: 0px;
-}
-.appBar li {
-  border-bottom: 1px solid #222;
-  border-top: 1px solid #444;
-}
-.appBar li.active {
-  background-image: -webkit-linear-gradient(top, #333, #222);
-}
-
-.appBar li a {
-	position: relative;
-  display: block;
-  height: 65px;
-  background-repeat: no-repeat;
-  background-position: center 8px;
-}
-.appBar li a span {
-  position: absolute; 
-  bottom: 0px;
-  left: 0px;
-  width: 100px;
-}
-.appBar a,.appBar a:link, .appBar a:visited, .appBar a:active {
-  color: #fff;
-  background-size: 38px;
-}
-/* TODO - make sprites! */
-.appBar li#dashboardLink a {
-  background-image: url("../images/appBar/dashboard.png"); 
-}
-.appBar li#editorLink a {
-  background-image: url("../images/appBar/editor.png"); 
-}
-.appBar li#previewLink a {
-  background-image: url("../images/appBar/preview.png"); 
-}
-.appBar li#buildLink a {
-  background-image: url("../images/appBar/build.png"); 
-}
-.appBar li#debugLink a {
-  background-image: url("../images/appBar/debug.png"); 
-}
-.appBar li#prefsLink a {
-  background-image: url("../images/appBar/prefs.png"); 
-}
-.appBar li#dashboardLink.active a {
-  background-image: url("../images/appBar/dashboard_active.png"); 
-}
-.appBar li#editorLink.active a {
-  background-image: url("../images/appBar/editor_active.png"); 
-}
-.appBar li#previewLink.active a {
-  background-image: url("../images/appBar/preview_active.png"); 
-}
-.appBar li#buildLink.active a {
-  background-image: url("../images/appBar/build_active.png"); 
-}
-.appBar li#debugLink.active a {
-  background-image: url("../images/appBar/debug_active.png"); 
-}
-.appBar li#prefsLink.active a {
-  background-image: url("../images/appBar/prefs_active.png"); 
-}
-
 /*
  *Build screen
  */
@@ -177,3 +93,22 @@ ul.breadcrumb {
   left: 0px;
   width: 100%;  
 }
+
+/*
+ * API Dropdown Style
+ */
+#apiDropdown ul{
+  max-width: 300px;
+  width: 300px;
+}
+#apiDropdown li{
+  display: inline-block;
+  width: 100px;
+}
+#apiDropdown li.divider, #apiDropdown li.heading{
+  display: block;
+  width: 300px;'
+}
+
+
+

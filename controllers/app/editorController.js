@@ -59,12 +59,15 @@ editorController = {
         //todo send request when editor loads for fh gists and load into dom
         var gistid = req.params.gistid;
         var github = require("../../services/github");
-
+        
         github().getGist(gistid,function (err,content){
            if(err){console.log(err); res.send("error");}
-            console.log(content);
             var content = JSON.parse(content);
-            res.send(content.files['gistfile1.js'].content);
+            if (content.files['gistfile1.js']){
+              res.send(content.files['gistfile1.js'].content);
+            } else {
+              res.send(content.files['$fh.file.js'].content);
+            }
         });
 
     }
