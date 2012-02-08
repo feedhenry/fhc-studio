@@ -80,7 +80,7 @@ img.logo {
  * Styles for the user dashboard
  */
  .fluid-container > .content.userdash {
-  padding: 2px 20px;
+   padding: 2px 20px;
  }
  .userdash .row{
    padding-top: 10px;
@@ -97,6 +97,7 @@ img.logo {
    min-height: 360px;
    max-height: 360px;
    border-bottom: 1px solid #DDD;
+   overflow: hidden;
  }
  .userdash #recentApps img{
    padding-right: 5px;
@@ -109,7 +110,8 @@ img.logo {
  }
  .userdash #recentApps tr{
    padding-right: 5px;
-   border-bottom: 1px solid #DDD;
+   border-top: 1px solid #DDD;
+   height: 83px;
  }
  .userdash #recentApps td{
    width: 50%;
@@ -128,6 +130,10 @@ img.logo {
  }
  .userdash .post{
    border-top: 1px solid #DDD;
+ }
+ .userdash .post p{
+   padding: 5px 0px;
+   margin: 0px;
  }
  .userdash .post:hover{
    background-color: #EEE;

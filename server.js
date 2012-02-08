@@ -6,6 +6,7 @@ var express     = require('express'),
     fhc         = require('fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),
+    less        = require('less'),
     controllers = require('./controllers');
 
 var server = module.exports = express.createServer();
@@ -41,7 +42,8 @@ server.configure(function () {
     
     server.use(express.methodOverride());
     
-    server.use(express.compiler({ src: __dirname + '/client/css', enable: ['less'] }));
+    
+    server.use(express.compiler({ src: __dirname + '/client/bootstrap/less', enable: ['less'] }));
     server.use(express.static(__dirname + '/client'));
 });
 

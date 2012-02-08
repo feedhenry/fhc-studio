@@ -1,20 +1,23 @@
 var userDashController,
     renderer = require("../util"),
+    util = require("util"),
     fhc = require("fh-fhc");
 
 userDashController = {
-    loadDash:function (req, res) {
-        var d;
-        if (req.method === "POST") {
-            //handle signup alternatively we could create a second method for
-            //proccessing new signup and use app.post route
-        } else if (req.method === "GET") {
-            d = {
+    loadDash:function (req, res, next) {
+        fhc.apps([], function (err, data) {
+            if (err) {
+                renderer.doError(res, req, "Couldn't generate apps listing");
+                return;
+            }
+            var d = {
                 tpl:'userdashboard',
-                title:'My Dashboard'
+                apps:data.list,
+                title:'userDashboard'
             };
-            renderer.doResponse(req, res, d);
-        }
+            renderer.doResponse(req, res, d);  
+            
+        });
     }
 };
 
