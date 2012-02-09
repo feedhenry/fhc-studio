@@ -16,27 +16,33 @@ console.log("starting build tasks");
 desc("compiling dust templates");
 task('ct', [], function () {
     //find any .dust files
-    walk(DUSTDIR, function(err, files) {
-      var compiled = "",
-      data = "";
-      if (err) throw err;
-      files.forEach(function (f, i) {
-        if (f.substr(f.length - 5).toLowerCase() === ".dust") {
-            console.log("dust file found", f);
-            data = fs.readFileSync(f, "UTF-8");
-            
-            var dustTplName = f.replace(DUSTDIR + '/','').replace('', '');
-            dustTplName = dustTplName.replace(/.dust/, '').toLowerCase();
-           
-            compiled+= dust.compile(data, dustTplName);
-           
+    var compiled = "";
+    var data = "";
+    var indentBy = function(times, str) {
+      var arr = new Array(times + 1);
+      arr[times] = str;
+      return arr.join(" ");
+    };
+    var handleFile = function(relativePath) {
+        var absPath = [DUSTDIR].concat(relativePath).join('/'),
+            stats = fs.statSync(absPath),
+            fname = relativePath[relativePath.length - 1];
+        if (stats.isDirectory()) {
+            relativePath.length && console.log(indentBy(relativePath.length * 2, fname));
+            fs.readdirSync(absPath).forEach(function(n) { handleFile(relativePath.concat([n])); });
+        } else if (/.+\.dust$/i.test(fname)) {
+            console.log(indentBy(relativePath.length * 2, fname));
+            content = fs.readFileSync(absPath, "UTF-8");
+            compiled += dust.compile(content, relativePath.join('/').replace(/\.dust$/i, '').toLowerCase());
         }
-      });
-      // Now that we've iterated over the directory, write the files to a compiled string
-      if (compiled !== "") {
+    };
+
+    console.log(">>> Compiling templates");
+    handleFile([]);
+    if (compiled !== "") {
         fs.writeFile(DUSTWRITE, compiled, function (err) {
             if (err)throw err;
-            else console.log("templates compiled");
+            else console.log(">>> Templates compiled");
         })
       } else {
           console.log("no files compiled");
