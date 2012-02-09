@@ -12,7 +12,7 @@
         {#sections}
           {?fields}
             <fieldset>
-              <legend>{title}</legend>
+              <legend>{#t key=title/}</legend>
               {#fields}
                 <p>{#configInput/}</p>
               {/fields}

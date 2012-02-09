@@ -13,8 +13,8 @@ var
 
     configurationSchema = {
       fields: {
-        "app Id": {type: "string", title: "App ID"},
-        "version Name": {type: "string", title: "Version name"},
+        "app Id": {type: "string"},
+        "version Name": {type: "string", title: "config.fields.versionName"},
         "version Code": {type: "string", title: "Version code"},
         "packages": {type: "string", title: "Packages TODO"},
         "flurry Application Key": {type: "string", title: "Flurry TODO"},
@@ -37,10 +37,10 @@ var
         "splash Background Color": {type: "string", title: "Splash background color"}
       },
       arrangement: [
-        {title: 'General', fields: ["app Id", "flurry Application Key", "version Name", "version Code", "packages"]},
-        {title: 'Appearance', fields: ["orientation", "auto Rotate", "splash Image", "retina splash image", "landscape splash image", "foreground Splash Image", "splash Background Color", "activity Spinner", "hide Status Bar"]},
-        {title: 'Permissions', fields: ["permission Audio", "permission Camera", "permission Contacts", "permission Location", "permission Read Phone State", "permission Receive SMS", "permission Vibrate"]},
-        {title: 'Debug', fields: ["remote Debug"]}
+        {name: 'general', fields: ["app Id", "flurry Application Key", "version Name", "version Code", "packages"]},
+        {name: 'appearance', fields: ["orientation", "auto Rotate", "splash Image", "retina splash image", "landscape splash image", "foreground Splash Image", "splash Background Color", "activity Spinner", "hide Status Bar"]},
+        {name: 'permissions', fields: ["permission Audio", "permission Camera", "permission Contacts", "permission Location", "permission Read Phone State", "permission Receive SMS", "permission Vibrate"]},
+        {name: 'debug', fields: ["remote Debug"]}
       ],
 
       configurationPrettyListing: function(cfg) {
@@ -54,7 +54,7 @@ var
           fieldNames.forEach(function(fname) {
             var fieldDef = schema.fields[fname]
             if (fieldDef) {
-              fields[fname] = {name: fname, type: fieldDef.type, title: fieldDef.title, constraint: fieldDef.constraint, value: cfgForPlatform[fname]};
+              fields[fname] = {name: fname, type: fieldDef.type, title: 'config.fields.' + fname.replace(/\s+/g, ''), constraint: fieldDef.constraint, value: cfgForPlatform[fname]};
             }
           });
 
@@ -62,7 +62,7 @@ var
             var fieldsOfSection = sec.fields
                     .filter(function(fname) {return cfgForPlatform[fname] !== undefined;})
                     .map(function(fname) { return fields[fname]; });
-            return {title: sec.title, fields: (fieldsOfSection.length > 0 && fieldsOfSection)};
+            return {name: sec.name, title: 'config.sections.' + sec.name, fields: (fieldsOfSection.length > 0 && fieldsOfSection)};
           });
 
           return {platformName: p.name, title: p.title, sections: sections};

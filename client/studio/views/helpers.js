@@ -18,21 +18,33 @@ client.studio.views.helpers = dust.makeBase({
     },
 
     t : function(chunk, context, bodies, params) {
-      var path = params.key.split('.'),
-          lookup = context.get('lang'),
-          toWrite, i;
+      var translateKey = function(key) {
+        var path = key.split('.'),
+            lookup = context.get('lang'),
+            i;
 
-      for (i = 0; i < path.length && (typeof lookup === "object"); i++) {
-        lookup = lookup[path[i]];
-      }
+        console.log(path);
+        for (i = 0; i < path.length && (typeof lookup === "object"); i++) {
+          lookup = lookup[path[i]];
+        }
 
-      if (lookup === undefined) {
-        toWrite = 'MISSING TRANSLATION ' + path.join('.');
-      } else {
-        toWrite = lookup;
-      } //TODO another case – lookup is not a string
+        if (lookup === undefined) {
+          return '<span style="color:red;">MISSING TRANSLATION ' + path.join('.') + '</span>';
+        } else {
+          return lookup;
+        } //TODO another case – lookup is not a string
+      };
 
-      return chunk.write(toWrite);
+      //TODO Fixing stuff below would enable possibility to have keys like "one.two.{three}".
+      //if (typeof params.key === 'function') {
+      //  //return chunk.map(function(chk) {
+      //  //  chunk.capture(params.key, context, function(out, chunk) {
+      //  //    return chunk.end(translateKey(out));
+      //  //  });
+      //  //});
+      //} else {
+        return chunk.write(translateKey(params.key));
+      //}
     },
 
     isNthItem : function(chunk, context, bodies, params) {
@@ -51,7 +63,9 @@ client.studio.views.helpers = dust.makeBase({
           inputId = ['input', 'config', platform, key].join('_'),
           constraint = context.get('constraint'),
           options;
-      chunk.write('<label for="' + inputId + '">' + context.get('title') + '</label>');
+      chunk.write('<label for="' + inputId + '">');
+      context.get('t')(chunk, context, null, {key: context.get('title')});
+      chunk.write('</label>');
       //chunk.write('<input type="hidden" name="platform" value="' + platform + '"/>');
       //chunk.write('<input type="hidden" name="key" value="' + key + '"/>');
       switch(context.get('type')) {

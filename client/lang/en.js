@@ -4,8 +4,8 @@ var branding = {
     apiPrefix : "$fh"
 }
 
-var en = { 
-  // Global Navbar 
+var en = {
+  // Global Navbar
   reporting : "Reporting",
   admin : "Admin",
   home : "Home",
@@ -15,19 +15,19 @@ var en = {
   help : "Help",
   logout : "Logout",
   prefs :  "Preferences",
-  apps : "Apps", 
-  
+  apps : "Apps",
+
   // Footer
   serviceStatus : "Service Status ",
-    
+
   // Apps Tab (apps.dust)
   name : "Name",
   description : "Description",
   modified : "Modified",
   myapps : "My Apps",
   version : "Version",
-    
-  
+
+
   // App Dashboard (app.dust / dashboard.dust)
   appDashboard : "App Dashboard",
   editor : "Editor",
@@ -57,20 +57,53 @@ var en = {
   openRecent : "Open Recent",
   // App Preview (preview.dust)
   scale : "Scale",
+  // App Config (config.dust)
+  config : {
+    sections: {
+      general: 'General',
+      debug: 'Debug',
+      permissions: 'Permissions',
+      appearance: 'Appearance'
+    },
+    fields : {
+      appId: 'App ID',
+      flurryApplicationKey: 'Flurry application key',
+      versionName: 'Version name',
+      versionCode: 'Version code',
+      packages: 'Packages',
+      orientation: 'Orientation',
+      autoRotate: 'Auto rotate',
+      splashImage: 'Splash image',
+      foregroundSplashImage: 'Foreground splash image',
+      splashBackgroundColor: 'Splash background color',
+      landscapesplashimage: 'Landscape splash image',
+      retinasplashimage: 'Retina splash image',
+      activitySpinner: 'Activity spinner',
+      hideStatusBar: 'Hide status bar',
+      permissionAudio: 'Audio',
+      permissionCamera: 'Camera',
+      permissionContacts: 'Contacts',
+      permissionLocation: 'Location',
+      permissionReadPhoneState: 'Read phone state',
+      permissionReceiveSMS: 'Receive SMS',
+      permissionVibrate: 'Vibrate',
+      remoteDebug: 'Remote debug'
+    }
+  },
   // App Build (build.dust)
   build : "Build",
   // App Debug (debug.dust)
   debug: "Debug",
- 
-  
+
+
   // Login Screen (login.dust)
   password : "password",
   email : "email",
   forgotPassword : "Forgot...",
   login : "Login",
   login_message : "Enter your username and password to login",
-  
-  
+
+
   // Home Screen (home.dust)
   appStudio : "App Studio",
   welcome : "Welcome",
@@ -78,20 +111,20 @@ var en = {
   homeHeading : "Build apps powered by Cloud Foundry",
   stagingTo : "Staging to Cloud Foundry",
   studioIntro : "Build powerful cloud powered apps with " +branding.studioName+ ". Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms instantly!",
-  
+
   apiDocs : "API Docs",
   apiText : "Read about the " +branding.apiPrefix+ " APIs that exist to make calls to the " +branding.StudioName+ " cloud, or access on-device functionality not normally available to HTML5 apps.",
   readApiDocs : "Read the API Docs",
-  
+
   cliDocs : branding.cli + " Documentation",
   cliText : "Have a read of our documentation, where you can learn more about what " +branding.studioName+ " is, and how to use our powerful cloud and client API's to build powerful mobile apps.",
   readCliDocs : "Read the "+branding.cli+" Docs",
-  
+
   tutorials : "Tutorials",
   tutorialsText: "Learn how to utilize the cloud to hash then cache data from multiple sources in the cloud. Localize an app, cloud powered language assets make corrections and updates a breeze.",
   viewTutorials : "View our tutorials",
-  
-  
+
+
   // API & Brand Related
   studioName : branding.studioName,
   cli : branding.cli,
