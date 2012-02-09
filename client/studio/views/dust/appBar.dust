@@ -16,11 +16,6 @@
         <span>{lang.preview}</span>
       </a>
     </li>
-    <li id="configLink" class="">
-      <a class="singlepage"  href="/app/{data.inst.guid}/config">
-        <span>Configuration</span>
-      </a>
-    </li>
     <li id="buildLink" class="">
       <a class="singlepage"  href="/app/{appId}/build">
         <span>{lang.build}</span>
@@ -28,17 +23,12 @@
     </li>
     <li id="configLink" >
       <a class="singlepage"  href="/app/{appId}/config">
-        <span>Configuration</span>
+        <span>{lang.configuration}</span>
       </a>
     </li>
     <li id="debugLink" class="">
       <a class="singlepage"  href="/app/{appId}/debug">
         <span>{lang.debug}</span>
-      </a>
-    </li>
-    <li id="prefsLink" class="">
-      <a class="singlepage"  href="/app/{appId}/prefs">
-        <span>{lang.prefs}</span>
       </a>
     </li>
   </ul>

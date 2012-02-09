@@ -33,6 +33,7 @@ var en = {
   editor : "Editor",
   preview : "Preview",
   build : "Build",
+  configuration : "Configuration",
   debug : "Debug",
   moreInfo : "moreInfo",
   previewOnMobile : "Preveiw on your mobile",
