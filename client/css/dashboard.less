@@ -32,6 +32,9 @@
    padding: 5px 0px 5px 0px;
    margin: 0 auto;
  }
+ .userdash #apis #apiDocs{
+    border-top: 1px solid @grayLighter;
+ }
  .userdash #apis ul li{
    display: inline-block;
    width: 33.33%;
@@ -47,31 +50,28 @@
   * Recent Apps Section Style
   */
  .userdash #recentApps{
-   min-height: 360px;
-   max-height: 360px;
+   min-height: 265px;
+   max-height: 265px;
    border-bottom: 1px solid @grayLighter;
    overflow: hidden;
  }
  .userdash #recentApps img{
    padding-right: 5px;
  }
- .userdash #recentApps table{
-   width: 100%;
-   min-height: 330px;
-   max-height: 330px;
-   height: 330px;
- }
- .userdash #recentApps tr{
-   padding-right: 5px;
-   border-top: 1px solid @grayLighter;
-   height: 83px;
- }
- .userdash #recentApps td:hover{
-   background-color: @grayLighter;
- }
  .userdash #recentApps p{
    padding: 0px;
    margin: 0px;
+ }
+ .userdash #recentApps ul{ 
+   margin: 0 10px 0; 
+   padding: 0 0 10px 0; 
+ }
+ .userdash #recentApps ul li{ 
+   display: inline-block;
+   text-align: center;
+   height: 132px;
+   min-width: 50%;
+   max-width: 50%;
  }
 
 
@@ -112,7 +112,7 @@
    width: 504px; 
    float: left; 
    padding: 18px; 
-   margin-top:-20px;
+   margin-left: 20%;
  }
  .userdash #vimeoFeed #portrait{ 
    float: left; 
@@ -129,8 +129,8 @@
   * Blog Post Section Style
   */
  .userdash #blogPosts{
-   min-height: 360px;
-   max-height: 360px;
+   min-height: 265px;
+   max-height: 265px;
    border-bottom: 1px solid @grayLighter;
  }
  .userdash .post{

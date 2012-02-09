@@ -3,10 +3,6 @@
 
 
 <script>
-    $(".recent").tablesorter();
-</script>
-
-<script>
     function showHide(id){
       $('#apiDocs').hide();
       if (id=="clientLink"){
@@ -38,37 +34,22 @@
 
 <div class="row"> <!-- Begin Bootstrap Row -->
 
-  <div id="recentApps" class="span5 content">
+  <div id="recentApps" class="span7 content">
     <h3>Recent Apps</h3>
-      <table class="recent">
-        <thead class="hidden">
-          <tr>
-            <th class="header headerSortDown">Modified</th>
-          </tr>
-        </thead>
-        <tbody>
-          {data}
-          {#apps}
-            <tr>
-              <td>
-              <p><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png"><a class="singlepage" href="/app/{id}">{title}</a></p>
-              <p><strong>Modified:</strong> {modified}</p>
-              <p><strong>Description:</strong> {description}</p>
-              </td>
-            </tr>
-          {/apps}
-        </tbody>
-      </table>
+      <ul>
+        <li>App Anatomy</li>
+        <li>App Anatomy</li>
+        <li>App Anatomy</li>
+        <li>App Anatomy</li>
+      </ul>
   </div>
 
-  <div id="blogPosts"  class="span7 content">
+  <div id="blogPosts"  class="span5 content">
     <h3>Developer Blog</h3>
       <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
       <div class="post"><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
       <div class="post"><h4>Hello World</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </p></div>
       <div class="post"><h4>iOS 5.0</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
-      <div class="post"><h4>Android 4.0 Launch</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
-      <div class="post"><h4>App Anatomy - New Stuff</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
   </div> 
 
   <div id="apis" class="span12 content"> <!-- BEGIN API DOCS -->
