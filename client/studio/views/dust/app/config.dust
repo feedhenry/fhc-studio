@@ -19,7 +19,7 @@
             </fieldset>
           {/fields}
         {/sections}
-        <p><input type="submit" value="Save"/></p>
+        <p><input type="submit" value="{#t key="save"/}"/></p>
       </form>
     </div>
   {/configuration}

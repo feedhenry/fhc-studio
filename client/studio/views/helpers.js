@@ -17,6 +17,24 @@ client.studio.views.helpers = dust.makeBase({
     	}
     },
 
+    t : function(chunk, context, bodies, params) {
+      var path = params.key.split('.'),
+          lookup = context.get('lang'),
+          toWrite, i;
+
+      for (i = 0; i < path.length && (typeof lookup === "object"); i++) {
+        lookup = lookup[path[i]];
+      }
+
+      if (lookup === undefined) {
+        toWrite = 'MISSING TRANSLATION ' + path.join('.');
+      } else {
+        toWrite = lookup;
+      } //TODO another case – lookup is not a string
+
+      return chunk.write(toWrite);
+    },
+
     isNthItem : function(chunk, context, bodies, params) {
       if (context.stack.index === parseInt(params.n, 10)) {
         return bodies.block(chunk, context);
