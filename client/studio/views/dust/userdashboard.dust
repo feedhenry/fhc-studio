@@ -1,6 +1,7 @@
 {>head/}
 {>navigation/}
 
+
 <script>
     $(".recent").tablesorter();
 </script>
@@ -14,7 +15,17 @@
         $('#cloudLink').show('fast');
         $('#client').show('fast');
         $('#cloud').hide('fast');
-      } else {
+      } 
+      else if (id=="videoList") {
+        if ($('#videoList').is(':visible')){
+          $('#videoList').hide('fast');
+          $('#showHideVideos').text(' (Show...)');
+        } else {
+          $('#videoList').show('fast');
+          $('#showHideVideos').text(' (Hide...)');
+        }
+      }
+      else {
         $('#clientLink').show('fast');
         $('#cloud').show('fast');
         $('#client').hide('fast');
@@ -120,17 +131,19 @@
     </div>
   </div> <!-- END API DOCS -->
 
-  <div class="span6"> <!-- END VIMEO FEED -->
+  <div id="vimeoFeed" class="span7 content"> <!-- BEGIN VIMEO FEED -->
     <div id="stats">
-      <h2></h2>
+      <h3></h3>
       <div style="clear: both;"></div>
     </div>
-    <div id="wrapper">
-      <div id="embed"></div>
-      <div id="thumbs">
-        <ul></ul>
-      </div>
+    <div id="embed"></div>
+
+    
+    <div id="thumbs">
+      <h4>More Videos By FeedHenry<a href="#" id="showHideVideos" onClick="showHide('videoList')"> (Show...)</a></h4>
+      <ul id="videoList" style="display:none"></ul>
     </div>
+
   </div> <!-- END VIMEO FEED -->
 
 </div> <!-- End Bootstrap Row -->
@@ -138,48 +151,17 @@
 <script>
   $('.header').click();
 </script>
-<script>
-    var apiEndpoint = 'http://vimeo.com/api/v2/';
-    var oEmbedEndpoint = 'http://vimeo.com/api/oembed.json';
-    var oEmbedCallback = 'switchVideo';
-    var videosCallback = 'setupGallery';
-    var vimeoUsername = 'feedhenry';
 
-    function getVideo(url) {
-      $.getScript(oEmbedEndpoint + '?url=' + url + '&width=504&height=280&callback=' + oEmbedCallback);
-    }
-
-    function setupGallery(videos) {
-
-      // Set the user's thumbnail and the page title
-      $('#stats').prepend('<img id="portrait" src="' + videos[0].user_portrait_medium + '" />');
-      $('#stats h2').text(videos[0].user_name + "'s Videos");
-
-      // Load the first video
-      getVideo(videos[0].url);
-
-      // Add the videos to the gallery
-      for (var i = 0; i < videos.length; i++) {
-        var html = '<li><a href="' + videos[i].url + '"><img src="' + videos[i].thumbnail_medium + '" class="thumb" />';
-        html += '<p>' + videos[i].title + '</p></a></li>';
-        $('#thumbs ul').append(html);
-      }
-
-      // Switch to the video when a thumbnail is clicked
-      $('#thumbs a').click(function(event) {
-        event.preventDefault();
-        getVideo(this.href);
-        return false;
-      });
-
-    }
-
-    function switchVideo(video) {
-      $('#embed').html(unescape(video.html));
-    }
-
-    $.getScript(apiEndpoint + vimeoUsername + '/videos.json?callback=' + videosCallback);
+<script> 
+    $(function() {
+        client.studio.dashboard.init();
+    });
 </script>
+
+
+<footer>
+          <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
+</footer>
 
 </div>
 {>foot/}
