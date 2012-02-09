@@ -1,0 +1,29 @@
+<ul class="tabs configTabs">
+  {#configuration}
+    <li class="{#isNthItem n="0"}active{/isNthItem}"><a class="no-ajax" data-toggle="tab" href="#configFor-{platformName}">{title}</a></li>
+  {/configuration}
+</ul>
+<div class="tab-content">
+  {#configuration}
+    <div class="{#isNthItem n="0"}active{/isNthItem} tab-pane" id="configFor-{platformName}">
+      <h1>{title}</h1>
+      <form method="POST" action="/app/{appId}/config">
+        <input type="hidden" name="config_for_platform" value="{platformName}"/>
+        {#sections}
+          {?fields}
+            <fieldset>
+              <legend>{#t key=title/}</legend>
+              <div>
+                {#fields}
+                  <p>{#configInput/}</p>
+                {/fields}
+              </div>
+            </fieldset>
+          {/fields}
+        {/sections}
+        <p><input type="submit" value="{#t key="save"/}"/></p>
+      </form>
+    </div>
+  {/configuration}
+</div>
+

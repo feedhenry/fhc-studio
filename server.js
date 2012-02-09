@@ -54,6 +54,7 @@ server.configure(function () {
 
     server.use(express.compiler({ src: __dirname + '/client', enable: ['less'] }));
 
+
     server.use(express.static(__dirname + '/client'));
 });
 
@@ -118,9 +119,12 @@ server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardC
 // app:debug, preview, build, prefs
 server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
 server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
-server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);
 server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
 server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
+
+// app:config
+server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);
+server.post('/app/:id/config.:resType?', checkAuth, controllers.app.configController.updateAction);
 
 // app:editor
 server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
