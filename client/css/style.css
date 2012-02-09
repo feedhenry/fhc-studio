@@ -82,7 +82,7 @@ img.logo {
  .fluid-container > .content.userdash {
    padding: 2px 20px;
  }
- .userdash .row{
+ .userdash .content{
    padding-top: 10px;
  }
  .userdash h2{
@@ -92,6 +92,10 @@ img.logo {
  }
  .userdash h3{
    border-bottom: 1px solid #DDD;
+ }
+ .userdash #apis li{
+   display: inline-block;
+   width: 33%;
  }
  .userdash #recentApps{
    min-height: 360px;
@@ -113,13 +117,12 @@ img.logo {
    border-top: 1px solid #DDD;
    height: 83px;
  }
- .userdash #recentApps td{
-   width: 50%;
-   min-width: 50%;
-   max-width: 50%;
- }
  .userdash #recentApps td:hover{
    background-color: #EEE;
+ }
+ .userdash #recentApps p{
+   padding: 0px;
+   margin: 0px;
  }
  
 

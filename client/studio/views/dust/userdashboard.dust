@@ -4,35 +4,61 @@
 <script>
     $(".recent").tablesorter();
 </script>
+<script>
+    function showHide(id){
+      
+      console.log("Called show hide with " + id);
+      $('#apiDocs').hide();
+      if (id=="clientLink"){
+        $('#cloudLink').show('fast');
+        $('#client').show('fast');
+        $('#cloud').hide('fast');
+      } else {
+        $('#clientLink').show('fast');
+        $('#cloud').show('fast');
+        $('#client').hide('fast');
+      }
+    }
+
+    function hideApis(){
+      $('#apiDocs').show();
+      $('#clientLink').show('fast');
+      $('#cloudLink').show('fast');
+      $('#client').hide('fast');
+      $('#cloud').hide('fast');
+    }
+</script>
+
 <div id="container dashboard" class="container userdash">
 {tabHelper}
 <h2>My Dashboard</h2>
 
-<div class="row">
-  <div id="recentApps" class="span5">
+<div class="row"> <!-- Begin Bootstrap Row -->
+
+  <div id="recentApps" class="span5 content">
     <h3>Recent Apps</h3>
       <table class="recent">
-      <thead class="hidden">
-            <tr>
-              <th class="header headerSortDown">Modified</th>
-            </tr>
-          </thead>
-      <tbody>
-        {data}
-        {#apps}
+        <thead class="hidden">
           <tr>
-          <td><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-          <p>{title}</p>
-          <p>Modified: {modified}</p></td>
+            <th class="header headerSortDown">Modified</th>
           </tr>
-        {/apps}
-
-      </tbody>
+        </thead>
+        <tbody>
+          {data}
+          {#apps}
+            <tr>
+              <td>
+              <p><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png"><a class="singlepage" href="/app/{id}">{title}</a></p>
+              <p><strong>Modified:</strong> {modified}</p>
+              <p><strong>Description:</strong> {description}</p>
+              </td>
+            </tr>
+          {/apps}
+        </tbody>
       </table>
-
   </div>
 
-  <div id="blogPosts"  class="span7">
+  <div id="blogPosts"  class="span7 content">
     <h3>Developer Blog</h3>
       <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
       <div class="post"><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
@@ -41,7 +67,61 @@
       <div class="post"><h4>Android 4.0 Launch</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
       <div class="post"><h4>App Anatomy - New Stuff</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
   </div> 
-</div>
+
+  <div id="apis" class="span5 content">
+    <h3>{lang.apiPrefix}.api's</h3>
+    <p id="apiDocs" align="justify">{lang.studioName} provides a JavaScript API to access functionality on handsets and on the cloud in a cross-platform way. By abstracting-out the platform-specific implementations, you can build apps which work across a wide range of platforms and can also access powerful server-side functionality.</p>
+
+    <ul>
+      <li><a id="clientLink" href="#" onClick="showHide('clientLink')">Client APIs</a></li>
+      <li><a id="cloudLink"  href="#" onClick="showHide('cloudLink')">Cloud APIs</a></li>
+      <li><a id="hideLink"   href="#" onClick="hideApis()">Hide APIs</a></li>
+    </ul>
+
+    <div id="client" style="display:none">
+      <h4>Client APIs</h4>
+      <ul>        
+        <li><a href="#" id="1012276">{lang.apiAcc}</a></li>
+        <li><a href="#" id="1015103">{lang.apiAct}</a></li>
+        <li><a href="#" id="1015118">{lang.apiAudio}</a></li>
+        <li><a href="#" id="1099663">{lang.apiCamera}</a></li>
+        <li><a href="#" id="1015134">{lang.apiContacts}</a></li>
+        <li><a href="#" id="1015153">{lang.apiDep}</a></li>
+        <li><a href="#" id="1099591">{lang.apiFile}</a></li>
+        <li><a href="#" id="1015187">{lang.apiGeolocation}</a></li>
+        <li><a href="#" id="1015177">{lang.apiGeoIP}</a></li>
+        <li><a href="#" id="1015167">{lang.apiHashing}</a></li>
+        <li><a href="#" id="1019188">{lang.apiHandlers}</a></li>
+        <li><a href="#" id="1363666">{lang.apiLocalStorage}</a></li>
+        <li><a href="#" id="1015203">{lang.apiLogging}</a></li>
+        <li><a href="#" id="1015207">{lang.apiMapping}</a></li>
+        <li><a href="#" id="1015212">{lang.apiMessaging}</a></li>
+        <li><a href="#" id="1015214">{lang.apiNotification}</a></li>
+        <li><a href="#" id="1298299">{lang.apiOrientation}</a></li>
+        <li><a href="#" id="1015244">{lang.apiReady}</a></li>
+        <li><a href="#" id="1019111">{lang.apiSecurity}</a></li>
+        <li><a href="#" id="1015261">{lang.apiWebRequests}</a></li>
+        <li><a href="#" id="1336195">{lang.apiWebView}</a></li>
+      </ul>
+    </div>
+    <div id="cloud" style="display:none">
+      <h4>Cloud APIs</h4>
+      <ul>
+        <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
+        <li><a id="1015127" class="snippet" href="#">{lang.apiDataStorage}</a></li>
+        <li><a id="1015166" href="#">{lang.apiHashing}</a></li>
+        <li><a id="1015203" href="#">{lang.apiCloudLogging}</a></li>
+        <li><a id="1015224" href="#">{lang.apiParsing}</a></li>
+        <li><a id="1015231" href="#">{lang.apiRSS}</a></li>
+        <li><a id="1019114" href="#">{lang.apiCloudSecurity}</a></li>
+        <li><a id="1015247" href="#">{lang.apiStringify}</a></li>
+        <li><a id="1015266" href="#">{lang.apiCloudWebRequests}</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+</div> <!-- End Bootstrap Row -->
 
 <script>
   $('.header').click();
