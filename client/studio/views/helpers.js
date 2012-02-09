@@ -1,3 +1,20 @@
+function translateKey(context, key) {
+  var path = key.split('.'),
+      lookup = context.get('lang'),
+      i;
+
+  console.log(path);
+  for (i = 0; i < path.length && (typeof lookup === "object"); i++) {
+    lookup = lookup[path[i]];
+  }
+
+  if (lookup === undefined) {
+    return '<span style="color:red;">MISSING TRANSLATION ' + path.join('.') + '</span>';
+  } else {
+    return lookup;
+  } //TODO another case – lookup is not a string
+}
+
 client.studio.views = client.studio.views || {};
 client.studio.views.helpers = dust.makeBase({
     tabLayoutHelper : function (chunk,context){
@@ -18,23 +35,6 @@ client.studio.views.helpers = dust.makeBase({
     },
 
     t : function(chunk, context, bodies, params) {
-      var translateKey = function(key) {
-        var path = key.split('.'),
-            lookup = context.get('lang'),
-            i;
-
-        console.log(path);
-        for (i = 0; i < path.length && (typeof lookup === "object"); i++) {
-          lookup = lookup[path[i]];
-        }
-
-        if (lookup === undefined) {
-          return '<span style="color:red;">MISSING TRANSLATION ' + path.join('.') + '</span>';
-        } else {
-          return lookup;
-        } //TODO another case – lookup is not a string
-      };
-
       //TODO Fixing stuff below would enable possibility to have keys like "one.two.{three}".
       //if (typeof params.key === 'function') {
       //  //return chunk.map(function(chk) {
@@ -43,7 +43,7 @@ client.studio.views.helpers = dust.makeBase({
       //  //  });
       //  //});
       //} else {
-        return chunk.write(translateKey(params.key));
+        return chunk.write(translateKey(context, params.key));
       //}
     },
 
@@ -64,17 +64,16 @@ client.studio.views.helpers = dust.makeBase({
           constraint = context.get('constraint'),
           options;
       chunk.write('<label for="' + inputId + '">');
-      context.get('t')(chunk, context, null, {key: context.get('title')});
+      //context.get('t')(chunk, context, null, {key: context.get('title')});
+      chunk.write(translateKey(context, context.get('title')));
       chunk.write('</label>');
-      //chunk.write('<input type="hidden" name="platform" value="' + platform + '"/>');
-      //chunk.write('<input type="hidden" name="key" value="' + key + '"/>');
       switch(context.get('type')) {
         case "string":
           return chunk.write('<input name="' + inputName + '" type="text" id="' + inputId + '" value="' + value + '"/>');
         case "boolean":
           return chunk.write('<input name="' + inputName + '" type="checkbox" id="' + inputId + '" value="true" checked="' + (value === 'true') + '"/>');
         case "select":
-          options = !constraint ? '' : constraint.map(function(o, idx) { return '<option' + (o === value ? ' selected="true">' : '>') + o + '</option>'; });
+          options = !constraint ? '' : constraint.map(function(o, idx) { return '<option' + (o === value ? ' selected="true">' : '>') + translateKey(context, 'config.values.' + o) + '</option>'; });
           return chunk.write('<select name="' + inputName + '" id="' + inputId + '">' + options + '</select>');
       }
 

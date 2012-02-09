@@ -13,9 +13,11 @@
           {?fields}
             <fieldset>
               <legend>{#t key=title/}</legend>
-              {#fields}
-                <p>{#configInput/}</p>
-              {/fields}
+              <div>
+                {#fields}
+                  <p>{#configInput/}</p>
+                {/fields}
+              </div>
             </fieldset>
           {/fields}
         {/sections}

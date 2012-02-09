@@ -88,6 +88,11 @@ var en = {
       permissionReceiveSMS: 'Receive SMS',
       permissionVibrate: 'Vibrate',
       remoteDebug: 'Remote debug'
+    },
+    values: {
+      portrait: 'portrait',
+      landscape: 'landscape',
+      Top: 'top'
     }
   },
   // App Build (build.dust)
