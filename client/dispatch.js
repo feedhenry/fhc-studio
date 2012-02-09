@@ -55,5 +55,5 @@ client.studio.dispatch = function () {
 
 $('document').ready(function () {
 
-    client.studio.dispatch().update(window.location.pathname);
+   // client.studio.dispatch().update(window.location.pathname);
 });

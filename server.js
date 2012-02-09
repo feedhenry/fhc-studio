@@ -6,6 +6,7 @@ var express     = require('express'),
     fhc         = require('fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),
+    dust        = require('./node_modules/express-dust/lib/dust'),
     controllers = require('./controllers');
 
 var server = module.exports = express.createServer();
@@ -31,8 +32,8 @@ fhc.fhc.load({}, function (err) {
 
 server.configure(function () {
 
-    server.set('views', __dirname + '/views');
-    server.set('view engine', 'jade');
+    server.set('views', __dirname + '/client/studio/views/dust');
+    //server.set('view engine', 'dust');
 
     server.set('env',"local"); // Should this listen for --debug flag?
 
@@ -90,10 +91,13 @@ server.get('*/worker-javascript.js', function(req, res){
 var checkAuth = controllers.userController.checkAuth; // auth checking function
 //index
 
+// Setup dust
+var dustHelpers = require('./client/studio/views/helpers');
+dust.makeBase(dustHelpers.helpers);
+dust.setViewDir('client/studio/views/dust');
 
 
 server.get("/", checkAuth, controllers.appController.indexAction);
-
 server.get('/home.:resType?', checkAuth, controllers.appController.indexAction);
 //user actions
 server.get('/register.:resType?', controllers.userController.signupAction);

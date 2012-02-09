@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{+title}FeedHenry{/title}</title>
+    
+    <!-- LESS generated stylesheet -->
+    <link rel="stylesheet" href="/css/main.css">
+    
+    <!-- LIB JS UTILS -->
+    <script src="/js/lib/jquery-1.7.1.min.js"></script>
+    <script src="/js/lib/jquery.tablesorter.min.js"></script>
+    <script src="/js/lib/jquery.history.js"></script>
+    <script src="/js/lib/JSTree/jquery.jstree.js"></script>
+    <script src="/js/lib/bootstrap/bootstrap-dropdown.js"></script>
+    <script src="/js/lib/bootstrap/bootstrap-tab.js"></script>
+    <script src="/js/lib/bootstrap/bootstrap-modal.js"></script>
+    <script src="/js/lib/dust-core-0.3.0.js"></script>
+    <script src="/js/lib/underscore-min.js"></script>
+    <script src="/js/lib/jquery.hotkeys.js"></script>
+    
+    <!--COMPILED TEMPLATES -->
+    <script src="/js/templates/compiledTemplates.js"></script>
+    
+    <!-- APPLICATION LOGIC -->
+    <script src="/init.js"></script>
+    <script src="/util/ajaxify.js"></script>
+    <script src="/util/history.js"></script>
+    <script src="/util/messages.js"></script>
+    <script src="/util/modal.js"></script>
+    <script src="/util/keyboard.js"></script>
+    <script src="/studio/preview/preview.js"></script>
+    <script src="/studio/views/helpers.js"></script>
+    <script src="/dispatch.js"></script>
+    <script src="/studio/editor/editor.js"></script>
+    
+</head>
+<body style="padding-top: 40px;">
+{getTpl}
+
+
+
+</body>
+</html>

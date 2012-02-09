@@ -1,0 +1,10 @@
+{>"layouts/main"/}
+
+{<title}Overwriting Title {title}{/title}
+
+
+{<html_body}
+    <p>TESTBODHA<br /> 
+    Title is:  {title}</p>
+{/html_body}
+

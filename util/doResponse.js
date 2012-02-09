@@ -23,10 +23,10 @@ doResponse = function (req, res, d) {
   switch(resType){
     case "jstpl":
       // API request - sending back JSON data with a template
-      var template = getTemplateString(d);
+      //var template = getTemplateString(d);
       res.send({
         data: d,
-        template: template
+        template: ""
       });
       break;
       
@@ -38,7 +38,7 @@ doResponse = function (req, res, d) {
       
     default:
        // HTML page GET request - sending back a rendered page
-      res.render("index", d);
+      res.render('main.dust', d); // main.dust uses a helper to inspect d.tpl and render whatever it needs
       break;
       
   }
