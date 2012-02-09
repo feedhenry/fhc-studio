@@ -8,9 +8,9 @@
   top: 0px;
   left: 0px; 
   width: 100px;
-  color: #fff;
+  color: @white;
   text-align: center;
-  background-color: #333;
+  background-color: @grayDark;
   font-size: 0.85em;
 }
 .appBar ul {
@@ -20,8 +20,8 @@
   padding: 0px;
 }
 .appBar li {
-  border-bottom: 1px solid #222;
-  border-top: 1px solid #444;
+  border-bottom: 1px solid @grayDarker;
+  border-top: 1px solid @gray;
 }
 
 .appBar li a, .appBar li a:hover {
@@ -39,14 +39,14 @@
   width: 100px;
 }
 .appBar a,.appBar a:link, .appBar a:visited, .appBar a:active {
-  color: #fff;
+  color: @white;
 }
 
 .appBar li.active a, .appBar li:hover a {
   background-position: center -100px;   
 }
 .appBar li.active {
-  background-image: -webkit-linear-gradient(top, #333, #222);
+  background-image: -webkit-linear-gradient(top, @grayDark, @grayDarker);
 }
 
 /* TODO - make sprites! */
