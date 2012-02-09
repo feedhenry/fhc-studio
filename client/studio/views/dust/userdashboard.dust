@@ -8,28 +8,18 @@
 
 <script>
     function showHide(id){
-      
-      console.log("Called show hide with " + id);
       $('#apiDocs').hide();
       if (id=="clientLink"){
         $('#cloudLink').show('fast');
         $('#client').show('fast');
         $('#cloud').hide('fast');
       } 
-      else if (id=="videoList") {
-        if ($('#videoList').is(':visible')){
-          $('#videoList').hide('fast');
-          $('#showHideVideos').text(' (Show...)');
-        } else {
-          $('#videoList').show('fast');
-          $('#showHideVideos').text(' (Hide...)');
-        }
-      }
       else {
         $('#clientLink').show('fast');
         $('#cloud').show('fast');
         $('#client').hide('fast');
       }
+      return false;
     }
 
     function hideApis(){
@@ -38,6 +28,7 @@
       $('#cloudLink').show('fast');
       $('#client').hide('fast');
       $('#cloud').hide('fast');
+      return false;
     }
 </script>
 
@@ -80,16 +71,28 @@
       <div class="post"><h4>App Anatomy - New Stuff</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
   </div> 
 
-  <div id="apis" class="span5 content"> <!-- BEGIN API DOCS -->
+  <div id="apis" class="span12 content"> <!-- BEGIN API DOCS -->
     <h3>{lang.apiPrefix}.api Documents</h3>
 
     <ul>
-      <li><a id="clientLink" href="#" onClick="showHide('clientLink')">Client APIs</a></li>
-      <li><a id="cloudLink"  href="#" onClick="showHide('cloudLink')">Cloud APIs</a></li>
-      <li><a id="hideLink"   href="#" onClick="hideApis()">Hide APIs</a></li>
+      <li><a id="clientLink"  onClick="showHide('clientLink')">Client APIs</a></li>
+      <li><a id="cloudLink"   onClick="showHide('cloudLink')">Cloud APIs</a></li>
+      <li><a id="hideLink"    onClick="hideApis()">Hide APIs</a></li>
     </ul>
 
-    <p id="apiDocs" align="justify">{lang.studioName} provides a JavaScript API to access functionality on handsets and on the cloud in a cross-platform way. By abstracting-out the platform-specific implementations, you can build apps which work across a wide range of platforms and can also access powerful server-side functionality.</p>
+    <div id="apiDocs">
+    <p align="justify">{lang.studioName} provides a JavaScript API to access functionality on handsets and on the cloud in a cross-platform way. By abstracting-out the platform-specific implementations, you can build apps which work across a wide range of platforms and can also access powerful server-side functionality.
+    <br/><br/><strong>Using the API: </strong>
+
+    The FeedHenry JavaScript API is provided in the $fh namespace and uses a common convention for most functions, which takes the format: 
+    
+    <pre align="center">$fh.doSomething( parameterObject, successFunction, failureFunction )</pre>
+    
+    where parameterObject is an ordinary JavaScript object. The successFunction callback is called if the operation was successful and the failureFunction callback is called if the operation fails. All of these arguments are optional. If there is only one function, it is taken as the success function.
+
+
+    For a quick reference of which On Device APIs are available on each platform please check out the Device Support Matrix</p>
+    </div>
 
     <div id="client" style="display:none">
       <ul>        
@@ -131,7 +134,7 @@
     </div>
   </div> <!-- END API DOCS -->
 
-  <div id="vimeoFeed" class="span7 content"> <!-- BEGIN VIMEO FEED -->
+  <div id="vimeoFeed" class="span12 content"> <!-- BEGIN VIMEO FEED -->
     <div id="stats">
       <h3></h3>
       <div style="clear: both;"></div>
@@ -140,27 +143,25 @@
 
     
     <div id="thumbs">
-      <h4>More Videos By FeedHenry<a href="#" id="showHideVideos" onClick="showHide('videoList')"> (Show...)</a></h4>
-      <ul id="videoList" style="display:none"></ul>
+      <h4>More Videos By FeedHenry</h4>
+      <ul id="videoList"</ul>
     </div>
 
   </div> <!-- END VIMEO FEED -->
 
 </div> <!-- End Bootstrap Row -->
 
-<script>
-  $('.header').click();
-</script>
 
 <script> 
-    $(function() {
-        client.studio.dashboard.init();
-    });
+  $('.header').click();
+  $(function() {
+      client.studio.dashboard.init();
+  });
 </script>
 
 
 <footer>
-          <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
+  <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
 </footer>
 
 </div>

@@ -21,11 +21,22 @@
  /*
   * API Section Style
   */
- .userdash #apis ul{
-   padding: 2% 0% 2% 10%;
-   margin: 0 auto;
-   border-top: 1px solid @grayLighter;
+ .userdash #apis{
+   min-height: 240px;
+   max-height: 240px;
+   height: 240px;
    border-bottom: 1px solid @grayLighter;
+ }
+ .userdash #apis ul{
+   border-top: 1px solid @grayLighter;
+   padding: 5px 0px 5px 0px;
+   margin: 0 auto;
+ }
+ .userdash #apis ul li{
+   display: inline-block;
+   width: 33.33%;
+   margin: 0 auto;
+   text-align: center;
  }
  .userdash #apis li{
    display: inline-block;
@@ -68,8 +79,7 @@
   * VideoFeed Section Style
   */
  .userdash #vimeoFeed #thumbs{ 
-   overflow: auto; 
-   height: 298px;  
+   overflow: auto;  
    width: 100%;
    padding: 0; 
  }
