@@ -45,6 +45,14 @@ client.studio.views.helpers = dust.makeBase({
           options = !constraint ? '' : constraint.map(function(o, idx) { return '<option' + (o === value ? ' selected="true">' : '>') + o + '</option>'; });
           return chunk.write('<select name="' + inputName + '" id="' + inputId + '">' + options + '</select>');
       }
+
+    },
+    filesTreeHelper : function(chunk, context){
+      var tab = context.get("tab");
+      if (tab==='editor'){
+        chunk.partial('filestree', context);
+      }
+
     },
     navigationHelper : function(chunk, context){
       var page = context.get("tpl");

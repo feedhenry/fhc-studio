@@ -9,13 +9,7 @@ packages.json looks after all dependencies.
 
 ### 1. install node.js, npm and redis 
 
-install node.js (see [node.js website](http://nodejs.org/) )
-
-install npm Node Package Manager 
-
-    curl http://npmjs.org/install.sh | sh
-    
-install redis see: http://redis.io/download
+install node.js & npm (via installer for Windows & Mac, from source for linux) (see [node.js website](http://nodejs.org/) )
 
 see packages.json (npm's configuration file) for details on packages used
 
@@ -29,14 +23,15 @@ see packages.json (npm's configuration file) for details on packages used
     $ node server.js 
     $ open http://0.0.0.0:3000/
     
-//TODO: At present, the DustJS module needs to have this line removed to work with node 0.6:  
-lib/server.js:6 require.paths.unshift(path.join(__dirname, '..'));  
 
-### Post installation tips
+### Development Instructions
 
 * After making changes to any templates, run 'jake ct' to compile the templates.
 * modules which extend commandline, for example fhc, run, jake should be installed globally (use -g option with npm). Example : npm install fhc -g
 * consider using [run.js](https://github.com/DTrejo/run.js) : you won't have to restart server after changing the code.  
+* //TODO: At present, the DustJS module needs to have this line removed to work with node 0.6:  
+lib/server.js:6 require.paths.unshift(path.join(__dirname, '..'));  
+
 
 ## Important Resources & Reading  
 Here's a collection of docs pages on the libraries and packages used in fh-studio  
