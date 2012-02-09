@@ -4,6 +4,7 @@
 <script>
     $(".recent").tablesorter();
 </script>
+
 <script>
     function showHide(id){
       
@@ -68,9 +69,8 @@
       <div class="post"><h4>App Anatomy - New Stuff</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
   </div> 
 
-  <div id="apis" class="span5 content">
-    <h3>{lang.apiPrefix}.api's</h3>
-    <p id="apiDocs" align="justify">{lang.studioName} provides a JavaScript API to access functionality on handsets and on the cloud in a cross-platform way. By abstracting-out the platform-specific implementations, you can build apps which work across a wide range of platforms and can also access powerful server-side functionality.</p>
+  <div id="apis" class="span5 content"> <!-- BEGIN API DOCS -->
+    <h3>{lang.apiPrefix}.api Documents</h3>
 
     <ul>
       <li><a id="clientLink" href="#" onClick="showHide('clientLink')">Client APIs</a></li>
@@ -78,8 +78,9 @@
       <li><a id="hideLink"   href="#" onClick="hideApis()">Hide APIs</a></li>
     </ul>
 
+    <p id="apiDocs" align="justify">{lang.studioName} provides a JavaScript API to access functionality on handsets and on the cloud in a cross-platform way. By abstracting-out the platform-specific implementations, you can build apps which work across a wide range of platforms and can also access powerful server-side functionality.</p>
+
     <div id="client" style="display:none">
-      <h4>Client APIs</h4>
       <ul>        
         <li><a href="#" id="1012276">{lang.apiAcc}</a></li>
         <li><a href="#" id="1015103">{lang.apiAct}</a></li>
@@ -105,7 +106,6 @@
       </ul>
     </div>
     <div id="cloud" style="display:none">
-      <h4>Cloud APIs</h4>
       <ul>
         <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
         <li><a id="1015127" class="snippet" href="#">{lang.apiDataStorage}</a></li>
@@ -118,13 +118,67 @@
         <li><a id="1015266" href="#">{lang.apiCloudWebRequests}</a></li>
       </ul>
     </div>
+  </div> <!-- END API DOCS -->
 
-  </div>
+  <div class="span6"> <!-- END VIMEO FEED -->
+    <div id="stats">
+      <h2></h2>
+      <div style="clear: both;"></div>
+    </div>
+    <div id="wrapper">
+      <div id="embed"></div>
+      <div id="thumbs">
+        <ul></ul>
+      </div>
+    </div>
+  </div> <!-- END VIMEO FEED -->
 
 </div> <!-- End Bootstrap Row -->
 
 <script>
   $('.header').click();
+</script>
+<script>
+    var apiEndpoint = 'http://vimeo.com/api/v2/';
+    var oEmbedEndpoint = 'http://vimeo.com/api/oembed.json';
+    var oEmbedCallback = 'switchVideo';
+    var videosCallback = 'setupGallery';
+    var vimeoUsername = 'feedhenry';
+
+    function getVideo(url) {
+      $.getScript(oEmbedEndpoint + '?url=' + url + '&width=504&height=280&callback=' + oEmbedCallback);
+    }
+
+    function setupGallery(videos) {
+
+      // Set the user's thumbnail and the page title
+      $('#stats').prepend('<img id="portrait" src="' + videos[0].user_portrait_medium + '" />');
+      $('#stats h2').text(videos[0].user_name + "'s Videos");
+
+      // Load the first video
+      getVideo(videos[0].url);
+
+      // Add the videos to the gallery
+      for (var i = 0; i < videos.length; i++) {
+        var html = '<li><a href="' + videos[i].url + '"><img src="' + videos[i].thumbnail_medium + '" class="thumb" />';
+        html += '<p>' + videos[i].title + '</p></a></li>';
+        $('#thumbs ul').append(html);
+      }
+
+      // Switch to the video when a thumbnail is clicked
+      $('#thumbs a').click(function(event) {
+        event.preventDefault();
+        getVideo(this.href);
+        return false;
+      });
+
+    }
+
+    function switchVideo(video) {
+      $('#embed').html(unescape(video.html));
+    }
+
+    $.getScript(apiEndpoint + vimeoUsername + '/videos.json?callback=' + videosCallback);
 </script>
 
 </div>
