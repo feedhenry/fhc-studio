@@ -21,6 +21,7 @@ client.studio.dispatch = function () {
             $.get(self.url + ".json", callback);
         },
         render : function () {
+            console.log('render');
             var state = History.getState(),
                 res, tpl, title, data;
             res = state.data;
