@@ -62,16 +62,22 @@
    padding: 0px;
    margin: 0px;
  }
- .userdash #recentApps ul{ 
-   margin: 0 10px 0; 
-   padding: 0 0 10px 0; 
+ .userdash #recentApps ul{  
+   padding: 0 0 10px 0;
+   margin: 0px; 
  }
  .userdash #recentApps ul li{ 
+   border-left: 1px solid @grayLighter;
+   border-top: 1px solid @grayLighter;
+   border-right: 1px solid @grayLighter;
    display: inline-block;
-   text-align: center;
-   height: 132px;
-   min-width: 50%;
-   max-width: 50%;
+   text-align: left;
+   height: 118px;
+   min-width: 49.75%;
+   max-width: 49.75%;
+ }
+ .userdash #recentApps ul li:hover{ 
+   background-color: @grayLighter;
  }
 
 
@@ -112,7 +118,7 @@
    width: 504px; 
    float: left; 
    padding: 18px; 
-   margin-left: 20%;
+   margin-left: 185px;
  }
  .userdash #vimeoFeed #portrait{ 
    float: left; 
@@ -132,6 +138,11 @@
    min-height: 265px;
    max-height: 265px;
    border-bottom: 1px solid @grayLighter;
+ }
+ .userdash #posts{
+   overflow: auto;
+   max-height: 238px;
+   min-height: 238px;
  }
  .userdash .post{
    border-top: 1px solid @grayLighter;
