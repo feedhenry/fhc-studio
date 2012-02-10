@@ -112,7 +112,7 @@ server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
  */
 
 // user dashboard
-server.get('/userDashboard.:resType?', controllers.userDashController.loadDash);
+server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
 
 
 // app:dashboard
