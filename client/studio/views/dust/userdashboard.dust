@@ -2,32 +2,6 @@
 {>navigation/}
 
 
-<script>
-    function showHide(id){
-      $('#apiDocs').hide();
-      if (id=="clientLink"){
-        $('#cloudLink').show('fast');
-        $('#client').show('fast');
-        $('#cloud').hide('fast');
-      } 
-      else {
-        $('#clientLink').show('fast');
-        $('#cloud').show('fast');
-        $('#client').hide('fast');
-      }
-      return false;
-    }
-
-    function hideApis(){
-      $('#apiDocs').show('fast');
-      $('#clientLink').show('fast');
-      $('#cloudLink').show('fast');
-      $('#client').hide('fast');
-      $('#cloud').hide('fast');
-      return false;
-    }
-</script>
-
 <div id="container dashboard" class="container userdash">
 {tabHelper}
 <h2>My Dashboard</h2>
@@ -64,9 +38,9 @@
     <h3>{lang.apiPrefix}.api Documents</h3>
 
     <ul>
-      <li><a id="clientLink"  onClick="showHide('clientLink')">Client APIs</a></li>
-      <li><a id="cloudLink"   onClick="showHide('cloudLink')">Cloud APIs</a></li>
-      <li><a id="hideLink"    onClick="hideApis()">Hide APIs</a></li>
+      <li><a id="clientLink">Client APIs</a></li>
+      <li><a id="cloudLink" >Cloud APIs</a></li>
+      <li><a id="hideLink"  >Hide APIs</a></li>
     </ul>
 
     <div id="apiDocs">
@@ -142,7 +116,6 @@
 
 
 <script> 
-  $('.header').click();
   $(function() {
       client.studio.dashboard.init();
   });

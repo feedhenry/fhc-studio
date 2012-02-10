@@ -1,10 +1,45 @@
 client.studio = client.studio || {};
 client.studio.dashboard = {    
     init: function(){
-      this.vimeoGallery();
+      var me = client.studio.dashboard;
+      me.vimeoGallery();
+      me.bindEvents();
+      me.getBlogPosts();
     },
     bindEvents: function(){
-      
+      var me = client.studio.dashboard;
+      // Contains bindings for all default events
+      $('#clientLink').unbind().on("click", me.showClient);
+      $('#cloudLink').unbind().on("click", me.showCloud);
+      $('#hideLink').unbind().on("click", me.hideApiList);
+    },
+    showCloud: function(){
+      $('#apiDocs').hide();
+      $('#clientLink').show('fast');
+      $('#cloud').show('fast');
+      $('#client').hide('fast');
+    },
+    showClient: function(){
+      $('#apiDocs').hide();
+      $('#cloudLink').show('fast');
+      $('#client').show('fast');
+      $('#cloud').hide('fast');
+    },
+    hideApiList: function(){
+      $('#apiDocs').show('fast');
+      $('#clientLink').show('fast');
+      $('#cloudLink').show('fast');
+      $('#client').hide('fast');
+      $('#cloud').hide('fast');
+      return false;
+    },
+    getBlogPosts: function(){
+      $().ready(function(){ 
+        var url = 'http://developer.feedhenry.com/blog/';
+        $.get(url, function(jsonp) {
+          console.log(jsonp);
+        });
+      });
     },
     vimeoCallback: function(videos){
       var oEmbedEndpoint = 'http://vimeo.com/api/oembed.json';
