@@ -3,9 +3,45 @@ var branding = {
     cli : "FHC",
     apiPrefix : "$fh"
 }
+var en = { 
+  // API & Brand Related
+  studioName : branding.studioName,
+  cli : branding.cli,
+  apiPrefix : branding.apiPrefix,
+  // Client API
+  apiAcc: branding.apiPrefix + '.acc',
+  apiAct: branding.apiPrefix + '.act',
+  apiAudio: branding.apiPrefix + '.audio',
+  apiCamera: branding.apiPrefix + '.camera',
+  apiContacts: branding.apiPrefix + '.contacts',
+  apiDep: branding.apiPrefix + '.env',
+  apiFile: branding.apiPrefix + '.file',
+  apiGeolocation: branding.apiPrefix + '.geo',
+  apiGeoIP: branding.apiPrefix + '.geoip',
+  apiHash: branding.apiPrefix + '.hash',
+  apiHandlers: branding.apiPrefix + '.handlers',
+  apiLocalStorage: branding.apiPrefix + '.data',
+  apiLogging: branding.apiPrefix + '.log',
+  apiMapping: branding.apiPrefix + '.map',
+  apiMessaging: branding.apiPrefix + '.send',
+  apiNotification: branding.apiPrefix + '.notify',
+  apiOrientation: branding.apiPrefix + '.ori',
+  apiReady: branding.apiPrefix + '.ready',
+  apiSecurity: branding.apiPrefix + '.sec',
+  apiWebRequests: branding.apiPrefix + '.web',
+  apiWebView: branding.apiPrefix + '.webview',
+  // Cloud API
+  apiCache: branding.apiPrefix + '.cache',
+  apiDataStorage: branding.apiPrefix + '.db',
+  apiHashing: branding.apiPrefix + '.hash',
+  apiCloudLogging: branding.apiPrefix + '.log',
+  apiParsing: branding.apiPrefix + '.parse',
+  apiRSS: branding.apiPrefix + '.feed',
+  apiCloudSecurity: branding.apiPrefix + '.sec',
+  apiStringify: branding.apiPrefix + '.stringify',
+  apiCloudWebRequests: branding.apiPrefix + '.web',
 
-var en = {
-  // Global Navbar
+  // Global Navbar 
   reporting : "Reporting",
   admin : "Admin",
   home : "Home",
@@ -52,6 +88,7 @@ var en = {
   saveAs : "Save As",
   saveClose: "Save & Close",
   search : "Search...",
+  shortcuts: "Shortcuts",
   snippets: "Snippets",
   someSnippets : "Some code snippets",
   navigator : "Navigator",
@@ -108,6 +145,15 @@ var en = {
   forgotPassword : "Forgot...",
   login : "Login",
   login_message : "Enter your username and password to login",
+  
+  // Dashboard
+  dashboard:     "Dashboard",
+  recentApps:    "Recent Apps",
+  developerBlog: "Developer Blog",
+  cloudApis:     "Cloud APIs",
+  clientApis:    "Client APIs",
+  hideApis:      "Hide APIs",
+  moreVideos:    'More Videos by'+branding.studioName,
 
 
   // Home Screen (home.dust)
@@ -117,6 +163,7 @@ var en = {
   homeHeading : "Build apps powered by Cloud Foundry",
   stagingTo : "Staging to Cloud Foundry",
   studioIntro : "Build powerful cloud powered apps with " +branding.studioName+ ". Write in HTML5 and JavaScript. Deploy to your Cloud Foundry, and have a cloud scalable app on 5 platforms instantly!",
+
 
   apiDocs : "API Docs",
   apiText : "Read about the " +branding.apiPrefix+ " APIs that exist to make calls to the " +branding.StudioName+ " cloud, or access on-device functionality not normally available to HTML5 apps.",

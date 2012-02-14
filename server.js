@@ -6,6 +6,7 @@ var express     = require('express'),
     fhc         = require('fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),
+    less        = require('less'),
     controllers = require('./controllers');
 
 var server = module.exports = express.createServer();
@@ -94,9 +95,9 @@ var checkAuth = controllers.userController.checkAuth; // auth checking function
 
 
 
-server.get("/", checkAuth, controllers.appController.indexAction);
+server.get("/", checkAuth, controllers.dashboardController.loadDash);
 
-server.get('/home.:resType?', checkAuth, controllers.appController.indexAction);
+server.get('/home.:resType?', checkAuth, controllers.dashboardController.loadDash);
 //user actions
 server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);
@@ -111,6 +112,10 @@ server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
 /*
  * App Actions
  */
+
+// user dashboard
+server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
+
 
 // app:dashboard
 server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
