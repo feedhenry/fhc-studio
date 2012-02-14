@@ -113,7 +113,6 @@ client.studio.editor = {
 
   },
   bindEvents : function() {
-    return;
     var me = client.studio.editor;
     // Contains bindings for all default events
     $('.help').unbind().on("click", client.studio.editor.help);
@@ -257,15 +256,15 @@ client.studio.editor = {
       url : '/app/' + appId + '/update/' + fileId + '.json',
       data : data,
       success : function(res) {
-        if (res && res.data && res.data.msg) {
-          client.util.messages.info(res.data.msg);
+        if (res && res.data && res.data.msg && !res.data.error) {
+          client.util.messages.success(res.data.msg);
           successCallback();
           if (tab) {
             tab.dirty = false;
             $('#' + tabId + 'Link strong.modifiedStar').hide();
           }
         } else {
-          client.util.messages.error('Error saving file');
+          client.util.messages.error('Error Saving File', res.data.error);
         }
       }
     });
