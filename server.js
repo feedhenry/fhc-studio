@@ -93,9 +93,9 @@ var checkAuth = controllers.userController.checkAuth; // auth checking function
 
 
 
-server.get("/", checkAuth, controllers.indexController.indexAction);
+server.get("/", checkAuth, controllers.dashboardController.loadDash);
 
-server.get('/home.:resType?', checkAuth, controllers.indexController.indexAction);
+server.get('/home.:resType?', checkAuth, controllers.dashboardController.loadDash);
 //user actions
 server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);

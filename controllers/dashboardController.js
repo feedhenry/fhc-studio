@@ -13,7 +13,7 @@ dashboardController = {
             var d = {
                 tpl:'dashboard',
                 apps:data.list,
-                title:'dashboard'
+                title:'Dashboard'
             };
             renderer.doResponse(req, res, d);  
             
