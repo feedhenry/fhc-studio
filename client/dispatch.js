@@ -15,6 +15,13 @@ client.studio.dispatch = function () {
             container = opts.container || "body";
             // if we haven't specified a callback function, this happens by default
             var callback = opts.callback || function(data){
+              var placeInHistory = 0;
+              if (History.savedStates && History.savedStates.length){
+                placeInHistory = History.savedStates.length;
+              }else{
+                placeInHistory = (History.savedHashes.length) ? History.savedHashes.length : 0;
+              }
+              data.historyPosition = placeInHistory;
               client.util.History.pushState(data,data.title,self.url)
             };
             //ajax call
@@ -22,6 +29,7 @@ client.studio.dispatch = function () {
         },
         render : function () {
             var state = History.getState(),
+            url = state.url,
                 res, tpl, title, data;
             res = state.data;
             if (!res || !res.data) {
@@ -30,8 +38,19 @@ client.studio.dispatch = function () {
             tpl = res.data.tpl;
             title = res.data.title;
             data = res.data;
-            //render dust template client side
-            dust.render(tpl, client.studio.views.helpers.push(data), function (err, out) {
+
+            if ((res.historyPosition!==History.savedStates.length-1)){
+                console.log("back" + res.historyPosition);
+                $.get(url + ".json", renderDust);
+            }else{
+                renderDust();    
+            }
+            
+            
+            function renderDust(res){
+              var newData = (res) ? res.data : data;
+              //render dust template client side
+              dust.render(tpl, client.studio.views.helpers.push(newData), function (err, out) {
                 if (err){
                   client.util.messages.error(err);
                   return;
@@ -44,7 +63,9 @@ client.studio.dispatch = function () {
                 
                 $(container).trigger('firedup');
                 $(container).unbind('firedup');
-            });
+              }); 
+            }
+            
         }
     };
     //bind render to state change
