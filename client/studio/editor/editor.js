@@ -113,6 +113,7 @@ client.studio.editor = {
 
   },
   bindEvents : function() {
+    return;
     var me = client.studio.editor;
     // Contains bindings for all default events
     $('.help').unbind().on("click", client.studio.editor.help);
