@@ -25,10 +25,11 @@ client.studio.dispatch = function () {
               client.util.History.pushState(data,data.title,self.url)
             };
             //ajax call
-            $.get(self.url + ".json", callback);
+            $.get(self.url + ".json", callback).error(function(){
+              client.util.messages.error("Error Changing Page", "Unable to change page - check internet connectivity?");
+            });
         },
-        render : function () {
-            console.log('render');
+        render : function (){
             var state = History.getState(),
             url = state.url,
                 res, tpl, title, data;
@@ -41,7 +42,6 @@ client.studio.dispatch = function () {
             data = res.data;
 
             if ((res.historyPosition!==History.savedStates.length-1)){
-                console.log("back" + res.historyPosition);
                 $.get(url + ".json", renderDust);
             }else{
                 renderDust();    

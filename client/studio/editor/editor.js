@@ -84,12 +84,8 @@ client.studio.editor = {
   init : function() {
     var fileTree = $('input[name="filestree"]').remove().val();
     this.tree.init(JSON.parse(fileTree));
-    var appId = $('input#appId').remove().val(), fileContents = $('pre#editor0')
-        .html(), fileId = $('input#fileId').remove().val(), // this gets put
-                                                            // into a hidden
-                                                            // input in the HTML
-                                                            // - we'll remove it
-                                                            // now
+    var appId = $('input#appId').remove().val(), fileContents = $('pre#editor0').html(), 
+    fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
     // bind all events for onClick
     this.bindEvents();
@@ -97,7 +93,6 @@ client.studio.editor = {
     client.util.keyboard(this.shortcuts, ".fluid-container");
 
     // Set our appId on the editor object
-    console.log(appId);
     this.appId = appId;
 
     // Transform our data into something newTab expects
@@ -158,20 +153,31 @@ client.studio.editor = {
     init : function(tree) {
       var me = client.studio.editor;
       if (!tree.children) {
-        throw new Error("Error loading tree children");
-      }
-      // Root node of the tree is /, with children of client, cloud and shared.
-      // Let's make them the root instead.
+        
+        client.util.messages.error('Error', 'Error loading the files tree - is this a git app?'); // TODO: Localise
+        tree.children = [{
+          guid: '',
+          name: 'Error loading files',
+          path: '',
+          type: 'file'
+        }];
+      }else{
+        // Root node of the tree is /, with children of client, cloud and shared.
+        // Let's make them the root instead.
 
-      for ( var i = 0; i < tree.children.length; i++) {
-        parseChildren(tree.children[i]);
+        for ( var i = 0; i < tree.children.length; i++) {
+          parseChildren(tree.children[i]);
+        }
+
+        
+
       }
       parseChildren(tree);
       var treeData = {
-        data : tree.children
-      // init the tree with the children array of / as it's root
+          data : tree.children
+        // init the tree with the children array of / as it's root
       };
-
+      
       $(function() {
         me.filesTree = {
           "json_data" : treeData,
@@ -236,10 +242,16 @@ client.studio.editor = {
    * Performs an 'update' operation in the studio
    */
   save : function(index, callback) {
-    var me = client.studio.editor, appId = me.appId, index = index,
-     tab = me.getTabByIndex(index), tabId = 'tab' + index, editor = tab.ace, editorSession = editor
-        .getSession(), editorContents = editorSession.getValue(), fileId = tab.fileId, successCallback = callback
-        || undefined;
+    var me = client.studio.editor, 
+    appId = me.appId, 
+    index = (typeof index === "number") ? index : me.activeTab,
+    tab = me.getTabByIndex(index), 
+    tabId = 'tab' + index, 
+    editor = tab.ace, 
+    editorSession = editor.getSession(), 
+    editorContents = editorSession.getValue(), 
+    fileId = tab.fileId, 
+    successCallback = callback || undefined;
 
     if (!fileId || fileId.trim() === "") {
       me.saveAs(index);

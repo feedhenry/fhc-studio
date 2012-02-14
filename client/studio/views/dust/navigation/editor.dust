@@ -1,5 +1,5 @@
 <li class="dropdown">
-  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">File</a>
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.file}</a>
   <ul class="dropdown-menu">
     <li><a class="no-ajax" id="newFile" href="#">{lang.newFile}</a></li>
     <li><a class="no-ajax save"  href="#">{lang.save}</a></li>
@@ -9,12 +9,18 @@
     <li><a class="no-ajax" id="openRecent" href="#">{lang.openRecent}</a></li>
   </ul>
 </li>
+<li class="dropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.edit}</a>
+  <ul class="dropdown-menu">
+    <li><a class="no-ajax" id="findMenuLink" href="#">{lang.find}</a></li>
+    <li><a class="no-ajax" id="replaceMenuLink" href="#">{lang.findReplace}</a></li>
+  </ul>
+</li>
 <li class="button"><a>{lang.edit}</a></li>
-<li class="button"><a>{lang.find}</a></li>
 <li class="button"><a class="no-ajax save" href="#" >{lang.save}</a></li>
 <li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
  <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
-<li class="button"><a>{lang.find}</a></li>
+
 <li class="dropdown" id="apiDropdown">
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.apiPrefix}...</a>
   <ul class="dropdown-menu" >

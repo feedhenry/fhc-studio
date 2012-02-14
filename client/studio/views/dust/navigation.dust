@@ -5,13 +5,41 @@
      <img class="logo" src="/images/logo-small.png" alt="Feedhenry Logo">
   
       <ul class="nav studioNav">
-        <li class="dropdown">
-          <a class="brand dropdown-toggle no-ajax" data-toggle="dropdown" href="#">studio</a>
+        <li class="dropdown switcher">
+          <a class="brand dropdown-toggle no-ajax" data-toggle="dropdown" href="#">studio <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a class="brand" href="/">{lang.dashboard}</a></li>
-            <li><a class="brand" href="/apps">{lang.appStudio}</a></li>
-            <li><a class="brand" href="/reporting">{lang.reporting}</a></li>
-            <li><a class="brand" href="/admin">{lang.admin}</a></li>
+            <li class="crumbs">
+              <div class="span5">
+                    You are in: <a href="/">Home</a> <span class="divider">/</span> Library <span class="divider">/</span> Test <span class="divider">/</span> Test2
+              </div>
+            </li>
+            
+            <li id="dashboardSwitch">
+              <div class="span2 title"><a id="dashboardSwitchLink" href="/">{lang.dashboard}</a></div>
+              <div class="span3 sublinks">
+                <a href="#">Test</a>
+              </div>
+            </li>
+            <li class="active" id="appStudioSwitch">
+              <div class="span2 title"><a id="appStudioSwitchLink" class="active" href="/apps">{lang.appStudio}</a></div>
+              <div class="span3 sublinks">
+              <a href="#">Apps</a>
+              <a href="#">New App</a>
+              <a href="#">My Account</a>
+              </div>
+            </li>
+            <li id="reportingSwitch">
+              <div class="span2 title"><a id="reportingSwitchLink" href="/reporting">{lang.reporting}</a></div>
+              <div class="span3 sublinks">
+                <a href="#">Test</a>
+              </div>
+            </li>
+            <li id="adminSwitch">
+              <div class="span2 title"><a id="adminSwitchLink" href="/admin">{lang.admin}</a></div>
+              <div class="span3 sublinks">
+                <a href="#">Test</a>
+              </div>
+            </li>
           </ul>
         </li>
         {! This helps decide where the rest of the nav's menu buttons should come from. !}

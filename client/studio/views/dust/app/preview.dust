@@ -1,3 +1,4 @@
+
 <h2 style="display: inline;">Preview</h2>
 <span class="" style="margin-left: 100px;">
   <a href="#" onclick="client.studio.preview.change('iPad')">iPad</a> |
@@ -8,3 +9,8 @@
 <div class="previewContainer iPhone" id="previewContainer" style="">
 <iframe src="{previewUrl}" frameborder="0" style=""></iframe>
 </div>
+<script>
+$(function() {
+    client.studio.preview.init();
+});
+</script>

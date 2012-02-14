@@ -82,6 +82,7 @@ var en = {
   file : "File",
   edit : "Edit",
   find : "Find",
+  findReplace : "Find & Replace",
   newFile : "New",
   save : "Save",
   saveAll : "Save All",

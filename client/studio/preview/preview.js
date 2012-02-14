@@ -5,6 +5,11 @@ client.studio.preview = {
     rotateVal : "0deg",
     translateVal: "0px, 0px",
 
+    init: function(){
+      $('.previewContainer iframe').on('load', function(){
+        $(this).css('background-color', '#fff');
+      });
+    },
     scale : function(val){
         var container = document.getElementById(this.containerId);
         val = val / 100;
