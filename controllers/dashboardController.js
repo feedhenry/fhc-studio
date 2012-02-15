@@ -5,7 +5,7 @@ var dashboardController,
 
 dashboardController = {
     loadDash:function (req, res, next) {
-        fhc.apps([], function (err, data) {
+        fhc.apps.list(function (err, data) {
             if (err) {
                 renderer.doError(res, req, "Couldn't generate apps listing");
                 return;

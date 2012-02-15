@@ -95,6 +95,13 @@ var en = {
   navigator : "Navigator",
   openRecent : "Open Recent",
   // App Preview (preview.dust)
+  device: "Device",
+  iPad: "iPad",
+  iPhone: "iPhone",
+  galaxyS2: "Samsung Galaxy S2",
+  galaxyTab: "Samsung Galaxy Tab",
+  htcEvo : "HTC Evo 4G",
+  desireS : "HTC Desire S",
   scale : "Scale",
   // App Config (config.dust)
   config : {
@@ -178,43 +185,6 @@ var en = {
   tutorialsText: "Learn how to utilize the cloud to hash then cache data from multiple sources in the cloud. Localize an app, cloud powered language assets make corrections and updates a breeze.",
   viewTutorials : "View our tutorials",
 
-
-  // API & Brand Related
-  studioName : branding.studioName,
-  cli : branding.cli,
-  apiPrefix : branding.apiPrefix,
-  // Client API
-  apiAcc: branding.apiPrefix + '.acc',
-  apiAct: branding.apiPrefix + '.act',
-  apiAudio: branding.apiPrefix + '.audio',
-  apiCamera: branding.apiPrefix + '.camera',
-  apiContacts: branding.apiPrefix + '.contacts',
-  apiDep: branding.apiPrefix + '.env',
-  apiFile: branding.apiPrefix + '.file',
-  apiGeolocation: branding.apiPrefix + '.geo',
-  apiGeoIP: branding.apiPrefix + '.geoip',
-  apiHash: branding.apiPrefix + '.hash',
-  apiHandlers: branding.apiPrefix + '.handlers',
-  apiLocalStorage: branding.apiPrefix + '.data',
-  apiLogging: branding.apiPrefix + '.log',
-  apiMapping: branding.apiPrefix + '.map',
-  apiMessaging: branding.apiPrefix + '.send',
-  apiNotification: branding.apiPrefix + '.notify',
-  apiOrientation: branding.apiPrefix + '.ori',
-  apiReady: branding.apiPrefix + '.ready',
-  apiSecurity: branding.apiPrefix + '.sec',
-  apiWebRequests: branding.apiPrefix + '.web',
-  apiWebView: branding.apiPrefix + '.webview',
-  // Cloud API
-  apiCache: branding.apiPrefix + '.cache',
-  apiDataStorage: branding.apiPrefix + '.db',
-  apiHashing: branding.apiPrefix + '.hash',
-  apiCloudLogging: branding.apiPrefix + '.log',
-  apiParsing: branding.apiPrefix + '.parse',
-  apiRSS: branding.apiPrefix + '.feed',
-  apiCloudSecurity: branding.apiPrefix + '.sec',
-  apiStringify: branding.apiPrefix + '.stringify',
-  apiCloudWebRequests: branding.apiPrefix + '.web',
 };
 
 module.exports = en;

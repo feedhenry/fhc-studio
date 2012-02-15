@@ -1,0 +1,44 @@
+<li class="dropdown" id="deviceDropdown">
+  <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{#t key="device"/}<b class="caret"></b></a>
+  <ul class="dropdown-menu" >
+    <li class="heading"><h3>iOS</h3></li>
+    <li>
+      <a href="#" class="no-ajax" onclick="client.studio.preview.change('iPhone')">
+      <img src="/images/preview/iPhone4Thumb.png"><br />
+      {#t key="iPhone"/}
+      </a>
+    </li>
+    <li>
+      <a href="#" class="no-ajax" onclick="client.studio.preview.change('iPad')">
+      <img src="/images/preview/iPadThumb.png"><br />
+      {#t key="iPad"/}
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li class="heading"><h3>Android</h3></li>
+    <li>
+      <a href="#" class="no-ajax" onclick="client.studio.preview.change('htcEvo')">
+      <img src="/images/preview/htcEvo4gThumb.png"><br />
+      {#t key="htcEvo"/}
+      </a>
+    </li>
+    <li>
+      <a href="#" class="no-ajax" onclick="client.studio.preview.change('desireS')">
+      <img src="/images/preview/htcDesireSThumb.png"><br />
+      {#t key="desireS"/}
+      </a>
+    </li>
+    <li>
+      <a href="#" class="no-ajax" onclick="client.studio.preview.change('galaxyS2')">
+      <img src="/images/preview/samsungGalaxyS2Thumb.png"><br />
+      {#t key="galaxyS2"/}
+      </a>
+    </li>
+    <li>
+      <a href="#" class="no-ajax" onclick="client.studio.preview.change('galaxyTab')">
+      <img src="/images/preview/samsungGalaxyTabThumb.png"><br />
+      {#t key="galaxyTab"/}
+      </a>
+    </li>
+  </ul>
+</li>

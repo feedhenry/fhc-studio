@@ -53,7 +53,7 @@ client.studio.dispatch = function () {
               //render dust template client side
               dust.render(tpl, client.studio.views.helpers.push(newData), function (err, out) {
                 if (err){
-                  client.util.messages.error(err);
+                  client.util.messages.error(err.message);
                   return;
                 }
               

@@ -10,3 +10,23 @@
 .dashboard .summary {
   margin-right: 400px;
 }
+
+.preview.dashboardPreview {
+   right: 0px;
+   width: 380px;
+   height: 100%;
+}
+
+.preview.dashboardPreview.collapsed {
+  height: 40px; 
+  overflow: hidden;
+}
+
+.preview.dashboardPreview, .preview.dashboardPreview .previewContainer {
+  background-color: @grayDark;
+} 
+
+.preview.dashboardPreview .previewContainer {
+  margin-left: 10px;
+  overflow: scroll;
+}

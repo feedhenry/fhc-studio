@@ -11,21 +11,7 @@ var express     = require('express'),
 
 var server = module.exports = express.createServer();
 
-// Load FHC
-fhc.fhc.load({}, function (err) {
-    if (err) {
-        throw new Error(err);
-    }
-    // Set cluster - //TODO: Targetting apps.feedhenry throws an error at the moment! odd!
-    /*fhc.target(['https://apps.feedhenry.com'],
-     function(err, data) {
-     //success
-     if (err){
-     throw new Error(err);
-     }
-     }
-     );*/
-});
+
 
 
 // Configuration
@@ -69,14 +55,17 @@ server.configure('local', function () { // For now a clone of development, but w
   server.use(express.errorHandler({ dumpExceptions:true, showStack:true }));
   server.use(express.session({ secret:"keyboard cat"}));
   server.use(server.router);
+  
+  controllers.init('apps');
 });
 
 
 server.configure('production', function () {
-    server.use(express.errorHandler());
-    var RedisStore  = require('connect-redis')(express);
-    server.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
-    server.use(server.router);
+  server.use(express.errorHandler());
+  var RedisStore  = require('connect-redis')(express);
+  server.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
+  server.use(server.router);
+  controllers.init('demo2');
 });
 
 
@@ -90,10 +79,9 @@ server.get('*/worker-javascript.js', function(req, res){
 });
 
 
+
 var checkAuth = controllers.userController.checkAuth; // auth checking function
 //index
-
-
 
 server.get("/", checkAuth, controllers.dashboardController.loadDash);
 

@@ -1,0 +1,8 @@
+{>"navigation/devicedropdown"/}
+<li class="button"><a style="font-size: 2em;" href="#" onclick="client.studio.preview.rotate();">&#8635;</a></li>
+
+<li class="button">
+  <span>{lang.scale}: 25%</span>
+  <input id="scaleSlider" type="range" onchange="client.studio.preview.scale(this.value);" value="25" min="25" maxvalue="100">
+  <span>100%</span>
+</li>

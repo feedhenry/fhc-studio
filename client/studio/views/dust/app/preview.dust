@@ -1,11 +1,28 @@
+{#compact}
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand no-ajax" id="previewBrandLink" href="#">
+          Preview
+        </a>
+        <ul class="nav">
+            {>"navigation/devicedropdown"/}
+            <li><a style="font-size: 2em;" href="#" onclick="client.studio.preview.rotate();">&#8635;</a></li>
+            <li><span> 25%</span>
+              <input style="display: inline; width: 100px;" id="scaleSlider" type="range" onchange="client.studio.preview.scale(this.value);" value="25" min="25" maxvalue="100">
+              <span>100%</span>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
 
-<h2 style="display: inline;">Preview</h2>
-<span class="" style="margin-left: 100px;">
-  <a href="#" onclick="client.studio.preview.change('iPad')">iPad</a> |
-  <a href="#" onclick="client.studio.preview.change('iPhone')">iPhone</a> |
-  <a style="font-size: 2em;" href="#" onclick="client.studio.preview.rotate();">&#8635;</a> |
-  {lang.scale}: 25%<input type="range" onchange="client.studio.preview.scale(this.value);" min="25" maxvalue="100">100%<br />
-</span>
+  
+  
+{/compact}
+
+
 <div class="previewContainer iPhone" id="previewContainer" style="">
 <iframe src="{previewUrl}" frameborder="0" style=""></iframe>
 </div>
@@ -14,3 +31,4 @@ $(function() {
     client.studio.preview.init();
 });
 </script>
+

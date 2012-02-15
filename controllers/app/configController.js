@@ -74,7 +74,7 @@ var
 configController = {
   indexAction : function(req, res, next) {
     var id = req.params.id;
-    fhc.configuration(['list', id], function (err, cfg) {
+    fhc.configuration.list(id, 'all', function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't list configuration for app"); return;
       }

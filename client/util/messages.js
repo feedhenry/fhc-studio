@@ -17,6 +17,7 @@ client.util.messages  = {
     },
     doMessage: function(node){
       var container = document.getElementById('messageContainer');
+      if (!container) container = document.body;
       //container.innerHTML = "";
       container.appendChild(node);
     },

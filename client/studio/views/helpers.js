@@ -27,6 +27,15 @@ client.studio.views.helpers = dust.makeBase({
     appBarHelper : function(chunk, context){
 
     },
+    previewHelper : function(chunk, context){
+      var tab = context.get('tab'),
+      compact = false;
+      if (tab==="dashboard"){
+        compact = true;
+      }
+      context = context.push({ compact : compact });
+      chunk.partial('app/preview', context);
+    },
     filesTreeHelper : function(chunk, context){
     	var tab = context.get("tab");
     	if (tab==='editor'){
@@ -87,11 +96,21 @@ client.studio.views.helpers = dust.makeBase({
     },
     navigationHelper : function(chunk, context){
       var page = context.get("tpl");
-      var tab = context.get("tab");
-      if (tab && tab==='editor'){
+      var tab = context.get("tab") || "";
+      
+      switch(tab){
+      case 'editor':
         chunk.partial('navigation/editor', context);
-      }else{
+        break;
+        
+      case 'preview':
+        chunk.partial('navigation/preview', context);
+        break;
+      default:
         chunk.partial('navigation/default', context);
+        break;
+        
+      
       }
     },
     renderAppBar : function(chunk, context){
