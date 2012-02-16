@@ -1,7 +1,5 @@
 <section class="preview dashboardPreview pull-right">
-  {previewHelper}
-  
-  
+  {previewHelper}  
 </section>
 
 <section class="summary">

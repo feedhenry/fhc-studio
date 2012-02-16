@@ -28,7 +28,8 @@ editorController = {
           tab:'editor',
           filesTree:list,
           fileContents:false,
-          mode:'js'
+          mode:'js',
+          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
       };
       renderer.doResponse(req, res, d);
     },
@@ -50,7 +51,8 @@ editorController = {
             filesTree:list,
             fileContents:file.contents,
             fileId: file.guid,
-            mode:'js'
+            mode:'js',
+            previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
         };
         renderer.doResponse(req, res, d);
       });

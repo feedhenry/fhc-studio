@@ -30,7 +30,7 @@ client.studio.views.helpers = dust.makeBase({
     previewHelper : function(chunk, context){
       var tab = context.get('tab'),
       compact = false;
-      if (tab==="dashboard"){
+      if (tab==="dashboard" || tab==="editor"){
         compact = true;
       }
       context = context.push({ compact : compact });

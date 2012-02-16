@@ -17,13 +17,25 @@
    height: 100%;
 }
 
+.preview.dashboardPreview .brand {
+  margin-left: 0px;
+}
+
 .preview.dashboardPreview.collapsed {
   height: 40px; 
   overflow: hidden;
+  width: 140px;
+}
+
+.preview.dashboardPreview.collapsed .nav, .preview.dashboardPreview:not(.collapsed) .left {
+  display: none;
+}
+.preview.dashboardPreview:not(.collapsed) .right {
+  display: inline !important;
 }
 
 .preview.dashboardPreview, .preview.dashboardPreview .previewContainer {
-  background-color: @grayDark;
+  
 } 
 
 .preview.dashboardPreview .previewContainer {

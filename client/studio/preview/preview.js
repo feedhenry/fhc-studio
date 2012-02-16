@@ -12,6 +12,9 @@ client.studio.preview = {
       $('#previewBrandLink').on('click', this.toggleWidget);
       var val =  $('#scaleSlider')[0].value;
       this.scale(val);
+      
+      // Make draggable
+      Drag.init(document.getElementById("previewContainer"));
     },
     scale : function(val){
         var container = document.getElementById(this.containerId);
