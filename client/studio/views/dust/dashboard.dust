@@ -4,61 +4,60 @@
 
 <div id="container dashboard" class="container userdash">
 {tabHelper}
-<h2>{lang.dashboard}</h2>
+
+<h1>{lang.dashboard} <small>Your recent activity at a glance</small></h1>
+
 
 <div class="row"> <!-- Begin Bootstrap Row -->
 
-  <div id="recentApps" class="span7 content">
-    <h3>{lang.recentApps}</h3>
-      <ul>
-        <li><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-        <p><strong>{lang.name}: </strong> App Anatomy</p><p><strong>{lang.modified}:</strong> 28/1/2012</p></li>
-        <li><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-        <p><strong>{lang.name}: </strong> App Anatomy</p><p><strong>{lang.modified}:</strong> 28/1/2012</p></li>
-        <li><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-        <p><strong>{lang.name}: </strong> App Anatomy</p><p><strong>{lang.modified}:</strong> 28/1/2012</p></li>
-        <li><img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-        <p><strong>{lang.name}: </strong> App Anatomy</p><p><strong>{lang.modified}:</strong> 28/1/2012</p></li>
+  <div id="recentApps" class="span4 widget">
+    <h2>{lang.recentApps}</h2>
+      <ul class="widgetList">
+        <li>
+          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
+          <strong>App Anatomy</strong> 28/1/2012<br />
+          <a href="#">Dashboard</a> | <a href="#">Editor</a>
+        </li>
+        <li>
+          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
+          <strong>App Anatomy</strong> 28/1/2012<br />
+          <a href="#">Dashboard</a> | <a href="#">Editor</a>
+        </li>
+        <li>
+          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
+          <strong>App Anatomy</strong> 28/1/2012<br />
+          <a href="#">Dashboard</a> | <a href="#">Editor</a>
+        </li>
+        <li>
+          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
+          <strong>App Anatomy</strong> 28/1/2012<br />
+          <a href="#">Dashboard</a> | <a href="#">Editor</a>
+        </li>
       </ul>
   </div>
 
-  <div id="blogPosts"  class="span5 content">
-    <h3>{lang.developerBlog}</h3>
-    <div id="posts">
-      <div class="post"><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></div>
-      <div class="post"><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
-      <div class="post"><h4>Hello World</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </p></div>
-      <div class="post"><h4>iOS 5.0</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
-      <div class="post"><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
-      <div class="post"><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></div>
-    </div>
-  </div> 
-
-  <div id="apis" class="span12 content"> <!-- BEGIN API DOCS -->
-    <h3>{lang.apiPrefix}.api Documents</h3>
-
-    <ul>
-      <li><a id="clientLink">{lang.clientApis}</a></li>
-      <li><a id="cloudLink" >{lang.cloudApis}</a></li>
-      <li><a id="hideLink"  >{lang.hideApis}</a></li>
+  <div id="blogPosts"  class="span4 widget">
+    <h2>{lang.developerBlog}</h2>
+    <ul class="widgetList "id="posts">
+      <li><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></li>
+      <li><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
+      <li><h4>Hello World</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </p></li>
+      <li><h4>iOS 5.0</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
+      <li><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
+      <li><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
     </ul>
-
-    <div id="apiDocs">
-    <p align="justify">{lang.studioName} provides a JavaScript API to access functionality on handsets and on the cloud in a cross-platform way. By abstracting-out the platform-specific implementations, you can build apps which work across a wide range of platforms and can also access powerful server-side functionality.
-    <br/><br/><strong>Using the API: </strong>
-
-    The FeedHenry JavaScript API is provided in the $fh namespace and uses a common convention for most functions, which takes the format: 
-    
-    <pre align="center">$fh.doSomething( parameterObject, successFunction, failureFunction )</pre>
-    
-    where parameterObject is an ordinary JavaScript object. The successFunction callback is called if the operation was successful and the failureFunction callback is called if the operation fails. All of these arguments are optional. If there is only one function, it is taken as the success function.
-
-
-    For a quick reference of which On Device APIs are available on each platform please check out the Device Support Matrix</p>
+  </div> 
+  
+  <div id="apis" class="span4 widget"> <!-- BEGIN API DOCS -->
+    <h2>{lang.apiPrefix}.api Documents</h2>
+    <div class="sublinks">
+      <a id="clientLink" class="active">{lang.clientApis}</a>
+      <a id="cloudLink" >{lang.cloudApis}</a>
+      <a id="usageLink"  >{lang.apiUsage}</a>
     </div>
 
-    <div id="client" style="display:none">
-      <ul>        
+    <div id="client" class="active" style="">
+      <ul class="apis">        
         <li><a href="#" id="1012276">{lang.apiAcc}</a></li>
         <li><a href="#" id="1015103">{lang.apiAct}</a></li>
         <li><a href="#" id="1015118">{lang.apiAudio}</a></li>
@@ -83,7 +82,7 @@
       </ul>
     </div>
     <div id="cloud" style="display:none">
-      <ul>
+      <ul class="apis">
         <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
         <li><a id="1015127" class="snippet" href="#">{lang.apiDataStorage}</a></li>
         <li><a id="1015166" href="#">{lang.apiHashing}</a></li>
@@ -95,11 +94,23 @@
         <li><a id="1015266" href="#">{lang.apiCloudWebRequests}</a></li>
       </ul>
     </div>
+    
+    <div id="apiDocs" style="display: none;">
+      <pre align="center">$fh.doSomething(params, succ, fail);</pre>
+      
+      <h3>Where:</h3> 
+      <p>
+      <strong>params</strong> is an ordinary JavaScript object<br />
+      <strong>succ</strong> is a function called if the operation was successful <br />
+      <strong>fail</strong> is a function called if the operation fails.
+      </p>
+    </div>
+    
   </div> <!-- END API DOCS -->
 
-  <div id="vimeoFeed" class="span12 content"> <!-- BEGIN VIMEO FEED -->
+  <div id="vimeoFeed" class="span4 widget"> <!-- BEGIN VIMEO FEED -->
     <div id="stats">
-      <h3></h3>
+      <h2></h2>
       <div style="clear: both;"></div>
     </div>
     <div id="embed"></div>
@@ -111,6 +122,28 @@
     </div>
 
   </div> <!-- END VIMEO FEED -->
+  
+  <div id="videos" class="span8 widget">
+    <div id="videosCarousel" class="carousel">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item">
+        <iframe src="http://player.vimeo.com/video/34675315" width="504" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+        </div>
+        <div class="item">
+        <iframe src="http://player.vimeo.com/video/34675315" width="504" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+        </div>
+        <div class="item">
+        <iframe src="http://player.vimeo.com/video/34675315" width="504" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+        </div>
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+  
+  
 
 </div> <!-- End Bootstrap Row -->
 

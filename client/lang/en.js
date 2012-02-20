@@ -160,7 +160,7 @@ var en = {
   developerBlog: "Developer Blog",
   cloudApis:     "Cloud APIs",
   clientApis:    "Client APIs",
-  hideApis:      "Hide APIs",
+  apiUsage:      "Usage",
   moreVideos:    'More Videos by'+branding.studioName,
 
 

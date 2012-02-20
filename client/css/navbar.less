@@ -62,7 +62,7 @@ img.logo {
   background-position: 0px 0px; /* Reset background position to white on hover */
 }
 
-.navbar .dropdown.switcher ul li .sublinks a,{
+.navbar .sublinks a, .sublinks a{
   line-height: @switcherRowHeight;
   height: @switcherRowHeight;
   display: inline;
@@ -70,6 +70,7 @@ img.logo {
   border-radius: 16px;
   padding: 5px 18px;
   margin: 0px 4px;
+  color: @white;
 }
 
 div.sublinks {
@@ -82,7 +83,10 @@ div.title {
 }
 
 
-.switcher .dropdown-menu li a:hover, .switcher .dropdown-menu .active  a, .switcher .dropdown-menu .active  a:hover {
+.switcher .dropdown-menu li .title a:hover, 
+.switcher .dropdown-menu .active .title  a, 
+.switcher .dropdown-menu .active  a:hover,
+.sublinks a.active {
   color: white;
   text-decoration: none;
   background-color: #08C;

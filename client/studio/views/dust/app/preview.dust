@@ -12,6 +12,7 @@
             <li><a style="font-size: 2em;" href="#" onclick="client.studio.preview.rotate();">&#8635;</a></li>
             <li>
               <input style="display: inline; width: 100px;" id="scaleSlider" type="range" onchange="client.studio.preview.scale(this.value);" value="25" min="25" maxvalue="100">
+              <input type="hidden" id="previewUrl" value="{previewUrl}">
             </li>
         </ul>
       </div>
@@ -25,7 +26,11 @@
 
 
 <div class="previewContainer iPhone" id="previewContainer" style="position: relative;">
-<iframe src="{previewUrl}" frameborder="0" style=""></iframe>
+  {#compact}
+  {:else}
+  <iframe src="{previewUrl}" frameborder="0"></iframe>
+  {/compact}
+
 </div>
 <script>
 $(function() {

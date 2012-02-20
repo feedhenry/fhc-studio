@@ -58,8 +58,17 @@ client.studio.editor = {
       binding : "ctrl+e",
       handler : function() {
         var me = client.studio.editor;
-        client.studio.editor.closeTab(me.activeTab);
+        me.closeTab(me.activeTab);
         return false;
+      }
+    }, 
+    {
+      title : "Open Resource",
+      description : "Open a file resource",
+      binding : "ctrl+shift+r",
+      handler : function() {
+        var me = client.studio.editor;
+        me.openResource();
       }
     }, 
     {
@@ -344,6 +353,44 @@ client.studio.editor = {
       }
     } ];
     client.util.modal(title, message, buttons);
+    $('#_modalGenTree').bind("loaded.jstree", function() {
+      // once the tree is loaded, remove the files from the tree, just leaving
+      // the folders
+      $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one
+                                                  // file per level
+    }).jstree(me.filesTree).bind("select_node.jstree", me.tree.pathFolderClick);
+
+  },
+  /*
+   * Opens a modal save dialog with a files tree before creating a new file with
+   * a create operation
+   */
+  openResource : function() {
+    var title = "Open Resource", 
+    me = client.studio.editor, message = "Choose where to save this file <br /> "
+        + "<div id='_modalGenTree'>Loading files tree...</div>"
+        + "<form class='pathForm form-horizontal'>"
+        + "<fieldset><label for='fileName'>Filename: </label><input class='span6' id='fileName'></fieldset>"
+        + "<fieldset><label for='filePath'>Path: </label><input  class='span6' id='filePath'></fieldset>"
+        + "</form>", 
+    buttons = [ 
+      {
+        text : 'Cancel',
+        callback : function() {
+          // Just cancel this modal dialog
+          return true;
+        }
+      }, 
+      {
+        text : 'Open',
+        type : 'primary',
+        callback : function() {
+          // TODO: Perform a $.ajax new file operation with some path...
+        }
+      } 
+    ];
+    
+    client.util.modal(title, message, buttons, { backdrop: false });
     $('#_modalGenTree').bind("loaded.jstree", function() {
       // once the tree is loaded, remove the files from the tree, just leaving
       // the folders

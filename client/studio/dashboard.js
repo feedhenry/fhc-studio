@@ -5,32 +5,38 @@ client.studio.dashboard = {
       me.vimeoGallery();
       me.bindEvents();
       me.getBlogPosts();
+      
+      $('#videosCarousel').carousel({
+          interval: 2000
+      });
     },
     bindEvents: function(){
       var me = client.studio.dashboard;
       // Contains bindings for all default events
       $('#clientLink').unbind().on("click", me.showClient);
       $('#cloudLink').unbind().on("click", me.showCloud);
-      $('#hideLink').unbind().on("click", me.hideApiList);
+      $('#usageLink').unbind().on("click", me.showUsage);
     },
     showCloud: function(){
       $('#apiDocs').hide();
-      $('#clientLink').show('fast');
       $('#cloud').show('fast');
       $('#client').hide('fast');
+      $('#apis .sublinks a.active').removeClass('active');
+      $('#cloudLink').addClass('active');
     },
     showClient: function(){
       $('#apiDocs').hide();
-      $('#cloudLink').show('fast');
       $('#client').show('fast');
       $('#cloud').hide('fast');
+      $('#apis .sublinks a.active').removeClass('active');
+      $('#clientLink').addClass('active');
     },
-    hideApiList: function(){
+    showUsage: function(){
       $('#apiDocs').show('fast');
-      $('#clientLink').show('fast');
-      $('#cloudLink').show('fast');
       $('#client').hide('fast');
       $('#cloud').hide('fast');
+      $('#apis .sublinks a.active').removeClass('active');
+      $('#usageLink').addClass('active');
       return false;
     },
     getBlogPosts: function(){
@@ -45,7 +51,7 @@ client.studio.dashboard = {
       var oEmbedEndpoint = 'http://vimeo.com/api/oembed.json';
       var oEmbedCallback = 'switchVideo';
       // Set the user's thumbnail and the page title
-      $('#vimeoFeed h3').text(videos[0].user_name + "'s Videos");
+      $('#vimeoFeed h2').text(videos[0].user_name + "'s Videos");
 
       // Load the first video
       getVideo(videos[0].url);

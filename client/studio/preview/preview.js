@@ -52,8 +52,18 @@ client.studio.preview = {
       var widget = $('section.preview.dashboardPreview');
       if (widget.hasClass('collapsed')){
         widget.removeClass('collapsed');
+        var url = $('#previewUrl').val();
+        var iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.frameborder = 0;
+        iframe.onload = function(){
+            $(this).css('background-color', '#fff');
+        }
+        $('#previewContainer').append(iframe);
+        //<iframe src="{previewUrl}" frameborder="0"></iframe>
       }else{
         widget.addClass('collapsed');
+        $('#previewContainer iframe').remove();
       }
     }
 };
