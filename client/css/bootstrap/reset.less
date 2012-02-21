@@ -46,7 +46,7 @@ html {
 }
 // Focus states
 a:focus {
-  outline: thin dotted;
+  .tab-focus();
 }
 // Hover & Active
 a:hover,
@@ -91,8 +91,7 @@ select,
 textarea {
   margin: 0;
   font-size: 100%;
-  vertical-align: baseline;
-  *vertical-align: middle;
+  vertical-align: middle;
 }
 button,
 input {
@@ -109,7 +108,7 @@ input[type="button"],
 input[type="reset"],
 input[type="submit"] {
   cursor: pointer; // Cursors on all buttons applied consistently
-  -webkit-appearance: button; // Style clicable inputs in iOS
+  -webkit-appearance: button; // Style clickable inputs in iOS
 }
 input[type="search"] { // Appearance in Safari/Chrome
   -webkit-appearance: textfield;

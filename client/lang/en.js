@@ -157,11 +157,12 @@ var en = {
   // Dashboard
   dashboard:     "Dashboard",
   recentApps:    "Recent Apps",
+  templates:     "Templates",
+  videos:        "Videos",
   developerBlog: "Developer Blog",
   cloudApis:     "Cloud APIs",
   clientApis:    "Client APIs",
   apiUsage:      "Usage",
-  moreVideos:    'More Videos by'+branding.studioName,
 
 
   // Home Screen (home.dust)

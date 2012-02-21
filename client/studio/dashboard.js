@@ -2,13 +2,9 @@ client.studio = client.studio || {};
 client.studio.dashboard = {    
     init: function(){
       var me = client.studio.dashboard;
-      me.vimeoGallery();
       me.bindEvents();
-      me.getBlogPosts();
       
-      $('#videosCarousel').carousel({
-          interval: 2000
-      });
+      $('#videosCarousel').carousel();
     },
     bindEvents: function(){
       var me = client.studio.dashboard;
@@ -16,6 +12,7 @@ client.studio.dashboard = {
       $('#clientLink').unbind().on("click", me.showClient);
       $('#cloudLink').unbind().on("click", me.showCloud);
       $('#usageLink').unbind().on("click", me.showUsage);
+//      $('#templatesTabs .nav-tabs a').unbind().on("click", me.showTemplate);
     },
     showCloud: function(){
       $('#apiDocs').hide();
@@ -39,51 +36,18 @@ client.studio.dashboard = {
       $('#usageLink').addClass('active');
       return false;
     },
-    getBlogPosts: function(){
-      $().ready(function(){ 
-        var url = 'http://developer.feedhenry.com/blog/';
-        $.get(url, function(jsonp) {
-          console.log(jsonp);
-        });
-      });
-    },
-    vimeoCallback: function(videos){
-      var oEmbedEndpoint = 'http://vimeo.com/api/oembed.json';
-      var oEmbedCallback = 'switchVideo';
-      // Set the user's thumbnail and the page title
-      $('#vimeoFeed h2').text(videos[0].user_name + "'s Videos");
-
-      // Load the first video
-      getVideo(videos[0].url);
-
-      // Add the videos to the gallery
-      for (var i = 0; i < videos.length; i++) {
-        var html = '<li><a href="' + videos[i].url + '">';
-        html += '<p>' + videos[i].title + '</p></a></li>';
-        $('#thumbs ul').append(html);
-      }
-
-      // Switch to the video when a thumbnail is clicked
-      $('#thumbs a').click(function(event) {
-        event.preventDefault();
-        getVideo(this.href);
-        return false;
-      });
-      
-      function getVideo(url) {
-        $.getScript(oEmbedEndpoint + '?url=' + url + '&width=504&height=280&callback=' + oEmbedCallback);
-      }
-      
-    },
-    vimeoGallery: function(){
-      var apiEndpoint = 'http://vimeo.com/api/v2/';
+    showTemplate: function(){
+      // NB Hardcoded URL, is this bad?
+      $('#templatesTabs .nav-tabs li.active').removeClass('active');
+      $(this).parent().addClass('active');
+      var url = $(this).attr('data-templateUrl')
+      var originalFrame = $('#templates .previewContainer iframe');
+      var iFrame = originalFrame.clone().attr('src', 'https://www.google.com');
+      originalFrame.remove();
+      $('#templates .previewContainer').append(iFrame);
       
       
-      var videosCallback = 'client.studio.dashboard.vimeoCallback';
-      var vimeoUsername = 'feedhenry';
       
-
-      $.getScript(apiEndpoint + vimeoUsername + '/videos.json?callback=' + videosCallback);
     }
 };
 

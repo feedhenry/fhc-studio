@@ -13,38 +13,26 @@
   <div id="recentApps" class="span4 widget">
     <h2>{lang.recentApps}</h2>
       <ul class="widgetList">
+        {#apps}
         <li>
-          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-          <strong>App Anatomy</strong> 28/1/2012<br />
-          <a href="#">Dashboard</a> | <a href="#">Editor</a>
+            <img src="https://{domain}.feedhenry.com/static/i/{domain}/{id}/studio/46/small.png">
+            <strong>{title}</strong> | {modified}<br />
+            <a class="singlepage" href="/app/{id}">Dashboard</a> | 
+            <a class="singlepage" href="/app/{id}/editor">Editor</a>
         </li>
-        <li>
-          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-          <strong>App Anatomy</strong> 28/1/2012<br />
-          <a href="#">Dashboard</a> | <a href="#">Editor</a>
-        </li>
-        <li>
-          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-          <strong>App Anatomy</strong> 28/1/2012<br />
-          <a href="#">Dashboard</a> | <a href="#">Editor</a>
-        </li>
-        <li>
-          <img src="https://demo2.feedhenry.com/static/i/demo2/qPPXQrMk8cK5a2ac3cKHInWb/studio/46/small.png">
-          <strong>App Anatomy</strong> 28/1/2012<br />
-          <a href="#">Dashboard</a> | <a href="#">Editor</a>
-        </li>
+        {/apps}
       </ul>
   </div>
 
   <div id="blogPosts"  class="span4 widget">
     <h2>{lang.developerBlog}</h2>
     <ul class="widgetList "id="posts">
-      <li><h4>New App Launched</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah </p></li>
-      <li><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
-      <li><h4>Hello World</h4><p>Launched to App Store...blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </p></li>
-      <li><h4>iOS 5.0</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
-      <li><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
-      <li><h4>@FH Twitter</h4><p>Launched to App Store...blah blah blah blah blah </p></li>
+      {#blogposts}
+        <li>
+          <h3>{title}</h3>
+          <p>{text} <a href="{link}">Read more...</a></p>
+        </li>
+      {/blogposts}
     </ul>
   </div> 
   
@@ -107,41 +95,52 @@
     </div>
     
   </div> <!-- END API DOCS -->
-
-  <div id="vimeoFeed" class="span4 widget"> <!-- BEGIN VIMEO FEED -->
-    <div id="stats">
-      <h2></h2>
-      <div style="clear: both;"></div>
-    </div>
-    <div id="embed"></div>
-
-    
-    <div id="thumbs">
-      <h4>{lang.moreVideos}</h4>
-      <ul id="videoList"</ul>
-    </div>
-
-  </div> <!-- END VIMEO FEED -->
   
-  <div id="videos" class="span8 widget">
+  <div id="videos" class="span6 widget">
+    <h2>{lang.videos}</h2>
     <div id="videosCarousel" class="carousel">
       <!-- Carousel items -->
       <div class="carousel-inner">
         <div class="active item">
-        <iframe src="http://player.vimeo.com/video/34675315" width="504" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+          <iframe src="http://player.vimeo.com/video/34675315" width="460" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
         </div>
-        <div class="item">
-        <iframe src="http://player.vimeo.com/video/34675315" width="504" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-        </div>
-        <div class="item">
-        <iframe src="http://player.vimeo.com/video/34675315" width="504" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-        </div>
+      
+        {#videos}
+          <div class="item">
+            <iframe src="http://player.vimeo.com/video/{id}" width="460" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+          </div>
+        {/videos}
       </div>
       <!-- Carousel nav -->
-      <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+      <a class="carousel-control left" href="#videosCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#videosCarousel" data-slide="next">&rsaquo;</a>
     </div>
   </div>
+  
+  <div id="" class="span6"> <!-- BEGIN TEMPLATES -->
+  
+  
+  
+    <div class="tabbable tabs-right">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#rA" data-toggle="tab" data-templateUrl="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/mPltCaOT38dKmnBcGfz4tDKk/container">App Anatomy</a></li>
+        {#templates}
+          <li><a href="#template{@idx}{.}{/idx}" data-toggle="tab" data-templateUrl="{url}">{title}</a></li>
+        {/templates}
+      </ul>
+      <div id="templates" class="tab-content widget{@idx}{.}{/idx}">
+        {#templates}
+          <div class="tab-pane active" id="template">
+            <div class="previewContainer iPhone" id="previewContainer" style="position: relative; -webkit-transform: scale(0.25);">
+              <iframe src="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/mPltCaOT38dKmnBcGfz4tDKk/container" frameborder="0"></iframe>
+            </div>
+          </div>
+        {/templates}
+        <button class="btn btn-large btn-primary">Clone now &raquo;</button>
+      </div>
+      
+    </div>
+  </div> <!-- END TEMPLATES -->
   
   
 

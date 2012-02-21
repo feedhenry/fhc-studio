@@ -12,6 +12,9 @@ client.studio.dispatch = function () {
             if(!opts) opts = {};
             self.url = (path === "/") ? "/home" : path;
             self.url = self.url.replace(/\.+[a-zA-Z]+$/, ""); // strip file extension from URL - always doing JSON req here
+            if (self.url[self.url.length-1]==="/"){
+              self.url = self.url.substring(0, self.url.length-1);
+            }
             container = opts.container || "body";
             // if we haven't specified a callback function, this happens by default
             var callback = opts.callback || function(data){

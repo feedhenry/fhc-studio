@@ -24,7 +24,7 @@
    color: @white;
    text-transform: lowercase;
    padding-left: 18px;
-   font-weight: 100;
+   font-weight: 200;
  }
  
  .userdash p {
@@ -49,6 +49,18 @@
  .userdash ul.widgetList li:hover{ 
    background-color: @grayDarker;
  }
+ 
+ /*
+  * Style our tabs on a widget
+  */ 
+ .userdash .tabs-right .nav-tabs {
+  margin: 46px 0px 0px 0px;
+ }
+ .userdash .tabs-right .nav-tabs li.active a {
+  border-color: @grayDarker @grayDarker @grayDarker transparent;
+  background-color: @grayDark;
+  color: @white;
+ }
 
 /* Setup some border radius */
 .userdash .widget {
@@ -57,6 +69,27 @@
 
 .userdash .widget ul.widgetList li:last-child {
   border-radius: 0px 0px 12px 12px
+}
+
+/*
+ * Blog Section Style
+ */
+  
+  
+#blogPosts #posts h3 {
+  border-bottom: 0px;
+}
+
+/*
+ * Templates Section Style
+ */
+#templates, .widget#videos {
+  height: 430px;
+}
+
+#templates {
+  width: 323px;
+  display: inline-block;
 }
 
  /*
