@@ -68,5 +68,6 @@ function getTemplateString(d) {
     
   return template;
 }
+
 exports.doError     = doError;
 exports.doResponse  = doResponse;
