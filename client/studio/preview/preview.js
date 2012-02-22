@@ -5,6 +5,17 @@ client.studio.preview = {
     rotateVal : "0deg",
     translateVal: "0px, 0px",
 
+    init: function(){
+      $('.previewContainer iframe').on('load', function(){
+        $(this).css('background-color', '#fff');
+      });
+      $('#previewBrandLink').on('click', this.toggleWidget);
+      var val =  $('#scaleSlider')[0].value;
+      this.scale(val);
+      
+      // Make draggable
+      Drag.init(document.getElementById("previewContainer"));
+    },
     scale : function(val){
         var container = document.getElementById(this.containerId);
         val = val / 100;
@@ -22,8 +33,11 @@ client.studio.preview = {
         }
         this.appendTransform(container);
     },
-    appendTransform: function(node, property){                
-        node.style.webkitTransform = "scale(" + this.scaleVal + ") rotate(" + this.rotateVal + ") translate(" + this.translateVal + ")";
+    appendTransform: function(node, property){
+        var prefixedTransform = "scale(" + this.scaleVal + ") rotate(" + this.rotateVal + ") translate(" + this.translateVal + ")";
+        node.style.webkitTransform = prefixedTransform;
+        node.style.MozTransform = prefixedTransform;
+        node.style.transform = prefixedTransform;
     },
     change: function(device){
         var container = document.getElementById(this.containerId);
@@ -33,6 +47,24 @@ client.studio.preview = {
         if (this.rotateVal === "90deg") {
             this.rotate();
         }
+    },
+    toggleWidget: function(){
+      var widget = $('section.preview.dashboardPreview');
+      if (widget.hasClass('collapsed')){
+        widget.removeClass('collapsed');
+        var url = $('#previewUrl').val();
+        var iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.frameborder = 0;
+        iframe.onload = function(){
+            $(this).css('background-color', '#fff');
+        }
+        $('#previewContainer').append(iframe);
+        //<iframe src="{previewUrl}" frameborder="0"></iframe>
+      }else{
+        widget.addClass('collapsed');
+        $('#previewContainer iframe').remove();
+      }
     }
 };
 

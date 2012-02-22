@@ -1,0 +1,121 @@
+@switcherRowHeight : 30px;
+
+/*
+ * Top nav styles
+ */
+.navbar.navbar-fixed img.logo {
+  margin-left: 12px;  
+}
+.navbar.navbar-fixed .pull-right {
+  margin-right: 12px;
+  margin-bottom: 0px;  
+}
+
+img.logo {
+  padding: 14px 16px 0px 0px;
+  float: left;
+}
+.navbar .dropdown.switcher ul {
+  width: 450px;
+  max-width: 450px;
+}
+
+.navbar .dropdown.switcher a, .navbar .dropdown.switcher a:hover {
+  color: @white;
+}
+.navbar .dropdown.switcher ul li {
+  height: @switcherRowHeight;
+  color: #fff;
+  padding: 2px 0px;
+  border-bottom: 1px solid darken(@grayDark, 4%);
+  border-top: 1px solid lighten(@grayDark, 4%);
+}
+  
+.dropdown.switcher div.span2, .dropdown.switcher div.span3, .dropdown.switcher div.span5 {
+  margin-left: 0px;
+}
+
+.navbar .dropdown.switcher ul li .title a, .navbar .dropdown.switcher ul li .title a {
+  font-size: 20px;
+  line-height: 24px;
+  background-repeat: no-repeat;
+  background-position: 0px 0px;
+  padding-left: 24px;
+  margin-left: 4px;
+  background-color: transparent;
+}
+
+/*
+ * Style active switcher item
+ */
+.navbar .dropdown.switcher ul li .title a:hover {
+  background-color: @blue;
+ }
+ 
+.navbar .dropdown.switcher ul li.active {
+  background: lighten(@grayDark, 5%);
+}
+.navbar .dropdown.switcher ul li.active .title a {
+  background-position: 0px -100px;
+}
+.navbar .dropdown.switcher ul li.active .title a:hover {
+  background-position: 0px 0px; /* Reset background position to white on hover */
+}
+
+.navbar .sublinks a, .sublinks a{
+  line-height: @switcherRowHeight;
+  height: @switcherRowHeight;
+  display: inline;
+  background: lighten(@grayDark, 10%);
+  border-radius: 16px;
+  padding: 5px 18px;
+  margin: 0px 4px;
+  color: @white;
+}
+
+div.sublinks {
+  border-left: 1px solid darken(@grayDark, 4%);
+  
+}
+
+div.title {
+  border-right: 1px solid lighten(@grayDark, 4%);
+}
+
+
+.switcher .dropdown-menu li .title a:hover, 
+.switcher .dropdown-menu .active .title  a, 
+.switcher .dropdown-menu .active  a:hover,
+.sublinks a.active {
+  color: white;
+  text-decoration: none;
+  background-color: #08C;
+}
+li.crumbs {
+  line-height: @switcherRowHeight;
+  margin-left: 8px;
+}
+
+li.crumbs a {
+  display: inline;
+  padding: inherit;
+}
+
+li.crumbs .divider {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+#dashboardSwitchLink {
+  background-image: url("../images/navSwitcher/dashboard.png");
+}
+
+#appStudioSwitchLink {
+  background-image: url("../images/navSwitcher/appstudio.png");
+}
+#reportingSwitchLink {
+  background-image: url("../images/navSwitcher/reporting.png");
+}
+#adminSwitchLink {
+  background-image: url("../images/navSwitcher/admin.png");
+}

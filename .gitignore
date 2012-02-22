@@ -6,3 +6,5 @@ node_modules
 .idea/
 .monitor/
 test/
+*.swp
+client/css/main.css

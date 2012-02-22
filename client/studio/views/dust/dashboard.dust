@@ -1,0 +1,162 @@
+{>head/}
+{>navigation/}
+
+
+<div id="container dashboard" class="container userdash">
+{tabHelper}
+
+<h1>{lang.dashboard} <small>Your recent activity at a glance</small></h1>
+
+
+<div class="row"> <!-- Begin Bootstrap Row -->
+
+  <div id="recentApps" class="span4 widget">
+    <h2>{lang.recentApps}</h2>
+      <ul class="widgetList">
+        {#apps}
+        <li>
+            <img src="https://{domain}.feedhenry.com/static/i/{domain}/{id}/studio/46/small.png">
+            <strong>{title}</strong> | {modified}<br />
+            <a class="singlepage" href="/app/{id}">Dashboard</a> | 
+            <a class="singlepage" href="/app/{id}/editor">Editor</a>
+        </li>
+        {/apps}
+      </ul>
+  </div>
+
+  <div id="blogPosts"  class="span4 widget">
+    <h2>{lang.developerBlog}</h2>
+    <ul class="widgetList "id="posts">
+      {#blogposts}
+        <li>
+          <h3>{title}</h3>
+          <p>{text} <a href="{link}">Read more...</a></p>
+        </li>
+      {/blogposts}
+    </ul>
+  </div> 
+  
+  <div id="apis" class="span4 widget"> <!-- BEGIN API DOCS -->
+    <h2>{lang.apiPrefix}.api Documents</h2>
+    <div class="sublinks">
+      <a id="clientLink" class="active">{lang.clientApis}</a>
+      <a id="cloudLink" >{lang.cloudApis}</a>
+      <a id="usageLink"  >{lang.apiUsage}</a>
+    </div>
+
+    <div id="client" class="active" style="">
+      <ul class="apis">        
+        <li><a href="#" id="1012276">{lang.apiAcc}</a></li>
+        <li><a href="#" id="1015103">{lang.apiAct}</a></li>
+        <li><a href="#" id="1015118">{lang.apiAudio}</a></li>
+        <li><a href="#" id="1099663">{lang.apiCamera}</a></li>
+        <li><a href="#" id="1015134">{lang.apiContacts}</a></li>
+        <li><a href="#" id="1015153">{lang.apiDep}</a></li>
+        <li><a href="#" id="1099591">{lang.apiFile}</a></li>
+        <li><a href="#" id="1015187">{lang.apiGeolocation}</a></li>
+        <li><a href="#" id="1015177">{lang.apiGeoIP}</a></li>
+        <li><a href="#" id="1015167">{lang.apiHashing}</a></li>
+        <li><a href="#" id="1019188">{lang.apiHandlers}</a></li>
+        <li><a href="#" id="1363666">{lang.apiLocalStorage}</a></li>
+        <li><a href="#" id="1015203">{lang.apiLogging}</a></li>
+        <li><a href="#" id="1015207">{lang.apiMapping}</a></li>
+        <li><a href="#" id="1015212">{lang.apiMessaging}</a></li>
+        <li><a href="#" id="1015214">{lang.apiNotification}</a></li>
+        <li><a href="#" id="1298299">{lang.apiOrientation}</a></li>
+        <li><a href="#" id="1015244">{lang.apiReady}</a></li>
+        <li><a href="#" id="1019111">{lang.apiSecurity}</a></li>
+        <li><a href="#" id="1015261">{lang.apiWebRequests}</a></li>
+        <li><a href="#" id="1336195">{lang.apiWebView}</a></li>
+      </ul>
+    </div>
+    <div id="cloud" style="display:none">
+      <ul class="apis">
+        <li><a id="1015127" class="snippet" href="#">{lang.apiCache}</a></li>
+        <li><a id="1015127" class="snippet" href="#">{lang.apiDataStorage}</a></li>
+        <li><a id="1015166" href="#">{lang.apiHashing}</a></li>
+        <li><a id="1015203" href="#">{lang.apiCloudLogging}</a></li>
+        <li><a id="1015224" href="#">{lang.apiParsing}</a></li>
+        <li><a id="1015231" href="#">{lang.apiRSS}</a></li>
+        <li><a id="1019114" href="#">{lang.apiCloudSecurity}</a></li>
+        <li><a id="1015247" href="#">{lang.apiStringify}</a></li>
+        <li><a id="1015266" href="#">{lang.apiCloudWebRequests}</a></li>
+      </ul>
+    </div>
+    
+    <div id="apiDocs" style="display: none;">
+      <pre align="center">$fh.doSomething(params, succ, fail);</pre>
+      
+      <h3>Where:</h3> 
+      <p>
+      <strong>params</strong> is an ordinary JavaScript object<br />
+      <strong>succ</strong> is a function called if the operation was successful <br />
+      <strong>fail</strong> is a function called if the operation fails.
+      </p>
+    </div>
+    
+  </div> <!-- END API DOCS -->
+  
+  <div id="videos" class="span6 widget">
+    <h2>{lang.videos}</h2>
+    <div id="videosCarousel" class="carousel">
+      <!-- Carousel items -->
+      <div class="carousel-inner">
+        <div class="active item">
+          <iframe src="http://player.vimeo.com/video/34675315" width="460" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+        </div>
+      
+        {#videos}
+          <div class="item">
+            <iframe src="http://player.vimeo.com/video/{id}" width="460" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+          </div>
+        {/videos}
+      </div>
+      <!-- Carousel nav -->
+      <a class="carousel-control left" href="#videosCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#videosCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+  
+  <div id="" class="span6"> <!-- BEGIN TEMPLATES -->
+  
+  
+  
+    <div class="tabbable tabs-right">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#rA" data-toggle="tab" data-templateUrl="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/mPltCaOT38dKmnBcGfz4tDKk/container">App Anatomy</a></li>
+        {#templates}
+          <li><a href="#template{@idx}{.}{/idx}" data-toggle="tab" data-templateUrl="{url}">{title}</a></li>
+        {/templates}
+      </ul>
+      <div id="templates" class="tab-content widget{@idx}{.}{/idx}">
+        {#templates}
+          <div class="tab-pane active" id="template">
+            <div class="previewContainer iPhone" id="previewContainer" style="position: relative; -webkit-transform: scale(0.25);">
+              <iframe src="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/mPltCaOT38dKmnBcGfz4tDKk/container" frameborder="0"></iframe>
+            </div>
+          </div>
+        {/templates}
+        <button class="btn btn-large btn-primary">Clone now &raquo;</button>
+      </div>
+      
+    </div>
+  </div> <!-- END TEMPLATES -->
+  
+  
+
+</div> <!-- End Bootstrap Row -->
+
+
+<script> 
+  $(function() {
+      client.studio.dashboard.init();
+  });
+</script>
+
+
+<footer>
+  <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
+</footer>
+
+</div>
+{>foot/}

@@ -1,8 +1,5 @@
 <section class="preview dashboardPreview pull-right">
-  <h2>{lang.preview}</h2>
-  <div class="previewContainer iPhone" style=" width: 640px; -webkit-transform: scale(0.4); -webkit-transform-origin: 0 0;">
-  <iframe src="{previewUrl}" frameborder="0"></iframe>
-  </div>
+  {previewHelper}  
 </section>
 
 <section class="summary">

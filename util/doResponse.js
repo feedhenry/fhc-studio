@@ -35,6 +35,11 @@ doResponse = function (req, res, d) {
         data: d
       });
       break;
+    
+    case 'txt':
+      var text = d.text || d;
+      res.send(text);
+      break;
       
     default:
        // HTML page GET request - sending back a rendered page

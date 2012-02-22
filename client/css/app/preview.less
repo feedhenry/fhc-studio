@@ -1,0 +1,122 @@
+#deviceDropdown ul{
+  max-width: 300px;
+  width: 300px;
+  z-index: 10001;
+}
+#deviceDropdown li{
+  display: inline-block;
+  width: 140px;
+}
+#deviceDropdown li.divider, #deviceDropdown li.heading{
+  display: block;
+  width: 300px;
+}
+#deviceDropdown a {
+  text-align: center;
+}
+#deviceDropdown img {
+  max-height: 150px;
+  max-width: 100px;
+}
+
+.previewContainer {
+  z-index: 999;
+  cursor: move;
+  background-repeat: no-repeat;
+  -webkit-transform-origin: 0 0;
+  -moz-transform-origin: 0px 0px;  
+  transform-origin: 0px 0px;
+}
+
+.previewContainer iframe {
+  -webkit-transform: scale(2);
+  -moz-transform: scale(2);
+  transform: scale(2);
+  -webkit-transform-origin-x: 0px;
+  -webkit-transform-origin-y: 0px;
+  -moz-transform-origin: 0px 0px;  
+  transform-origin: 0px 0px;
+  
+  
+  
+}
+
+// iPhone preview styles
+.previewContainer.iPhone {
+  background-image: url("../images/preview/iPhone4.png");
+  background-size: 763px;
+  padding: 276px 65px;
+  width: 640px;
+  height: 948px;
+}
+
+.previewContainer.iPhone iframe {
+  width: 320px;
+  height: 480px;
+}
+
+// iPad preview styles
+.previewContainer.iPad {
+  background-image: url("../images/preview/iPad.png");
+  background-size: 2491px;
+  padding: 201px 214px;
+  width: 2076px;
+  height: 1525px;
+}
+.previewContainer.iPad iframe {
+  width: 1024px;
+  height: 768px;
+}
+
+// htc evo preview styles
+.previewContainer.htcEvo {
+  background-image: url("../images/preview/htcEvo4g.png");
+  background-size: 676px;
+  padding: 128px 54px;
+  width: 572px;
+  height: 986px;
+}
+.previewContainer.htcEvo iframe {
+  width: 288px; // 540
+  height: 480px; // 960
+}
+
+// desire s preview styles
+.previewContainer.desireS {
+  background-image: url("../images/preview/htcDesireS.png");
+  background-size: 706px;
+  padding: 150px 66px;
+  width: 582px;
+  height: 1060px;
+}
+.previewContainer.desireS iframe {
+  width: 288px; // 480
+  height: 480px; // 800
+}
+
+// galaxy s2 preview styles
+.previewContainer.galaxyS2 {
+  background-image: url("../images/preview/samsungGalaxyS2.png");
+  background-size: 668px;
+  padding: 156px 47px;
+  width: 587px;
+  height: 956px;
+}
+.previewContainer.galaxyS2 iframe {
+  width: 288px; // 480
+  height: 480px; // 800
+}
+
+// galaxy tab preview styles
+.previewContainer.galaxyTab {
+  background-image: url("../images/preview/samsungGalaxyTab.png");
+  background-size: 1595px;
+  padding: 228px 191px;
+  width: 1200px;
+  height: 2041px;
+}
+.previewContainer.galaxyTab iframe {
+  height: 1024px;
+  width: 600px;
+  
+}

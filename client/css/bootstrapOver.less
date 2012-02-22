@@ -1,0 +1,71 @@
+/* Style the containers */
+.fluid-container > .content.fullWidth {
+  margin-left: 0px; 
+}
+
+.fluid-container > .content.landing {
+  margin: 0px 20px;  
+}
+
+.fluid-container {
+  padding-left: 0px;
+  padding-right: 0px;
+  height: 100%; 
+ }
+ 
+.navbar.navbar-fixed .container, .navbar .container{
+  width: 100%;
+}
+
+/* Some coloring on messaging */
+.label.success a {
+  color: @white;
+}
+.alert-message.info h3 {
+  color: @white;
+}
+
+/* Style dropdown headings to look a little more visually appealing */
+.dropdown h3 {
+  color: @white;
+  padding-left: 15px;	
+}
+
+/*
+  Make sure the color of our text in the header is white
+*/
+.navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{
+  color: @white !important;
+}
+
+.studioNav .dropdown-menu {
+  background: @grayDark; /* TODO: less */  
+}
+
+/* TODO: Probably a bug in BS2.0 - remove if no longer required after final release */
+ul.tabs {
+  list-style: none;
+  height: 28px;  
+}
+
+.alert {
+  margin-bottom: 0px;
+}
+.alert a, .alert a:hover {
+  color: #333;
+}
+.navbar {
+  margin-bottom: 0px;
+}
+
+.navbar input {
+  display: inline;
+}
+.navbar .navbar-inner {
+  color: @white;
+}
+.navbar .navbar-inner .divider {
+  border-top: 1px solid darken(@grayDark, 4%);
+  border-bottom: 1px solid lighten(@grayDark, 4%);
+  background: @grayDark;
+}

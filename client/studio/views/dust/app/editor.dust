@@ -6,9 +6,14 @@
 {:else}
   <input type="hidden" id="fileId" value=""></input>
 {/fileContents}
-<ul class="tabs editorTabs">
+<section class="collapsed preview dashboardPreview pull-right">
+  {previewHelper}  
+</section>
+
+<ul class="tabs editorTabs nav nav-tabs">
   
 </ul>
+
 <div class="tab-content">
   
 </div>

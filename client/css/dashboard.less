@@ -1,0 +1,108 @@
+/* 
+ * User Dashboard Styles
+ * Styles for the user dashboard
+ */
+ .fluid-container > .widget.userdash {
+   padding: 2px 20px;
+ }
+ 
+  .userdash h1 {
+    margin-bottom: 10px;
+  }
+ 
+ .userdash .widget{
+   padding-top: 10px;
+   background-color: @grayDark;
+   color: #fff;
+   height: 240px;
+   overflow: scroll;
+   margin-bottom: 20px;
+ }
+ 
+ .userdash .widget h3, .userdash .widget h2, .userdash #vimeoFeed h4{
+   border-bottom: 1px solid @grayDarker;
+   color: @white;
+   text-transform: lowercase;
+   padding-left: 18px;
+   font-weight: 200;
+ }
+ 
+ .userdash p {
+  color: @white;
+  padding-left: 18px;
+ }
+ 
+.userdash .widget ul.widgetList {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+.userdash .widget ul.widgetList li{ 
+   border-top: 1px solid lighten(@grayDark, 5%);
+   border-bottom: 1px solid darken(@grayDark, 5%);
+   #gradient > .vertical(@navbarBackgroundHighlight, @navbarBackground);
+   text-align: left;
+   padding: 6px 18px;
+   list-style: none;
+ }
+ 
+ .userdash ul.widgetList li:hover{ 
+   background-color: @grayDarker;
+ }
+ 
+ /*
+  * Style our tabs on a widget
+  */ 
+ .userdash .tabs-right .nav-tabs {
+  margin: 46px 0px 0px 0px;
+ }
+ .userdash .tabs-right .nav-tabs li.active a {
+  border-color: @grayDarker @grayDarker @grayDarker transparent;
+  background-color: @grayDark;
+  color: @white;
+ }
+
+/* Setup some border radius */
+.userdash .widget {
+  border-radius: 12px;
+}
+
+.userdash .widget ul.widgetList li:last-child {
+  border-radius: 0px 0px 12px 12px
+}
+
+/*
+ * Blog Section Style
+ */
+  
+  
+#blogPosts #posts h3 {
+  border-bottom: 0px;
+}
+
+/*
+ * Templates Section Style
+ */
+#templates, .widget#videos {
+  height: 430px;
+}
+
+#templates {
+  width: 323px;
+  display: inline-block;
+}
+
+ /*
+  * API Section Style
+  */
+ 
+ .userdash #apis ul.apis li{
+   display: inline-block;
+   width: 33.33%;
+   margin: 0 auto;
+   text-align: center;
+ }
+ .userdash #apis ul.apis li{
+   display: inline-block;
+   width: 33%;
+ }

@@ -4,7 +4,9 @@
     if ( !client.util.History.enabled ) {
          // History.js is disabled for this browser.
          // This is because we can optionally choose to support HTML4 browsers or not.
+         console.log('historyJS is off');
         return false;
+
     }
     
    

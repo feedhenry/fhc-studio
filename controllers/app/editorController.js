@@ -7,7 +7,7 @@ editorController = {
     // every app gets the indexAction, which gets the file tree & passes on
     indexAction: function(req, res, next){
       var id = req.params.id;
-      fhc.files(['list', id], function (err, root) {
+      fhc.files.list(id, function (err, root) {
         if (err) {
             renderer.doError(res,req, "Error retrieving files list");
             return;
@@ -28,7 +28,8 @@ editorController = {
           tab:'editor',
           filesTree:list,
           fileContents:false,
-          mode:'js'
+          mode:'js',
+          previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
       };
       renderer.doResponse(req, res, d);
     },
@@ -36,7 +37,7 @@ editorController = {
       var id = req.params.id,
       fileId = req.params.fileId,
       list = req.params.list;
-      fhc.files(['read', fileId], function (err, file) {
+      fhc.files.read(fileId, function (err, file) {
         if (err) {
             renderer.doError(res,req, "Error loading file " + file);
             return;
@@ -50,7 +51,8 @@ editorController = {
             filesTree:list,
             fileContents:file.contents,
             fileId: file.guid,
-            mode:'js'
+            mode:'js',
+            previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
         };
         renderer.doResponse(req, res, d);
       });

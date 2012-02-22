@@ -1,23 +1,76 @@
 var debugController,
     renderer = require("../../util"),
-    fhc         = require('fh-fhc'),
+    fhc      = require('fh-fhc'),
     http     = require("http"),
+    async    = require("async");
 
   debugController = {
     // every app gets the indexAction, which gets the file tree & passes on
     indexAction: function(req, res, next){
-      var id = req.params.id;
-      var d = {
-          tpl:'app',
-          title:'Debug',
-          appId: id,
-          data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
-          tab:'debug'
-      };
-      //TODO: Put in some console output in a pre
-      renderer.doResponse(req, res, d);     
+      var id = req.params.id,
+      target = req.params.target || "development",
+      logname = (req.params.name) ? req.params.name + '.log' : "";
+      // get our log files, passing no logname to get all
+      
+      async.parallel(
+        [
+          function(callback){
+            fhc.logs.getLogs(id, logname, 'development', callback);
+          },
+          function(callback){
+            fhc.logs.getLogs(id, logname, 'development', callback);
+          }
+        ],
+        function(err, results){ // async callback
+          if ((err && err.indexOf("App not found")==-1) || results.length<1){
+            // TODO: Patch FHC to not throw an error when we request the live logs of an unstaged app
+            renderer.doError(res, req, err);
+            return;
+          }
+          // Otherwise, we may have an error but it's just because this app isn't staged to production.
+          var development = massageLogs(results[0]);
+          var production = massageLogs(results[1]);
+          
+          var d = {
+              tpl:'app',
+              title:'Debug',
+              appId: id,
+              tab:'debug',
+              logs: { 
+                development: development,
+                production: production 
+              }
+          };
+          renderer.doResponse(req, res, d);
+        } // end async.paralell callback
+      ); // end async.paralell
     }
 };
+  
+function massageLogs(data){
+  if (!data){
+    // app isn't yet staged
+    return [{ name: "App not yet staged" , contents: ""}];
+  }
+  var logs = data.log,
+  logsArray = [];
+  if (logs.name){
+    // when we're listing just 1 log
+    logs.contents = logs.contents || ""; // incase contents is undefined (stderr often is)
+    logsArray.push(logs);
+  }else{
+    // When we're listing all logs
+    // Take our objects from an object to an array
+    for (l in logs){
+      var log = {
+          name: l,
+          contents: logs[l]
+      }
+      logsArray.push(log);
+    }
+  }
+  return logsArray
+}
 
 module.exports = debugController;
 

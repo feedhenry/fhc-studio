@@ -6,25 +6,12 @@ var express     = require('express'),
     fhc         = require('fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),
+    less        = require('less'),
     controllers = require('./controllers');
 
 var server = module.exports = express.createServer();
 
-// Load FHC
-fhc.fhc.load({}, function (err) {
-    if (err) {
-        throw new Error(err);
-    }
-    // Set cluster - //TODO: Targetting apps.feedhenry throws an error at the moment! odd!
-    /*fhc.target(['https://apps.feedhenry.com'],
-     function(err, data) {
-     //success
-     if (err){
-     throw new Error(err);
-     } 
-     }
-     );*/
-});
+
 
 
 // Configuration
@@ -38,10 +25,23 @@ server.configure(function () {
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
-    
+
     server.use(express.methodOverride());
     
-    server.use(express.compiler({ src: __dirname + '/client/css', enable: ['less'] }));
+    var less = require('less');
+    // Patch LESS require to allow relative and absolute both to work. Fix as per: https://github.com/senchalabs/connect/pull/174#issuecomment-1165151
+    var origRender = less.render;
+    less.render = function(str, options, fn) {
+      if (typeof(options) === 'function') {
+        fn = options;
+        options = { paths: [__dirname + '/client/css'] };
+      }
+      return origRender.call(this, str, options, fn);
+    };
+
+    server.use(express.compiler({ src: __dirname + '/client', enable: ['less'] }));
+
+
     server.use(express.static(__dirname + '/client'));
 });
 
@@ -55,14 +55,17 @@ server.configure('local', function () { // For now a clone of development, but w
   server.use(express.errorHandler({ dumpExceptions:true, showStack:true }));
   server.use(express.session({ secret:"keyboard cat"}));
   server.use(server.router);
+  
+  controllers.init('apps');
 });
 
 
 server.configure('production', function () {
-    server.use(express.errorHandler());
-    var RedisStore  = require('connect-redis')(express);
-    server.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
-    server.use(server.router);
+  server.use(express.errorHandler());
+  var RedisStore  = require('connect-redis')(express);
+  server.use(express.session({ secret:"keyboard cat", store:new RedisStore }));
+  server.use(server.router);
+  controllers.init('demo2');
 });
 
 
@@ -76,14 +79,13 @@ server.get('*/worker-javascript.js', function(req, res){
 });
 
 
+
 var checkAuth = controllers.userController.checkAuth; // auth checking function
 //index
 
+server.get("/", checkAuth, controllers.dashboardController.loadDash);
 
-
-server.get("/", checkAuth, controllers.appController.indexAction);
-
-server.get('/home.:resType?', checkAuth, controllers.appController.indexAction);
+server.get('/home.:resType?', checkAuth, controllers.dashboardController.loadDash);
 //user actions
 server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);
@@ -101,15 +103,27 @@ server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
 server.all('/apps/create.:resType?',checkAuth,controllers.app.operationController.createAction);
 server.post('/app/:id/update/:fileId.:resType?',checkAuth,controllers.app.operationController.updateAction);
 server.post('/app/delete',checkAuth,controllers.app.operationController.deleteAction);
+
+// user dashboard
+server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
+
+
 // app:dashboard
 server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
 server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
 
-// app:debug, preview, build, prefs
+// app:debug 
 server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
+server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, controllers.app.debugController.indexAction);
+
+// app:preview, build, prefs
 server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
 server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
 server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
+
+// app:config
+server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);
+server.post('/app/:id/config.:resType?', checkAuth, controllers.app.configController.updateAction);
 
 // app:editor
 server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);

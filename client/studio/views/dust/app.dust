@@ -5,7 +5,7 @@
 
 {renderAppBar}
 
-<div class="content app  {tab}" style="min-height:900px;">
+<div class="content app  {tab}">
    {! tabLayout helper is a method helper on the context. It decides which tab partial to render !}
   {tabLayoutHelper}
 

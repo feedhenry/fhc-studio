@@ -21,14 +21,14 @@
         <span>{lang.build}</span>
       </a>
     </li>
+    <li id="configLink" >
+      <a class="singlepage"  href="/app/{appId}/config">
+        <span>{lang.configuration}</span>
+      </a>
+    </li>
     <li id="debugLink" class="">
       <a class="singlepage"  href="/app/{appId}/debug">
         <span>{lang.debug}</span>
-      </a>
-    </li>
-    <li id="prefsLink" class="">
-      <a class="singlepage"  href="/app/{appId}/prefs">
-        <span>{lang.prefs}</span>
       </a>
     </li>
   </ul>
