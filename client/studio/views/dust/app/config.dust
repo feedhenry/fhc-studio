@@ -1,4 +1,4 @@
-<ul class="tabs configTabs">
+<ul class="tabs configTabs nav nav-tabs">
   {#configuration}
     <li class="{#isNthItem n="0"}active{/isNthItem}"><a class="no-ajax" data-toggle="tab" href="#configFor-{platformName}">{title}</a></li>
   {/configuration}

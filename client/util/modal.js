@@ -28,6 +28,10 @@
  * ];
  * modal("My Modal Dialog", "My Modal Message", buttons, { backdrop: false, keyboard: false });
  */
+client.util.modalRemove = function(){
+  $('#_modalGen').remove(); // close the dialog
+  $('.modal-backdrop').remove();
+}
 
 client.util.modal  = function(t, m, b, opts){
   var title = t || "",
@@ -75,7 +79,7 @@ client.util.modal  = function(t, m, b, opts){
     for (var i=buttons.length-1; i>=0; i--){
       var b = buttons[i],
       text = b.text || "Button",
-      type = (b.type) ? b.type + " btn" : "btn",
+      type = (b.type) ? "btn btn-" + b.type : "btn",
       callback = b.callback || null;
       
       var a = document.createElement('a');

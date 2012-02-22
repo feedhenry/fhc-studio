@@ -1,7 +1,7 @@
 <input type="hidden" value="{filesTree}" name="filestree" />
 <div id="treeSearch" class="pull-left">
   <input type="search" placeholder="{lang.search}"></input>
-  <ul class="tabs editorTabs">
+  <ul class="tabs editorTabs nav nav-tabs">
     <li class="active"><a class="no-ajax" data-toggle="tab" href="#navigator">{lang.navigator}</a></li>
     <li class=""><a data-toggle="tab" href="#snippets" class="no-ajax">{lang.snippets}</a></li>
   </ul>

@@ -107,6 +107,11 @@ client.studio.views.helpers = dust.makeBase({
       case 'preview':
         chunk.partial('navigation/preview', context);
         break;
+        
+      case 'debug':
+        chunk.partial('navigation/debug', context);
+        break;
+        
       default:
         chunk.partial('navigation/default', context);
         break;

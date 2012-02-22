@@ -1,0 +1,14 @@
+{>head/}
+{>navigation/}
+<div class="content error">
+
+<div class="alert alert-block alert-error">
+  <h4 class="alert-heading">{title}</h4>
+  {error}
+</div>
+
+<footer>
+          <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
+</footer>
+</div>
+{>foot/}

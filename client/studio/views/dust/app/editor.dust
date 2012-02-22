@@ -10,7 +10,7 @@
   {previewHelper}  
 </section>
 
-<ul class="tabs editorTabs">
+<ul class="tabs editorTabs nav nav-tabs">
   
 </ul>
 

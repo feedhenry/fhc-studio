@@ -1,1 +1,20 @@
-<h1>{lang.debug}</h1>
+<script src="/js/lib/ace/ace-uncompressed.js" type="text/javascript" charset="utf-8"></script>
+<div class="logsection" id="developmentLogs">
+  {#logs.development}
+    <h2 class="{name}">{name}</h2>
+    <pre class="log {name}" id="devlogs{@idx}{.}{/idx}">{contents}</pre>
+  {/logs.development}
+</div>  
+<div class="logsection" id="productionLogs" style="display: none;">
+  {#logs.production}
+    <h2 class="{name}">{name}</h2>
+    <pre class="log {name}" id="prodlogs{@idx}{.}{/idx}">{contents}</pre>
+  {/logs.production}
+</div>
+
+ 
+<script>
+  $(function() {
+      client.studio.debug.init();
+  });
+</script>

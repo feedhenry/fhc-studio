@@ -1,0 +1,7 @@
+<li class="button"><a href="#">{lang.logs}</a></li>
+<li class="button">
+  <div class="btn-group logSwitch">
+    <a data-logs="developmentLogs" class="btn btn-primary" href="#">{lang.developmentLogs}</a>
+    <a data-logs="productionLogs" class="btn" href="#">{lang.productionLogs}</a>
+  </div>
+</li>

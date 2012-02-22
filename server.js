@@ -109,8 +109,11 @@ server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
 server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
 server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
 
-// app:debug, preview, build, prefs
+// app:debug 
 server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
+server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, controllers.app.debugController.indexAction);
+
+// app:preview, build, prefs
 server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
 server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
 server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);

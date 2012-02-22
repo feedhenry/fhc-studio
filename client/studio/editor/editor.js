@@ -36,19 +36,20 @@ client.studio.editor = {
       title : "Save",
       description : "Save the currently open file",
       binding : "ctrl+s",
-      handler : function() {
-        var me = client.studio.editor;
-        client.studio.editor.save(me.activeTab);
-        return false;
+      handler : function(e) {
+        if (!e.shiftKey){
+          var me = client.studio.editor;
+          client.studio.editor.save(me.activeTab);
+        }
       }
     }, 
     {
-      title : "Save All",
-      description : "Save all currently open file",
+      title : "Save As",
+      description : "Save currently open file as",
       binding : "ctrl+shift+s",
       handler : function() {
-        client.studio.editor.saveAll();
-        console.log("called save all");
+        client.studio.editor.saveAs();
+        console.log("called save as");
         return false;
       }
     }, 
@@ -92,14 +93,15 @@ client.studio.editor = {
   ],
   init : function() {
     var fileTree = $('input[name="filestree"]').remove().val();
-    this.tree.init(JSON.parse(fileTree));
+    var rawFilesTree = JSON.parse(fileTree);
+    this.tree.init(rawFilesTree);
     var appId = $('input#appId').remove().val(), fileContents = $('pre#editor0').html(), 
     fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
     mode = 'js';
     // bind all events for onClick
     this.bindEvents();
     // bind all keyboard shortcuts
-    client.util.keyboard(this.shortcuts, ".fluid-container");
+    client.util.keyboard(this.shortcuts, document);
 
     // Set our appId on the editor object
     this.appId = appId;
@@ -240,7 +242,6 @@ client.studio.editor = {
   },
   open : function(guid) {
     // Navigate to that file using an ajax request with a callback
-    var path = window.location.pathname;
     var path = "/app/" + this.appId + "/editor/" + guid;
     client.studio.dispatch().update(path, {
       callback : this.newTab
@@ -334,46 +335,93 @@ client.studio.editor = {
    * a create operation
    */
   saveAs : function() {
-    var title = "Save As", me = client.studio.editor, message = "Choose where to save this file <br /> "
+    var title = "Save As", 
+    me = client.studio.editor,
+    index = me.activeTab,
+    tab = me.getTabByIndex(index), 
+    tabId = 'tab' + index, 
+    editor = tab.ace, 
+    editorSession = editor.getSession(), 
+    editorContents = editorSession.getValue(); 
+    debugger;
+    /*
+     * Setup our modal dialog popup
+     */
+    var message = "Choose where to save this file <br /> "
         + "<div id='_modalGenTree'>Loading files tree...</div>"
         + "<form class='pathForm form-horizontal'>"
         + "<fieldset><label for='fileName'>Filename: </label><input class='span6' id='fileName'></fieldset>"
         + "<fieldset><label for='filePath'>Path: </label><input  class='span6' id='filePath'></fieldset>"
-        + "</form>", buttons = [ {
+        + "</form>", 
+    buttons = [ {
       text : 'Cancel',
-      callback : function() {
-        // Just cancel this modal dialog
-        return true;
-      }
-    }, {
+      callback : client.util.modalRemove
+    },
+    {
       text : 'Save',
       type : 'primary',
-      callback : function() {
-        // TODO: Perform a $.ajax new file operation with some path...
-      }
-    } ];
+      callback : submitSaveAs
+    }
+    ];
     client.util.modal(title, message, buttons);
+    
+    /*
+     * Function to send the request back to the server
+     */
+    function submitSaveAs(){
+      // TODO: Filename dialog already destroyed by now
+      var filename = $('input#fileName').trim(),
+      path = $('input#filePath').trim(),
+      contents = "";
+      
+      var data = {
+          contents: editorContents
+      };
+      $.ajax({
+        type : 'POST',
+        url : '/app/' + appId + '/create/' + fileId + '.json',
+        data : data,
+        success : function(res) {
+          if (res && res.data && res.data.msg && !res.data.error) {
+            client.util.messages.success(res.data.msg);
+            
+            if (tab) {
+              tab.dirty = false;
+              $('#' + tabId + 'Link strong.modifiedStar').hide();
+            }
+          } else {
+            client.util.messages.error('Error Saving File', res.data.error);
+          }
+        }
+      });
+      client.util.modalRemove();
+      
+    }
+    
+    /*
+     * Setup our files tree in the modal dialog view
+     */
     $('#_modalGenTree').bind("loaded.jstree", function() {
       // once the tree is loaded, remove the files from the tree, just leaving
       // the folders
       $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one
                                                   // file per level
     }).jstree(me.filesTree).bind("select_node.jstree", me.tree.pathFolderClick);
-
+    
   },
   /*
    * Opens a modal save dialog with a files tree before creating a new file with
    * a create operation
    */
   openResource : function() {
-    var title = "Open Resource", 
-    me = client.studio.editor, message = "Choose where to save this file <br /> "
-        + "<div id='_modalGenTree'>Loading files tree...</div>"
-        + "<form class='pathForm form-horizontal'>"
-        + "<fieldset><label for='fileName'>Filename: </label><input class='span6' id='fileName'></fieldset>"
-        + "<fieldset><label for='filePath'>Path: </label><input  class='span6' id='filePath'></fieldset>"
+    var title = "Open Resource",
+    me = client.studio.editor,
+    message = "<form class='typeaheadForm form-horizontal'>"
+        + "<fieldset>"
+          + '<input id="fileName" placeholder="Enter a filename to see suggestions..." type="text" class="span6" data-provide="typeahead" data-items="4" >' 
+        + "</fieldset>"
         + "</form>", 
-    buttons = [ 
+    buttons = [
       {
         text : 'Cancel',
         callback : function() {
@@ -391,13 +439,77 @@ client.studio.editor = {
     ];
     
     client.util.modal(title, message, buttons, { backdrop: false });
-    $('#_modalGenTree').bind("loaded.jstree", function() {
-      // once the tree is loaded, remove the files from the tree, just leaving
-      // the folders
-      $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one
-                                                  // file per level
-    }).jstree(me.filesTree).bind("select_node.jstree", me.tree.pathFolderClick);
-
+    setTimeout(function(){ // needs to happen within a timeout
+      $('#_modalGen input').focus();
+    }, 100);
+    
+    var filesTree = client.studio.editor.filesTree.json_data.data;
+    me.filesList = filesTree = flatList(filesTree, []);
+    
+    // Transform our flat files list to something the typeahead can consume
+    var pathList = [];
+    for (var i=0; i<filesTree.length; i++){
+      var f = filesTree[i];
+      if (f.type==="file"){
+        pathList.push(f.path);
+      }
+    }
+    
+    
+    $('input#fileName').typeahead({
+      //source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],
+      source: pathList, 
+      matcher: function(record){
+        var query = this.query;
+        if (record.indexOf(query)!=-1){
+          return record;
+        }
+        
+      }
+    });
+    $('input#fileName').on('keyup', function(e){ 
+      switch(e.keyCode) {
+        case 27: // escape
+          client.util.modalRemove();
+          break
+  
+        case 13: // enter
+          submit(e);
+          client.util.modalRemove();
+          break
+      }
+    });
+    
+    $('form.typeaheadForm').unbind().on('submit', submit);
+    
+    
+    
+    function submit(e){
+      e.preventDefault();
+      var path = $('input#fileName').val();
+      var fL = me.filesList;
+      for (var i=0; i<fL.length; i++){
+        var f = fL[i];
+        if (f.path === path){
+          me.open(f.guid);
+          return;
+        }
+      }
+      client.util.messages.error("Couldn't find a file " + path);
+      return false;
+    }
+    
+    // Recursive utility function to flatten the list
+    function flatList(tree, flat){
+      for (var i=0; i<tree.length; i++){
+        var t = tree[i];
+        if (t.children){
+          flat = flatList(t.children, flat);
+        }
+        flat.push(t);
+      }
+      return flat;
+    }
   },
   /*
    * Opens a new tab in the editor with the param's contents
@@ -557,30 +669,36 @@ client.studio.editor = {
 
     } else {
       // Tab is dirty - show a confirm close message
-      var title = 'Unsaved Changes', message = 'Are you sure you want to close '
-          + tab.title + ' without saving?', buttons = [ {
-        text : 'Close',
+      var title = 'Save changes?', 
+      message = 'Would you like to save your changes to '
+      + tab.title + ' before closing?', 
+      buttons = [ 
+      {
+        text : 'No',
         type : 'danger',
         callback : function() {
-          // Close without saving
+            // Close without saving
           me.closeTab(index, true); // Recurse, forcing a close.
         }
-      }, {
+      }, 
+      {
         text : 'Cancel',
         callback : function() {
           return true;
           // Cancel this operation & close the modal
         }
-      }, {
-        text : 'Save & Close',
-        type : 'primary',
+      }, 
+      {
+        text : 'Yes',
+        type : 'success',
         callback : function() {
           // Save this tab, then close it in our success callback.
           me.save(index, function() {
             me.closeTab(index, true);
           });
         }
-      } ];
+      } 
+      ];
       client.util.modal(title, message, buttons);
     }
 
