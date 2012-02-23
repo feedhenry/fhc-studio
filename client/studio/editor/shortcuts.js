@@ -62,7 +62,6 @@ client.studio.editor.shortcuts = [
       description : "Open a file resource",
       binding : "ctrl+shift+r",
       handler : function() {
-        console.log('openres');
         var me = client.studio.editor;
         me.openResource();
       }
