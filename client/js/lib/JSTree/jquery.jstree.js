@@ -1504,7 +1504,7 @@
 			if(!this.data.ui) { throw "jsTree hotkeys: jsTree UI plugin not included."; }
 			$.each(this._get_settings().hotkeys, function (i, v) {
 				if(v !== false && $.inArray(i, bound) == -1) {
-					$(document).bind("keydown", i, function (event) { return exec(i, event); });
+					$(document).unbind("keydown").bind("keydown", i, function (event) { return exec(i, event); }); //PATCH: //TODO: Submit pull request for this. ~Cian
 					bound.push(i);
 				}
 			});
