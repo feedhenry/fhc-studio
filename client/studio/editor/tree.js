@@ -1,24 +1,23 @@
 client.studio.editor = client.studio.editor || {};
 client.studio.editor.tree = {
     click : function(e) {
-      //debugger; // TODO: Get reference to data to be able to do something with dblclick
       var me = client.studio.editor,
       node = $(e.target).closest("li"),
-      data = node.data("jstree"),
-      el = $(data.rslt.obj), 
-      guid = data.rslt.obj.data("guid"), 
-      type = data.rslt.obj.data("type");
+      data = node.data(),
+      guid = data.guid, 
+      type = data.type;
 
       if (!type || type != "file") {
-        $("#treeContainer").jstree('toggle_node', el);
+        $("#treeContainer").jstree('toggle_node', node);
       }
-
-      if (data.inst.is_leaf() == true && type == "file") {
+      
+      if (type == "file") {
         me.open(guid);
       }
     },
     pathFolderClick : function(e, data) {
-      var me = client.studio.editor, path = data.rslt.obj.data("path");
+      var me = client.studio.editor, 
+      path = data.rslt.obj.data("path");
       $('#filePath').val(path);
       me.tree.click(e, data);
     },

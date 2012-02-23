@@ -1,3 +1,5 @@
+@import "tree.less";
+
 .fluid-container > .content.app.editor {
   padding: 0px;
   height: 100%;
@@ -32,18 +34,6 @@
   min-height: 100px;
 }
 
-.jstree-default a ins.jstree-icon.file {
-  background: transparent url("../images/editor/file.png") no-repeat;
-  background-position: 0px 0px;
-  background-size: 14px;	
-}
-
-.jstree-default a.jstree-clicked { 
-  width: 100%; /* Give JSTree clicked states 100% width for aesthetics, make the selection more obvious */
-  background-color: @blue;
-  border: 1px solid lighten(@blue, 5%);
-  color: @white;
-}
 
 #editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {
   height: 34px;	
