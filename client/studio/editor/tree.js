@@ -74,13 +74,19 @@ client.studio.editor.tree = {
               this.select_node(this._get_next(o));
               return false;
             },
-            'space' : function () { // TODO: Make this enter? 
+            'return' : function () { // TODO: Make this enter?
               var o = this.data.ui.selected || this.data.ui.last_selected;
               var d = o.data();
-              if (o.type && o.type==="file"){
-                me.open(o.guid);
+              if (d.type && d.type==="file"){
+                me.open(d.guid);
+                return;
               }
-              if(this.data.ui.hovered) { this.data.ui.hovered.children("a:eq(0)").click(); }
+              if(o.hasClass("jstree-closed")) { 
+                this.open_node(o); 
+              }
+              else { 
+                this.close_node(o); 
+              }
               
               return false; 
             },  
