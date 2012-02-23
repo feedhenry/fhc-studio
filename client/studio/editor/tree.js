@@ -52,7 +52,7 @@ client.studio.editor.tree = {
       $(function() {
         me.filesTree = {
           "json_data" : treeData,
-          "plugins" : [ "themes", "json_data", "ui", "search" ],
+          "plugins" : [ "themes", "json_data", "ui", "search", "hotkeys" ],
           "themes" : {
             "theme" : "default",
             "dots" : false,
@@ -60,6 +60,60 @@ client.studio.editor.tree = {
           },
           "core" : { 
               "animation" : 125 
+          },
+          'hotkeys': {
+            'up' : function(){
+              var o = this.data.ui.selected || this.data.ui.last_selected || -1;
+              this.deselect_node();
+              this.select_node(this._get_prev(o));
+              return false;
+            },
+            'down' : function(){
+              var o = this.data.ui.selected || this.data.ui.last_selected || -1;
+              this.deselect_node();
+              this.select_node(this._get_next(o));
+              return false;
+            },
+            'space' : function () { // TODO: Make this enter? 
+              var o = this.data.ui.selected || this.data.ui.last_selected;
+              var d = o.data();
+              if (o.type && o.type==="file"){
+                me.open(o.guid);
+              }
+              if(this.data.ui.hovered) { this.data.ui.hovered.children("a:eq(0)").click(); }
+              
+              return false; 
+            },  
+            "left" : function () {
+              var o = this.data.ui.selected || this.data.ui.last_selected;
+              if(o) {
+                var d = o.data();
+                if (o.data && o.data.type==="file"){
+                  return false;
+                }
+                if(o.hasClass("jstree-open")) { this.close_node(o); }
+                else { 
+                  this.deselect_node(); 
+                  this.select_node(this._get_prev(o)); 
+                  }
+              }
+              return false;
+            },
+            'right' : function(){
+              var o = this.data.ui.selected || this.data.ui.last_selected;
+              if(o && o.length) {
+                var d = o.data();
+                if (o.data && o.data.type==="file"){
+                  return false;
+                }
+                if(o.hasClass("jstree-closed")) { this.open_node(o); }
+                else { 
+                  this.deselect_node();
+                  this.select_node(this._get_next(o)); 
+                }
+              }
+              return false;
+            }
           }
         };
 
