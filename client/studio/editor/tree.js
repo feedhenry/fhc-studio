@@ -1,8 +1,13 @@
 client.studio.editor = client.studio.editor || {};
 client.studio.editor.tree = {
-    click : function(e, data) {
-      var me = client.studio.editor, el = $(data.rslt.obj), guid = data.rslt.obj
-          .data("guid"), type = data.rslt.obj.data("type");
+    click : function(e) {
+      //debugger; // TODO: Get reference to data to be able to do something with dblclick
+      var me = client.studio.editor,
+      node = $(e.target).closest("li"),
+      data = node.data("jstree"),
+      el = $(data.rslt.obj), 
+      guid = data.rslt.obj.data("guid"), 
+      type = data.rslt.obj.data("type");
 
       if (!type || type != "file") {
         $("#treeContainer").jstree('toggle_node', el);
@@ -53,10 +58,13 @@ client.studio.editor.tree = {
             "theme" : "default",
             "dots" : false,
             "icons" : true
+          },
+          "core" : { 
+              "animation" : 125 
           }
         };
 
-        $("#treeContainer").jstree(me.filesTree).bind("select_node.jstree",
+        $("#treeContainer").jstree(me.filesTree).bind("dblclick.jstree",
             me.tree.click);
       }); // end jqclosure
 

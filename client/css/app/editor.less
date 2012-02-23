@@ -23,7 +23,8 @@
   float: left;
   clear: both;
   height: 100%;
-  background: @grayDark; 
+  background: @grayDark;
+  overflow: hidden; 
 }
 
 #treeContainer > ul, #snippets {
@@ -35,6 +36,13 @@
   background: transparent url("../images/editor/file.png") no-repeat;
   background-position: 0px 0px;
   background-size: 14px;	
+}
+
+.jstree-default a.jstree-clicked { 
+  width: 100%; /* Give JSTree clicked states 100% width for aesthetics, make the selection more obvious */
+  background-color: @blue;
+  border: 1px solid lighten(@blue, 5%);
+  color: @white;
 }
 
 #editorToolbar.navbar, #editorToolbar.navbar .fluid-container, #editorToolbar ul.nav  {

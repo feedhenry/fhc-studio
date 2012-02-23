@@ -1,4 +1,4 @@
-<section class="preview dashboardPreview pull-right">
+<section class="preview collapsed dashboardPreview pull-right">
   {previewHelper}  
 </section>
 
