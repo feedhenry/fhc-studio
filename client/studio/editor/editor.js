@@ -42,7 +42,7 @@ client.studio.editor = {
     $('a#closeFile').unbind().on('click', function() {
       me.closeTab(me.activeTab);
     });
-    $('a#newFile').unbind().on('click', me.newFile);
+    $('a.newFileLink').unbind().on('click', me.newFile);
     $('a#saveAs').unbind().on('click', function() {
       me.saveAs(me.activeTab);
     });

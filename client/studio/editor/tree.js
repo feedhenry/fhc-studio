@@ -7,7 +7,7 @@ client.studio.editor.tree = {
       $('#treeSearchLink').unbind().on("click", me.openResource);
       $('#treeNewLink').unbind().on("click", me.newFile);
     },
-    click : function(e) {
+    doubleclick : function(e) {
       var me = client.studio.editor,
       node = $(e.target).closest("li"),
       data = node.data() || "",
@@ -23,6 +23,16 @@ client.studio.editor.tree = {
         me.open(guid);
       }
     },
+    click: function(e){
+      
+    },
+    select : function(event, data){
+      // enable or disable buttons as appropriate...
+      $('#treeButtons a.btn.disabled').removeClass('disabled').addClass('enabled');
+    },
+    deselect : function(event, data){
+      $('#treeButtons a.btn.enabled').removeClass('enabled').addClass('disabled');
+    },
     pathFolderClick : function(e, data) {
       var me = client.studio.editor,
       node = $(e.target).closest("li"),
@@ -36,7 +46,7 @@ client.studio.editor.tree = {
         path += '/';
       }
       $('#filePath').val(path);
-      me.tree.click(e, data);
+      me.tree.doubleclick(e, data);
     },
     init : function(tree) {
       var me = client.studio.editor;
@@ -141,8 +151,11 @@ client.studio.editor.tree = {
           }// end hotkeys
         };
 
-        $("#treeContainer").jstree(me.filesTree).bind("dblclick.jstree",
-            me.tree.click);
+        $("#treeContainer").jstree(me.filesTree)
+        .bind("dblclick.jstree",me.tree.doubleclick)
+        .bind("click.jstree",me.tree.click)
+        .bind("select_node.jstree", me.tree.select)
+        .bind("deselect_node.jstree", me.tree.deselect);
       }); // end jqclosure
 
       function parseChildren(tree) {

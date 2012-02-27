@@ -2,8 +2,6 @@ function translateKey(context, key) {
   var path = key.split('.'),
       lookup = context.get('lang'),
       i;
-
-  console.log(path);
   for (i = 0; i < path.length && (typeof lookup === "object"); i++) {
     lookup = lookup[path[i]];
   }

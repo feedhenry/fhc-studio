@@ -1,7 +1,7 @@
 <li class="dropdown">
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.file}</a>
   <ul class="dropdown-menu">
-    <li><a class="no-ajax" id="newFile" href="#">{lang.newFile}</a></li>
+    <li><a class="no-ajax newFileLink" href="#">{lang.newFile}</a></li>
     <li><a class="no-ajax save"  href="#">{lang.save}</a></li>
     <li><a class="no-ajax" id="saveAs"  href="#">{lang.saveAs}</a></li>
     <li><a class="no-ajax save"  href="#" >{lang.saveAll}</a></li>
@@ -17,9 +17,13 @@
   </ul>
 </li>
 <li class="button"><a>{lang.edit}</a></li>
-<li class="button"><a class="no-ajax save" href="#" >{lang.save}</a></li>
-<li class="button"><a class="no-ajax save" href="#" >{lang.saveAll}</a></li>
- <li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>
+<li class="button">
+  <a title="{lang.save}" class="btn btn-small btn-inverse no-ajax save" href="#"><i class="icon-pencil icon-white"></i> {lang.save}</a>
+</li>
+<li class="button">
+  <a title="{lang.newFile}" class="btn btn-small btn-inverse newFileLink" href="#"><i class="icon-file icon-white"></i> {lang.newFile}</a>
+</li>
+ <!--<li class="button"><a class="no-ajax save" href="#" >{lang.saveClose}</a></li>-->
 
 <li class="dropdown" id="apiDropdown">
   <a class="dropdown-toggle no-ajax" data-toggle="dropdown" href="#">{lang.apiPrefix}...</a>

@@ -1,16 +1,17 @@
 <input type="hidden" value="{filesTree}" name="filestree" />
-<div id="treeToolbar" class="pull-left">
-  <a id="treeDeleteLink" title="{lang.treeDelete}" class="btn btn-mini btn-inverse" href="#"><i class="icon-trash icon-white"></i> </a>
-  <a id="treeRenameLink" title="{lang.treeRename}" class="btn btn-mini btn-inverse" href="#"><i class="icon-edit icon-white"></i> </a>
-  <a id="treeSearchLink" title="{lang.treeSearch}" class="btn btn-mini btn-inverse" href="#"><i class="icon-search icon-white"></i> </a>
-  <a id="treeNewLink" title="{lang.treeNew}" class="btn btn-mini btn-inverse" href="#"><i class="icon-plus icon-white"></i> </a>
+<div id="treeBar" class="pull-left">
   <ul class="tabs editorTabs nav nav-tabs">
     <li class="active"><a class="no-ajax" data-toggle="tab" href="#navigator">{lang.navigator}</a></li>
     <li class=""><a data-toggle="tab" href="#snippets" class="no-ajax">{lang.snippets}</a></li>
   </ul>
-</div>
 <div class="tab-content">
   <div class="tab-pane active" id="navigator">
+    <div id="treeButtons">
+      <a id="treeDeleteLink" title="{lang.treeDelete}" class="btn btn-mini btn-inverse disabled" href="#"><i class="icon-trash icon-white"></i> </a>
+      <a id="treeRenameLink" title="{lang.treeRename}" class="btn btn-mini btn-inverse disabled" href="#"><i class="icon-edit icon-white"></i> </a>
+      <a id="treeSearchLink" title="{lang.treeSearch}" class="btn btn-mini btn-inverse" href="#"><i class="icon-search icon-white"></i> </a>
+      <a id="treeNewLink" title="{lang.treeNew}" class="btn btn-mini btn-inverse" href="#"><i class="icon-file icon-white"></i> </a>
+    </div>
     <div id="treeContainer" class="pull-left">
 
     </div>
@@ -19,4 +20,4 @@
     {lang.someSnippets}
   </div>
 </div>
-
+</div>

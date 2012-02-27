@@ -15,30 +15,32 @@
   cursor: default;
 }
 
-#treeContainer, #treeToolbar, #snippets{
-  left: 100px;
+.jstree ul {
+  background-color: @white;
+}
+
+#treeContainer, #treeBar, #snippets{
   width: 220px;
-  position: absolute;
 }
 
-#treeToolbar {
+#treeBar {
   background-color: @grayDark;
+  height: 100%;
 }
 
-#treeToolbar a.btn {
+#treeBar #treeButtons a.btn {
   margin: 0px 5px;
 }
 
-#treeContainer, #snippets {
-  top: 103px; /* Put it inline with the editor content window */
-  float: left;
-  clear: both;
-  height: 100%;
-  background: @grayDark;
-  overflow: hidden; 
+#treeBar #treeButtons {
+  height: 22px;
+  padding: 2px 0px;
+  text-align: center;
+  border-bottom: 1px dotted @grayDark;
+  margin-bottom: 10px;
 }
 
-#treeContainer > ul, #snippets {
+#treeBar #navigator, #snippets {
   background: @white;
   min-height: 100px;
 }
