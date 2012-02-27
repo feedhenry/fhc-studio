@@ -1596,10 +1596,6 @@
 				}
 				return false;
 			},
-			"space" : function () { 
-				if(this.data.ui.hovered) { this.data.ui.hovered.children("a:eq(0)").click(); } 
-				return false; 
-			},
 			"ctrl+space" : function (event) { 
 				event.type = "click";
 				if(this.data.ui.hovered) { this.data.ui.hovered.children("a:eq(0)").trigger(event); } 
@@ -3674,10 +3670,6 @@
 				})
 				.bind("keydown", "esc", function (e) { 
 					$.vakata.context.hide(); 
-					e.preventDefault();
-				})
-				.bind("keydown", "space", function (e) { 
-					$.vakata.context.cnt.find(".vakata-hover").last().children("a").click();
 					e.preventDefault();
 				});
 		}

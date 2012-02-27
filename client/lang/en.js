@@ -102,6 +102,10 @@ var en = {
   snippets: "Snippets",
   someSnippets : "Some code snippets",
   navigator : "Navigator",
+  treeDelete : "Delete",
+  treeRename : "Rename",
+  treeSearch : "Search",
+  treeAdd : "Add",
   openRecent : "Open Recent",
   // App Preview (preview.dust)
   device: "Device",

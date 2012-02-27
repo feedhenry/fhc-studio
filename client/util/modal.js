@@ -79,8 +79,7 @@ client.util.modal  = function(t, m, b, opts){
     for (var i=buttons.length-1; i>=0; i--){
       var b = buttons[i],
       text = b.text || "Button",
-      type = (b.type) ? "btn btn-" + b.type : "btn",
-      callback = b.callback || null;
+      type = (b.type) ? "btn btn-" + b.type : "btn";
       
       var a = document.createElement('a');
       a.className = type;
@@ -88,13 +87,12 @@ client.util.modal  = function(t, m, b, opts){
       a.href = "#";
       
       // Register what happens after clicking this button, but always close the modal
-      $(a).unbind().on('click', function(){
+      $(a).unbind().on('click', b.callback);
+      $(a).on('click', function(){
         $('#_modalGen').modal('hide');
-        $('#_modalGen').remove();
+        $('#_modalGen').remove();  
       });
-      if (callback){
-        $(a).on('click', callback);  
-      }
+      
       
       ret.push(a);
     }

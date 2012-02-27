@@ -1,6 +1,9 @@
 <input type="hidden" value="{filesTree}" name="filestree" />
-<div id="treeSearch" class="pull-left">
-  <input type="search" placeholder="{lang.search}"></input>
+<div id="treeToolbar" class="pull-left">
+  <a id="treeDeleteLink" title="{lang.treeDelete}" class="btn btn-mini btn-inverse" href="#"><i class="icon-trash icon-white"></i> </a>
+  <a id="treeRenameLink" title="{lang.treeRename}" class="btn btn-mini btn-inverse" href="#"><i class="icon-edit icon-white"></i> </a>
+  <a id="treeSearchLink" title="{lang.treeSearch}" class="btn btn-mini btn-inverse" href="#"><i class="icon-search icon-white"></i> </a>
+  <a id="treeNewLink" title="{lang.treeNew}" class="btn btn-mini btn-inverse" href="#"><i class="icon-plus icon-white"></i> </a>
   <ul class="tabs editorTabs nav nav-tabs">
     <li class="active"><a class="no-ajax" data-toggle="tab" href="#navigator">{lang.navigator}</a></li>
     <li class=""><a data-toggle="tab" href="#snippets" class="no-ajax">{lang.snippets}</a></li>

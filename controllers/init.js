@@ -9,7 +9,7 @@ init = function (target) {
           throw new Error(err);
       }
       if (target){
-        fhc.target(['https://demo2.feedhenry.com'],
+        fhc.target(['https://' + target + '.feedhenry.com'],
           function(err, data) {
            
             if (err){

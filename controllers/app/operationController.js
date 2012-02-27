@@ -6,59 +6,120 @@ var operationController,
 
   operationController = {
 
-    updateAction : function (req,res) {
-        var guid            = req.params.id;
-        var body            = req.body;
-        var fileId          = req.params.fileId || body.fileId;
-        var fileContents    = body.fileContents;
-        var obj = { fileContents: fileContents };
-        console.log(obj + " params" + guid + " "+fileId);
-        req.params.resType = "json";
-        validate.guid(guid,function (e,s) {
-            if(e)return renderer.doResponse(req,res,{msg:'Error',error:e});
-            else {
-                fhc.files(['update', guid, fileId, obj], function(err, succ){
-                    if (!err){
-
-                        renderer.doResponse(req, res, { msg: 'File saved successfully' });
-                    }else{
-                        console.log(err);
-                        renderer.doResponse(req, res, { msg: 'Error', error: err });
-                    }
-
-                });
-            }
-        } );
-    },
-
-    createAction : function (req,res) {
-        if(req.method === "GET"){
-            d = {
-                tpl : "createapp",
-                data : {},
-                title : "create an app"
-            };
-            return renderer.doResponse(req,res,d);
+    
+    createAction : function(req, res){
+      operationController._createFile(req, function(err, data){
+        if (err){
+          renderer.doResponse(req,res,err);
+          return;
         }
-        req.params.resType = "json";
-        validate.appName(req.body.appname,function(err,suc){
-            if(err)return renderer.doResponse(req,res,{msg:'Error',error:err});
-            fhc.apps(["create",suc],function(err,data){
-                if(err)renderer.doResponse(req,res,{ msg: 'Error', error: err });
-                else renderer.doResponse(req,res,{msg : data});
-            });
-        });
-
+        renderer.doResponse(req, res, data);
+        return;
+      });
+      
+    }, // end createAction
+    readAction : function(req, res){
+      // TODO - Complete this and have editorController consume it, or expose it as new endpoint to the studio
     },
-    deleteAction : function (req,res){
-        req.params.resType = "json";
-        validate.guid(req.body.guid,function(err,suc){
-            fhc.apps(["delete",suc],function(err,data){
-                if(err)return renderer.doResponse(req,res,{ msg: 'Error', error: err });
-                else renderer.doResponse(req,res,{msg : data});
-            });
-        });
+    updateAction : function (req,res) {
+      operationController._updateFile(req, function(err, data){
+        if (err){
+          renderer.doResponse(req,res,err);
+          return;
+        }
+        renderer.doResponse(req, res, data);
+        return;
+      });
+    },
+    deleteAction : function(req, res){
+      operationController._deleteFile(req, function(err, data){
+        if (err){
+          renderer.doResponse(req,res,err);
+          return;
+        }
+        renderer.doResponse(req, res, data);
+        return;
+      });
+    },
+    _createFile : function(req, cb){
+      var guid = req.params.id,
+      body = req.body,
+      path = body.path,
+      name = req.params.fileName || body.name,
+      type = body.type;
+      req.params.resType = "json";
+      
+      validate.guid(guid,function (e,s) {
+          if(e){
+            return cb({ msg:'Error',error:e}, null);
+          }
+          else {          
+            fhc.files.create(guid, path, name, type, function(err, data){
+                if (err){
+                    console.log(err);
+                    return cb({ msg: 'Error', error: err }, null);
+                    
+                }
+                /*
+                 * We've now created a file - we need to update it's contents with
+                 * the new fileID we just got back from the server.
+                 */
+                req.body.fileId = data.guid;
+                operationController._createFile(req, function(err, data){
+                  if (err){
+                    errorString = err.err || err;
+                    return cb({ msg: 'Error', error: 'File created successfully, but not updated: ' + errorString }, null);
+                  }
+                  return cb(null, { msg: 'File created successfully' });
+                });
+            }); // end fhc files
+          }
+      }); // end validation
+    },// end _createFile
+    _readFile : function(req, cb){
+      // TODO: Complete this.
+    },
+    _updateFile : function(req, cb){
+      var guid            = req.params.id;
+      var body            = req.body;
+      var fileId          = req.params.fileId || body.fileId;
+      var fileContents    = body.fileContents;
+      var obj = { fileContents: fileContents };
+      console.log(obj + " params" + guid + " "+fileId);
+      req.params.resType = "json";
+      validate.guid(guid,function (e,s) {
+          if(e){
+            return cb({msg:'Error',error:e}, null);
+          }
+          else {
+              fhc.files(['update', guid, fileId, obj], function(err, succ){
+                  if (!err){
+                      cb(null, { msg: 'File saved successfully' });
+                  }else{
+                      console.log(err);
+                      cb({ msg: 'Error', error: err }, null);
+                  }
+              }); // end fhc.files.update
+          } // end else
+      }); // end validate
+    }, // end _updateFile
+
+    _deleteFile : function(req, cb){
+      var guid = req.params.id,
+      body = req.body,
+      path = body.path,
+      name = req.params.fileName || body.name,
+      fileId = req.params.fileId || body.fileId,
+      type = body.type;
+      req.params.resType = "json";
+      fhc.files.deleteFile(guid , fileId, path, name, type, function(err, succ){
+        if (err){
+          return cb({ msg: 'Error', error: err }, null);
+        }
+        return cb(null, { msg: 'File deleted successfully' });
+      });
     }
+
 };
 
 

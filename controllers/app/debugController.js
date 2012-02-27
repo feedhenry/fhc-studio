@@ -18,7 +18,7 @@ var debugController,
             fhc.logs.getLogs(id, logname, 'development', callback);
           },
           function(callback){
-            fhc.logs.getLogs(id, logname, 'development', callback);
+            fhc.logs.getLogs(id, logname, 'development', callback); //TODO: Stop FHC throwing an error here if not staged?
           }
         ],
         function(err, results){ // async callback

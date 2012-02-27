@@ -36,24 +36,13 @@ client.studio.editor = {
   bindEvents : function() {
     var me = client.studio.editor;
     // Contains bindings for all default events
-    $('.help').unbind().on("click", client.studio.editor.help);
-    $('.save').unbind().on("click", client.studio.editor.save);
-    $('.snippet').unbind().on("click", client.studio.editor.snippet);
+    $('.help').unbind().on("click", me.help);
+    $('.save').unbind().on("click", me.save);
+    $('.snippet').unbind().on("click", me.snippet);
     $('a#closeFile').unbind().on('click', function() {
       me.closeTab(me.activeTab);
     });
-    $('a#newFile').unbind().on('click', function() {
-      // Create a new, empty tab
-      var res = {
-        data : {
-          fileContents : "",
-          fileId : "",
-          mode : ""
-        }
-      };
-
-      me.newTab(res);
-    });
+    $('a#newFile').unbind().on('click', me.newFile);
     $('a#saveAs').unbind().on('click', function() {
       me.saveAs(me.activeTab);
     });
@@ -71,15 +60,37 @@ client.studio.editor = {
       }
     }];
     client.util.modal(title, message, buttons);
-  },  
+  },
+  /*
+   * Opens a new blank tab in the editor 
+   */
+  newFile : function(){
+    var me = client.studio.editor;
+    // Create a new, empty tab
+    var res = {
+      data : {
+        fileContents : "",
+        fileId : "",
+        mode : ""
+      }
+    };
+
+    me.newTab(res);
+  },
   /*
    * Opens a new tab in the editor with the param's contents
    */
   newTab : function(res) {
     // Some locals for use in this function
-    var fileContents = res.data.fileContents, fileName = res.data.title
-        || "Untitled", fileId = res.data.fileId, mode = res.data.mode, me = client.studio.editor, index = me.tabs.length || 0, // TODO: This isn't a reliable way to set index.shouldbe me.nextIndex
-    editor = undefined, modeString = undefined, extension = undefined;
+    var fileContents = res.data.fileContents, 
+    fileName = res.data.title || "Untitled", 
+    fileId = res.data.fileId, 
+    mode = res.data.mode, 
+    me = client.studio.editor, 
+    index = me.tabs.length || 0, // TODO: This isn't a reliable way to set index.shouldbe me.nextIndex
+    editor = undefined, 
+    modeString = undefined, 
+    extension = undefined;
 
     // Extract the filename extension using a regex if possible
     var extensionResults = fileName.match(/\.+[a-zA-Z]+$/);

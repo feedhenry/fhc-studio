@@ -52,7 +52,8 @@ client.studio.editor.save = function(index, callback) {
 };
 
   /*
-   * Saves all open files, any previously unsaved files will cause a saveAs prompt
+   * Saves all open files, any previously unsaved files will cause a saveAs prompt 
+   * TODO: Deprecate? This probably isn't needed, bad UX with danger of error.
    */
 client.studio.editor.saveAll = function(){
     var me = client.studio.editor;
@@ -94,15 +95,15 @@ client.studio.editor.saveAll = function(){
  * a create operation
  */
 client.studio.editor.saveAs = function() {
-    var title = "Save As", 
+    var title = "Save As",
     me = client.studio.editor,
+    appId = me.appId,
     index = me.activeTab,
     tab = me.getTabByIndex(index), 
     tabId = 'tab' + index, 
     editor = tab.ace, 
     editorSession = editor.getSession(), 
     editorContents = editorSession.getValue(); 
-    debugger;
     /*
      * Setup our modal dialog popup
      */
@@ -128,22 +129,24 @@ client.studio.editor.saveAs = function() {
      * Function to send the request back to the server
      */
     function submitSaveAs(){
-      // TODO: Filename dialog already destroyed by now
-      var filename = $('input#fileName').trim(),
-      path = $('input#filePath').trim(),
-      contents = "";
+      var filename = $('input#fileName').val().trim();
+      path = $('input#filePath').val().trim(),
+      type = "txt";
       
       var data = {
-          contents: editorContents
+          path : path,
+          name: filename,
+          fileContents : editorContents,
+          type: type
       };
       $.ajax({
         type : 'POST',
-        url : '/app/' + appId + '/create/' + fileId + '.json',
+        url : '/app/' + appId + '/create.json',
         data : data,
         success : function(res) {
           if (res && res.data && res.data.msg && !res.data.error) {
             client.util.messages.success(res.data.msg);
-            
+            me.tree.refresh();
             if (tab) {
               tab.dirty = false;
               $('#' + tabId + 'Link strong.modifiedStar').hide();
@@ -165,9 +168,88 @@ client.studio.editor.saveAs = function() {
       // the folders
       $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one
                                                   // file per level
-    }).jstree(me.filesTree).bind("select_node.jstree", me.tree.pathFolderClick);
+    }).jstree(me.filesTree).bind("click.jstree", me.tree.pathFolderClick);
     
 };
+
+client.studio.editor.deleteFile = function(guid){
+  var title = "Delete File",
+  me = client.studio.editor,
+  appId = me.appId,
+  selectedNodes = $('#treeContainer .jstree-clicked');
+  
+  // if we haven't selected anything in the tree, throw an info message
+  if (!selectedNodes || !selectedNodes.length || selectedNodes.length<1){
+    client.util.messages.info("No files selected!");
+    return;
+  }
+  
+  // Determine the selected node from the jstree
+  var firstSelectedNode = selectedNodes[0],
+  li = $(firstSelectedNode).closest("li"),
+  nodeData = li.data();
+  
+  // if we fail to retrieve this node's data, file an error
+  if (!nodeData || !nodeData.guid || !nodeData.path || !nodeData.title){
+    client.util.messages.error("Error retrieving file data - are you sure you selected a file?");
+    return;
+  }
+  
+  // Construct our object going out with the $.ajax
+  var dataToSend = {
+      path : nodeData.path,
+      name: nodeData.title,
+      fileId: nodeData.guid,
+      type: nodeData.type || "file"
+  };
+  /*
+   * Setup our modal dialog popup
+   */
+  var message = "Are you sure you want to delete " + dataToSend.name + "?",
+  buttons = [ {
+    text : 'Cancel',
+    callback : client.util.modalRemove
+  },
+  {
+    text : 'Delete',
+    type : 'danger',
+    callback : submitDelete
+  }
+  ];
+  client.util.modal(title, message, buttons);
+  
+  /*
+   * Function to send the request back to the server
+   */
+  function submitDelete(){
+    $.ajax({
+      type : 'POST',
+      url : '/app/' + appId + '/delete/' + dataToSend.fileId + '.json',
+      data : dataToSend,
+      success : function(res) {
+        if (res && res.data && res.data.msg && !res.data.error) {
+          client.util.messages.success(res.data.msg);
+          me.tree.refresh();
+        } else {
+          client.util.messages.error('Error Saving File', res.data.error);
+        }
+      }
+    });
+    client.util.modalRemove();
+    
+  }
+  
+  /*
+   * Setup our files tree in the modal dialog view
+   */
+  $('#_modalGenTree').bind("loaded.jstree", function() {
+    // once the tree is loaded, remove the files from the tree, just leaving
+    // the folders
+    $('#_modalGenTree .jstree-leaf').remove(); // hide all files, leaving one
+                                                // file per level
+  }).jstree(me.filesTree).bind("click.jstree", me.tree.pathFolderClick);
+}
+
 /*
  * Opens a modal save dialog with a files tree before creating a new file with
  * a create operation
@@ -191,9 +273,7 @@ client.studio.editor.openResource = function() {
       {
         text : 'Open',
         type : 'primary',
-        callback : function() {
-          // TODO: Perform a $.ajax new file operation with some path...
-        }
+        callback : submit
       } 
     ];
     
@@ -216,7 +296,6 @@ client.studio.editor.openResource = function() {
     
     
     $('input#fileName').typeahead({
-      //source: ["Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky","Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi","Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico","New York","North Dakota","North Carolina","Ohio","Oklahoma","Oregon","Pennsylvania","Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont","Virginia","Washington","West Virginia","Wisconsin","Wyoming"],
       source: pathList, 
       matcher: function(record){
         var query = this.query;

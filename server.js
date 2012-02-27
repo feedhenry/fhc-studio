@@ -56,7 +56,7 @@ server.configure('local', function () { // For now a clone of development, but w
   server.use(express.session({ secret:"keyboard cat"}));
   server.use(server.router);
   
-  controllers.init('apps');
+  controllers.init('demo2'); //TODO: Remove this!!
 });
 
 
@@ -96,13 +96,18 @@ server.get('/logout', controllers.userController.logoutAction);
  * Apps Actions
  */
 server.get('/apps.:resType?', checkAuth, controllers.appController.indexAction);
+server.all('/apps/create.:resType?',checkAuth,controllers.appController.createAction);
+server.post('/app/delete',checkAuth,controllers.appController.deleteAction);
 
 /*
  * App Actions
  */
-server.all('/apps/create.:resType?',checkAuth,controllers.app.operationController.createAction);
+server.post('/app/:id/create/:fileName?.:resType?',checkAuth,controllers.app.operationController.createAction);
+server.post('/app/:id/read/:fileId?.:resType?',checkAuth,controllers.app.operationController.readAction);
 server.post('/app/:id/update/:fileId.:resType?',checkAuth,controllers.app.operationController.updateAction);
-server.post('/app/delete',checkAuth,controllers.app.operationController.deleteAction);
+server.post('/app/:id/delete/:fileId.:resType?',checkAuth,controllers.app.operationController.deleteAction);
+
+
 
 // user dashboard
 server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);

@@ -14,3 +14,31 @@
 .jstree-default a {
   cursor: default;
 }
+
+#treeContainer, #treeToolbar, #snippets{
+  left: 100px;
+  width: 220px;
+  position: absolute;
+}
+
+#treeToolbar {
+  background-color: @grayDark;
+}
+
+#treeToolbar a.btn {
+  margin: 0px 5px;
+}
+
+#treeContainer, #snippets {
+  top: 103px; /* Put it inline with the editor content window */
+  float: left;
+  clear: both;
+  height: 100%;
+  background: @grayDark;
+  overflow: hidden; 
+}
+
+#treeContainer > ul, #snippets {
+  background: @white;
+  min-height: 100px;
+}

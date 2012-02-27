@@ -58,8 +58,8 @@ dashboardController = {
                    title: 'Mash Hash Cache'
                  }
                 ],
-                title:'Dashboard',
-                previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
+                title:'Dashboard'
+                //previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
             };
             renderer.doResponse(req, res, d);  
             

@@ -1,14 +1,22 @@
 client.studio.editor = client.studio.editor || {};
 client.studio.editor.tree = {
+    bindEvents: function(){
+      var me = client.studio.editor;
+      $('#treeDeleteLink').unbind().on("click", me.deleteFile);
+      $('#treeRenameLink').unbind().on("click", me.renameFile);
+      $('#treeSearchLink').unbind().on("click", me.openResource);
+      $('#treeNewLink').unbind().on("click", me.newFile);
+    },
     click : function(e) {
       var me = client.studio.editor,
       node = $(e.target).closest("li"),
-      data = node.data(),
-      guid = data.guid, 
-      type = data.type;
+      data = node.data() || "",
+      guid = data.guid || null, 
+      type = data.type || null;
 
       if (!type || type != "file") {
         $("#treeContainer").jstree('toggle_node', node);
+        return;
       }
       
       if (type == "file") {
@@ -16,13 +24,23 @@ client.studio.editor.tree = {
       }
     },
     pathFolderClick : function(e, data) {
-      var me = client.studio.editor, 
-      path = data.rslt.obj.data("path");
+      var me = client.studio.editor,
+      node = $(e.target).closest("li"),
+      data = node.data() || "",
+      path = data.path || "";
+      // strip trailing /
+      if (path && path[0]==='/'){
+        path = path.substring(1, path.length);
+      }
+      if (path && path[path.length]!=='/'){
+        path += '/';
+      }
       $('#filePath').val(path);
       me.tree.click(e, data);
     },
     init : function(tree) {
       var me = client.studio.editor;
+      me.tree.bindEvents();
       if (!tree.children) {
         
         client.util.messages.error('Error', 'Error loading the files tree - is this a git app?'); // TODO: Localise
@@ -52,7 +70,7 @@ client.studio.editor.tree = {
       $(function() {
         me.filesTree = {
           "json_data" : treeData,
-          "plugins" : [ "themes", "json_data", "ui", "search", "hotkeys" ],
+          "plugins" : [ "themes", "json_data", "ui", "search", "hotkeys"],
           "themes" : {
             "theme" : "default",
             "dots" : false,
@@ -120,7 +138,7 @@ client.studio.editor.tree = {
               }
               return false;
             }
-          }
+          }// end hotkeys
         };
 
         $("#treeContainer").jstree(me.filesTree).bind("dblclick.jstree",
@@ -147,5 +165,8 @@ client.studio.editor.tree = {
         }
       }
       ;
-    } // end client.studio.editor.tree.init
+    }, // end client.studio.editor.tree.init
+    refresh: function(){
+      //TODO: Complete refresh operation using READ operation of CRUDL set defined in operationController
+    }
   }; // end client.studio.editor.tree
