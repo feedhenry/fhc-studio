@@ -176,7 +176,7 @@ client.studio.editor.deleteFile = function(guid){
   var title = "Delete File",
   me = client.studio.editor,
   appId = me.appId,
-  selectedNodes = $('#treeContainer .jstree-clicked');
+  selectedNodes = $('#treeContainer .jstree-clicked.selected');
   
   // if we haven't selected anything in the tree, throw an info message
   if (!selectedNodes || !selectedNodes.length || selectedNodes.length<1){
@@ -194,6 +194,8 @@ client.studio.editor.deleteFile = function(guid){
     client.util.messages.error("Error retrieving file data - are you sure you selected a file?");
     return;
   }
+  
+  nodeData.path = client.util.string.stripFileNameFromPathString(nodeData.path);
   
   // Construct our object going out with the $.ajax
   var dataToSend = {

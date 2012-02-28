@@ -24,14 +24,25 @@ client.studio.editor.tree = {
       }
     },
     click: function(e){
+      var me = client.studio.editor,
+      a = $(e.target),
+      node = a.closest("li"),
+      data = node.data() || null;
       
+      if (a.hasClass('selected')){
+        a.removeClass('selected');
+        $('#treeButtons a.btn.enabled').removeClass('enabled').addClass('disabled');
+      }else{
+        $('#treeContainer a.selected').removeClass('selected');
+        a.addClass('selected');
+      }
     },
     select : function(event, data){
       // enable or disable buttons as appropriate...
       $('#treeButtons a.btn.disabled').removeClass('disabled').addClass('enabled');
     },
     deselect : function(event, data){
-      $('#treeButtons a.btn.enabled').removeClass('enabled').addClass('disabled');
+      
     },
     pathFolderClick : function(e, data) {
       var me = client.studio.editor,
