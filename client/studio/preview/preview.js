@@ -25,13 +25,43 @@ client.studio.preview = {
     rotate: function(){
         var container = document.getElementById(this.containerId);
         if (this.rotateVal=="0deg"){
+            // Rotate the container
             this.rotateVal = "90deg";
             this.translateVal = "0px, -" + container.clientHeight + "px";
+
+            // rotate the iFrame inside the container
+            this.iFrameRotate(container, -90);
         } else {
             this.rotateVal = "0deg";
             this.translateVal = "0px, 0px";
+
+            // rotate the iFrame inside the container
+            this.iFrameRotate(container, 0);
         }
         this.appendTransform(container);
+    },
+    iFrameRotate: function(node, degrees) {
+      var iFrame    = node.getElementsByTagName('iframe')[0];
+      var scale     = 2;
+      var width     = iFrame.clientHeight; 
+      var height    = iFrame.clientWidth;
+      var rotate    = degrees + 'deg';
+      var translate = -(width * scale) + 'px, 0px';
+      var transform;
+
+      if (degrees === 0) {
+        transform = 'rotate(0deg) translate(0px, 0px) scale(' + scale + ')';
+      } else {
+        transform = 'rotate(' + rotate + ') translate(' + translate + ') scale(' + scale + ')';
+      }
+
+      iFrame.style.webkitTransform = transform;
+      iFrame.style.MozTransform    = transform;
+      iFrame.style.transform       = transform;
+
+      // Swap the width and height
+      iFrame.style.width  = width  + 'px';
+      iFrame.style.height = height + 'px';
     },
     appendTransform: function(node, property){
         var prefixedTransform = "scale(" + this.scaleVal + ") rotate(" + this.rotateVal + ") translate(" + this.translateVal + ")";
@@ -47,6 +77,11 @@ client.studio.preview = {
         if (this.rotateVal === "90deg") {
             this.rotate();
         }
+
+        // Reset size
+        var iFrame = container.getElementsByTagName('iframe')[0];
+        iFrame.style.width  = '';
+        iFrame.style.height = '';
     },
     toggleWidget: function(){
       var widget = $('section.preview.dashboardPreview');
