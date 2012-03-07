@@ -56,7 +56,7 @@ server.configure('local', function () { // For now a clone of development, but w
   server.use(express.session({ secret:"keyboard cat"}));
   server.use(server.router);
   
-  controllers.init('apps'); //TODO: Remove this!!
+  controllers.init('demo2'); //TODO: Remove this!!
 });
 
 
