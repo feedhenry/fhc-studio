@@ -90,6 +90,7 @@ var en = {
   edit : "Edit",
   find : "Find",
   findReplace : "Find & Replace",
+  deleteFiles: "Delete Selected Files",
   newFile : "New",
   save : "Save",
   saveAll : "Save All",

@@ -39,7 +39,10 @@ client.studio.editor.save = function(index, callback) {
       success : function(res) {
         if (res && res.data && res.data.msg && !res.data.error) {
           client.util.messages.success(res.data.msg);
-          successCallback();
+
+          if (typeof successCallback !== "undefined") {
+            successCallback();
+          }
           if (tab) {
             tab.dirty = false;
             $('#' + tabId + 'Link strong.modifiedStar').hide();
@@ -232,16 +235,17 @@ client.studio.editor.deleteFile = function(guid){
       url : '/app/' + appId + '/delete/' + dataToSend.fileId + '.json',
       data : dataToSend,
       success : function(res) {
-        if (res && res.data && res.data.msg && !res.data.error) {
-          client.util.messages.success(res.data.msg);
-          me.tree.refresh();
-        } else {
-          client.util.messages.error('Error Saving File', res.data.error);
-        }
+        client.studio.editor.refreshTree(function() {
+          if (res && res.data && res.data.msg && !res.data.error) {
+            client.util.messages.success(res.data.msg);
+            me.tree.refresh();
+          } else {
+            client.util.messages.error('Error Saving File', res.data.error);
+          }
+        });      
       }
     });
     client.util.modalRemove();
-    
   }
   
   /*
@@ -355,7 +359,7 @@ client.studio.editor.openResource = function() {
     }
 };
 
-client.studio.editor.refreshTree = function(guid) {
+client.studio.editor.refreshTree = function(callback) {
   var me = client.studio.editor,
   appId  = me.appId;
 
@@ -367,6 +371,10 @@ client.studio.editor.refreshTree = function(guid) {
       var fileList = JSON.parse(res.data.files);
 
       client.studio.editor.tree.init(fileList);
+
+      if (typeof callback !== "undefined") {
+        callback();
+      }
     }
   });
 };

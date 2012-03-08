@@ -46,6 +46,10 @@ client.studio.editor = {
     $('a#saveAs').unbind().on('click', function() {
       me.saveAs(me.activeTab);
     });
+
+    $('a#deleteMenuLink').unbind().on('click', function() {
+      client.studio.editor.deleteFile();
+    });
   },
   help : function() {
     var me = client.studio.editor;
