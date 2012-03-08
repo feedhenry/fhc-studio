@@ -102,6 +102,7 @@ var en = {
   snippets: "Snippets",
   someSnippets : "Some code snippets",
   navigator : "Navigator",
+  treeRefresh : "Refresh",
   treeDelete : "Delete",
   treeRename : "Rename",
   treeSearch : "Search",

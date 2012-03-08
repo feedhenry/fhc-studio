@@ -154,6 +154,9 @@ client.studio.editor.saveAs = function() {
           } else {
             client.util.messages.error('Error Saving File', res.data.error);
           }
+
+          // Update the tree
+          client.studio.editor.refreshTree(appId);
         }
       });
       client.util.modalRemove();
@@ -350,4 +353,20 @@ client.studio.editor.openResource = function() {
       }
       return flat;
     }
+};
+
+client.studio.editor.refreshTree = function(guid) {
+  var me = client.studio.editor,
+  appId  = me.appId;
+
+  console.log("refreshTree");
+  $.ajax({
+    type: 'GET',
+    url: '/app/' + appId + '/files',
+    success: function(res) {
+      var fileList = JSON.parse(res.data.files);
+
+      client.studio.editor.tree.init(fileList);
+    }
+  });
 };

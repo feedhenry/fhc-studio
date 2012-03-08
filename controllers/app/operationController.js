@@ -6,7 +6,6 @@ var operationController,
 
   operationController = {
 
-    
     createAction : function(req, res){
       operationController._createFile(req, function(err, data){
         if (err){
@@ -33,6 +32,18 @@ var operationController,
     },
     deleteAction : function(req, res){
       operationController._deleteFile(req, function(err, data){
+        if (err){
+          renderer.doResponse(req,res,err);
+          return;
+        }
+        renderer.doResponse(req, res, data);
+        return;
+      });
+    },
+    refreshTree: function(req, res) {
+      req.params.resType = "json";
+
+      operationController._listFiles(req, function(err, data) {
         if (err){
           renderer.doResponse(req,res,err);
           return;
@@ -118,11 +129,25 @@ var operationController,
         }
         return cb(null, { msg: 'File deleted successfully' });
       });
+    },
+
+    _listFiles: function(req, cb) {
+      var guid = req.params.id;
+
+      fhc.files.list(guid, function (err, root) {
+        if (err) {
+          renderer.doError(res,req, "Error retrieving files list");
+          return;
+        }
+        var list = JSON.stringify(root);
+
+        return cb(null, {
+          msg: 'File list was successful.',
+          files: list
+        });
+      });  
     }
 
 };
-
-
-
 
 module.exports = operationController;
