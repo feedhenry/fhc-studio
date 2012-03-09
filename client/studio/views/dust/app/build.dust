@@ -1,4 +1,89 @@
 <h1>{lang.build}</h1>
+
+<ul class="thumbnails">
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="/images/build/iPad.png" alt="" height="250">
+      <div class="caption">
+        <h5>iPad Build</h5>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>
+          <a class="btn primary" href="#">iOS 5.0</a>
+          &nbsp;
+          <a class="btn" href="#">iOS 4.0</a>
+        </p>
+      </div>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="/images/build/iPhone.png" alt="" height="250">
+      <div class="caption">
+        <h5>iPhone Build</h5>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>
+          <a class="btn primary" href="#">iOS 5.0</a>
+          &nbsp;
+          <a class="btn" href="#">iOS 4.0</a>
+        </p>
+        <p>
+          <a class="btn" href="#">iOS 3.2</a>
+        </p>
+      </div>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="/images/build/android.png" alt="" height="250">
+      <div class="caption">
+        <h5>Android Build</h5>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>
+          <a class="btn primary" href="#">Android 4.0</a>
+          &nbsp;
+          <a class="btn" href="#">Android 3.0</a>
+        </p>
+        <p>
+          <a class="btn" href="#">Android 2.3</a>
+          &nbsp;
+          <a class="btn" href="#">Android 2.2</a>
+        </p>
+        <p>
+          <a class="btn" href="#">Android 2.1</a>
+        </p>
+      </div>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="/images/build/blackberry.png" alt="" height="250">
+      <div class="caption">
+        <h5>Blackberry</h5>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>
+          <a class="btn primary" href="#">RIM 6.0</a>      
+        </p>
+      </div>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <img src="/images/build/WindowsPhone7.png" alt="" height="250">
+      <div class="caption">
+        <h5>Windows Phone 7</h5>
+        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <p>
+          <a class="btn primary" href="#">WP 7.0</a>
+          &nbsp;
+          <a class="btn" href="#">WP 7.5</a>
+        </p>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<!--
+<h1>{lang.build}</h1>
   <div class="row buildRow">
     <div class="span6">
       <h3>iPad</h3>
@@ -43,3 +128,4 @@
 
     </div>
   </div>
+  -->

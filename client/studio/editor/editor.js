@@ -15,6 +15,7 @@ client.studio.editor = {
     mode = 'js';
     // bind all events for onClick
     this.bindEvents();
+    
     // bind all keyboard shortcuts
     client.util.keyboard(this.shortcuts, document);
 
@@ -29,9 +30,7 @@ client.studio.editor = {
         mode : ''
       }
     };
-
     this.newTab(res);
-
   },
   bindEvents : function() {
     var me = client.studio.editor;
