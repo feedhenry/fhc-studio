@@ -2,6 +2,7 @@ client.studio.editor = client.studio.editor || {};
 client.studio.editor.tree = {
     bindEvents: function(){
       var me = client.studio.editor;
+      $('#treeRefreshLink').unbind().on('click', me.refreshTree);
       $('#treeDeleteLink').unbind().on("click", me.deleteFile);
       $('#treeRenameLink').unbind().on("click", me.renameFile);
       $('#treeSearchLink').unbind().on("click", me.openResource);
@@ -205,5 +206,6 @@ client.studio.editor.tree = {
     }, // end client.studio.editor.tree.init
     refresh: function(){
       //TODO: Complete refresh operation using READ operation of CRUDL set defined in operationController
+
     }
   }; // end client.studio.editor.tree

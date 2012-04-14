@@ -14,6 +14,7 @@
   <ul class="dropdown-menu">
     <li><a class="no-ajax" id="findMenuLink" href="#">{lang.find}</a></li>
     <li><a class="no-ajax" id="replaceMenuLink" href="#">{lang.findReplace}</a></li>
+    <li><a class="no-ajax" id="deleteMenuLink" href="#">{lang.deleteFiles}</a></li>
   </ul>
 </li>
 <li class="button"><a>{lang.edit}</a></li>

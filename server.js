@@ -56,7 +56,7 @@ server.configure('local', function () { // For now a clone of development, but w
   server.use(express.session({ secret:"keyboard cat"}));
   server.use(server.router);
   
-  controllers.init('demo2'); //TODO: Remove this!!
+  controllers.init('apps'); //TODO: Remove this!!
 });
 
 
@@ -107,11 +107,11 @@ server.post('/app/:id/read/:fileId?.:resType?',checkAuth,controllers.app.operati
 server.post('/app/:id/update/:fileId.:resType?',checkAuth,controllers.app.operationController.updateAction);
 server.post('/app/:id/delete/:fileId.:resType?',checkAuth,controllers.app.operationController.deleteAction);
 
-
+// Refresh the files tree
+server.get('/app/:id/files.:resType?', checkAuth, controllers.app.operationController.refreshTree); 
 
 // user dashboard
 server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
-
 
 // app:dashboard
 server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
@@ -133,7 +133,6 @@ server.post('/app/:id/config.:resType?', checkAuth, controllers.app.configContro
 // app:editor
 server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
 server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
-
 
 server.get("/editor/gist",controllers.app.editorController.gistAction);
 server.get("/editor/gist/:gistid",controllers.app.editorController.gist);

@@ -15,6 +15,7 @@ client.studio.editor = {
     mode = 'js';
     // bind all events for onClick
     this.bindEvents();
+    
     // bind all keyboard shortcuts
     client.util.keyboard(this.shortcuts, document);
 
@@ -29,9 +30,7 @@ client.studio.editor = {
         mode : ''
       }
     };
-
     this.newTab(res);
-
   },
   bindEvents : function() {
     var me = client.studio.editor;
@@ -45,6 +44,10 @@ client.studio.editor = {
     $('a.newFileLink').unbind().on('click', me.newFile);
     $('a#saveAs').unbind().on('click', function() {
       me.saveAs(me.activeTab);
+    });
+
+    $('a#deleteMenuLink').unbind().on('click', function() {
+      client.studio.editor.deleteFile();
     });
   },
   help : function() {

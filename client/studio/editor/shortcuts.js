@@ -27,6 +27,14 @@ client.studio.editor.shortcuts = [
       }
     }, 
     {
+      title: "Delete File",
+      description: "Delete the select file.",
+      binding: "del",
+      handler: function() {
+        client.studio.editor.deleteFile();
+      }
+    },
+    {
       title : "Save",
       description : "Save the currently open file",
       binding : "ctrl+s",

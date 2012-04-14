@@ -45,7 +45,7 @@ client.studio.dispatch = function () {
             data = res.data;
 
             if ((res.historyPosition!==History.savedStates.length-1)){
-                $.get(url + ".json", renderDust);
+                $.get(url + ".json", renderDust); // Only doing this for backwards state
             }else{
                 renderDust();    
             }
