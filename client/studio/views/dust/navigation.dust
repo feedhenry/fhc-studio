@@ -58,7 +58,7 @@
           <input name="password" class="input-small" type="password" placeholder="{lang.password}">
           <button class="btn" type="submit">{lang.login}</button>
         </form>
-        {/user}
+      {/user}
 
     </div>
   </div>

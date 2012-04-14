@@ -28,21 +28,34 @@ client.studio.editor.tree = {
       a = $(e.target),
       node = a.closest("li"),
       data = node.data() || null;
-      
-      if (a.hasClass('selected')){
-        a.removeClass('selected');
-        $('#treeButtons a.btn.enabled').removeClass('enabled').addClass('disabled');
-      }else{
-        $('#treeContainer a.selected').removeClass('selected');
-        a.addClass('selected');
-      }
     },
     select : function(event, data){
-      // enable or disable buttons as appropriate...
-      $('#treeButtons a.btn.disabled').removeClass('disabled').addClass('enabled');
+      var node = data.rslt.obj,
+      inst = data.inst,
+      a = $(node).children('a');
+      if (a){
+        if (a.hasClass('selected')){
+          a.removeClass('selected');
+          // disable buttons
+          $('#treeButtons a.btn.enabled').removeClass('enabled').addClass('disabled');
+          data.inst.deselect_node();
+        }else{
+          $('#treeContainer a.selected').removeClass('selected');
+          // enable buttons
+          $('#treeButtons a.btn.disabled').removeClass('disabled').addClass('enabled');
+          a.addClass('selected');
+        }
+      }
+      
+    
+      
+      
     },
     deselect : function(event, data){
-      
+      // disable buttons
+      //debugger;
+      //$('#treeButtons a.btn.enabled').removeClass('enabled').addClass('disabled');
+
     },
     pathFolderClick : function(e, data) {
       var me = client.studio.editor,
