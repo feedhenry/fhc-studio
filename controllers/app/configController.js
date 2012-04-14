@@ -1,6 +1,6 @@
 var
     renderer = require("../../util"),
-    fhc      = require('fh-fhc'),
+    fhc      = require('./../../../fh-fhc'),
 
     targetPlatforms = [
       {name: 'ipad',    title: 'iPad'},
@@ -74,7 +74,11 @@ var
 configController = {
   indexAction : function(req, res, next) {
     var id = req.params.id;
-    fhc.configuration.list(id, 'all', function (err, cfg) {
+    fhc.config.list({
+    	host: req.session.host,
+    	domain: req.session.domain,
+    	cookie: req.session.user.login
+    }, id, 'all', function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't list configuration for app"); return;
       }

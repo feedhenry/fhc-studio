@@ -2,11 +2,15 @@
 var appsController,
     renderer    = require("../util"),
     util = require("util"),
-    fhc         = require("fh-fhc");
+    fhc         = require("./../../fh-fhc");
 
 appsController = {
     indexAction : function (req, res, next) {    
-      fhc.apps.list(function (err, data) {
+      fhc.apps.list({
+      	host: req.session.host,
+      	domain: req.session.domain,
+      	cookie: req.session.user.login
+      },function (err, data) {
         if (err) {
             renderer.doError(res, req, "Couldn't generate apps listing");
             return;

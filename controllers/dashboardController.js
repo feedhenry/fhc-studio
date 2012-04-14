@@ -1,11 +1,23 @@
 var dashboardController,
     renderer = require("../util"),
     util = require("util"),
-    fhc = require("fh-fhc");
+    fhc = require("./../../fh-fhc");
 
 dashboardController = {
     loadDash:function (req, res, next) {
-        fhc.apps.list(function (err, data) { // TODO: Sort this response by date mod'd
+        console.log(req.session);
+
+        debugger;
+
+        fhc.apps.list({
+            host: req.session.host,
+            domain: req.session.domain,
+            cookie: req.session.user.login
+        }, function (err, data) { // TODO: Sort this response by date mod'd
+            console.log(arguments);
+
+
+
             if (err) {
                 renderer.doError(res, req, "Couldn't generate apps listing");
                 return;

@@ -3,7 +3,7 @@
  */
 
 var express     = require('express'),
-    fhc         = require('fh-fhc'),
+    fhc         = require('./../fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),
     less        = require('less'),

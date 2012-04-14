@@ -1,33 +1,41 @@
 var userController,
     renderer = require("../util"),
-    fhc = require("fh-fhc");
+    fhc = require("./../../fh-fhc");
 
 userController = {
     checkAuth: function(req, res, next){
-      var fhcUser = fhc.fhc.config.get('username'),
-      fhcCookie = fhc.fhc.config.get('cookie'),
-      fhcUrl = fhc.fhc.config.get('feedhenry'),
+      var fhcUser = "",//fhc.fhc.config.get('username'),
+      fhcCookie = req.session.user ? req.session.user.cookie : "",//fhc.fhc.config.get('cookie'),
+      fhcDomain = req.session.domain,
+      fhcHost = "https://apps.feedhenry.com/", //fhc.fhc.config.get('feedhenry'),
       loggedIn  = (req.session && req.session.user) ? req.session.user : false,
       env = req.app.settings.env;
       
       // Set env as a parameter on the request, so we can append it to our data later in doResponse
       req.params.env = env;
-      
-      if (env==="local" && fhcUser && fhcCookie){
-        // setup our user stuff from FHC rather than by logging in.
-        var fhcDomain = undefined;
+      req.session.host = fhcHost;
+
+      if(!req.session.domain) {
         var rex = /https?:\/\/([a-zA-Z0-9]+)\.feedhenry.com/g;
-        var match = rex.exec(fhcUrl);
+        var match = rex.exec(fhcHost);
         if (match && match.length && match.length>=2){
           fhcDomain = match[1];
           req.session.domain = fhcDomain;
         }
+      }
+
+      console.log(req.session);
+      
+      if (env==="local" && fhcUser && fhcCookie){
+        // setup our user stuff from FHC rather than by logging in.
+        var fhcDomain = undefined;
+        
         
         req.session.user = {
           username:fhcUser,
           timestamp:'',
           role:'dev', //TODO: Have FHC pass this through
-          login:true
+          login: fhcCookie
         };
         
         next();
@@ -37,7 +45,7 @@ userController = {
       if (loggedIn){
         next();
         return true;
-      }else{
+      } else{
         res.redirect("/login");
         return false;  
       }
@@ -62,22 +70,25 @@ userController = {
             //thought neccessary
             try {
                 body = req.body,
-                    username = body.username,
-                    password = body.password;
+                username = body.username,
+                password = body.password;
                 req.session.username = username,
-                    args = [username, password];
 
-                fhc.login(args, function (err, data) {
+                fhc.auth.login({
+                  host: "https://apps.feedhenry.com",
+                  domain: "apps"
+                }, username, password, function (err, data) {
                     if (err) {
                         renderer.doError(res,req, "Error logging in as user <strong>" + username + "</strong>. Please verify credentials and try again.");
                         return;
                     }
+                    console.log(data);
                     // Success! Let's set some session properties.
                     req.session.user = {
                         username:username,
                         timestamp:data.timestamp,
-                        role:'dev', //TODO: Have FHC pass this through
-                        login:data.login
+                        role: 'dev', //TODO: Have FHC pass this through
+                        login: data.login
                     }
                     req.session.domain = (data.domain) ? data.domain : "apps";
                     res.redirect('/apps');

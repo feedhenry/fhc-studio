@@ -20,8 +20,8 @@
                 <a href="#">Test</a>
               </div>
             </li>
-            <li class="active" id="appStudioSwitch">
-              <div class="span2 title"><a id="appStudioSwitchLink" class="active" href="/apps">{lang.appStudio}</a></div>
+            <li id="appStudioSwitch">
+              <div class="span2 title"><a id="appStudioSwitchLink" href="/apps">{lang.appStudio}</a></div>
               <div class="span3 sublinks">
               <a href="#">Apps</a>
               <a href="#">New App</a>

@@ -2,41 +2,40 @@
  * User Dashboard Styles
  * Styles for the user dashboard
  */
- .fluid-container > .widget.userdash {
-   padding: 2px 20px;
- }
- 
-  .userdash h1 {
-    margin-bottom: 10px;
-  }
- 
- .userdash .widget{
-   padding-top: 10px;
-   background-color: @grayDark;
-   color: #fff;
-   height: 240px;
-   overflow: scroll;
-   margin-bottom: 20px;
- }
- 
- .userdash .widget h3, .userdash .widget h2, .userdash #vimeoFeed h4{
-   border-bottom: 1px solid @grayDarker;
-   color: @white;
-   text-transform: lowercase;
-   padding-left: 18px;
-   font-weight: 200;
- }
- 
- .userdash p {
-  color: @white;
+.fluid-container > .widget.userdash {
+  padding: 2px 20px;
+}
+.userdash h1 {
+  margin-bottom: 10px;
+}
+.userdash .widget {
+  padding-top: 10px;
+  background-color: #333333;
+  color: #fff;
+  height: 280px;
+  margin-bottom: 20px;
+}
+.userdash .widget h3, .userdash .widget h2, .userdash #vimeoFeed h4 {
+  border-bottom: 1px solid #222222;
+  color: #ffffff;
+  text-transform: lowercase;
   padding-left: 18px;
- }
- 
+  font-weight: 200;
+}
+.userdash p {
+  color: #ffffff;
+  padding-left: 18px;
+}
 .userdash .widget ul.widgetList {
   margin: 0px;
   padding: 0px;
   list-style: none;
+  width: 300px;
+  height: 200px;
+  overflow-y:scroll;
+  border-bottom: 1px solid lighten(@grayDark, 5%);
 }
+
 .userdash .widget ul.widgetList li{ 
    border-top: 1px solid lighten(@grayDark, 5%);
    border-bottom: 1px solid darken(@grayDark, 5%);
@@ -65,10 +64,6 @@
 /* Setup some border radius */
 .userdash .widget {
   border-radius: 12px;
-}
-
-.userdash .widget ul.widgetList li:last-child {
-  border-radius: 0px 0px 12px 12px
 }
 
 /*
@@ -106,3 +101,16 @@
    display: inline-block;
    width: 33%;
  }
+
+ /* webkit-scroll-bars */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #555;
+}

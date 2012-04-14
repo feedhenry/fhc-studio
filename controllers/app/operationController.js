@@ -1,6 +1,6 @@
 var operationController,
     renderer = require("../../util"),
-    fhc      = require('fh-fhc'),
+    fhc      = require('./../../../fh-fhc'),
     http     = require("http"),
     validate = require("../../util/validation");
 
