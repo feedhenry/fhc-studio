@@ -74,11 +74,7 @@ var
 configController = {
   indexAction : function(req, res, next) {
     var id = req.params.id;
-    fhc.config.list({
-        host: req.session.host,
-        domain: req.session.domain,
-        cookie: req.session.user.login
-    }, id, 'all', function (err, cfg) {
+    fhc.config.list(req.session, id, 'all', function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't list configuration for app"); return;
       }

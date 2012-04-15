@@ -8,11 +8,7 @@ var dashboardController,
     indexAction: function(req, res, next){
       var id = req.params.id;
       // We have an ID - show an individual app's dashboard
-      fhc.apps.read({
-          host: req.session.host,
-          domain: req.session.domain,
-          cookie: req.session.user.login
-        }, id, function (err, data) {
+      fhc.apps.read(req.session, id, function (err, data) {
         if (err) {
             renderer.doError(res,req, "Couldn't find app with id " + id);
             return;

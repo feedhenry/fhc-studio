@@ -4,8 +4,11 @@ var userController,
 
 userController = {
     checkAuth: function(req, res, next){
+
+      //TODO: COuld do with some tidying up
+
       var fhcUser = "",//fhc.fhc.config.get('username'),
-      fhcCookie = req.session.user ? req.session.user.login : "",//fhc.fhc.config.get('cookie'),
+      fhcCookie = req.session.login || "",//fhc.fhc.config.get('cookie'),
       fhcDomain = req.session.domain,
       fhcHost = "https://demo2.feedhenry.com/", //fhc.fhc.config.get('feedhenry'),
       loggedIn  = (req.session && req.session.user) ? req.session.user : false,
@@ -23,21 +26,15 @@ userController = {
           req.session.domain = fhcDomain;
         }
       }
-
-      console.log(req.session);
-      
+     
       if (env==="local" && fhcUser && fhcCookie){
-        // setup our user stuff from FHC rather than by logging in.
-        var fhcDomain = undefined;
-        
-        
         req.session.user = {
           username:fhcUser,
           timestamp:'',
-          role:'dev', //TODO: Have FHC pass this through
-          login: fhcCookie
+          role:'dev' //TODO: Have FHC pass this through
         };
-        
+        req.session.login = fhcCookie;
+
         next();
         return true;
       }
@@ -87,9 +84,9 @@ userController = {
                     req.session.user = {
                         username:username,
                         timestamp:data.timestamp,
-                        role: 'dev', //TODO: Have FHC pass this through
-                        login: data.login
-                    }
+                        role: 'dev' //TODO: Have FHC pass this through
+                    };
+                    req.session.login = data.login;
                     req.session.domain = (data.domain) ? data.domain : "demo2";
                     res.redirect('/apps');
                 });

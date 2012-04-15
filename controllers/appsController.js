@@ -6,11 +6,7 @@ var appsController,
 
 appsController = {
     indexAction : function (req, res, next) {    
-      fhc.apps.list({
-      	host: req.session.host,
-      	domain: req.session.domain,
-      	cookie: req.session.user.login
-      },function (err, data) {
+      fhc.apps.list(req.session,function (err, data) {
         if (err) {
             renderer.doError(res, req, "Couldn't generate apps listing");
             return;
