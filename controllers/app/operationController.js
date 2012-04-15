@@ -65,7 +65,11 @@ var operationController,
             return cb({ msg:'Error',error:e}, null);
           }
           else {          
-            fhc.files.create(guid, path, name, type, function(err, data){
+            fhc.files.create({
+              host: req.session.host,
+              domain: req.session.domain,
+              cookie: req.session.user.login
+            }, guid, path, name, type, function(err, data){
                 if (err){
                     console.log(err);
                     return cb({ msg: 'Error', error: err }, null);
@@ -103,7 +107,12 @@ var operationController,
             return cb({msg:'Error',error:e}, null);
           }
           else {
-              fhc.files(['update', guid, fileId, obj], function(err, succ){
+              fhc.files.update({
+                host: req.session.host,
+                domain: req.session.domain,
+                cookie: req.session.user.login
+              }, guid, fileId, obj, function(err, succ){
+                  console.log(arguments);
                   if (!err){
                       cb(null, { msg: 'File saved successfully' });
                   }else{
@@ -134,7 +143,11 @@ var operationController,
     _listFiles: function(req, cb) {
       var guid = req.params.id;
 
-      fhc.files.list(guid, function (err, root) {
+      fhc.files.list({
+        host: req.session.host,
+        domain: req.session.domain,
+        cookie: req.session.user.login
+      }, guid, function (err, root) {
         if (err) {
           renderer.doError(res,req, "Error retrieving files list");
           return;

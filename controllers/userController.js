@@ -5,9 +5,9 @@ var userController,
 userController = {
     checkAuth: function(req, res, next){
       var fhcUser = "",//fhc.fhc.config.get('username'),
-      fhcCookie = req.session.user ? req.session.user.cookie : "",//fhc.fhc.config.get('cookie'),
+      fhcCookie = req.session.user ? req.session.user.login : "",//fhc.fhc.config.get('cookie'),
       fhcDomain = req.session.domain,
-      fhcHost = "https://apps.feedhenry.com/", //fhc.fhc.config.get('feedhenry'),
+      fhcHost = "https://demo2.feedhenry.com/", //fhc.fhc.config.get('feedhenry'),
       loggedIn  = (req.session && req.session.user) ? req.session.user : false,
       env = req.app.settings.env;
       
@@ -75,8 +75,8 @@ userController = {
                 req.session.username = username,
 
                 fhc.auth.login({
-                  host: "https://apps.feedhenry.com",
-                  domain: "apps"
+                  host: "https://demo2.feedhenry.com",
+                  domain: "demo2"
                 }, username, password, function (err, data) {
                     if (err) {
                         renderer.doError(res,req, "Error logging in as user <strong>" + username + "</strong>. Please verify credentials and try again.");
@@ -90,7 +90,7 @@ userController = {
                         role: 'dev', //TODO: Have FHC pass this through
                         login: data.login
                     }
-                    req.session.domain = (data.domain) ? data.domain : "apps";
+                    req.session.domain = (data.domain) ? data.domain : "demo2";
                     res.redirect('/apps');
                 });
             } catch (ex) {
