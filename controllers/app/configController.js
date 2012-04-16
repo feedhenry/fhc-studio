@@ -74,7 +74,7 @@ var
 configController = {
   indexAction : function(req, res, next) {
     var id = req.params.id;
-    fhc.config.list(req.session, id, 'all', function (err, cfg) {
+    fhc.config.list(req.session, id, "all", function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't list configuration for app"); return;
       }
@@ -105,17 +105,19 @@ configController = {
           if (keys.length > 0) {
             var key = keys.shift();
             console.log('updating ' + key + ' => ' + updates[key]);
-            fhc.configuration(['set', id, platform, key, updates[key]], updateOne);
+            fhc.config.set(req.session, id, platform, key, updates[key], updateOne);
           } else {
             configController.indexAction(req, res, next); //TODO Think about 302
           }
         };
 
-    fhc.configuration(['list', id], function (err, cfg) {
+    fhc.config.list(req.session, id, "all", function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't update configuration for app"); return;
       }
-      keys = keys.filter(function(key) {return (cfg[platform][key] && cfg[platform][key] !== updates[key]);});
+      keys = keys.filter(function(key) {
+      	return (cfg[platform][key] && cfg[platform][key] !== updates[key]);
+      });
       updateOne();
     });
   }

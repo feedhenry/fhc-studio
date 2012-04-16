@@ -15,10 +15,10 @@ var debugController,
       async.parallel(
         [
           function(callback){
-            fhc.logs.getLogs(id, logname, 'development', callback);
+            fhc.logs.read(req.session, id, logname, 'development', callback);
           },
           function(callback){
-            fhc.logs.getLogs(id, logname, 'development', callback); //TODO: Stop FHC throwing an error here if not staged?
+            fhc.logs.read(req.session, id, logname, 'development', callback); //TODO: Stop FHC throwing an error here if not staged?
           }
         ],
         function(err, results){ // async callback
