@@ -79,7 +79,7 @@ var en = {
   productionLogs: "Production",
   Logs: "Logs",
   moreInfo : "moreInfo",
-  previewOnMobile : "Preveiw on your mobile",
+  previewOnMobile : "Preview on your mobile",
   width : "width",
   height : "height",
   w3cid : "w3cid",

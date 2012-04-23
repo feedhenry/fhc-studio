@@ -88,7 +88,7 @@ userController = {
                     };
                     req.session.login = data.login;
                     req.session.domain = (data.domain) ? data.domain : "demo2";
-                    res.redirect('/apps');
+                    res.redirect('/home');
                 });
             } catch (ex) {
 
@@ -104,9 +104,9 @@ userController = {
     },
     logoutAction:function (req, res) {
         try {
-          req.session.destroy();
-          fhc.logout([], function (err, data) {
+          fhc.auth.logout(req.session, function (err, data) {
               console.log(arguments);
+              req.session.destroy();
               if (err) {
                   renderer.doError(res,req, "Error logging out");
                   return; // TODO: Show error logging out page
