@@ -1,5 +1,5 @@
 var init,
-fhc = require('./../../fh-fhc'),
+fhc = require('fh-module'),
 
 init = function (target) {
 	        

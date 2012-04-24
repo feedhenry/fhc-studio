@@ -1,6 +1,6 @@
 var debugController,
     renderer = require("../../util"),
-    fhc      = require('./../../../fh-fhc'),
+    fhc      = require('fh-module'),
     http     = require("http"),
     async    = require("async");
 
