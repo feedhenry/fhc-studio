@@ -19,22 +19,19 @@ var buildController,
     },
 
     buildAction: function(req, res) {
-      this._buildAction(req, function(error, data) {
-        if(error) {
-          renderer.doResponse(req, res, error);
+
+      buildController._buildAction(req, function(err, data) {
+        if(err) {
+          renderer.doResponse(req, res, err);
         }
         else {
-          renderer.doResponse(req, res, err);
+          renderer.doResponse(req, res, data);
         }
       });
     },
 
     _buildAction: function(req, cb) {
-      var params = req.params,
-        guid = params.guid;
-
-      fhc.build(req.session, guid, params, cb);
-
+      fhc.build(req.session, req.params.id, req.body, cb);
     }
 
 };

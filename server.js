@@ -2,18 +2,50 @@
  * Module dependencies.
  */
 
-var express     = require('express'),
-    socketio    = require('socket.io'),
-    fhc         = require('./../fh-fhc'),
-    util        = require('util'),
-    fs          = require('fs'),
-    less        = require('less'),
-    controllers = require('./controllers');
+var express      = require('express'),
+    connect      = require('connect'),
+    socketio     = require('socket.io'),
+    fhc          = require('fh-module'),
+    util         = require('util'),
+    fs           = require('fs'),
+    less         = require('less'),
+    controllers  = require('./controllers');
+    Session      = connect.middleware.session.Session,
+    parseCookie  = connect.utils.parseCookie,
+    sessionStore = new express.session.MemoryStore();
+
 
 var server = module.exports = express.createServer(),
     io = socketio.listen(server);
 
+
+io.set('authorization', function (data, accept) {
+    if (data.headers.cookie) {
+        data.cookie = parseCookie(data.headers.cookie);
+        data.sessionID = data.cookie['express.sid'];
+        // save the session store to the data object 
+        // (as required by the Session constructor)
+        data.sessionStore = sessionStore;
+        sessionStore.get(data.sessionID, function (err, session) {
+            if (err || !session) {
+                accept('Error', false);
+            } else {
+                // create a session object, passing data as request and our
+                // just acquired session data
+                data.session = new Session(data, session);
+                accept(null, true);
+            }
+        });
+    } else {
+       return accept('No cookie transmitted.', false);
+    }
+});
+
+
+
 io.sockets.on("connection", controllers.cacheController.handleSocket);
+
+
 
 // Configuration
 
@@ -26,6 +58,12 @@ server.configure(function () {
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
+    server.use(express.session({
+      store: sessionStore,
+      secret: 'secret',
+      key: 'express.sid'
+    }));
+
 
     server.use(express.methodOverride());
     
@@ -126,6 +164,8 @@ server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, controllers.app
 server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
 server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
 server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
+
+server.post('/app/:id/build/start.:resType?', checkAuth, controllers.app.buildController.buildAction);
 
 // app:config
 server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);

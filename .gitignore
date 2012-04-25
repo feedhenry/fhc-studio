@@ -8,3 +8,5 @@ node_modules
 test/
 *.swp
 client/css/main.css
+fh-config
+fh-targets

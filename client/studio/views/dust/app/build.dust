@@ -1,82 +1,189 @@
 <h1>{lang.build}</h1>
 
 <ul class="thumbnails">
-  <li class="span3">
+  <li>
     <div class="thumbnail">
       <img src="/images/build/iPad.png" alt="" height="250">
       <div class="caption">
-        <h5>iPad Build</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">iOS 5.0</a>
-          &nbsp;
-          <a class="btn" href="#">iOS 4.0</a>
-        </p>
+        <h3>iPad</h3>
+        <form id="ipad-form">
+          <fieldset>
+            <label class="control-label" for="ipad-version">Version</label>
+
+            <input name="destination" type="hidden" value="ipad">
+            <select name="version" id="ipad-version" class="version">
+              <option value="4.0">iOS 4.0</option>
+              <option value="5.0">iOS 5.0</option>
+            </select>
+            <div class="controls">
+                <label class="radio">
+                    <input name="config" type="radio" value="debug">
+                    Debug
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="distribution">
+                    Distribution
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="release">
+                    Release
+                </label>
+            </div>
+            <br>
+            <button id="ipad-build" class="btn btn-primary">Build</button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </li>
-  <li class="span3">
+  <li>
     <div class="thumbnail">
       <img src="/images/build/iPhone.png" alt="" height="250">
       <div class="caption">
-        <h5>iPhone Build</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">iOS 5.0</a>
-          &nbsp;
-          <a class="btn" href="#">iOS 4.0</a>
-        </p>
-        <p>
-          <a class="btn" href="#">iOS 3.2</a>
-        </p>
+        <h3>iPhone</h3>
+        <form id="iphone-form">
+          <fieldset>
+            <label class="control-label" for="iphone-version">Version</label>
+
+            <input name="destination" type="hidden" value="iphone">
+            <select name="version" class="version">
+              <option value="3.2">iOS 3.2</option>
+              <option value="4.0">iOS 4.0</option>
+              <option value="5.0">iOS 5.0</option>
+            </select>
+
+           <div class="controls">
+                <label class="radio">
+                    <input name="config" type="radio" value="debug">
+                    Debug
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="distribution">
+                    Distribution
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="release">
+                    Release
+                </label>
+            </div>
+
+            <br>
+            <button id="iphone-build" class="btn btn-primary">Build</button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </li>
-  <li class="span3">
+  <li>
     <div class="thumbnail">
       <img src="/images/build/android.png" alt="" height="250">
       <div class="caption">
-        <h5>Android Build</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">Android 4.0</a>
-          &nbsp;
-          <a class="btn" href="#">Android 3.0</a>
-        </p>
-        <p>
-          <a class="btn" href="#">Android 2.3</a>
-          &nbsp;
-          <a class="btn" href="#">Android 2.2</a>
-        </p>
-        <p>
-          <a class="btn" href="#">Android 2.1</a>
-        </p>
+        <h3>Android</h3>
+        <form id="android-form">
+          <fieldset>
+            <label class="control-label" for="android-version">Version</label>
+
+            <input name="destination" type="hidden" value="android">
+            <select name="version" id="android-version" class="version">
+              <option value="2.2">2.2</option>
+              <option value="2.3">2.3</option>
+              <option value="3.0">3.0</option>
+              <option value="4.0">4.0</option>
+            </select>
+
+           <div class="controls">
+                <label class="radio">
+                    <input name="config" type="radio" value="debug">
+                    Debug
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="distribution">
+                    Distribution
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="release">
+                    Release
+                </label>
+            </div>
+
+            <br>
+            <button id="android-build" class="btn btn-primary">Build</button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </li>
-  <li class="span3">
+  <li>
     <div class="thumbnail">
       <img src="/images/build/blackberry.png" alt="" height="250">
       <div class="caption">
-        <h5>Blackberry</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">RIM 6.0</a>      
-        </p>
+        <h3>Blackberry</h3>
+        <form id="blackberry-form">
+          <fieldset>
+            <label class="control-label" for="blackberry-version">Version</label>
+
+            <input name="destination" type="hidden" value="blackberry">
+            <select name="version" id="blackberry-version" class="version">
+              <option value="6.0">RIM 6.0</option>
+            </select>
+
+           <div class="controls">
+                <label class="radio">
+                    <input name="config" type="radio" value="debug">
+                    Debug
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="distribution">
+                    Distribution
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="release">
+                    Release
+                </label>
+            </div>
+
+
+            <br>
+            <button id="blackberry-build" class="btn btn-primary">Build</button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </li>
-  <li class="span3">
+  <li>
     <div class="thumbnail">
       <img src="/images/build/WindowsPhone7.png" alt="" height="250">
       <div class="caption">
-        <h5>Windows Phone 7</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">WP 7.0</a>
-          &nbsp;
-          <a class="btn" href="#">WP 7.5</a>
-        </p>
+        <h3>Windows Phone</h3>
+        <form id="windows-form">
+          <fieldset>
+            <label class="control-label" for="windows-version">Version</label>
+
+            <input name="destination" type="hidden" value="windowsphone">
+            <select name="version" id="windows-version" class="version">
+              <option value="7.0">7.0</option>
+              <option value="7.5">7.5</option>
+            </select>
+
+            <div class="controls">
+                <label class="radio">
+                    <input name="config" type="radio" value="debug">
+                    Debug
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="distribution">
+                    Distribution
+                </label>
+                <label class="radio">
+                    <input name="config" type="radio" value="release">
+                    Release
+                </label>
+            </div>
+
+            <br>
+            <button id="windows-build" class="btn btn-primary">Build</button>
+          </fieldset>
+        </form>
       </div>
     </div>
   </li>
@@ -87,51 +194,3 @@
     client.studio.build.init();
   });
 </script>
-
-<!--
-<h1>{lang.build}</h1>
-  <div class="row buildRow">
-    <div class="span6">
-      <h3>iPad</h3>
-      <img src="/images/build/iPad.png" />
-      <p><a class="btn primary" href="#">iOS 5.0</a></p>
-      <p><a class="btn" href="#">iOS 4.0</a></p>
-    </div>
-    <div class="span5">
-      <h3>iPhone</h3>
-      <img src="/images/build/iPhone.png" />
-      <p><a class="btn primary" href="#">iOS 5.0</a></p>
-      <p><a class="btn" href="#">iOS 4.0</a></p>
-      <p><a class="btn" href="#">iOS 3.2</a></p>
-
-   </div>
-    <div class="span5">
-      <h3>Android</h3>
-      <img src="/images/build/android.png" />
-      <p><a class="btn primary" href="#">Android 4.0</a></p>
-      <p><a class="btn" href="#">Android 3.0</a></p>
-      <p><a class="btn" href="#">Android 2.3</a></p>
-      <p><a class="btn" href="#">Android 2.2</a></p>
-      <p><a class="btn" href="#">Android 2.1</a></p>
-    </div>
-  </div>
-
-
-    <div class="row buildRow">
-    <div class="span6">
-      <h3>Blackberry</h3>
-      <p><a class="btn primary" href="#">RIM 6.0</a></p>
-    </div>
-    <div class="span5">
-      <h3>Windows Phone 7</h3>
-      <p><a class="btn primary" href="#">WP 7.0</a></p>
-
-
-
-   </div>
-    <div class="span5">
-      <h3>Nokia WRT</h3>
-
-    </div>
-  </div>
-  -->

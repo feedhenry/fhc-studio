@@ -20,7 +20,7 @@ appsController = {
       });
     },
     createAction : function (req,res) {
-      if(req.method === "GET"){
+      if(req.method === "GET") {
           d = {
               tpl : "createapp",
               data : {},

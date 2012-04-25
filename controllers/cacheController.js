@@ -4,41 +4,24 @@ var fhc = require("fh-module");
 var users = {
 };
 
-module.exports.handleSocket = function(socket) {
-    
-};
-
 
 var cacheController = {
   handleSocket: function(socket) {
 
-    socket.on("init", function(data) {
-
-    });
-
     socket.on("poll", function(data) {
       if(data.cacheKey) {
-
+        cacheController.pollCache(socket, data.cacheKey);
       }
     }); 
   },
 
-  initUser: function(data) {
-    var userId = data.userId,
-        user = users[userId] = users[userId] || {
-      items: {}
-    };
-    
-  },
+  pollCache: function(socket, cacheKey) {
+    var session = socket.handshake.session;
 
-  pollCache: function(options, user, cacheKey) {
-    var user = users[userId] = users[userId] || {};
+    fhc.api.waitFor(session, cacheKey, function(error, data) {
+      //user.items[cacheKey] = data;
 
-    fhc.api.waitFor(options, cacheKey, function(error, data) {
-      //finished
-    }, function() {
-      //progress
-      user.items[cacheKey] = data;
+      socket.emit("update", data);
     });
   }
 
