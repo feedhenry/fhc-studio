@@ -159,10 +159,11 @@ var en = {
   // App Build (build.dust)
   // Build Destinations
   build : "Build",
-  buildIOS : "iOS",
+  buildIOS : "Apple iOS",
   buildAndroid : "Android",
   buildBlackberry : "Blackberry",
   buildWP7 : "Windows Phone 7",
+  buildMobileWeb : "Mobile Web",
   
   //Build Configs
   debug : 'Debug',

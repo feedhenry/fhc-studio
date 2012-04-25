@@ -112,4 +112,19 @@
       </div>
     </div>
   </li>
+  
+  
+  <!-- Mobile Web -->
+  <li class="span4">
+    <div class="thumbnail">
+      <img class="buildThumb" src="/images/build/mobileWeb.png" alt="" >
+      <div class="caption">
+        <h3>{lang.buildMobileWeb}</h3>
+        
+        <div class="input-prepend">
+                <span class="add-on">url</span><input class="span2" id="prependedInput" size="16" type="text" value="https://{domain}.feedhenry.com/box/srv/1.1/wid/{domain}/embed/{appId}/container">
+        </div>
+      </div>
+    </div>
+  </li>
 </ul>
