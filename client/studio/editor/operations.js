@@ -372,7 +372,7 @@ client.studio.editor.refreshTree = function(callback) {
 
       client.studio.editor.tree.init(fileList);
 
-      if (typeof callback !== "undefined") {
+      if (typeof callback === "function") {
         callback();
       }
     }
