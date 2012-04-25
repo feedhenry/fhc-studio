@@ -14,22 +14,22 @@
         <h3>{lang.buildIOS}</h3>
         
         <!-- iOS Device -->
-        <div class="btn-group target">
-          <a class="btn-mini btn btn-info" href="#">{lang.buildiPad}</a>
+        <div class="btn-group target" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.buildiPad}</a>
           <a class="btn-mini btn" href="#">{lang.buildiPhone}</a>
           <a class="btn-mini btn" href="#">{lang.buildUniversal}</a>
         </div><br />
         
         <!-- iOS Config (Distribution/{lang.release}) -->
-        <div class="btn-group config">
-          <a class="btn-mini btn btn-info" href="#">{lang.debug}</a>
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.debug}</a>
           <a class="btn-mini btn" href="#">{lang.distribution}</a>
           <a class="btn-mini btn" href="#">{lang.release}</a>
         </div><br />
         
         <!-- iOS Version -->
-        <div class="btn-group version">
-          <a class="btn-mini btn btn-info" href="#">3.2</a>
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">3.2</a>
           <a class="btn-mini btn" href="#">4.3</a>
           <a class="btn-mini btn" href="#">5.0</a>
         </div><br />
@@ -48,15 +48,15 @@
         <h3>{lang.buildAndroid}</h3>
         
         <!-- Android SDK Version -->
-        <div class="btn-group version">
-          <a class="btn-mini btn btn-info" href="#">2.2</a>
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">2.2</a>
           <a class="btn-mini btn" href="#">2.3</a>
           <a class="btn-mini btn" href="#">4.0</a>
         </div><br />
         
         <!-- Android {lang.debug}/{lang.release} -->
-        <div class="btn-group config">
-          <a class="btn-mini btn btn-info" href="#">{lang.debug}</a>
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.debug}</a>
           <a class="btn-mini btn" href="#">{lang.release}</a>
         </div><br />
         
@@ -73,14 +73,14 @@
         <h3>{lang.buildBlackberry}</h3>
         
         <!-- Blackberry SDK Version -->
-        <div class="btn-group version">
-          <a class="btn-mini btn btn-info" href="#">6.0</a>
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">6.0</a>
           <a class="btn-mini btn" href="#">7.0</a>
         </div><br />
         
         <!-- Blackberry signed/unsigned -->
-        <div class="btn-group config">
-          <a class="btn-mini btn btn-info" href="#">{lang.unsigned}</a>
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.unsigned}</a>
           <a class="btn-mini btn" href="#">{lang.signed}</a>
         </div><br />
         
@@ -97,14 +97,14 @@
         <h3>{lang.buildWP7}</h3>
         
         <!-- WP7 SDK Version -->
-        <div class="btn-group version">
-          <a class="btn-mini btn btn-info" href="#">6.0</a>
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">6.0</a>
           <a class="btn-mini btn" href="#">7.0</a>
         </div><br />
         
         <!-- WP7 debug/release -->
-        <div class="btn-group config">
-          <a class="btn-mini btn btn-info" href="#">{lang.debug}</a>
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.debug}</a>
           <a class="btn-mini btn" href="#">{lang.release}</a>
         </div><br />
         
