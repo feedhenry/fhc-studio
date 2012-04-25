@@ -9,7 +9,7 @@ module.exports.handleSocket = function(socket) {
 };
 
 
-var cacheController = {
+var socketController = {
   handleSocket: function(socket) {
 
     socket.on("init", function(data) {
@@ -45,4 +45,4 @@ var cacheController = {
 };
 
 
-module.exports = cacheController;
+module.exports = socketController;

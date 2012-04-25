@@ -13,7 +13,7 @@ var express     = require('express'),
 var server = module.exports = express.createServer(),
     io = socketio.listen(server);
 
-io.sockets.on("connection", controllers.cacheController.handleSocket);
+io.sockets.on("connection", controllers.socketController.handleSocket);
 
 // Configuration
 

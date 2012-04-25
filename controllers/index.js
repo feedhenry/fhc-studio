@@ -1,5 +1,5 @@
 exports.indexController     = require("./indexController.js");
-exports.cacheController     = require("./cacheController.js");
+exports.socketController     = require("./socketController.js");
 exports.userController      = require("./userController.js");
 exports.appController       = require("./appsController.js");
 exports.dashboardController = require("./dashboardController.js");
