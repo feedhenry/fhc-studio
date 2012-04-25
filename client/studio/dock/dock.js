@@ -8,7 +8,7 @@ client.studio.dock = {
 	socket: null,
 
 	init: function() {
-
+		
 		//create the socket connection to the server
 		this.socket = io.connect('http://localhost:3000');
 

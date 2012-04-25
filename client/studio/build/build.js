@@ -15,15 +15,14 @@ client.studio.build = {
   ],
 
   init: function() {
+    //TODO: init this in a better place
+    client.studio.dock.init();
+
     this.bindEvents();
     this.appId = $('input#appId').remove().val();
   },
   bindEvents: function() {
-    $("#android-build").unbind().bind("click", function(e) {
-        client.studio.build.build("android");
-        e.preventDefault();
-        return false;
-    });
+    $(".buildButton").unbind().bind("click", this.buildHandler);
   },
   buildHandler: function(){
     var me = client.studio.build;
