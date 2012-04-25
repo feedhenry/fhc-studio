@@ -1,5 +1,4 @@
 <!-- inject some file contents into the DOM on first rendering this page - these will be destroyed by the clientside JS -->
-<input type="hidden" id="appId" value="{appId}"></input>
 {fileContents}
 {#fileContents}
   <input type="hidden" id="fileId" value="{.fileId}"></input>

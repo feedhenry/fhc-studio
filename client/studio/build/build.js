@@ -1,6 +1,6 @@
 client.studio = client.studio || {};
 client.studio.build = {
-
+  appId: undefined,
   configs: [
     "debug",
     "distribution",
@@ -16,6 +16,7 @@ client.studio.build = {
 
   init: function() {
     this.bindEvents();
+    this.appId = $('input#appId').remove().val();
   },
   bindEvents: function() {
     
@@ -35,27 +36,14 @@ client.studio.build = {
     }
     
     var buildRequest = {
-        platform: platform.toLowerCase(),
+        destination: platform.toLowerCase(),
         config: config.toLowerCase(),
-        version: version.toLowerCase()
+        version: version.toLowerCase(),
+        appId: me.appId
     };
     console.log(JSON.stringify(buildRequest));
-    
-    
   },
-  buildiOS : function(){
-    
-  },
-  buildAndroid : function(){
-    
-  },
-  buildBlackberry : function(){
-    
-  },
-  buildWP7 : function(){
-    
-  },
-  build: function() {
+  build: function(req) {
     $.post({
 
     });

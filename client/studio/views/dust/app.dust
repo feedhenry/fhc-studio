@@ -12,5 +12,8 @@
 
   
 </div>
+
+<!-- Some hidden form elements to help app pages javascript -->
+<input type="hidden" id="appId" value="{appId}"></input>
 {>foot/}
 {>footer/} <!-- TODO - Move footer out into some place more generic - do we even need one? -->
