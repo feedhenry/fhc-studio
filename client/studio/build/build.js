@@ -35,9 +35,9 @@ client.studio.build = {
     }
     
     var buildRequest = {
-        platform: platform,
-        config: config,
-        version: version
+        platform: platform.toLowerCase(),
+        config: config.toLowerCase(),
+        version: version.toLowerCase()
     };
     console.log(JSON.stringify(buildRequest));
     
