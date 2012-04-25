@@ -82,6 +82,12 @@
   </li>
 </ul>
 
+<script>
+  $(function() {
+    client.studio.build.init();
+  });
+</script>
+
 <!--
 <h1>{lang.build}</h1>
   <div class="row buildRow">
