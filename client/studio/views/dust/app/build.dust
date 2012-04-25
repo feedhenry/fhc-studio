@@ -7,83 +7,108 @@
 <h1>{lang.build}</h1>
 
 <ul class="thumbnails">
-  <li class="span3">
+  <li class="span4">
     <div class="thumbnail">
       <img class="buildThumb" src="/images/build/iPad.png" alt="" >
       <div class="caption">
-        <h5>iOS</h5>
-        
-        <!-- iOS Distribution/Release -->
-        <div class="btn-group">
-          <a class="btn-mini btn btn-primary" href="#">Debug</a>
-          <a class="btn-mini btn" href="#">Distribution</a>
-          <a class="btn-mini btn" href="#">Release</a>
-        </div><br />
+        <h3>{lang.buildIOS}</h3>
         
         <!-- iOS Device -->
-        <div class="btn-group">
-          <a class="btn-mini btn btn-primary" href="#">iPad</a>
-          <a class="btn-mini btn" href="#">iPhone</a>
-          <a class="btn-mini btn" href="#">Universal</a>
+        <div class="btn-group target">
+          <a class="btn-mini btn btn-info" href="#">{lang.buildiPad}</a>
+          <a class="btn-mini btn" href="#">{lang.buildiPhone}</a>
+          <a class="btn-mini btn" href="#">{lang.buildUniversal}</a>
+        </div><br />
+        
+        <!-- iOS Config (Distribution/{lang.release}) -->
+        <div class="btn-group config">
+          <a class="btn-mini btn btn-info" href="#">{lang.debug}</a>
+          <a class="btn-mini btn" href="#">{lang.distribution}</a>
+          <a class="btn-mini btn" href="#">{lang.release}</a>
         </div><br />
         
         <!-- iOS Version -->
-        <div class="btn-group">
-          <a class="btn-mini btn btn-primary" href="#">3.0</a>
-          <a class="btn-mini btn" href="#">4.0</a>
+        <div class="btn-group version">
+          <a class="btn-mini btn btn-info" href="#">3.2</a>
+          <a class="btn-mini btn" href="#">4.3</a>
           <a class="btn-mini btn" href="#">5.0</a>
         </div><br />
         
-        
+        <a class="btn btn-primary buildButton" href="#">{lang.buildButton}</a>
         
       </div>
     </div>
   </li>
   
-  <li class="span3">
+  <!-- Android -->
+  <li class="span4">
     <div class="thumbnail">
       <img class="buildThumb" src="/images/build/android.png" alt="" >
       <div class="caption">
-        <h5>Android Build</h5>
+        <h3>{lang.buildAndroid}</h3>
         
         <!-- Android SDK Version -->
-        <div class="btn-group">
-          <a class="btn-mini btn btn-primary" href="#">2.2</a>
+        <div class="btn-group version">
+          <a class="btn-mini btn btn-info" href="#">2.2</a>
           <a class="btn-mini btn" href="#">2.3</a>
           <a class="btn-mini btn" href="#">4.0</a>
         </div><br />
         
-        <!-- Android Debug/Release -->
-        <div class="btn-group">
-          <a class="btn-mini btn btn-primary" href="#">Debug</a>
-          <a class="btn-mini btn" href="#">Release</a>
+        <!-- Android {lang.debug}/{lang.release} -->
+        <div class="btn-group config">
+          <a class="btn-mini btn btn-info" href="#">{lang.debug}</a>
+          <a class="btn-mini btn" href="#">{lang.release}</a>
         </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#">{lang.buildButton}</a>
       </div>
     </div>
   </li>
-  <li class="span3">
+  
+  <!-- Blackberry -->
+  <li class="span4">
     <div class="thumbnail">
       <img class="buildThumb" src="/images/build/blackberry.png" alt="" >
       <div class="caption">
-        <h5>Blackberry</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">RIM 6.0</a>      
-        </p>
+        <h3>{lang.buildBlackberry}</h3>
+        
+        <!-- Blackberry SDK Version -->
+        <div class="btn-group version">
+          <a class="btn-mini btn btn-info" href="#">6.0</a>
+          <a class="btn-mini btn" href="#">7.0</a>
+        </div><br />
+        
+        <!-- Blackberry signed/unsigned -->
+        <div class="btn-group config">
+          <a class="btn-mini btn btn-info" href="#">{lang.unsigned}</a>
+          <a class="btn-mini btn" href="#">{lang.signed}</a>
+        </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#">{lang.buildButton}</a>
       </div>
     </div>
   </li>
-  <li class="span3">
+  
+  <!-- WP7 -->
+  <li class="span4">
     <div class="thumbnail">
       <img class="buildThumb" src="/images/build/WindowsPhone7.png" alt="" >
       <div class="caption">
-        <h5>Windows Phone 7</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">WP 7.0</a>
-          &nbsp;
-          <a class="btn" href="#">WP 7.5</a>
-        </p>
+        <h3>{lang.buildWP7}</h3>
+        
+        <!-- WP7 SDK Version -->
+        <div class="btn-group version">
+          <a class="btn-mini btn btn-info" href="#">6.0</a>
+          <a class="btn-mini btn" href="#">7.0</a>
+        </div><br />
+        
+        <!-- WP7 debug/release -->
+        <div class="btn-group config">
+          <a class="btn-mini btn btn-info" href="#">{lang.debug}</a>
+          <a class="btn-mini btn" href="#">{lang.release}</a>
+        </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#">{lang.buildButton}</a>
       </div>
     </div>
   </li>
