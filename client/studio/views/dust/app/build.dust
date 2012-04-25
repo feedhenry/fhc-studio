@@ -1,3 +1,9 @@
+<script>
+  $(function() {
+    client.studio.build.init();
+  });
+</script>
+
 <h1>{lang.build}</h1>
 
 <ul class="thumbnails">

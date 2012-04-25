@@ -1,7 +1,7 @@
 var buildController,
     renderer = require("../../util"),
     fhc      = require('fh-module'),
-    http     = require("http"),
+    http     = require("http");
 
   buildController = {
     // every app gets the indexAction, which gets the file tree & passes on
@@ -15,10 +15,28 @@ var buildController,
           tab:'build'
       };
       //TODO: Put in some console output in a pre
-      renderer.doResponse(req, res, d);     
+      renderer.doResponse(req, res, d);
+    },
+
+    buildAction: function(req, res) {
+      this._buildAction(req, function(error, data) {
+        if(error) {
+          renderer.doResponse(req, res, error);
+        }
+        else {
+          renderer.doResponse(req, res, err);
+        }
+      });
+    },
+
+    _buildAction: function(req, cb) {
+      var params = req.params,
+        guid = params.guid;
+
+      fhc.build(req.session, guid, params, cb);
+
     }
+
 };
 
 module.exports = buildController;
-
-

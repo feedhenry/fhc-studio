@@ -10,10 +10,10 @@ var operationController,
       operationController._createFile(req, function(err, data){
         if (err){
           renderer.doResponse(req,res,err);
-          return;
         }
-        renderer.doResponse(req, res, data);
-        return;
+        else {
+          renderer.doResponse(req, res, data);
+        }
       });
       
     }, // end createAction

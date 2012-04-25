@@ -3,16 +3,17 @@
  */
 
 var express     = require('express'),
+    socketio    = require('socket.io'),
     fhc         = require('./../fh-fhc'),
     util        = require('util'),
     fs          = require('fs'),
     less        = require('less'),
     controllers = require('./controllers');
 
-var server = module.exports = express.createServer();
+var server = module.exports = express.createServer(),
+    io = socketio.listen(server);
 
-
-
+io.sockets.on("connection", controllers.cacheController.handleSocket);
 
 // Configuration
 

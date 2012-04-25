@@ -10,9 +10,11 @@ client.studio.editor = {
     var fileTree = $('input[name="filestree"]').remove().val();
     var rawFilesTree = JSON.parse(fileTree);
     this.tree.init(rawFilesTree);
-    var appId = $('input#appId').remove().val(), fileContents = $('pre#editor0').html(), 
-    fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
-    mode = 'js';
+    var appId = $('input#appId').remove().val(), 
+        fileContents = $('pre#editor0').html(), 
+        fileId = $('input#fileId').remove().val(), // this gets put into a hidden input in the HTML - we'll remove it now
+        mode = 'js';
+        
     // bind all events for onClick
     this.bindEvents();
     
