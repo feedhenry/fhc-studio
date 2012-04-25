@@ -43,8 +43,7 @@ io.set('authorization', function (data, accept) {
 
 
 
-io.sockets.on("connection", controllers.cacheController.handleSocket);
-
+io.sockets.on("connection", controllers.socketController.handleSocket);
 
 
 // Configuration

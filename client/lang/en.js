@@ -157,7 +157,27 @@ var en = {
     }
   },
   // App Build (build.dust)
+  // Build Destinations
   build : "Build",
+  buildIOS : "Apple iOS",
+  buildAndroid : "Android",
+  buildBlackberry : "Blackberry",
+  buildWP7 : "Windows Phone 7",
+  buildMobileWeb : "Mobile Web",
+  
+  //Build Configs
+  debug : 'Debug',
+  distribution : 'Distribution',
+  release : 'Release',
+  unsigned : 'Unsigned',
+  signed : 'Signed',
+  buildButton : 'Build!',
+  
+  // iOS Targets
+  buildiPad : 'iPad',
+  buildiPhone : 'iPhone',
+  buildUniversal : 'Universal',
+  
   // App Debug (debug.dust)
   debug: "Debug",
 

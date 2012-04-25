@@ -5,12 +5,12 @@ var users = {
 };
 
 
-var cacheController = {
+var socketController = {
   handleSocket: function(socket) {
 
     socket.on("poll", function(data) {
       if(data.cacheKey) {
-        cacheController.pollCache(socket, data.cacheKey);
+        socketController.pollCache(socket, data.cacheKey);
       }
     }); 
   },
@@ -28,4 +28,4 @@ var cacheController = {
 };
 
 
-module.exports = cacheController;
+module.exports = socketController;
