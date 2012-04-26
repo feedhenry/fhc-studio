@@ -23,6 +23,7 @@ io.set('authorization', function (data, accept) {
     if (data.headers.cookie) {
         data.cookie = parseCookie(data.headers.cookie);
         data.sessionID = data.cookie['express.sid'];
+
         // save the session store to the data object 
         // (as required by the Session constructor)
         data.sessionStore = sessionStore;
