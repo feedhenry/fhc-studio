@@ -21,7 +21,7 @@ var socketController = {
     fhc.api.waitFor(session, cacheKey, function(error, data) {
       //user.items[cacheKey] = data;
 
-      socket.emit("update", error ? error : data);
+      socket.emit(cacheKey, error ? error : data);
     });
   }
 };
