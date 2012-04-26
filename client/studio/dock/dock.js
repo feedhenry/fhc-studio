@@ -1,48 +1,45 @@
 client.studio = client.studio || {};
 client.studio.dock = {
 
-	el: null,
-	tab: null,
-	items: [],
+  el: null,
+  tab: null,
+  items: { },
 
-	socket: null,
+  socket: null,
 
-	init: function() {
-		
-		//create the socket connection to the server
-		this.socket = io.connect('http://localhost:3000');
+  init: function() {
+    
+    //create the socket connection to the server
+    this.socket = io.connect('http://localhost:3000');
 
-		this.socket.on("update", function(data) {
-			console.log(data);
-		});
+    this.socket.on("update", function(data) {
+      console.log(data);
+    });
 
-		this.el = $("#dock");
-		this.tab = this.el.find(".tab");
-	},
+    this.el = $("#dock");
+    this.tab = this.el.find(".tab");
+  },
 
-	add: function(name, cacheKey) {
-		var dock = this;
-		this.items.push({
+  add: function(name, cacheKey) {
+    var dock = this;
 
-		});
+    this.socket.emit("poll", {
+      cacheKey: cacheKey
+    });
+  },
 
-		this.socket.emit("poll", {
-			cacheKey: cacheKey
-		});
-	},
+  remove: function(cacheKey) {
+    var item = this.items[cacheKey];
 
-	remove: function(index) {
-		var item = this.items[index];
+    item.remove();
+  },
 
-		item.remove();
-	},
+  collapse: function() {
 
-	collapse: function() {
+  },
 
-	},
+  expand: function() {
 
-	expand: function() {
-
-	}
+  }
 };
 

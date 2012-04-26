@@ -16,8 +16,6 @@ client.studio.build = {
 
   init: function() {
     //TODO: init this in a better place
-    client.studio.dock.init();
-
     this.bindEvents();
     this.appId = $('input#appId').remove().val();
   },

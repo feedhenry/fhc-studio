@@ -12,7 +12,7 @@ var socketController = {
       if(data.cacheKey) {
         socketController.pollCache(socket, data.cacheKey);
       }
-    }); 
+    });
   },
 
   pollCache: function(socket, cacheKey) {
@@ -21,10 +21,9 @@ var socketController = {
     fhc.api.waitFor(session, cacheKey, function(error, data) {
       //user.items[cacheKey] = data;
 
-      socket.emit("update", data);
+      socket.emit("update", error ? error : data);
     });
   }
-
 };
 
 
