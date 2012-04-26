@@ -2,8 +2,9 @@ client.studio.editor = client.studio.editor || {};
 client.studio.editor.open = function(guid) {
     // Navigate to that file using an ajax request with a callback
     var path = "/app/" + this.appId + "/editor/" + guid;
-    client.studio.dispatch().update(path, {
-      callback : this.newTab
+    client.studio.dispatch.update(path, {
+      callback : this.newTab,
+      container: "#container"
     });
 
 }

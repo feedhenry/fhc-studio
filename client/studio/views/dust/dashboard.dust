@@ -152,11 +152,6 @@
       client.studio.dashboard.init();
   });
 </script>
-
-
-<footer>
-  <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
-</footer>
-
 </div>
+{>footer/}
 {>foot/}

@@ -1,8 +1,0 @@
-<script>
-  $(function() {
-    client.studio.dock.init();
-  });
-</script>
-<div id="dock">
-  
-</div>

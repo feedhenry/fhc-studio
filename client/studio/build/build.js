@@ -46,12 +46,14 @@ client.studio.build = {
     me.build(buildRequest);
   },
   build: function(data) {
+    var dockItem = client.studio.dock.add("app");
+
     $.ajax({
       type : 'POST',
       url : '/app/' + client.studio.build.appId + '/build/start.json',
       data: data,
       success : function(res) {
-        client.studio.dock.add("app", res.data.cacheKey);
+  		dockItem.poll(res.data.cacheKey);
       }
     });
   }

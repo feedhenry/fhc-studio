@@ -2,7 +2,7 @@
 var appsController,
     renderer    = require("../util"),
     util = require("util"),
-    fhc         = require("./../../fh-fhc");
+    fhc         = require("fh-module");
 
 appsController = {
     indexAction : function (req, res, next) {    

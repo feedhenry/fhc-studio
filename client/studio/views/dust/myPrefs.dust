@@ -5,9 +5,7 @@
 <div class="content fullWidth">
     <h2>{lang.prefs}</h2>
     
-    <footer>
-          <p>© Feedhenry 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
-    </footer>
+{>footer/}
 </div>
 
 {>foot/}

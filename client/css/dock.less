@@ -1,10 +1,65 @@
 #dock {
-	background-color: black;
-	width: 100%;
-	position: absolute;
-	height: 50px;
-	bottom: 0;
-	left: 0;
-	display: block;
+  background-color: black;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  display: block;
+}
+#dock.animate {
+  -webkit-transition: all 0.2s linear;
+     -moz-transition: all 0.2s linear;
+          transition: all 0.2s linear;
+
 }
 
+#dock.expanded {
+  bottom: 0;
+}
+
+#dock .item {
+  display: inline-block;
+  margin: 3px;
+  height: 44px;
+}
+#dock .item .btn:first-child {
+	min-width: 160px;
+}
+#dock .item .btn {
+	height: 100%;
+}
+
+#dock .item:after {
+  content: attr(data-log);
+  position: absolute;
+  display: block;
+  bottom: 50px;
+  width: 140px;
+  left: 50%;
+  margin-left: -75px;
+  margin-bottom: 5px;
+  background-color: #000;
+  border-radius: 3px;
+  padding: 5px;
+  text-align: center;
+}
+#dock .item:before {
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 50%;
+	border: 8px solid transparent;
+	border-top-color: #000;
+	top: -11px;
+	margin-left: -8px;
+}
+
+#dock .item.complete {
+  background-color: green;
+}
+#dock .item.error {
+  background-color: red;
+}

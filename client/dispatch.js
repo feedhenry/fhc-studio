@@ -3,7 +3,7 @@
  * It tracks history, and does requests to the API for new JSON data
  */
 
-client.studio.dispatch = function () {
+client.studio.dispatch = (function () {
     var self,container;
 
     self = {
@@ -43,7 +43,6 @@ client.studio.dispatch = function () {
             tpl = res.data.tpl;
             title = res.data.title;
             data = res.data;
-
             if ((res.historyPosition!==History.savedStates.length-1)){
                 $.get(url + ".json", renderDust); // Only doing this for backwards state
             }else{
@@ -76,9 +75,10 @@ client.studio.dispatch = function () {
     client.util.History.Adapter.bind(window, 'statechange', self.render );
 
     return self;
-};
+})();
 
-$('document').ready(function () {
-
-    client.studio.dispatch().update(window.location.pathname);
+$(function () {
+    client.studio.dispatch.update(window.location.pathname, {
+    	container: "#container"
+    });
 });
