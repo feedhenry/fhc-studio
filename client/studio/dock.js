@@ -9,18 +9,18 @@ client.studio.dock = {
   init: function() {
     var me = this;
     //create the socket connection to the server
-    this.socket = io.connect('http://localhost:3000');
-
-    this.socket.on("update", function(data) {
-      me.items[data.cacheKey].update(data);
-    });
+    this.socket = io.connect('/');
 
     this.el = $("#dock");
     this.tab = this.el.find(".tab");
   },
 
   add: function(name) {
-    var me = this;
+    var dock = this;
+
+    if(!dock.expanded) {
+      dock.expand();
+    }
 
     return {
       el: $('<div class="item btn-group dropup">' +
@@ -36,16 +36,29 @@ client.studio.dock = {
         console.log(data);
 
         this.status = data.status || "error";
-        if(this.status === "complete" || this.status === "error") {
-          this.el.addClass("btn-" + this.status);
+        if(this.status === "complete") {
+          this.el.addClass("complete");
+          if(data.action && data.action.url) {
+            this.el.click(function() {
+              document.location = data.action.url;
+            });
+          }
+        }
+        else if(this.status === "error") {
+          this.el.addClass("error");
         }
 
-        this.el.attr("data-log", data.log.pop() || "");
+
+        this.el.attr("data-log", data.error ? data.error : data.log.pop());
       },
       poll: function(cacheKey) {
-        me.items[cacheKey] = this;
+        var item = this;
 
-        me.socket.emit("poll", {
+        dock.socket.on(cacheKey, function(data) {
+          item.update(data);
+        });
+
+        dock.socket.emit("poll", {
           cacheKey: cacheKey
         });
       }
