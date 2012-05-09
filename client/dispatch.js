@@ -58,11 +58,24 @@ client.studio.dispatch = (function () {
                   client.util.messages.error(err.message);
                   return;
                 }
-              
+
                 $(container).html(out);
                 //add update as a call back to the internal a href
                 // clicks
                 $(container).ajaxify(self.update);
+
+
+                // Try to determine our active link by state.url //TODO: Move this into a view util
+                var rex = /http:\/\/[a-zA-Z0-9:.-]+\/([a-zA-Z]+)\/?/g
+                var rexRes = rex.exec(state.url);
+                if (rexRes  && rexRes.length && rexRes.length>1){
+                  rexRes = rexRes[1];
+                  rexRes = (rexRes==="app") ? "apps" : rexRes;
+                  $('ul.nav.studioNav li').removeClass('active');
+                  $('ul.nav.studioNav li.' + rexRes).addClass('active');
+                }else{
+                  $('ul.nav.studioNav li.home').addClass('active');
+                }
                 
                 $(container).trigger('firedup');
                 $(container).unbind('firedup');

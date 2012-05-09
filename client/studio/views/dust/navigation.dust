@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed">
   <div class="navbar-inner">
     <div class="container">
-  
+
      <img class="logo" src="/images/logo-small.png" alt="Feedhenry Logo">
   
       <ul class="nav studioNav">
@@ -46,12 +46,10 @@
         {navigationHelper}
       </ul>
        {?user}
-        
-        <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
-          <a href="/help">{lang.help}</a> |
-          <a href="/account">{lang.account}</a> |
-          <a href="/logout">{lang.logout}</a>
-        </p>
+       <ul class="nav studioNav pull-right">
+         <li class="help"><a href="/help">{lang.help}</a></li>
+         <li class="account"><a href="/account">{lang.account}</a></li>
+         <li class="logout"><a href="/logout">{lang.logout}</a></li>
         {:else}
         <form action="/login" method="post" class="pull-right form-inline">
           <input name="username" class="input-small" type="text" placeholder="{lang.email}">
