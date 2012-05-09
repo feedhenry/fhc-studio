@@ -116,6 +116,16 @@ userController = {
         } catch (ex) {
             renderer.doError(res,req,"error");
         }
+    },
+    myAccountAction: function(req, res){
+      var d;
+      d = {
+        tpl:'account',
+        title:'My Account'
+      };
+      renderer.doResponse(req, res, d);
+
+
     }
 };
 

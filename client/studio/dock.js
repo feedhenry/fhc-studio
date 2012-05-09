@@ -23,8 +23,11 @@ client.studio.dock = {
     });
   },
 
-  add: function(name) {
-    var dock = this;
+  add: function(data) {
+    var dock = this,
+    platform = data.destination,
+    ver = data.version,
+    config = data.config;
 
     if(!dock.expanded) {
       dock.expand();
@@ -32,18 +35,21 @@ client.studio.dock = {
 
     return {
       el: $('<div class="item btn-group dropup">' +
-              '<div class="progress progress-striped active">'+
+              '<div class="progress progress-info progress-striped active">'+
                 '<div class="bar" style="width: 40%;"></div>'+
               '</div>' +
-              '<strong>' + name + '</strong>' +
-              '<span class="dockBuildStatus"></span>' +
-          '</div>').appendTo(this.dock),
+              '<span class="platform ' + platform + '"> <i class="icon-screenshot" />' + platform + '</span> | ' +
+              '<span class="version' + ver + '"><strong>V</strong>' + ver + '</span> | ' +
+              '<span class="config + ' + config + '"> <i class="icon-wrench" /> ' + config + '</span>' +
+          '</div>').prependTo(this.dock),
       status: "idle",
       update: function(data) {
-        console.log(data);
-
         this.status = data.status || "error";
         if(this.status === "complete") {
+          var barC = $('div.progress');
+          barC.removeClass('progress-info');
+          barC.removeClass('active');
+          barC.addClass('progress-success');
           this.el.addClass("complete");
           this.updateProgress(100);
           if(data.action && data.action.url) {
@@ -55,7 +61,8 @@ client.studio.dock = {
         }
 
         var latestMsg = data.error ? data.error : data.log.pop();
-        this.el.find('.dockBuildStatus').html(latestMsg);
+        console.log(latestMsg);
+        this.el.find('.progress .bar').html(latestMsg);
 
         //this.el.attr("data-log", latestMsg);
       },

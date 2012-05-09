@@ -49,7 +49,7 @@
         
         <p class="pull-right"><a href="#">{user.username} ({user.role})</a> |
           <a href="/help">{lang.help}</a> |
-          <a href="/prefs">{lang.prefs}</a> |
+          <a href="/account">{lang.account}</a> |
           <a href="/logout">{lang.logout}</a>
         </p>
         {:else}

@@ -46,7 +46,7 @@ client.studio.build = {
     me.build(buildRequest);
   },
   build: function(data) {
-    var dockItem = client.studio.dock.add(data.destination + " " + data.version + " : " + data.config);
+    var dockItem = client.studio.dock.add(data);
 
     $.ajax({
       type : 'POST',

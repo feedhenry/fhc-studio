@@ -50,6 +50,7 @@ var en = {
   docs : "Docs",
   help : "Help",
   logout : "Logout",
+  account: "My Account",
   prefs :  "Preferences",
   apps : "Apps",
 
