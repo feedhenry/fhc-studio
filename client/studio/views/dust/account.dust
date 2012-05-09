@@ -30,34 +30,35 @@
     </div>
     <!-- Main body section -->
     <div>
-      <div class="span6">
+      <div class="span5 resource">
               <h3>{lang.developerCert} <a href="#" rel="popover" data-title="{lang.developerCert}" data-content="{lang.developerCertDesc|s}">?</a></h3>
                <form method="POST" enctype="multipart/form-data" action="/account/upload">
                   <input type="hidden" name="dest" value="iphone">
                   <input type="hidden" name="resourceType" value="privatekey">
                   <input type="hidden" name="buildType" value="development">
                   <div class="fileBox">{lang.dragFileBox}</div>
-                  <strong>OR </strong><br />
+                  <div class="or">{lang.orFileBox}</div>
                   <input name="file" class="input-file" id="fileInput" type="file"><br />
-                  <button type="submit" class="btn btn-primary">Save</button><br />
+                  <button type="submit" class="btn btn-primary">{lang.fileUpload}</button><br />
                </form>
       </div>
 
-      <div class="span6">
+      <div class="span5 resource">
               <h3>{lang.distributionCert}<a href="#" rel="popover" data-title="{lang.distributionCert}" data-content="{lang.distributionCertDesc|s}">?</a></h3>
                <form method="POST" enctype="multipart/form-data" action="/account/upload">
                   <input type="hidden" name="dest" value="iphone">
                   <input type="hidden" name="resourceType" value="privatekey">
                   <input type="hidden" name="buildType" value="distribution">
                   <div class="fileBox">{lang.dragFileBox}</div>
-                  <strong>OR </strong><br />
+                  <div class="or">{lang.orFileBox}</div>
                   <input name="file" class="input-file" id="fileInput" type="file"><br />
-                  <button type="submit" class="btn btn-primary">Save</button><br />
+                  <button type="submit" class="btn btn-primary">{lang.fileUpload}</button><br />
                </form>
       </div>
     </div>
-{>footer/}
+
 </div>
+{>footer/}
 <script>
 $(function() {
     client.studio.account.init();
