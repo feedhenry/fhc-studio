@@ -24,12 +24,11 @@ client.studio.dock = {
 
     return {
       el: $('<div class="item btn-group dropup">' +
-              '<button class="btn">' + name + '</button>' + 
-              '<button class="btn dropdown-toggle" data-toggle="dropdown">' +
-                '<span class="caret"></span>' +
-              '</button>' +
-              '<ul class="dropdown-menu">' +
-              '</ul>' +
+              '<div class="progress progress-striped active">'+
+                '<div class="bar" style="width: 40%;"></div>'+
+              '</div>' +
+              '<strong>' + name + '</strong>' +
+              '<span class="dockBuildStatus"></span>' +
           '</div>').appendTo(this.el),
       status: "idle",
       update: function(data) {
@@ -38,7 +37,9 @@ client.studio.dock = {
         this.status = data.status || "error";
         if(this.status === "complete") {
           this.el.addClass("complete");
+          this.updateProgress(100);
           if(data.action && data.action.url) {
+            window.location = data.action.url;
             this.el.click(function() {
               document.location = data.action.url;
             });
@@ -48,8 +49,13 @@ client.studio.dock = {
           this.el.addClass("error");
         }
 
+        var latestMsg = data.error ? data.error : data.log.pop();
+        this.el.find('.dockBuildStatus').html(latestMsg);
 
-        this.el.attr("data-log", data.error ? data.error : data.log.pop());
+        //this.el.attr("data-log", latestMsg);
+      },
+      updateProgress: function(progress){
+        this.el.find('.progress .bar').width(progress+ '%');
       },
       poll: function(cacheKey) {
         var item = this;
@@ -62,6 +68,7 @@ client.studio.dock = {
           cacheKey: cacheKey
         });
       }
+
     };
   },
 

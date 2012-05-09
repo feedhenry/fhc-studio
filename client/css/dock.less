@@ -1,11 +1,15 @@
 #dock {
-  background-color: black;
+  background-color: @grayLighter;
+  color: @black;
   width: 100%;
-  height: 50px;
+  height: 150px;
   position: absolute;
-  bottom: -50px;
+  bottom: -150px;
   left: 0;
   display: block;
+  border-top: 1px solid @grayDarker;
+  overflow-x: scroll;
+  overflow-y: hidden;
 }
 #dock.animate {
   -webkit-transition: all 0.2s linear;
@@ -19,9 +23,12 @@
 }
 
 #dock .item {
-  display: inline-block;
+  display: block;
   margin: 3px;
   height: 44px;
+  width: 100%;
+  border-bottom: 1px solid #CCC;
+  border-top: 1px solid #999;
 }
 #dock .item .btn:first-child {
 	min-width: 160px;
@@ -29,7 +36,7 @@
 #dock .item .btn {
 	height: 100%;
 }
-
+/* Dans dock
 #dock .item:after {
   content: attr(data-log);
   position: absolute;
@@ -39,7 +46,7 @@
   left: 50%;
   margin-left: -75px;
   margin-bottom: 5px;
-  background-color: #000;
+  background-color: @grayDarker;
   border-radius: 3px;
   padding: 5px;
   text-align: center;
@@ -52,14 +59,18 @@
 	height: 0;
 	left: 50%;
 	border: 8px solid transparent;
-	border-top-color: #000;
+	border-top-color: @grayDarker;
 	top: -11px;
 	margin-left: -8px;
+}*/
+
+#dockBuildStatus {
+  font-style: italic;
+}
+#dock .progress {
+  margin-bottom: 0px;
 }
 
-#dock .item.complete {
-  background-color: green;
-}
-#dock .item.error {
-  background-color: red;
+#dock strong {
+  margin: 0px 10px;
 }
