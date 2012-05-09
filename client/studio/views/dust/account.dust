@@ -1,0 +1,44 @@
+{>head/}
+{>navigation/}
+<div class="content apps fullWidth">
+    <!-- Nav Section -->
+    <div class="span4">
+      <h3>{user.username}</h3>
+      <ul class="nav nav-list">
+        <li class="nav-header">{lang.account}</li>
+        <li class="">
+          <a href="#">My Profile</a>
+        </li>
+        <li class="">
+            <a href="#">API Keys</a>
+        </li>
+        <li class="divider"></li>
+        <li class="nav-header">{lang.provisioning}</li>
+        <li class="active">
+          <a href="#">{lang.buildIOS}</a>
+        </li>
+        <li class="">
+          <a href="#">{lang.buildAndroid}</a>
+        </li>
+        <li class="">
+          <a href="#">{lang.buildBlackberry}</a>
+        </li>
+        <li class="">
+          <a href="#">{lang.buildWP7}</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Main body section -->
+    <div class="span6">
+      <h2>{lang.buildIOS}</h2>
+      <h3>iOS</h3>
+      <form method="POST" action="/account/upload">
+        <label for="fileInput">{lang.developerCert}</label>
+        <input class="input-file" id="fileInput" type="file">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+{>footer/}
+</div>
+
+{>foot/}

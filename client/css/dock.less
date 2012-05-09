@@ -1,28 +1,65 @@
-#dock {
-  background-color: black;
-  width: 100%;
-  height: 50px;
+#dockContainer {
   position: absolute;
-  bottom: -50px;
+  bottom: -150px;
+  width: 100%;
+  height: 170px;
+}
+
+#dockContainer.expanded {
+  bottom: 0;
+}
+
+#dock {
+  background-color: @grayDark;
+  color: @black;
+  height: 150px;
+  bottom: 0px;
   left: 0;
   display: block;
+  border-top: 1px solid @grayDarker;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
-#dock.animate {
+
+#dockControls {
+  background-color: @grayDarker;
+  background-image: -webkit-linear-gradient(top, @grayDark, @grayDarker);
+  position: relative;
+  height: 28px;
+  border-radius: 6px 6px 0px 0px;
+  color: white;
+  padding: 0px 15px;
+  font-size: 1.2em;
+}
+#dockControls .tab {
+  background-color: #666;
+  border-radius: 6px 6px 0px 0px;
+  width: 100px;
+  height: 28px;
+  bottom: 0px;
+  color: white;
+  text-align: center;
+  background-image: -webkit-linear-gradient(top, @grayDarker, @grayDark);
+}
+
+#dockContainer.animate {
   -webkit-transition: all 0.2s linear;
      -moz-transition: all 0.2s linear;
           transition: all 0.2s linear;
 
 }
 
-#dock.expanded {
-  bottom: 0;
+#dock .item {
+  display: block;
+  margin: 6px;
+  height: 44px;
+  background-color: #EEE;
+  margin: 2px 6px;
+  border-radius: 6px;
+  text-transform: capitalize;
 }
 
-#dock .item {
-  display: inline-block;
-  margin: 3px;
-  height: 44px;
-}
+/* Dans dock
 #dock .item .btn:first-child {
   min-width: 160px;
 }
@@ -38,28 +75,30 @@
   width: 140px;
   left: 50%;
   margin-left: -75px;
-  margin-bottom: 10px;
-  background-color: #000;
+  margin-bottom: 5px;
+  background-color: @grayDarker;
   border-radius: 3px;
   padding: 5px;
   text-align: center;
 }
 #dock .item:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 50%;
-  border: 8px solid transparent;
-  border-top-color: #000;
-  top: -11px;
-  margin-left: -8px;
+	content: "";
+	display: block;
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: 50%;
+	border: 8px solid transparent;
+	border-top-color: @grayDarker;
+	top: -11px;
+	margin-left: -8px;
+}*/
+
+#dock .progress {
+  margin-bottom: 0px;
+  margin-top: 4px;
 }
 
-#dock .item.complete {
-  background-color: green;
-}
-#dock .item.error {
-  background-color: red;
+#dock .platform {
+  margin-left: 10px;
 }

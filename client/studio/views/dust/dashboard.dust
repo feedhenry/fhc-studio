@@ -120,7 +120,7 @@
   <div id="" class="span6"> <!-- BEGIN TEMPLATES -->
   
   
-  
+    <!-- Removing this templates widget - iFrames slow pageLoad down too much ~Cian
     <div class="tabbable tabs-right">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#rA" data-toggle="tab" data-templateUrl="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/mPltCaOT38dKmnBcGfz4tDKk/container">App Anatomy</a></li>
@@ -140,8 +140,8 @@
       </div>
       
     </div>
-  </div> <!-- END TEMPLATES -->
-  
+  </div>--> <!-- END TEMPLATES -->
+
   
 
 </div> <!-- End Bootstrap Row -->
