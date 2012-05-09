@@ -1,6 +1,6 @@
 {>head/}
 {>navigation/}
-<div class="content apps fullWidth">
+<div class="content fullWidth">
     <!-- Nav Section -->
     <div class="span4">
       <h3>{user.username}</h3>
@@ -29,19 +29,32 @@
       </ul>
     </div>
     <!-- Main body section -->
-    <div class="span6">
-      <h2>{lang.buildIOS}</h2>
-      <h3>iOS</h3>
-      <form method="POST" enctype="multipart/form-data" action="/account/upload">
-        <label for="fileInput">{lang.developerCert}</label>
-        <input type="text" name="dest" value="iphone">
-        <input type="text" name="resourceType" value="privatekey">
-        <input type="text" name="buildType" value="distribution">
-        <input name="file" class="input-file" id="fileInput" type="file">
+    <div>
+      <div class="span6">
+              <h3>{lang.developerCert} <a href="#" rel="popover" data-title="{lang.developerCert}" data-content="{lang.developerCertDesc|s}">?</a></h3>
+               <form method="POST" enctype="multipart/form-data" action="/account/upload">
+                  <input type="hidden" name="dest" value="iphone">
+                  <input type="hidden" name="resourceType" value="privatekey">
+                  <input type="hidden" name="buildType" value="development">
+                  <div class="fileBox">{lang.dragFileBox}</div>
+                  <strong>OR </strong><br />
+                  <input name="file" class="input-file" id="fileInput" type="file"><br />
+                  <button type="submit" class="btn btn-primary">Save</button><br />
+               </form>
+      </div>
 
-
-        <button type="submit" class="btn btn-primary">Save</button>
-      </form>
+      <div class="span6">
+              <h3>{lang.distributionCert}<a href="#" rel="popover" data-title="{lang.distributionCert}" data-content="{lang.distributionCertDesc|s}">?</a></h3>
+               <form method="POST" enctype="multipart/form-data" action="/account/upload">
+                  <input type="hidden" name="dest" value="iphone">
+                  <input type="hidden" name="resourceType" value="privatekey">
+                  <input type="hidden" name="buildType" value="distribution">
+                  <div class="fileBox">{lang.dragFileBox}</div>
+                  <strong>OR </strong><br />
+                  <input name="file" class="input-file" id="fileInput" type="file"><br />
+                  <button type="submit" class="btn btn-primary">Save</button><br />
+               </form>
+      </div>
     </div>
 {>footer/}
 </div>

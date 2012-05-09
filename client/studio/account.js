@@ -5,6 +5,9 @@ client.studio.account = {
   init: function() {
     var self = this;
 
+    // initialize our tooltip popovers
+    $('a[rel=popover]').popover({placement: 'bottom'});
+
     this.form = $("form").unbind().on("submit", function(e) {
       self.uploadResource();
       e.preventDefault();

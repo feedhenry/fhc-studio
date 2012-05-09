@@ -60,14 +60,13 @@ var en = {
   // My Account
   provisioning: "Provisioning",
   account: "Account",
+  dragFileBox: "Drag your file here",
   // iOS
   developerCert: "Developer Cert",
-  developerCertDesc: "<p>A Developer Certificate is used during the creation of iPhone, iPod and iPad apps.</p>"+
-  "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps that can be installed on a developer enabled devce.</p>"+
+  developerCertDesc: "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps that can be installed on a developer enabled devce.</p>"+
   "<p>Apps created with a Developer Certificate are generally only used for debugging purposes during App Development.</p>",
   distributionCert: "Distribution Cert",
-  distributionCertDesc: "<p>A Distribution Certificate is used during the creation of iPhone, iPod and iPad apps.</p>" +
-  "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps for distribution.</p>" +
+  distributionCertDesc: "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps for distribution.</p>" +
   "<p>These apps can be distributed to a specific set of Devices, or submitted to the App Store.</p>",
 
   // Apps Tab (apps.dust)
