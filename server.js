@@ -130,7 +130,10 @@ server.get('/register.:resType?', controllers.userController.signupAction);
 server.get('/login.:resType?', controllers.userController.loginAction);
 server.post('/login',controllers.userController.loginAction);
 server.get('/logout', controllers.userController.logoutAction);
-server.get('/account.:resType?', checkAuth, controllers.userController.myAccountAction);
+
+// My Account actions
+server.get('/account.:resType?', checkAuth, controllers.accountController.indexAction);
+server.post('/account/upload', checkAuth, controllers.accountController.resourceUpload);
 
 /*
  * Apps Actions
