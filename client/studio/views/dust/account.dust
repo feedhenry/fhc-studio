@@ -2,10 +2,10 @@
 {>navigation/}
 <div class="content fullWidth">
     <!-- Nav Section -->
-    <div class="span4">
+    <div class="span4 accountNav">
       <h3>{user.username}</h3>
       <ul class="nav nav-list">
-        <li class="nav-header">{lang.account}</li>
+        <li class="nav-header"> <i class="icon-user" style="opacity: 0.7;" /> {lang.account}</li>
         <li class="">
           <a href="#">My Profile</a>
         </li>
@@ -13,7 +13,7 @@
             <a href="#">API Keys</a>
         </li>
         <li class="divider"></li>
-        <li class="nav-header">{lang.provisioning}</li>
+        <li class="nav-header"><i class=" icon-globe" style="opacity: 0.7;" /> {lang.provisioning}</li>
         <li class="active">
           <a href="#">{lang.buildIOS}</a>
         </li>
