@@ -61,6 +61,8 @@ var en = {
   provisioning: "Provisioning",
   account: "Account",
   dragFileBox: "Drag your file here",
+  orFileBox: "Or",
+  fileUpload: "Upload",
   // iOS
   developerCert: "Developer Cert",
   developerCertDesc: "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps that can be installed on a developer enabled devce.</p>"+
