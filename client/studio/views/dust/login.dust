@@ -7,7 +7,7 @@
         <p>{lang.login_message}</p>
         <form action="/login" method="post">
           <fieldset>
-            <input placeholder="{lang.email}" name="username" autofocus="true" id="login_email" type="text">
+            <input placeholder="{lang.email}"  name="username" autofocus="true" id="login_email" type="text">
             <input placeholder="{lang.password}" name="password" id="login_password" type="password">
           </fieldset>
           <p>

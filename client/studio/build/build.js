@@ -53,7 +53,7 @@ client.studio.build = {
       url : '/app/' + client.studio.build.appId + '/build/start.json',
       data: data,
       success : function(res) {
-  		  dockItem.poll(res.data.cacheKey);
+        dockItem.poll(res.data.cacheKey);
       }
     });
   }

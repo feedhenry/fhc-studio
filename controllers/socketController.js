@@ -26,5 +26,4 @@ var socketController = {
   }
 };
 
-
 module.exports = socketController;
