@@ -11,8 +11,16 @@ client.studio.dock = {
     //create the socket connection to the server
     this.socket = io.connect('/');
 
-    this.el = $("#dock");
-    this.tab = this.el.find(".tab");
+    this.el = $("#dockContainer");
+    this.dock = $("#dockContainer #dock");
+    this.tab = this.el.find("#dockControls");
+    $(this.tab).on('click', function(){
+      if (me.el.hasClass('expanded')){
+        me.collapse();
+      }else{
+        me.expand();
+      }
+    });
   },
 
   add: function(name) {
@@ -29,7 +37,7 @@ client.studio.dock = {
               '</div>' +
               '<strong>' + name + '</strong>' +
               '<span class="dockBuildStatus"></span>' +
-          '</div>').appendTo(this.el),
+          '</div>').appendTo(this.dock),
       status: "idle",
       update: function(data) {
         console.log(data);
@@ -40,9 +48,6 @@ client.studio.dock = {
           this.updateProgress(100);
           if(data.action && data.action.url) {
             window.location = data.action.url;
-            this.el.click(function() {
-              document.location = data.action.url;
-            });
           }
         }
         else if(this.status === "error") {
