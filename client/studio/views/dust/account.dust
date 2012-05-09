@@ -32,13 +32,23 @@
     <div class="span6">
       <h2>{lang.buildIOS}</h2>
       <h3>iOS</h3>
-      <form method="POST" action="/account/upload">
+      <form method="POST" enctype="multipart/form-data" action="/account/upload">
         <label for="fileInput">{lang.developerCert}</label>
-        <input class="input-file" id="fileInput" type="file">
+        <input type="text" name="dest" value="iphone">
+        <input type="text" name="resourceType" value="privatekey">
+        <input type="text" name="buildType" value="distribution">
+        <input name="file" class="input-file" id="fileInput" type="file">
+
+
         <button type="submit" class="btn btn-primary">Save</button>
       </form>
     </div>
 {>footer/}
 </div>
+<script>
+$(function() {
+    client.studio.account.init();
+});
+</script>
 
 {>foot/}

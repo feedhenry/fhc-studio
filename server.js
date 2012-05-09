@@ -18,6 +18,10 @@ var express      = require('express'),
 var server = module.exports = express.createServer(),
     io = socketio.listen(server);
 
+// to proxy file uploads that we get to millicore we have to bypass
+// the bodyParser when we get a file upload.
+// best solution for now.
+delete express.bodyParser.parse['multipart/form-data'];
 
 io.set('authorization', function (data, accept) {
     if (data.headers.cookie) {
