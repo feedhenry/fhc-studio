@@ -4,20 +4,31 @@ var accountController,
 
 accountController = {
     indexAction: function(req, res) {
-      var page = (req.params.page && req.params.page.length>0) ? req.params.page : "profile";
-      if (req.params.device){
-        page = "provisioning/" + req.params.device;
-      }
-
+      var page = (req.params.page && req.params.page.length>0) ? req.params.page : "profile",
+      device = req.params.device;
       var d;
       d = {
         tpl: 'account/account',
         title: 'My Account',
-        device: req.params.device,
-        page: page
+        page: page,
+        //init: "client.studio.account.init"
       };
-      renderer.doResponse(req, res, d);
-      
+      if (device){
+        d.page = "provisioning/device";
+        d.device =  device;
+        d.init = "client.studio.account.provisioning.init";
+
+        fhc.resources.getFields(device, function(err, data){
+          if (err || data.length<1){
+            return renderer.doError(res,req, "Error retrieving device resource information for " + device);
+          }
+          d.fields = data;
+          return renderer.doResponse(req, res, d);
+        });
+      }else{
+        return renderer.doResponse(req, res, d);
+      }
+
     },
     resourceUpload: function(req, res) {
       // Dan has done some magic here...

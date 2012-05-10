@@ -58,6 +58,15 @@ var en = {
   serviceStatus : "Service Status ",
 
   // My Account
+  profile: "Profile",
+  personalDetails: "Personal Details",
+  accountName: "Name",
+  accountEmail: "Email",
+  accountRole: "Account Role",
+  changePassword: "Change Password",
+  currentPassword: "Current Password",
+  newPassword: "New Password",
+  confirmPassword: "Confirm Password",
   provisioning: "Provisioning",
   account: "Account",
   dragFileBox: "Drag your file here",

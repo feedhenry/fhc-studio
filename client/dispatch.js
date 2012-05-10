@@ -76,6 +76,12 @@ client.studio.dispatch = (function () {
                 }else{
                   $('ul.nav.studioNav li.home').addClass('active');
                 }
+
+                // call the init controller for this page, if one exists
+                if (newData.init && newData.init.length>0){
+                  //eval(newData.init + "()");
+                }
+
                 
                 $(container).trigger('firedup');
                 $(container).unbind('firedup');

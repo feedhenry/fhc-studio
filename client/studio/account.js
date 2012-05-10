@@ -1,8 +1,15 @@
 client.studio = client.studio || {};
-client.studio.account = {
+client.studio.account = {};
+client.studio.account.init = function(data){
+  // TODO: Decide based on page which item to make active..
+};
+client.studio.account.provisioning =  {
   forms: null,
   init: function() {
     var self = this;
+
+    // TODO: Determine which left nav menu item is active
+
 
     // initialize our tooltip popovers
     $('a[rel=popover]').popover({placement: 'bottom'});

@@ -23,9 +23,6 @@
         <li class="">
           <a href="/account/provisioning/blackberry">{lang.buildBlackberry}</a>
         </li>
-        <li class="">
-          <a href="/account/provisioning/wp7">{lang.buildWP7}</a>
-        </li>
       </ul>
     </div>
     <!-- Main body section -->
