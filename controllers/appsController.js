@@ -21,7 +21,7 @@ appsController = {
     },
     createAction : function (req,res) {
       if(req.method === "GET") {
-          d = {
+          var d = {
               tpl : "createapp",
               data : {},
               title : "create an app"
