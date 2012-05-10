@@ -1,0 +1,44 @@
+{>head/}
+{>navigation/}
+<div class="content fullWidth account">
+    <!-- Nav Section -->
+    <div class="span4 accountNav">
+      <h3>{user.username}</h3>
+      <ul class="nav nav-list">
+        <li class="nav-header"> <i class="icon-user" style="opacity: 0.7;" /> {lang.account}</li>
+        <li class="">
+          <a href="/account/profile">My Profile</a>
+        </li>
+        <li class="">
+            <a href="/account/apikeys">API Keys</a>
+        </li>
+        <li class="divider"></li>
+        <li class="nav-header"><i class=" icon-globe" style="opacity: 0.7;" /> {lang.provisioning}</li>
+        <li class="provisioning/ios">
+          <a href="/account/provisioning/ios">{lang.buildIOS}</a>
+        </li>
+        <li class="">
+          <a href="/account/provisioning/android">{lang.buildAndroid}</a>
+        </li>
+        <li class="">
+          <a href="/account/provisioning/blackberry">{lang.buildBlackberry}</a>
+        </li>
+        <li class="">
+          <a href="/account/provisioning/wp7">{lang.buildWP7}</a>
+        </li>
+      </ul>
+    </div>
+    <!-- Main body section -->
+    <div>
+      {accountHelper}
+    </div>
+
+</div>
+{>footer/}
+<script>
+$(function() {
+    client.studio.account.init();
+});
+</script>
+
+{>foot/}

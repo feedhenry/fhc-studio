@@ -4,10 +4,17 @@ var accountController,
 
 accountController = {
     indexAction: function(req, res) {
+      var page = (req.params.page && req.params.page.length>0) ? req.params.page : "profile";
+      if (req.params.device){
+        page = "provisioning/" + req.params.device;
+      }
+
       var d;
       d = {
-        tpl: 'account',
-        title: 'My Account'
+        tpl: 'account/account',
+        title: 'My Account',
+        device: req.params.device,
+        page: page
       };
       renderer.doResponse(req, res, d);
       

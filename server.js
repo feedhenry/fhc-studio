@@ -136,7 +136,8 @@ server.post('/login',controllers.userController.loginAction);
 server.get('/logout', controllers.userController.logoutAction);
 
 // My Account actions
-server.get('/account.:resType?', checkAuth, controllers.accountController.indexAction);
+server.get('/account/provisioning/:device?.:resType?', checkAuth, controllers.accountController.indexAction);
+server.get('/account/:page?.:resType?', checkAuth, controllers.accountController.indexAction);
 server.post('/account/upload', checkAuth, controllers.accountController.resourceUpload);
 
 /*
