@@ -74,6 +74,9 @@ client.studio.account = {
         if(result.result === "ok") {
           //success, the file has been uploaded
           client.util.messages.success("File uploaded successfully");
+        }else{
+          var err = (result.error) ? result.error : "Error uploading file";
+          client.util.messages.error(err);
         }
       };
 
