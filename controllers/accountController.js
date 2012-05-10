@@ -19,7 +19,7 @@ accountController = {
         d.init = "client.studio.account.provisioning.init";
 
         fhc.resources.getFields(device, function(err, data){
-          if (err || data.length<1){
+          if (err || !data || data.length<1){
             return renderer.doError(res,req, "Error retrieving device resource information for " + device);
           }
           d.fields = data;
