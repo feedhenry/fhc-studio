@@ -10,3 +10,4 @@ test/
 client/css/main.css
 fh-config
 fh-targets
+supervisord.conf
