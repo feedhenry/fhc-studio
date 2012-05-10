@@ -11,7 +11,7 @@
   </dl>
 </div>
 <div class="span6">
-   <h2>{lang.changePassword} //TODO: fhc user password </h2>
+   <h2>{lang.changePassword}</h2> //TODO: fhc user password
  <form class="form-horizontal">
    <fieldset>
      <div class="control-group">

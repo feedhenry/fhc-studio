@@ -26,7 +26,7 @@
       </ul>
     </div>
     <!-- Main body section -->
-    <div>
+    <div class="accountMain">
       {accountHelper}
     </div>
 

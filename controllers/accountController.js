@@ -30,6 +30,52 @@ accountController = {
       }
 
     },
+    apiKeys : function(req, res){
+      var d;
+      d = {
+        tpl: 'account/account',
+        page: 'apikeys',
+        title: "API Keys",
+        apikeys: [ // TODO: fhc.account.api??
+          {
+            label: "My Key",
+            key: "414cfa6db059a9e4a96123e5234ebdabc7b12f520"
+          },
+          {
+            label: "iOS Development",
+            key: "ded7147c0991d8d0e71760fb2943f7eb680n000b",
+            revoked: true,
+            revokeDate: "22/05/11 22:05",
+            revokedBy: "some@example.com"
+          }
+        ]
+        //init: "client.studio.account.init"
+      };
+      return renderer.doResponse(req, res, d);
+    },
+    addApiKey: function(req, res){
+      var label = req.body.label;
+
+      console.log('adding key with label ' + label);
+
+      var error = false; // TODO: FHC.account.apiKey.revoke or similar?
+      if (error){
+        return renderer.doError(res,req, "Error adding API key " + label);
+      }
+      res.redirect("/account/apikeys");
+    },
+    revokeApiKey : function(req, res){
+      var key = req.body.key,
+      label = req.body.label;
+
+      console.log('revoking key ' + key + 'with label ' + label);
+
+      var error = false; // TODO: FHC.account.apiKey.revoke or similar?
+      if (error){
+        return renderer.doError(res,req, "Error deleting API key " + label);
+      }
+      res.redirect("/account/apikeys");
+    },
     resourceUpload: function(req, res) {
       // Dan has done some magic here...
       console.log('doing magics!');

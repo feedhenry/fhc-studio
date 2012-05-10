@@ -137,8 +137,11 @@ server.get('/logout', controllers.userController.logoutAction);
 
 // My Account actions
 server.get('/account/provisioning/:device?.:resType?', checkAuth, controllers.accountController.indexAction);
+server.get('/account/apikeys.:resType?', checkAuth, controllers.accountController.apiKeys);
 server.get('/account/:page?.:resType?', checkAuth, controllers.accountController.indexAction);
 server.post('/account/upload', checkAuth, controllers.accountController.resourceUpload);
+server.post('/account/apikeys/revoke', checkAuth, controllers.accountController.revokeApiKey);
+server.post('/account/apikeys/add', checkAuth, controllers.accountController.addApiKey);
 
 /*
  * Apps Actions

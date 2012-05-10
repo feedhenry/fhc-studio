@@ -58,6 +58,8 @@ var en = {
   serviceStatus : "Service Status ",
 
   // My Account
+
+  // My Account: Profile
   profile: "Profile",
   personalDetails: "Personal Details",
   accountName: "Name",
@@ -67,6 +69,22 @@ var en = {
   currentPassword: "Current Password",
   newPassword: "New Password",
   confirmPassword: "Confirm Password",
+
+  // My Account : API Keys
+  apiKeys : "API Keys",
+  apiKeyLabel : "Label",
+  apiKey: "Key",
+  apiKeyStatus: "Status",
+  apiKeyActive: "Active",
+  apiKeyRevoked: "Revoked",
+  apiKeyRevokedBy: "by ",
+  apiKeyRevokedOn: "on ",
+  generateApiKeyHeading: "Generate a new API Key",
+  generateApiKeyPlaceholder: "Key Label",
+  generateApiKey : "Generate",
+  revokeKey : "Revoke?",
+
+  // My Account: Provisioning
   provisioning: "Provisioning",
   account: "Account",
   dragFileBox: "Drag your file here",

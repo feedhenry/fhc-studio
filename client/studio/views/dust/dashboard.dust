@@ -95,11 +95,11 @@
     </div>
     
   </div> <!-- END API DOCS -->
-  
+  <!-- Remove video carousel for now too - too slow.. make image carousel
   <div id="videos" class="span6 widget">
     <h2>{lang.videos}</h2>
     <div id="videosCarousel" class="carousel">
-      <!-- Carousel items -->
+
       <div class="carousel-inner">
         <div class="active item">
           <iframe src="http://player.vimeo.com/video/34675315" width="460" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
@@ -111,11 +111,12 @@
           </div>
         {/videos}
       </div>
-      <!-- Carousel nav -->
+
       <a class="carousel-control left" href="#videosCarousel" data-slide="prev">&lsaquo;</a>
       <a class="carousel-control right" href="#videosCarousel" data-slide="next">&rsaquo;</a>
     </div>
   </div>
+  -->
   
   <div id="" class="span6"> <!-- BEGIN TEMPLATES -->
   
