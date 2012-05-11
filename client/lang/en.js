@@ -108,7 +108,11 @@ var en = {
   createAnApp: "Create An App",
   fromScratch: "From Scratch",
   fromGitRepo: "From A Git Repo",
-  
+
+  // App dock
+  dockTabBuild: "Builds",
+
+
   // App Dashboard (app.dust / dashboard.dust)
   appDashboard : "App Dashboard",
   editor : "Editor",
