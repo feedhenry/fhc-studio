@@ -17,6 +17,7 @@ var express      = require('express'),
 
 var server = module.exports = express.createServer(),
     io = socketio.listen(server);
+    io.set('log level', 1);
 
 // to proxy file uploads that we get to millicore we have to bypass
 // the bodyParser when we get a file upload.
@@ -191,7 +192,7 @@ server.get('/app/:id/editor/:fileId.:resType?', checkAuth, appMiddleware, contro
 server.get("/editor/gist", checkAuth, appMiddleware, controllers.app.editorController.gistAction);
 server.get("/editor/gist/:gistid",checkAuth, appMiddleware, controllers.app.editorController.gist);
 
-server.listen(3000);
+server.listen(process.env.VCAP_APP_PORT || 3000);
 
 console.log("Express server listening on port %d in %s mode", 3000, server.settings.env);
 
