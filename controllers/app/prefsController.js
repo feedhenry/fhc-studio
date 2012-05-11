@@ -7,13 +7,15 @@ var prefsController,
     // every app gets the indexAction, which gets the file tree & passes on
     indexAction: function(req, res, next){
       var id = req.params.id;
-      var d = {
+
+      var d = req.d || {};
+      d.apply({
           tpl:'app',
           title:'Preferences',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
           tab:'prefs'
-      };
+      });
       //TODO: Put in some console output in a pre
       renderer.doResponse(req, res, d);     
     }

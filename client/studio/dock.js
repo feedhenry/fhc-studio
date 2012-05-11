@@ -3,13 +3,15 @@ client.studio.dock = {
   el: null,
   tab: null,
   items: { },
-
+  inited: false,
   socket: null,
 
   init: function() {
+    this.inited = true;
+
     var me = this;
     //create the socket connection to the server
-    this.socket = io.connect('/');
+    this.socket = io.connect('/'); // TODO: This should be inited seperate to the dock, we might use the socket elsewhere?
 
     this.el = $("#dockContainer");
     this.dock = $("#dockContainer #dock");
@@ -100,6 +102,3 @@ client.studio.dock = {
     this.el.addClass("expanded");
   }
 };
-$(function() {
-  client.studio.dock.init();
-});

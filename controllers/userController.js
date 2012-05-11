@@ -43,7 +43,8 @@ userController = {
         next();
         return true;
       } else{
-        res.redirect("/login");
+        req.session.afterLogin = (req.url==="/login") ? "/home" : req.url;
+        res.redirect('/login');
         return false;  
       }
     },
@@ -88,7 +89,13 @@ userController = {
                     };
                     req.session.login = data.login;
                     req.session.domain = (data.domain) ? data.domain : "demo2";
-                    res.redirect('/home');
+                    if (req.session.afterLogin){
+                      res.redirect(req.session.afterLogin);
+                      req.session.afterLogin = null; // reset our afterLogin URL
+                    }else{
+                      res.redirect('/home');
+                    }
+
                 });
             } catch (ex) {
 

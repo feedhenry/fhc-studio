@@ -153,6 +153,7 @@ server.post('/app/delete',checkAuth,controllers.appController.deleteAction);
 /*
  * App Actions
  */
+ var appMiddleware = controllers.app.appController.indexAction;
 server.post('/app/:id/create/:fileName?.:resType?',checkAuth,controllers.app.operationController.createAction);
 server.post('/app/:id/read/:fileId?.:resType?',checkAuth,controllers.app.operationController.readAction);
 server.post('/app/:id/update/:fileId.:resType?',checkAuth,controllers.app.operationController.updateAction);
@@ -162,34 +163,35 @@ server.post('/app/:id/delete/:fileId.:resType?',checkAuth,controllers.app.operat
 server.get('/app/:id/files.:resType?', checkAuth, controllers.app.operationController.refreshTree); 
 
 // user dashboard
-server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
+server.get('/dashboard.:resType?', checkAuth, appMiddleware, controllers.dashboardController.loadDash);
 
 // app:dashboard
-server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
-server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
+server.get('/app/:id.:resType?', checkAuth, appMiddleware, controllers.app.dashboardController.indexAction);
+server.get('/app/:id/dashboard.:resType?', checkAuth, appMiddleware, controllers.app.dashboardController.indexAction);
 
 // app:debug 
-server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
-server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, controllers.app.debugController.indexAction);
+server.get('/app/:id/debug.:resType?', checkAuth, appMiddleware, controllers.app.debugController.indexAction);
+server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, appMiddleware, controllers.app.debugController.indexAction);
 
 // app:preview, build, prefs
-server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
-server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
-server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
+server.get('/app/:id/preview.:resType?', checkAuth, appMiddleware, controllers.app.previewController.indexAction);
+server.get('/app/:id/build.:resType?', checkAuth, appMiddleware, controllers.app.buildController.indexAction);
+server.get('/app/:id/prefs.:resType?', checkAuth, appMiddleware, controllers.app.prefsController.indexAction);
 
 server.post('/app/:id/build/start.:resType?', checkAuth, controllers.app.buildController.buildAction);
 
 // app:config
-server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);
+server.get('/app/:id/config.:resType?', checkAuth, appMiddleware, controllers.app.configController.indexAction);
 server.post('/app/:id/config.:resType?', checkAuth, controllers.app.configController.updateAction);
 
 // app:editor
-server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
-server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
+server.get('/app/:id/editor.:resType?', checkAuth, appMiddleware, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
+server.get('/app/:id/editor/:fileId.:resType?', checkAuth, appMiddleware, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
 
-server.get("/editor/gist",controllers.app.editorController.gistAction);
-server.get("/editor/gist/:gistid",controllers.app.editorController.gist);
+server.get("/editor/gist", checkAuth, appMiddleware, controllers.app.editorController.gistAction);
+server.get("/editor/gist/:gistid",checkAuth, appMiddleware, controllers.app.editorController.gist);
 
 server.listen(3000);
 
 console.log("Express server listening on port %d in %s mode", 3000, server.settings.env);
+

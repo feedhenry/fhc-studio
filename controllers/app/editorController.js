@@ -20,7 +20,9 @@ editorController = {
     blankEditor: function (req,res) {
       var id = req.params.id,
       list = req.params.list;
-      var d = {
+
+      var d = req.d || {};
+      d.apply({
           title:'Editor',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
@@ -30,7 +32,7 @@ editorController = {
           fileContents:false,
           mode:'js',
           previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
-      };
+      });
       renderer.doResponse(req, res, d);
     },
     editorWithFile: function(req, res){
@@ -42,7 +44,9 @@ editorController = {
             renderer.doError(res,req, "Error loading file " + file);
             return;
         }
-        var d = {
+
+        var d = req.d || {};
+        d.apply({
             title:file.fileName,
             appId: id,
             data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
@@ -53,7 +57,7 @@ editorController = {
             fileId: file.guid,
             mode:'js',
             previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
-        };
+        });
         renderer.doResponse(req, res, d);
       });
     },

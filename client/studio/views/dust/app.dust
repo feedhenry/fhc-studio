@@ -15,5 +15,29 @@
 
 <!-- Some hidden form elements to help app pages javascript -->
 <input type="hidden" id="appId" value="{appId}"></input>
+<script>
+$(document).ready(function() {
+  client.studio.dock.init();
+});
+</script>
+
 {>foot/}
 {>footer/} <!-- TODO - Move footer out into some place more generic - do we even need one? -->
+<div id="dockContainer">
+      <div id="dockControls">
+        <div class="tab"> Build</div>
+      </div>
+      <div id="dock">
+      {#dock.builds}
+        <div class="item btn-group dropup complete" onclick="window.location = {url}">
+          <div class="progress progress-striped progress-success">
+            <div class="bar" style="width: 100%; ">Build complete</div>
+          </div>
+          <span class="platform {destination}">
+          <i class="icon-screenshot"></i>{destination}</span> |
+          <span class="version"><strong>V</strong>{version}</span> |
+          <span class="config + debug"> <i class="icon-wrench"></i> {config}</span>
+        </div>
+      {/dock.builds}
+      </div>
+</div>

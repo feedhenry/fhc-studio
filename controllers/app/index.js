@@ -1,3 +1,4 @@
+exports.appController  = require("./appController.js");
 exports.dashboardController  = require("./dashboardController.js");
 exports.editorController  = require("./editorController.js");
 exports.debugController  = require("./debugController.js");

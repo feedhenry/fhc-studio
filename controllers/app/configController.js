@@ -78,14 +78,15 @@ configController = {
       if (err) {
         renderer.doError(res, req, "Couldn't list configuration for app"); return;
       }
-      var d = {
+      var d = req.d || {};
+      d.apply({
           tpl: 'app',
           title: 'Preferences',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
           configuration: configurationSchema.configurationPrettyListing(cfg),
           tab: 'config'
-      };
+      });
       renderer.doResponse(req, res, d);
     });
   },

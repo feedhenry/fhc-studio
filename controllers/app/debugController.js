@@ -30,8 +30,9 @@ var debugController,
           // Otherwise, we may have an error but it's just because this app isn't staged to production.
           var development = massageLogs(results[0]);
           var production = massageLogs(results[1]);
-          
-          var d = {
+
+          var d = req.d || {};
+          d.apply({
               tpl:'app',
               title:'Debug',
               appId: id,
@@ -40,7 +41,7 @@ var debugController,
                 development: development,
                 production: production 
               }
-          };
+          });
           renderer.doResponse(req, res, d);
         } // end async.paralell callback
       ); // end async.paralell
@@ -54,7 +55,7 @@ function massageLogs(data){
   }
   var logs = data.log,
   logsArray = [];
-  if (logs.name){
+  if (logs && logs.name){
     // when we're listing just 1 log
     logs.contents = logs.contents || ""; // incase contents is undefined (stderr often is)
     logsArray.push(logs);
