@@ -19,6 +19,17 @@ var server = module.exports = express.createServer(),
     io = socketio.listen(server);
     io.set('log level', 1);
 
+if(process.env.VMC_APP_PORT) {
+  io.set('transports', [
+    //'websocket',
+    'flashsocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
+  ]);
+}
+
+
 // to proxy file uploads that we get to millicore we have to bypass
 // the bodyParser when we get a file upload.
 // best solution for now.
