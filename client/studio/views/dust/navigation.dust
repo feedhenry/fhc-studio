@@ -47,7 +47,7 @@
       </ul>
        {?user}
        <ul class="nav studioNav pull-right">
-         <li class="help"><a href="/help">{lang.help}</a></li>
+         <li class="help"><a href="http://docs.feedhenry.com">{lang.help}</a></li>
          <li class="account"><a href="/account">{lang.account}</a></li>
          <li class="logout"><a href="/logout">{lang.logout}</a></li>
         {:else}
