@@ -38,7 +38,7 @@ client.studio.dock = {
     return {
       el: $('<div class="item btn-group dropup">' +
               '<div class="progress progress-info progress-striped active">'+
-                '<div class="bar" style="width: 40%;"></div>'+
+                '<div class="bar" style="width: 0%;"></div>'+
               '</div>' +
               '<span class="platform ' + platform + '"> <i class="icon-screenshot" />' + platform + '</span> | ' +
               '<span class="version' + ver + '"><strong>V</strong>' + ver + '</span> | ' +
@@ -53,7 +53,6 @@ client.studio.dock = {
           barC.removeClass('active');
           barC.addClass('progress-success');
           this.el.addClass("complete");
-          this.updateProgress(100);
           if(data.action && data.action.url) {
             window.location = data.action.url;
           }
@@ -63,7 +62,12 @@ client.studio.dock = {
         }
 
         var latestMsg = data.error ? data.error : data.log.pop();
-        console.log(latestMsg);
+        var progress = this.getProgress(latestMsg);
+
+        if (progress) {
+          this.updateProgress(progress);
+        }
+
         this.el.find('.progress .bar').html(latestMsg);
 
         //this.el.attr("data-log", latestMsg);
@@ -81,8 +85,60 @@ client.studio.dock = {
         dock.socket.emit("poll", {
           cacheKey: cacheKey
         });
-      }
+      },
+      getProgress: function(message){
+        var curP = this.p,
+        p = 0;
+        switch(message){
+          // android specific?
+          case "Copy icon file...":
+            p = 10;
+            break;
 
+
+
+           // ios specific
+          case "Copy application files...":
+            p = 10;
+            break;
+
+          case "Copy asset files...":
+            p = 20;
+            break;
+
+          case "Copy index file...":
+            p = 30;
+            break;
+
+
+          // Generic
+          case "Processing...":
+            p = (curP < 30) ? 30 : curP;
+            if (curP<75){
+              p += 3;
+            }
+            break;
+
+          case "Packaging app...":
+            p = 75;
+            break;
+
+          case "Generating app files...":
+            p = 75;
+            break;
+
+          case "Build complete":
+            p = 100;
+            break;
+
+          default:
+            p=false;
+            break;
+        }
+        this.p = p;
+
+        return p;
+      }
     };
   },
 
