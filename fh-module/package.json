@@ -1,0 +1,25 @@
+{ 
+  "name" : "fh-module",
+  "description" : "A node module for communicating with the feedhenry platform for FeedHenry",
+  "keywords" : [ "module", "feedhenry" ],
+  "version": "0.1.1",
+  "homepage" : "http://git.io/fh-fhc",
+  "author" : "Damian Beresford <damian.beresford@feedhenry.com>",
+   "directories" : {
+     "lib" : "./lib"
+  },
+  "main" : "./main.js",
+  "dependencies" :{
+    "async" : "*",
+    "request" : "*",
+    "vmcjs" : "*"
+  },
+  "devDependencies" : {
+  },
+  "engines" : {
+    "node" : "0.4 || 0.6"
+  },
+  "scripts" : { 
+    "test" : "expresso -I lib"
+  }
+}

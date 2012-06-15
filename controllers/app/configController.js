@@ -1,6 +1,6 @@
 var
     renderer = require("../../util"),
-    fhc      = require('fh-module'),
+    fhc      = require('../../fh-module'),
 
     targetPlatforms = [
       {name: 'ipad',    title: 'iPad'},

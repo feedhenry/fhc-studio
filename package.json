@@ -4,7 +4,6 @@
   , "private": true
   , "dependencies": {
       "express": "2.5.2"
-    , "fh-fhc": "https://nodeload.github.com/danielconnor/fh-fhc/tarball/node_module"
     , "connect-redis" : ">=0.7"
     , "mkdirp": "0.2.2"
     , "dust" : "https://nodeload.github.com/cianclarke/dustjs/tarball/master"

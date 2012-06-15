@@ -5,7 +5,7 @@
 var express      = require('express'),
     connect      = require('connect'),
     socketio     = require('socket.io'),
-    fhc          = require('fh-module'),
+    fhc          = require('./fh-module'),
     util         = require('util'),
     fs           = require('fs'),
     less         = require('less'),

@@ -139,6 +139,9 @@ client.studio.editor = {
       $('pre#editor' + index).html(fileContents);
     }
 
+    // Bugfix: Give our pre element the height of what's available, as '100%' not working on Ace Editor - needs absolute height thru dom measure
+
+
     // 5) Construct an object to represent this tab
     var tab = {
       index : index,

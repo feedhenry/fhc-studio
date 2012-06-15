@@ -1,6 +1,6 @@
 var accountController,
     renderer = require("../util"),
-    fhc = require("fh-module");
+    fhc = require("../fh-module");
 
 accountController = {
     indexAction: function(req, res) {

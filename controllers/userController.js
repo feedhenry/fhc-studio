@@ -1,6 +1,6 @@
 var userController,
     renderer = require("../util"),
-    fhc = require("fh-module");
+    fhc = require('../fh-module');
 
 userController = {
     checkAuth: function(req, res, next){

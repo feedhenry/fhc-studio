@@ -1,6 +1,6 @@
 var previewController,
     renderer = require("../../util"),
-    fhc      = require('fh-module'),
+    fhc      = require('../../fh-module'),
     http     = require("http"),
 
   previewController = {

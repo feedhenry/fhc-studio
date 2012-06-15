@@ -1,6 +1,6 @@
 var prefsController,
     renderer = require("../../util"),
-    fhc      = require('fh-module'),
+    fhc      = require('../../fh-module'),
     http     = require("http"),
 
   prefsController = {

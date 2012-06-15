@@ -1,6 +1,6 @@
 var dashboardController,
     renderer = require("../../util"),
-    fhc      = require('fh-module'),
+    fhc      = require('../../fh-module'),
     http     = require("http"),
     util     = require('util');
 

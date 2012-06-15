@@ -1,5 +1,5 @@
 
-var fhc = require("fh-module");
+var fhc = require('../fh-module');
 
 var users = {
 };

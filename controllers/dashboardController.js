@@ -1,7 +1,7 @@
 var dashboardController,
     renderer = require("../util"),
     util = require("util"),
-    fhc = require("fh-module");
+    fhc = require("../fh-module");
 
 dashboardController = {
     loadDash:function (req, res, next) {
