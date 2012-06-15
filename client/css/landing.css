@@ -72,3 +72,11 @@ pre.code {
 #studio.row .span7.right, #staging.row .span7.left {
     padding-top: 30px;
 }
+.userdash .widget ul.widgetList {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  width: 300px;
+  height: 200px;
+  overflow-y:scroll;
+}

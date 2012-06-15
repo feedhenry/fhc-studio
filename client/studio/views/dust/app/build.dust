@@ -1,131 +1,130 @@
+<script>
+  $(function() {
+    client.studio.build.init();
+  });
+</script>
+
 <h1>{lang.build}</h1>
 
 <ul class="thumbnails">
-  <li class="span3">
+  <li class="span4 iOS">
     <div class="thumbnail">
-      <img src="/images/build/iPad.png" alt="" height="250">
+      <img class="buildThumb" src="/images/build/iPad.png" alt="" >
       <div class="caption">
-        <h5>iPad Build</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">iOS 5.0</a>
-          &nbsp;
-          <a class="btn" href="#">iOS 4.0</a>
-        </p>
+        <h3>{lang.buildIOS}</h3>
+        
+        <!-- iOS Device -->
+        <div class="btn-group target" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.buildiPad}</a>
+          <a class="btn-mini btn" href="#">{lang.buildiPhone}</a>
+          <a class="btn-mini btn" href="#">{lang.buildUniversal}</a>
+        </div><br />
+        
+        <!-- iOS Config (Distribution/{lang.release}) -->
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.debug}</a>
+          <a class="btn-mini btn" href="#">{lang.distribution}</a>
+          <a class="btn-mini btn" href="#">{lang.release}</a>
+        </div><br />
+        
+        <!-- iOS Version -->
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">3.2</a>
+          <a class="btn-mini btn" href="#">4.3</a>
+          <a class="btn-mini btn" href="#">5.0</a>
+        </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#" data-platform="iOS">{lang.buildButton}</a>
+        
       </div>
     </div>
   </li>
-  <li class="span3">
+  
+  <!-- Android -->
+  <li class="span4 android">
     <div class="thumbnail">
-      <img src="/images/build/iPhone.png" alt="" height="250">
+      <img class="buildThumb" src="/images/build/android.png" alt="" >
       <div class="caption">
-        <h5>iPhone Build</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">iOS 5.0</a>
-          &nbsp;
-          <a class="btn" href="#">iOS 4.0</a>
-        </p>
-        <p>
-          <a class="btn" href="#">iOS 3.2</a>
-        </p>
+        <h3>{lang.buildAndroid}</h3>
+        
+        <!-- Android SDK Version -->
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">2.2</a>
+          <a class="btn-mini btn" href="#">2.3</a>
+          <a class="btn-mini btn" href="#">4.0</a>
+        </div><br />
+        
+        <!-- Android {lang.debug}/{lang.release} -->
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.debug}</a>
+          <a class="btn-mini btn" href="#">{lang.release}</a>
+        </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#" data-platform="android">{lang.buildButton}</a>
       </div>
     </div>
   </li>
-  <li class="span3">
+  
+  <!-- Blackberry -->
+  <li class="span4 blackberry">
     <div class="thumbnail">
-      <img src="/images/build/android.png" alt="" height="250">
+      <img class="buildThumb" src="/images/build/blackberry.png" alt="" >
       <div class="caption">
-        <h5>Android Build</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">Android 4.0</a>
-          &nbsp;
-          <a class="btn" href="#">Android 3.0</a>
-        </p>
-        <p>
-          <a class="btn" href="#">Android 2.3</a>
-          &nbsp;
-          <a class="btn" href="#">Android 2.2</a>
-        </p>
-        <p>
-          <a class="btn" href="#">Android 2.1</a>
-        </p>
+        <h3>{lang.buildBlackberry}</h3>
+        
+        <!-- Blackberry SDK Version -->
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">6.0</a>
+          <a class="btn-mini btn" href="#">7.0</a>
+        </div><br />
+        
+        <!-- Blackberry signed/unsigned -->
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.unsigned}</a>
+          <a class="btn-mini btn" href="#">{lang.signed}</a>
+        </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#" data-platform="blackberry">{lang.buildButton}</a>
       </div>
     </div>
   </li>
-  <li class="span3">
+  
+  <!-- windowsphone7 -->
+  <li class="span4 windowsphone7">
     <div class="thumbnail">
-      <img src="/images/build/blackberry.png" alt="" height="250">
+      <img class="buildThumb" src="/images/build/WindowsPhone7.png" alt="" >
       <div class="caption">
-        <h5>Blackberry</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">RIM 6.0</a>      
-        </p>
+        <h3>{lang.buildWP7}</h3>
+        
+        <!-- windowsphone7 SDK Version -->
+        <div class="btn-group version" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">6.0</a>
+          <a class="btn-mini btn" href="#">7.0</a>
+        </div><br />
+        
+        <!-- windowsphone7 debug/release -->
+        <div class="btn-group config" data-toggle="buttons-radio">
+          <a class="btn-mini btn active" href="#">{lang.debug}</a>
+          <a class="btn-mini btn" href="#">{lang.release}</a>
+        </div><br />
+        
+        <a class="btn btn-primary buildButton" href="#" data-platform="windowsphone7">{lang.buildButton}</a>
       </div>
     </div>
   </li>
-  <li class="span3">
+  
+  
+  <!-- Mobile Web -->
+  <li class="span4 mobileweb">
     <div class="thumbnail">
-      <img src="/images/build/WindowsPhone7.png" alt="" height="250">
+      <img class="buildThumb" src="/images/build/mobileWeb.png" alt="" >
       <div class="caption">
-        <h5>Windows Phone 7</h5>
-        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        <p>
-          <a class="btn primary" href="#">WP 7.0</a>
-          &nbsp;
-          <a class="btn" href="#">WP 7.5</a>
-        </p>
+        <h3>{lang.buildMobileWeb}</h3>
+        
+        <div class="input-prepend">
+                <span class="add-on">url</span><input class="span2" id="prependedInput" size="16" type="text" value="https://{domain}.feedhenry.com/box/srv/1.1/wid/{domain}/embed/{appId}/container">
+        </div>
       </div>
     </div>
   </li>
 </ul>
-
-<!--
-<h1>{lang.build}</h1>
-  <div class="row buildRow">
-    <div class="span6">
-      <h3>iPad</h3>
-      <img src="/images/build/iPad.png" />
-      <p><a class="btn primary" href="#">iOS 5.0</a></p>
-      <p><a class="btn" href="#">iOS 4.0</a></p>
-    </div>
-    <div class="span5">
-      <h3>iPhone</h3>
-      <img src="/images/build/iPhone.png" />
-      <p><a class="btn primary" href="#">iOS 5.0</a></p>
-      <p><a class="btn" href="#">iOS 4.0</a></p>
-      <p><a class="btn" href="#">iOS 3.2</a></p>
-
-   </div>
-    <div class="span5">
-      <h3>Android</h3>
-      <img src="/images/build/android.png" />
-      <p><a class="btn primary" href="#">Android 4.0</a></p>
-      <p><a class="btn" href="#">Android 3.0</a></p>
-      <p><a class="btn" href="#">Android 2.3</a></p>
-      <p><a class="btn" href="#">Android 2.2</a></p>
-      <p><a class="btn" href="#">Android 2.1</a></p>
-    </div>
-  </div>
-
-
-    <div class="row buildRow">
-    <div class="span6">
-      <h3>Blackberry</h3>
-      <p><a class="btn primary" href="#">RIM 6.0</a></p>
-    </div>
-    <div class="span5">
-      <h3>Windows Phone 7</h3>
-      <p><a class="btn primary" href="#">WP 7.0</a></p>
-
-
-
-   </div>
-    <div class="span5">
-      <h3>Nokia WRT</h3>
-
-    </div>
-  </div>
-  -->

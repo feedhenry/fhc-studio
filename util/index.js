@@ -1,6 +1,7 @@
 var fs = require('fs'),
     doResponse = require("./doResponse.js");
-    util = require('util');
+    util = require('util'),
+    jsonUtils = require('./jsonUtils.js')();
 
  
 

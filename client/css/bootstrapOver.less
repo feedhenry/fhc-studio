@@ -1,4 +1,9 @@
 /* Style the containers */
+#container {
+  width: 100%;
+  height: 100%;
+}
+
 .fluid-container > .content.fullWidth {
   margin-left: 0px; 
 }
@@ -18,6 +23,9 @@
 }
 
 /* Some coloring on messaging */
+.label.success {
+	background-color: green;
+}
 .label.success a {
   color: @white;
 }
@@ -29,13 +37,6 @@
 .dropdown h3 {
   color: @white;
   padding-left: 15px;	
-}
-
-/*
-  Make sure the color of our text in the header is white
-*/
-.navbar .pull-right a, .navbar .pull-right a:visited, .navbar .pull-right a:hover, .navbar .pull-right a:active{
-  color: @white !important;
 }
 
 .studioNav .dropdown-menu {

@@ -46,7 +46,7 @@ client.util.messages  = {
     dialogId = "_messageGen" + title.split(" ")[0]; // ID is only the first word
 
     var alert = document.createElement("div");
-    alert.className = "alert alert-" + type;
+    alert.className = "message alert " + type;
     alert.id = dialogId;
       var a = document.createElement("a");
       a.innerHTML = 'x';

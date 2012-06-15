@@ -1,6 +1,6 @@
 var
     renderer = require("../../util"),
-    fhc      = require('fh-fhc'),
+    fhc      = require('../../fh-module'),
 
     targetPlatforms = [
       {name: 'ipad',    title: 'iPad'},
@@ -74,18 +74,19 @@ var
 configController = {
   indexAction : function(req, res, next) {
     var id = req.params.id;
-    fhc.configuration.list(id, 'all', function (err, cfg) {
+    fhc.config.list(req.session, id, "all", function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't list configuration for app"); return;
       }
-      var d = {
+      var d = req.d || {};
+      d.apply({
           tpl: 'app',
           title: 'Preferences',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
           configuration: configurationSchema.configurationPrettyListing(cfg),
           tab: 'config'
-      };
+      });
       renderer.doResponse(req, res, d);
     });
   },
@@ -105,17 +106,19 @@ configController = {
           if (keys.length > 0) {
             var key = keys.shift();
             console.log('updating ' + key + ' => ' + updates[key]);
-            fhc.configuration(['set', id, platform, key, updates[key]], updateOne);
+            fhc.config.set(req.session, id, platform, key, updates[key], updateOne);
           } else {
             configController.indexAction(req, res, next); //TODO Think about 302
           }
         };
 
-    fhc.configuration(['list', id], function (err, cfg) {
+    fhc.config.list(req.session, id, "all", function (err, cfg) {
       if (err) {
         renderer.doError(res, req, "Couldn't update configuration for app"); return;
       }
-      keys = keys.filter(function(key) {return (cfg[platform][key] && cfg[platform][key] !== updates[key]);});
+      keys = keys.filter(function(key) {
+      	return (cfg[platform][key] && cfg[platform][key] !== updates[key]);
+      });
       updateOne();
     });
   }

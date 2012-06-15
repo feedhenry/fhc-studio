@@ -2,16 +2,65 @@
  * Module dependencies.
  */
 
-var express     = require('express'),
-    fhc         = require('fh-fhc'),
-    util        = require('util'),
-    fs          = require('fs'),
-    less        = require('less'),
-    controllers = require('./controllers');
+var express      = require('express'),
+    connect      = require('connect'),
+    socketio     = require('socket.io'),
+    fhc          = require('./fh-module'),
+    util         = require('util'),
+    fs           = require('fs'),
+    less         = require('less'),
+    controllers  = require('./controllers');
+    Session      = connect.middleware.session.Session,
+    parseCookie  = connect.utils.parseCookie,
+    sessionStore = new express.session.MemoryStore();
 
-var server = module.exports = express.createServer();
+
+var server = module.exports = express.createServer(),
+    io = socketio.listen(server);
+    io.set('log level', 1);
+
+if(process.env.VMC_APP_PORT) {
+  io.set('transports', [
+    //'websocket',
+    'flashsocket',
+    'htmlfile',
+    'xhr-polling',
+    'jsonp-polling'
+  ]);
+}
 
 
+// to proxy file uploads that we get to millicore we have to bypass
+// the bodyParser when we get a file upload.
+// best solution for now.
+delete express.bodyParser.parse['multipart/form-data'];
+
+io.set('authorization', function (data, accept) {
+    if (data.headers.cookie) {
+        data.cookie = parseCookie(data.headers.cookie);
+        data.sessionID = data.cookie['express.sid'];
+
+        // save the session store to the data object 
+        // (as required by the Session constructor)
+        data.sessionStore = sessionStore;
+        sessionStore.get(data.sessionID, function (err, session) {
+            if (err || !session) {
+                accept('Error', false);
+            } else {
+                // create a session object, passing data as request and our
+                // just acquired session data
+                data.session = new Session(data, session);
+                accept(null, true);
+            }
+        });
+    } else {
+       return accept('No cookie transmitted.', false);
+    }
+});
+
+
+
+io.sockets.on("connection", controllers.socketController.handleSocket);
 
 
 // Configuration
@@ -25,6 +74,12 @@ server.configure(function () {
 
     server.use(express.bodyParser());
     server.use(express.cookieParser());
+    server.use(express.session({
+      store: sessionStore,
+      secret: 'secret',
+      key: 'express.sid'
+    }));
+
 
     server.use(express.methodOverride());
     
@@ -92,6 +147,14 @@ server.get('/login.:resType?', controllers.userController.loginAction);
 server.post('/login',controllers.userController.loginAction);
 server.get('/logout', controllers.userController.logoutAction);
 
+// My Account actions
+server.get('/account/provisioning/:device?.:resType?', checkAuth, controllers.accountController.indexAction);
+server.get('/account/apikeys.:resType?', checkAuth, controllers.accountController.apiKeys);
+server.get('/account/:page?.:resType?', checkAuth, controllers.accountController.indexAction);
+server.post('/account/upload', checkAuth, controllers.accountController.resourceUpload);
+server.post('/account/apikeys/revoke', checkAuth, controllers.accountController.revokeApiKey);
+server.post('/account/apikeys/add', checkAuth, controllers.accountController.addApiKey);
+
 /*
  * Apps Actions
  */
@@ -102,6 +165,7 @@ server.post('/app/delete',checkAuth,controllers.appController.deleteAction);
 /*
  * App Actions
  */
+ var appMiddleware = controllers.app.appController.indexAction;
 server.post('/app/:id/create/:fileName?.:resType?',checkAuth,controllers.app.operationController.createAction);
 server.post('/app/:id/read/:fileId?.:resType?',checkAuth,controllers.app.operationController.readAction);
 server.post('/app/:id/update/:fileId.:resType?',checkAuth,controllers.app.operationController.updateAction);
@@ -111,32 +175,35 @@ server.post('/app/:id/delete/:fileId.:resType?',checkAuth,controllers.app.operat
 server.get('/app/:id/files.:resType?', checkAuth, controllers.app.operationController.refreshTree); 
 
 // user dashboard
-server.get('/dashboard.:resType?', controllers.dashboardController.loadDash);
+server.get('/dashboard.:resType?', checkAuth, appMiddleware, controllers.dashboardController.loadDash);
 
 // app:dashboard
-server.get('/app/:id.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
-server.get('/app/:id/dashboard.:resType?', checkAuth, controllers.app.dashboardController.indexAction);
+server.get('/app/:id.:resType?', checkAuth, appMiddleware, controllers.app.dashboardController.indexAction);
+server.get('/app/:id/dashboard.:resType?', checkAuth, appMiddleware, controllers.app.dashboardController.indexAction);
 
 // app:debug 
-server.get('/app/:id/debug.:resType?', checkAuth, controllers.app.debugController.indexAction);
-server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, controllers.app.debugController.indexAction);
+server.get('/app/:id/debug.:resType?', checkAuth, appMiddleware, controllers.app.debugController.indexAction);
+server.get('/app/:id/logs/:target?/:name?.:resType?', checkAuth, appMiddleware, controllers.app.debugController.indexAction);
 
 // app:preview, build, prefs
-server.get('/app/:id/preview.:resType?', checkAuth, controllers.app.previewController.indexAction);
-server.get('/app/:id/build.:resType?', checkAuth, controllers.app.buildController.indexAction);
-server.get('/app/:id/prefs.:resType?', checkAuth, controllers.app.prefsController.indexAction);
+server.get('/app/:id/preview.:resType?', checkAuth, appMiddleware, controllers.app.previewController.indexAction);
+server.get('/app/:id/build.:resType?', checkAuth, appMiddleware, controllers.app.buildController.indexAction);
+server.get('/app/:id/prefs.:resType?', checkAuth, appMiddleware, controllers.app.prefsController.indexAction);
+
+server.post('/app/:id/build/start.:resType?', checkAuth, controllers.app.buildController.buildAction);
 
 // app:config
-server.get('/app/:id/config.:resType?', checkAuth, controllers.app.configController.indexAction);
+server.get('/app/:id/config.:resType?', checkAuth, appMiddleware, controllers.app.configController.indexAction);
 server.post('/app/:id/config.:resType?', checkAuth, controllers.app.configController.updateAction);
 
 // app:editor
-server.get('/app/:id/editor.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
-server.get('/app/:id/editor/:fileId.:resType?', checkAuth, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
+server.get('/app/:id/editor.:resType?', checkAuth, appMiddleware, controllers.app.editorController.indexAction, controllers.app.editorController.blankEditor);
+server.get('/app/:id/editor/:fileId.:resType?', checkAuth, appMiddleware, controllers.app.editorController.indexAction, controllers.app.editorController.editorWithFile);
 
-server.get("/editor/gist",controllers.app.editorController.gistAction);
-server.get("/editor/gist/:gistid",controllers.app.editorController.gist);
+server.get("/editor/gist", checkAuth, appMiddleware, controllers.app.editorController.gistAction);
+server.get("/editor/gist/:gistid",checkAuth, appMiddleware, controllers.app.editorController.gist);
 
-server.listen(3000);
+server.listen(process.env.VCAP_APP_PORT || 3000);
 
 console.log("Express server listening on port %d in %s mode", 3000, server.settings.env);
+

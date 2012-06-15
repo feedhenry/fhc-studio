@@ -15,7 +15,17 @@ function translateKey(context, key) {
 
 client.studio.views = client.studio.views || {};
 client.studio.views.helpers = dust.makeBase({
-    tabLayoutHelper : function (chunk,context){
+  accountHelper: function (chunk,context){
+    //context is the data and chunk is the piece of template
+    var page = context.get("page"),
+    device = context.get("device");
+    if(_.isString(page ) && page !== ""){
+      chunk.partial('account/' + page.toLowerCase(),context);
+    }else{
+      chunk.partial('account/profile',context);
+    }
+  },
+  tabLayoutHelper : function (chunk,context){
         //context is the data and chunk is the piece of template
         var tab = context.get("tab");
         if(_.isString(tab) && tab !== ""){

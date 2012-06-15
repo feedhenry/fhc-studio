@@ -1,13 +1,13 @@
 var editorController ,
     renderer = require("../../util"),
-    fhc      = require('fh-fhc'),
+    fhc      = require('../../fh-module'),
     http     = require("http"),
 
 editorController = {
     // every app gets the indexAction, which gets the file tree & passes on
     indexAction: function(req, res, next){
       var id = req.params.id;
-      fhc.files.list(id, function (err, root) {
+      fhc.files.list(req.session, id, function (err, root) {
         if (err) {
             renderer.doError(res,req, "Error retrieving files list");
             return;
@@ -20,7 +20,9 @@ editorController = {
     blankEditor: function (req,res) {
       var id = req.params.id,
       list = req.params.list;
-      var d = {
+
+      var d = req.d || {};
+      d.apply({
           title:'Editor',
           appId: id,
           data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
@@ -30,19 +32,21 @@ editorController = {
           fileContents:false,
           mode:'js',
           previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
-      };
+      });
       renderer.doResponse(req, res, d);
     },
     editorWithFile: function(req, res){
       var id = req.params.id,
       fileId = req.params.fileId,
       list = req.params.list;
-      fhc.files.read(fileId, function (err, file) {
+      fhc.files.read(req.session, fileId, function (err, file) {
         if (err) {
             renderer.doError(res,req, "Error loading file " + file);
             return;
         }
-        var d = {
+
+        var d = req.d || {};
+        d.apply({
             title:file.fileName,
             appId: id,
             data:{ inst : { guid : id}}, // TODO: This is same as appId - remove need for this!
@@ -53,7 +57,7 @@ editorController = {
             fileId: file.guid,
             mode:'js',
             previewUrl: "http://" + req.session.domain + ".feedhenry.com/box/srv/1.1/wid/" + req.session.domain + "/studio/" + id + "/container"
-        };
+        });
         renderer.doResponse(req, res, d);
       });
     },

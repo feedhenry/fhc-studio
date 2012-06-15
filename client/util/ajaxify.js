@@ -30,7 +30,9 @@ $(function() { // JQuery onready
       if ( event.which == 2 || event.metaKey || url==="#" || !url ) { return true; }
       
       // Ajaxify this link - do a studio.go rather than a full page nav & prevent the default event
-      cb(url);
+      cb(url, {
+      	container: "#container"
+      });
       event.preventDefault();
       return false;
     });

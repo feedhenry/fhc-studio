@@ -23,22 +23,18 @@ client.util.keyboard = function(shortcuts, editorId){
 client.util.keyboard.listShortcuts = function(shortcuts){
   var html = "";
   var OSX=false;
+  debugger;
   if (navigator.appVersion.indexOf("Mac")!=-1) OSX=true;
 
-  if (OSX) {
+
     for (var i=0; i<shortcuts.length; i++){ 
       var binding = shortcuts[i].binding;
-      var newBinding;
 
-      if (binding.search('ctrl')!=-1){
-        newBinding = binding.replace('ctrl', 'cmd');  
+      if (OSX && binding.search('ctrl')!=-1) {
+        html+= "<li>"+shortcuts[i].title+": "+shortcuts[i].binding.replace('ctrl', 'cmd').toUpperCase();+"</li>";
+      }else{
+        html+= "<li>"+shortcuts[i].title+": "+shortcuts[i].binding.toUpperCase();+"</li>";
       }
     }
-  } else {
-      for (var i=0; i<shortcuts.length; i++){
-        html+= "<li>"+shortcuts[i].title+": "+shortcuts[i].binding.toUpperCase();+"</li>"; 
-      }  
-  }
-
   return html;
 }

@@ -130,6 +130,9 @@ client.studio.editor.tree = {
             'return' : function () { // TODO: Make this enter?
               var o = this.data.ui.selected || this.data.ui.last_selected;
               var d = o.data();
+              if (!d) {
+                return;
+              }
               if (d.type && d.type==="file"){
                 me.open(d.guid);
                 return;

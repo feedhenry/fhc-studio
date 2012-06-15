@@ -1,15 +1,21 @@
 {
-    "name": "application-name"
+    "name": "fh-studio"
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
       "express": "2.5.2"
-    , "fh-fhc": ">= 0.6.9"
     , "connect-redis" : ">=0.7"
     , "mkdirp": "0.2.2"
+<<<<<<< HEAD
     , "dust" : "https://github.com/cianclarke/dustjs/tarball/master"
+=======
+    , "dust" : "https://nodeload.github.com/cianclarke/dustjs/tarball/master"
+>>>>>>> node_module
     , "jade" : "0.20.0"
     , "less" : "1.2.1"
     , "async" : "*"
+    , "jake" : "*"
+    , "socket.io": "*"
+    , "connect": "*"
   }
 }

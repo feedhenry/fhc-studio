@@ -1,0 +1,40 @@
+<h2>{lang.apiKeys}</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>{lang.apiKeyLabel}</th>
+      <th>{lang.apiKey}</th>
+      <th>{lang.apiKeyStatus}<!-- revoke --></th>
+    </tr>
+  </thead>
+  <tbody>
+    {#apikeys}
+    <tr class="apikey revoked-{revoked}">
+      <td>1</td>
+      <td class="keyLabel">{label}</td>
+      <td class="key">{key}</td>
+      <td class="revoked">
+        {#revoked}
+          {#t key="apiKeyRevoked"/}
+          {#t key="apiKeyRevokedBy"/} <strong> {revokedBy} </strong>
+          {#t key="apiKeyRevokedOn"/}  <strong>{revokedOn}</strong>
+        {:else}
+          <form method="POST" action="/account/apikeys/revoke">
+            <input type="hidden" name="key" value="{key}">
+            <input type="hidden" name="label" value="{label}">
+            <button type="submit" class="btn btn-danger">{#t key="revokeKey"/}</button>
+          </form>
+        {/revoked}
+      </td>
+    </tr>
+    {/apikeys}
+  </tbody>
+</table>
+
+<h3>{lang.generateApiKeyHeading}</h3>
+<div class="input-append">
+  <form method="POST" action="/account/apikeys/add">
+  <input name="label" class="span4" placeholder="{lang.generateApiKeyPlaceholder}" id="keyLabel" type="text"><button class="btn" type="submit">{lang.generateApiKey}</button>
+  </form>
+</div>

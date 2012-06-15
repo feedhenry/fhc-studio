@@ -95,11 +95,11 @@
     </div>
     
   </div> <!-- END API DOCS -->
-  
+  <!-- Remove video carousel for now too - too slow.. make image carousel
   <div id="videos" class="span6 widget">
     <h2>{lang.videos}</h2>
     <div id="videosCarousel" class="carousel">
-      <!-- Carousel items -->
+
       <div class="carousel-inner">
         <div class="active item">
           <iframe src="http://player.vimeo.com/video/34675315" width="460" height="280" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
@@ -111,16 +111,17 @@
           </div>
         {/videos}
       </div>
-      <!-- Carousel nav -->
+
       <a class="carousel-control left" href="#videosCarousel" data-slide="prev">&lsaquo;</a>
       <a class="carousel-control right" href="#videosCarousel" data-slide="next">&rsaquo;</a>
     </div>
   </div>
+  -->
   
   <div id="" class="span6"> <!-- BEGIN TEMPLATES -->
   
   
-  
+    <!-- Removing this templates widget - iFrames slow pageLoad down too much ~Cian
     <div class="tabbable tabs-right">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#rA" data-toggle="tab" data-templateUrl="http://apps.feedhenry.com/box/srv/1.1/wid/apps/studio/mPltCaOT38dKmnBcGfz4tDKk/container">App Anatomy</a></li>
@@ -140,8 +141,8 @@
       </div>
       
     </div>
-  </div> <!-- END TEMPLATES -->
-  
+  </div>--> <!-- END TEMPLATES -->
+
   
 
 </div> <!-- End Bootstrap Row -->
@@ -152,11 +153,6 @@
       client.studio.dashboard.init();
   });
 </script>
-
-
-<footer>
-  <p>© {lang.studioName} 2011 | <span class="label success"><a href="http://www.feedhenrystatus.com">{lang.serviceStatus}: OK</a></span> </p>
-</footer>
-
 </div>
+{>footer/}
 {>foot/}

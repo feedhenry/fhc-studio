@@ -3,7 +3,7 @@
  * It tracks history, and does requests to the API for new JSON data
  */
 
-client.studio.dispatch = function () {
+client.studio.dispatch = (function () {
     var self,container;
 
     self = {
@@ -43,7 +43,6 @@ client.studio.dispatch = function () {
             tpl = res.data.tpl;
             title = res.data.title;
             data = res.data;
-
             if ((res.historyPosition!==History.savedStates.length-1)){
                 $.get(url + ".json", renderDust); // Only doing this for backwards state
             }else{
@@ -59,11 +58,30 @@ client.studio.dispatch = function () {
                   client.util.messages.error(err.message);
                   return;
                 }
-              
+
                 $(container).html(out);
                 //add update as a call back to the internal a href
                 // clicks
                 $(container).ajaxify(self.update);
+
+
+                // Try to determine our active link by state.url //TODO: Move this into a view util
+                var rex = /http:\/\/[a-zA-Z0-9:.-]+\/([a-zA-Z]+)\/?/g
+                var rexRes = rex.exec(state.url);
+                if (rexRes  && rexRes.length && rexRes.length>1){
+                  rexRes = rexRes[1];
+                  rexRes = (rexRes==="app") ? "apps" : rexRes;
+                  $('ul.nav.studioNav li').removeClass('active');
+                  $('ul.nav.studioNav li.' + rexRes).addClass('active');
+                }else{
+                  $('ul.nav.studioNav li.home').addClass('active');
+                }
+
+                // call the init controller for this page, if one exists
+                if (newData.init && newData.init.length>0){
+                  //eval(newData.init + "()");
+                }
+
                 
                 $(container).trigger('firedup');
                 $(container).unbind('firedup');
@@ -76,9 +94,10 @@ client.studio.dispatch = function () {
     client.util.History.Adapter.bind(window, 'statechange', self.render );
 
     return self;
-};
+})();
 
-$('document').ready(function () {
-
-    client.studio.dispatch().update(window.location.pathname);
+$(function () {
+    client.studio.dispatch.update(window.location.pathname, {
+    	container: "#container"
+    });
 });

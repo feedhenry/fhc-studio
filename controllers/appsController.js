@@ -2,11 +2,11 @@
 var appsController,
     renderer    = require("../util"),
     util = require("util"),
-    fhc         = require("fh-fhc");
+    fhc         = require("../fh-module");
 
 appsController = {
     indexAction : function (req, res, next) {    
-      fhc.apps.list(function (err, data) {
+      fhc.apps.list(req.session,function (err, data) {
         if (err) {
             renderer.doError(res, req, "Couldn't generate apps listing");
             return;
@@ -20,8 +20,8 @@ appsController = {
       });
     },
     createAction : function (req,res) {
-      if(req.method === "GET"){
-          d = {
+      if(req.method === "GET") {
+          var d = {
               tpl : "createapp",
               data : {},
               title : "create an app"

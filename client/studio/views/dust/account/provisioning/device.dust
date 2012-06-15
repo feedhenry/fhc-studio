@@ -1,0 +1,29 @@
+<h2>{device}</h2>
+<!--
+<div class="hero-unit">
+  <h2>{device}</h2>
+  <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+
+</div>
+-->
+
+{#fields}
+   <div class="span5 resource">
+                <h3>{name}<a href="#" rel="popover" data-title="{lang.distributionCert}" data-content="{lang.distributionCertDesc|s}">?</a></h3>
+                 <form method="POST" enctype="multipart/form-data" action="/account/upload">
+                    <input type="hidden" name="dest" value="{destination}">
+                    <input type="hidden" name="resourceType" value="{resourceType}">
+                    <input type="hidden" name="buildType" value="{buildType}">
+                    <div class="fileBox">{#t key="dragFileBox"/}</div>
+                    <div class="or">{#t key="orFileBox"/}</div>
+                    <input name="file" class="input-file" id="fileInput" type="file"><br />
+                    <button type="submit" class="btn btn-primary">{#t key="fileUpload"/}</button><br />
+                 </form>
+        </div>
+{/fields}
+
+<script>
+$(function() {
+    client.studio.account.provisioning.init();
+});
+</script>

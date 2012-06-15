@@ -1,6 +1,6 @@
 var operationController,
     renderer = require("../../util"),
-    fhc      = require('fh-fhc'),
+    fhc      = require('../../fh-module'),
     http     = require("http"),
     validate = require("../../util/validation");
 
@@ -10,10 +10,10 @@ var operationController,
       operationController._createFile(req, function(err, data){
         if (err){
           renderer.doResponse(req,res,err);
-          return;
         }
-        renderer.doResponse(req, res, data);
-        return;
+        else {
+          renderer.doResponse(req, res, data);
+        }
       });
       
     }, // end createAction
@@ -65,18 +65,17 @@ var operationController,
             return cb({ msg:'Error',error:e}, null);
           }
           else {          
-            fhc.files.create(guid, path, name, type, function(err, data){
+            fhc.files.create(req.session, guid, path, name, type, function(err, data){
                 if (err){
                     console.log(err);
                     return cb({ msg: 'Error', error: err }, null);
-                    
                 }
                 /*
                  * We've now created a file - we need to update it's contents with
                  * the new fileID we just got back from the server.
                  */
                 req.body.fileId = data.guid;
-                operationController._createFile(req, function(err, data){
+                operationController._updateFile(req, function(err, data){
                   if (err){
                     errorString = err.err || err;
                     return cb({ msg: 'Error', error: 'File created successfully, but not updated: ' + errorString }, null);
@@ -103,7 +102,8 @@ var operationController,
             return cb({msg:'Error',error:e}, null);
           }
           else {
-              fhc.files(['update', guid, fileId, obj], function(err, succ){
+              fhc.files.update(req.session, guid, fileId, obj, function(err, succ){
+                  console.log(arguments);
                   if (!err){
                       cb(null, { msg: 'File saved successfully' });
                   }else{
@@ -123,7 +123,7 @@ var operationController,
       fileId = req.params.fileId || body.fileId,
       type = body.type;
       req.params.resType = "json";
-      fhc.files.deleteFile(guid , fileId, path, name, type, function(err, succ){
+      fhc.files.deleteFile(req.session, guid, fileId, path, name, type, function(err, succ){
         if (err){
           return cb({ msg: 'Error', error: err }, null);
         }
@@ -134,7 +134,7 @@ var operationController,
     _listFiles: function(req, cb) {
       var guid = req.params.id;
 
-      fhc.files.list(guid, function (err, root) {
+      fhc.files.list(req.session, guid, function (err, root) {
         if (err) {
           renderer.doError(res,req, "Error retrieving files list");
           return;

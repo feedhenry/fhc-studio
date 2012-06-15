@@ -1,0 +1,50 @@
+div.accountNav {
+  margin-top: 16px;
+}
+
+div.accountMain {
+  margin-left: 320px;
+}
+
+.account h2 {
+  text-transform: capitalize;
+}
+
+.fileBox {
+  height: 70px;
+  width: 100%;
+  float: none;
+  background-color: @grayLighter;
+  border: 1px dashed @gray;
+  text-align: center;
+  margin: 0px auto 10px auto;
+  color: @gray;
+  font-size: 1.3em;
+  line-height: 1.8em;
+  background-image: url("../images/account/drop.png");
+  background-repeat: no-repeat;
+  background-position: 50px 50%;
+  padding-top: 30px;
+}
+.fileBox.dragging {
+  background-color: @grayLight;
+}
+
+div.or {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2em;
+  text-transform: lowercase;
+}
+
+div.resource {
+  margin-top: 6px;
+  padding: 10px;
+}
+
+tr.apikey.revoked-true td{
+  text-decoration: line-through;
+}
+tr.apikey.revoked-true td.revoked {
+  text-decoration: none;
+}

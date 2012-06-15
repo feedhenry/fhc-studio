@@ -50,11 +50,53 @@ var en = {
   docs : "Docs",
   help : "Help",
   logout : "Logout",
+  account: "My Account",
   prefs :  "Preferences",
   apps : "Apps",
 
   // Footer
   serviceStatus : "Service Status ",
+
+  // My Account
+
+  // My Account: Profile
+  profile: "Profile",
+  personalDetails: "Personal Details",
+  accountName: "Name",
+  accountEmail: "Email",
+  accountRole: "Account Role",
+  changePassword: "Change Password",
+  currentPassword: "Current Password",
+  newPassword: "New Password",
+  confirmPassword: "Confirm Password",
+
+  // My Account : API Keys
+  apiKeys : "API Keys",
+  apiKeyLabel : "Label",
+  apiKey: "Key",
+  apiKeyStatus: "Status",
+  apiKeyActive: "Active",
+  apiKeyRevoked: "Revoked",
+  apiKeyRevokedBy: "by ",
+  apiKeyRevokedOn: "on ",
+  generateApiKeyHeading: "Generate a new API Key",
+  generateApiKeyPlaceholder: "Key Label",
+  generateApiKey : "Generate",
+  revokeKey : "Revoke?",
+
+  // My Account: Provisioning
+  provisioning: "Provisioning",
+  account: "Account",
+  dragFileBox: "Drag your file here",
+  orFileBox: "Or",
+  fileUpload: "Upload",
+  // iOS
+  developerCert: "Developer Cert",
+  developerCertDesc: "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps that can be installed on a developer enabled devce.</p>"+
+  "<p>Apps created with a Developer Certificate are generally only used for debugging purposes during App Development.</p>",
+  distributionCert: "Distribution Cert",
+  distributionCertDesc: "<p>It is digitally signed by Apple, which means Apple has authorised the owner of the certificate to create Apps for distribution.</p>" +
+  "<p>These apps can be distributed to a specific set of Devices, or submitted to the App Store.</p>",
 
   // Apps Tab (apps.dust)
   name : "Name",
@@ -66,7 +108,11 @@ var en = {
   createAnApp: "Create An App",
   fromScratch: "From Scratch",
   fromGitRepo: "From A Git Repo",
-  
+
+  // App dock
+  dockTabBuild: "Builds",
+
+
   // App Dashboard (app.dust / dashboard.dust)
   appDashboard : "App Dashboard",
   editor : "Editor",
@@ -79,7 +125,7 @@ var en = {
   productionLogs: "Production",
   Logs: "Logs",
   moreInfo : "moreInfo",
-  previewOnMobile : "Preveiw on your mobile",
+  previewOnMobile : "Preview on your mobile",
   width : "width",
   height : "height",
   w3cid : "w3cid",
@@ -157,7 +203,27 @@ var en = {
     }
   },
   // App Build (build.dust)
+  // Build Destinations
   build : "Build",
+  buildIOS : "Apple iOS",
+  buildAndroid : "Android",
+  buildBlackberry : "Blackberry",
+  buildWP7 : "Windows Phone 7",
+  buildMobileWeb : "Mobile Web",
+  
+  //Build Configs
+  debug : 'Debug',
+  distribution : 'Distribution',
+  release : 'Release',
+  unsigned : 'Unsigned',
+  signed : 'Signed',
+  buildButton : 'Build!',
+  
+  // iOS Targets
+  buildiPad : 'iPad',
+  buildiPhone : 'iPhone',
+  buildUniversal : 'Universal',
+  
   // App Debug (debug.dust)
   debug: "Debug",
 
