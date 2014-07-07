@@ -1,17 +1,18 @@
 {
-    "name": "fh-studio"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.2"
-    , "connect-redis" : ">=0.7"
-    , "mkdirp": "0.2.2"
-    , "dust" : "https://github.com/cianclarke/dustjs/tarball/master"
-    , "jade" : "0.20.0"
-    , "less" : "1.2.1"
-    , "async" : "*"
-    , "jake" : "*"
-    , "socket.io": "*"
-    , "connect": "*"
-  }
+  "name": "fh-studio",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.2",
+    "connect-redis": ">=0.7",
+    "mkdirp": "0.2.2",
+    "dust": "https://github.com/cianclarke/dustjs/tarball/master",
+    "jade": "0.20.0",
+    "less": "1.2.1",
+    "async": "*",
+    "jake": "*",
+    "socket.io": "*",
+    "connect": "*"
+  },
+  "license": "MIT"
 }
